@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "portfolio2",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "4321", "--directory", "/private/tmp/claude-501/-Users-atony/4285ef0a-fbc6-43c9-b423-bd385d896bc5/scratchpad/preview"],
+      "port": 4321
+    }
+  ]
+}
