@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Header options 4 · Anthony N.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/vendor/drawably/style.css" />
+  <!-- MOCKUP on the real stylesheet. Nothing on the live pages changed. -->
+  <link rel="stylesheet" href="../css/style.css?v=x133" />
+  <style>
+    body { background: var(--bg); }
+    .mocknote { max-width: var(--maxw); margin: 0 auto; padding: 34px var(--gutter) 0; }
+    .mocknote h2 { font-size: 14px; letter-spacing: .12em; text-transform: uppercase; color: var(--orange); margin: 0 0 4px; }
+    .mocknote p { margin: 0; font-size: 14px; color: var(--ink-50); max-width: 76ch; }
+    .mockdiv { max-width: var(--maxw); margin: 40px auto 0; padding-inline: var(--gutter); }
+    .mockdiv hr { border: none; border-top: 1px dashed var(--line); }
+    .hero__title { opacity: 1; transform: none; }
+
+    /* ---------- shared ---------- */
+    .m-hero .hero__inner { grid-template-columns: 1fr; min-height: 0;
+      padding-block: clamp(46px, 7vw, 90px) clamp(72px, 8vw, 100px); }
+    .m-hero .hero__intro { max-width: none; }
+    .m-hero .hero__sub { margin-top: 20px; font-size: clamp(15px, 1.2vw, 17px); }
+    .m-hero .hero__loc { position: absolute; left: 0; bottom: 6px; margin: 0; }
+    .m-hero .hero__scroll { position: absolute; right: 0; bottom: 6px; }
+    .m-hero .hero__foot-item { font-size: clamp(13.5px, 1.1vw, 16px); }
+    /* the star sits in the left margin now, not over the first letter */
+    .m-hero .hero__star--1 { top: 2%; left: -2%; width: 34px; }
+    .m-hero .hero__star--2 { top: 6%; }
+    /* Sumi: small, tucked into the bottom-right corner above the scroll line */
+    .m-sumi { position: absolute; right: 0; bottom: 42px; height: auto; pointer-events: none; z-index: 2; }
+
+    /* headline runs the full width of the column, so its right edge lands about as
+       close to the margin as the left edge does */
+    .m-hero .hero__title { max-width: none; width: 100%; text-wrap: pretty; }
+
+    .m-k .hero__title { font-size: clamp(29px, 3.6vw, 46px); line-height: 1.18; font-weight: 500; }
+    .m-k .m-sumi { width: clamp(70px, 7vw, 96px); }
+
+    .m-l .hero__title { font-size: clamp(26px, 3.1vw, 40px); line-height: 1.24; font-weight: 500; }
+    .m-l .m-sumi { width: clamp(64px, 6vw, 84px); }
+
+    .m-m .hero__title { font-size: clamp(26px, 3.1vw, 40px); line-height: 1.24; font-weight: 500; }
+    .m-m .m-sumi { width: clamp(64px, 6vw, 84px); }
+  </style>
+</head>
+<body>
+
+<div class="mocknote">
+  <h2>Option K &nbsp;&middot;&nbsp; 46px, headline fills the column</h2>
+  <p>New wording. The sentence runs edge to edge, so the right side ends about as close to the margin as the left side starts.</p>
+</div>
+<section class="hero m-hero m-k">
+  <div class="hero__inner">
+    <div class="hero__intro">
+      <h1 class="hero__title">Product Designer that values <span class="accent">user-centered</span> digital experiences and a productive AI workflow</h1>
+      <p class="hero__sub">4th year design undergrad @ UC Davis. <span class="nowrap">Certified <b>energy drink</b> enjoyer.</span></p>
+    </div>
+    <img class="doodle-star doodle-star--float hero__star hero__star--1" src="../assets/graphics/star.png" style="--rot:-12deg" alt="" aria-hidden="true" />
+    <img class="doodle-star doodle-star--float hero__star hero__star--2" src="../assets/graphics/star.png" style="--rot:14deg;left:92%" alt="" aria-hidden="true" />
+    <img class="m-sumi" src="../assets/graphics/sumi/sketching.png" alt="" aria-hidden="true" />
+    <p class="hero__loc hero__foot-item">[ Based in Sacramento, CA ]</p>
+    <a class="hero__scroll hero__foot-item" href="#">Scroll to see my work</a>
+  </div>
+</section>
+
+<div class="mockdiv"><hr /></div>
+
+<div class="mocknote">
+  <h2>Option L &nbsp;&middot;&nbsp; 40px, headline fills the column</h2>
+  <p>Same, one step smaller, so it wraps into fuller lines.</p>
+</div>
+<section class="hero m-hero m-l">
+  <div class="hero__inner">
+    <div class="hero__intro">
+      <h1 class="hero__title">Product Designer that values <span class="accent">user-centered</span> digital experiences and a productive AI workflow</h1>
+      <p class="hero__sub">4th year design undergrad @ UC Davis. <span class="nowrap">Certified <b>energy drink</b> enjoyer.</span></p>
+    </div>
+    <img class="doodle-star doodle-star--float hero__star hero__star--1" src="../assets/graphics/star.png" style="--rot:-12deg" alt="" aria-hidden="true" />
+    <img class="doodle-star doodle-star--float hero__star hero__star--2" src="../assets/graphics/star.png" style="--rot:14deg;left:92%" alt="" aria-hidden="true" />
+    <img class="m-sumi" src="../assets/graphics/sumi/sketching.png" alt="" aria-hidden="true" />
+    <p class="hero__loc hero__foot-item">[ Based in Sacramento, CA ]</p>
+    <a class="hero__scroll hero__foot-item" href="#">Scroll to see my work</a>
+  </div>
+</section>
+
+<div class="mockdiv"><hr /></div>
+
+<div class="mocknote">
+  <h2>Option M &nbsp;&middot;&nbsp; 40px, both phrases accented</h2>
+  <p>As L, but "productive AI workflow" is also blue italic, so the two claims read as a pair.</p>
+</div>
+<section class="hero m-hero m-m">
+  <div class="hero__inner">
+    <div class="hero__intro">
+      <h1 class="hero__title">Product Designer that values <span class="accent">user-centered</span> digital experiences and a <span class="accent">productive AI workflow</span></h1>
+      <p class="hero__sub">4th year design undergrad @ UC Davis. <span class="nowrap">Certified <b>energy drink</b> enjoyer.</span></p>
+    </div>
+    <img class="doodle-star doodle-star--float hero__star hero__star--1" src="../assets/graphics/star.png" style="--rot:-12deg" alt="" aria-hidden="true" />
+    <img class="doodle-star doodle-star--float hero__star hero__star--2" src="../assets/graphics/star.png" style="--rot:14deg;left:92%" alt="" aria-hidden="true" />
+    <img class="m-sumi" src="../assets/graphics/sumi/sketching.png" alt="" aria-hidden="true" />
+    <p class="hero__loc hero__foot-item">[ Based in Sacramento, CA ]</p>
+    <a class="hero__scroll hero__foot-item" href="#">Scroll to see my work</a>
+  </div>
+</section>
+
+<div class="mockdiv" style="margin-bottom:50px"><hr /></div>
+<div class="mocknote" style="padding-bottom:70px">
+  <p><strong>All three:</strong> no collage, no tags, only the UC Davis and energy drink lines under the headline, corner lines kept, small sitting-and-sketching Sumi bottom-right.</p>
+</div>
+
+</body>
+</html>

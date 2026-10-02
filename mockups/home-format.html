@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Home format &middot; peek layout</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/vendor/drawably/style.css" />
+<link rel="stylesheet" href="../css/style.css?v=x133" />
+
+  <style>
+    body { background: var(--bg); }
+    .mocknote { max-width: var(--maxw); margin: 0 auto; padding: 30px var(--gutter) 6px; }
+    .mocknote h2 { font-size: 14px; letter-spacing: .12em; text-transform: uppercase; color: var(--orange); margin: 0 0 4px; }
+    .mocknote p { margin: 0; font-size: 14px; color: var(--ink-50); max-width: 78ch; }
+    .mockdiv { max-width: var(--maxw); margin: 26px auto 0; padding-inline: var(--gutter); }
+    .mockdiv hr { border: none; border-top: 1px dashed var(--line); }
+    .hero__title { opacity: 1; transform: none; }
+    [data-reveal], [data-reveal-stagger] > * { opacity: 1 !important; transform: none !important; }
+
+    /* the peek layout: the header is short enough that the cards start on screen */
+    .m-hero .hero__inner { min-height: 0; padding-block: clamp(30px,4vw,54px) clamp(58px,6vw,78px); }
+    .m-hero .hero__title { font-size: clamp(26px,3.1vw,40px); line-height: 1.24; max-width: none; }
+    .m-hero .hero__sub { margin-top: 18px; }
+    .m-hero .hero__loc { position: absolute; left: 0; bottom: 8px; margin: 0; }
+    .m-hero .hero__scroll { position: absolute; right: 0; bottom: 8px; }
+    .m-hero .hero__down { display: none; }
+    .m-hero .hero__sumi { position: absolute; right: 3%; bottom: 44px; width: clamp(72px,7vw,104px); }
+    .m-works { padding-top: 0 !important; }
+    .m-star { position: absolute; z-index: 4; pointer-events: none; transform: rotate(var(--rot,0deg)); }
+    .m-a .m-star--a1 { width: 30px; top: 4px; left: -34px; }
+    .m-a .m-star--a2 { width: 22px; top: 156px; left: 46%; }
+    .m-b .m-star--b1 { width: 34px; right: 13%; bottom: 104px; }
+    .m-c .m-star--c1 { width: 26px; right: 26%; bottom: 22px; }
+    .m-c .m-star--c2 { width: 18px; right: 21%; bottom: 62px; }
+  </style>
+</head>
+<body>
+<div class="mocknote">
+  <h2>Star placement A &middot; both stars with the headline</h2>
+  <p>No stars in the far corners. One sits in the left margin beside the first line, the other under the second line.</p>
+</div>
+<main>
+    <section class="hero m-hero m-a">
+      <div class="hero__inner">
+        <div class="hero__intro">
+          <h1 class="hero__title">Product Designer,<br />that builds <span class="accent">user-centered</span> products with an <span class="accent">AI workflow</span></h1>
+          <p class="hero__sub">4th year design undergrad @ UC Davis.<br />Certified <b>energy drink</b> enjoyer.</p>
+        </div>
+        <img class="hero__sumi" src="../assets/graphics/sumi/sketching.png" alt="" aria-hidden="true" />
+        <img class="doodle-star m-star m-star--a1" src="../assets/graphics/star.png" style="--rot:-12deg" alt="" aria-hidden="true" />
+        <img class="doodle-star m-star m-star--a2" src="../assets/graphics/star.png" style="--rot:16deg" alt="" aria-hidden="true" />
+        <p class="hero__loc hero__foot-item">[ Based in Sacramento, CA ]</p>
+        <a class="hero__scroll hero__foot-item" href="#works">Scroll to see my work</a>
+      </div>
+    </section>
+    <!-- ============ SELECTED WORKS ============ -->
+    <section class="section wrap m-works" id="works-m-a" style="isolation:isolate">
+      <div class="works-sketch" aria-hidden="true">
+        <img class="sk-star sk-star--orange sk-1" src="../assets/graphics/star.png" alt="" />
+        <img class="sk-star sk-2" src="../assets/graphics/star.png" alt="" />
+        <img class="sk-cup sk-3" src="../assets/graphics/coffee.png" alt="" />
+        <span class="sk-ink sk-ink--orange sk-4">
+          <svg viewBox="0 0 120 74" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 5c22-3 47 4 63 19 9 8 14 19 12 30"/>
+            <path d="M3 5c21 1 44 9 58 23 10 10 15 22 13 33" opacity=".45"/>
+            <path d="M69 62l9 12 13-8"/>
+          </svg>
+        </span>
+        <span class="sk-ink sk-5">
+          <svg viewBox="0 0 74 26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+            <path d="M2 14c8-11 16 11 24 0s16 11 24 0 16 8 22 2"/>
+          </svg>
+        </span>
+      </div>
+
+      <div class="worktiles" data-reveal-stagger>
+        <a class="wcard" data-cursor="view" href="../work/vendrs.html">
+          <span class="wcard__paper">
+            <span class="wcard__tape" aria-hidden="true"></span>
+            <!-- animated thumbnail: the event page rests here, the rest of the
+                 product flies in on hover (".wthumb" in css/style.css) -->
+            <span class="wcard__frame">
+              <span class="wthumb">
+                <span class="wthumb__bg" aria-hidden="true">
+                  <svg viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice">
+                    <ellipse class="blob blob--a" cx="120" cy="110" rx="190" ry="150" />
+                    <ellipse class="blob blob--b" cx="690" cy="430" rx="220" ry="170" />
+                    <path class="line" d="M-20 150 C 140 90, 250 210, 400 170 S 680 60, 830 130" />
+                    <path class="line" d="M-20 330 C 160 280, 280 400, 430 350 S 700 250, 830 320" />
+                    <path class="route" d="M60 470 C 120 330, 60 250, 150 170 S 300 90, 360 30" />
+                  </svg>
+                </span>
+                <span class="wthumb__fly wf--feed"><img src="../assets/graphics/thumbs/vendrs/feed.jpg" alt="" loading="lazy" decoding="async" /></span>
+                <span class="wthumb__fly wf--onb"><img src="../assets/graphics/thumbs/vendrs/onboarding.jpg" alt="" loading="lazy" decoding="async" /></span>
+                <span class="wthumb__fly wf--market"><img src="../assets/graphics/thumbs/vendrs/market.jpg" alt="" loading="lazy" decoding="async" /></span>
+                <span class="wthumb__fly wf--confirm"><img src="../assets/graphics/thumbs/vendrs/confirm.png" alt="" loading="lazy" decoding="async" /></span>
+                <span class="wthumb__pop wp--1" aria-hidden="true"><svg width="26" height="32" viewBox="0 0 26 32" fill="none"><path d="M13 31s11-11.2 11-18a11 11 0 1 0-22 0c0 6.8 11 18 11 18z" fill="#fff"/><circle cx="13" cy="12.6" r="4.6" fill="#1ea2c4"/></svg></span>
+                <span class="wthumb__pop wp--2" aria-hidden="true"><svg width="20" height="25" viewBox="0 0 26 32" fill="none"><path d="M13 31s11-11.2 11-18a11 11 0 1 0-22 0c0 6.8 11 18 11 18z" fill="#fff" fill-opacity=".92"/><circle cx="13" cy="12.6" r="4.6" fill="#2b5fd9"/></svg></span>
+                <span class="wthumb__pop wp--3" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2.5l2.3 6.1 6.2 2.4-6.2 2.4L12 21.5l-2.3-8.1L3.5 11l6.2-2.4z" fill="#ffd166"/></svg></span>
+                <img class="wthumb__base" src="../assets/graphics/thumbs/vendrs/event.jpg" alt="Vendrs case study cover: the event page for an Asian Night Market" width="1200" height="700" loading="lazy" decoding="async" />
+              </span>
+              <span class="wthumb__tag">Case study</span>
+              <span class="wcard__go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+            </span>
+            <span class="wcard__foot">
+              <h3 class="wcard__title">Vendrs</h3>
+              <span class="wcard__pills">
+              <span class="wcard__pill" data-drawably="pill">B2C</span>
+              <span class="wcard__pill" data-drawably="pill">Desktop</span>
+              <span class="wcard__pill" data-drawably="pill">Client</span>
+              </span>
+            </span>
+          </span>
+        </a>
+
+        <a class="wcard" data-cursor="view" href="../work/qac-gallery.html">
+          <span class="wcard__paper">
+            <span class="wcard__tape" aria-hidden="true"></span>
+            <!-- animated thumbnail: the events page rests here, the rest of the
+                 site flies in on hover (".wthumb" in css/style.css) -->
+            <span class="wcard__frame">
+              <span class="wthumb wthumb--qac">
+                <span class="wthumb__bg" aria-hidden="true">
+                  <img class="qac-splat" src="../assets/graphics/thumbs/qac/splatter.svg" alt="" loading="lazy" decoding="async" />
+                </span>
+                <span class="wthumb__fly wf--signin"><img src="../assets/graphics/thumbs/qac/signin.jpg" alt="" loading="lazy" decoding="async" /></span>
+                <span class="wthumb__fly wf--shop"><img src="../assets/graphics/thumbs/qac/workshop.jpg" alt="" loading="lazy" decoding="async" /></span>
+                <span class="wthumb__fly wf--workshops"><img src="../assets/graphics/thumbs/qac/workshops.jpg" alt="" loading="lazy" decoding="async" /></span>
+                <span class="wthumb__fly wf--rent"><img src="../assets/graphics/thumbs/qac/rent.jpg" alt="" loading="lazy" decoding="async" /></span>
+                <span class="wthumb__pop wp--1" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2.5l2.3 6.1 6.2 2.4-6.2 2.4L12 21.5l-2.3-8.1L3.5 11l6.2-2.4z" fill="#f5a623"/></svg></span>
+                <span class="wthumb__pop wp--2" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" fill="#8bd46a"/></svg></span>
+                <span class="wthumb__pop wp--3" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2.5l2.3 6.1 6.2 2.4-6.2 2.4L12 21.5l-2.3-8.1L3.5 11l6.2-2.4z" fill="#e879b8"/></svg></span>
+                <img class="wthumb__base" src="../assets/graphics/thumbs/qac/events.jpg" alt="QAC Gallery case study cover: the events and bookings page" width="1200" height="675" loading="lazy" decoding="async" />
+              </span>
+              <span class="wthumb__tag">Case study</span>
+              <span class="wcard__go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+            </span>
+            <span class="wcard__foot">
+              <h3 class="wcard__title">QAC Gallery Redesign</h3>
+              <span class="wcard__pills">
+              <span class="wcard__pill" data-drawably="pill">B2C</span>
+              <span class="wcard__pill" data-drawably="pill">Desktop</span>
+              <span class="wcard__pill" data-drawably="pill">Client</span>
+              </span>
+            </span>
+          </span>
+        </a>
+      </div>
+    </section>
+
+</main>
+<div class="mockdiv"><hr /></div>
+<div class="mocknote">
+  <h2>Star placement B &middot; one star only, beside Sumi</h2>
+  <p>A single star next to the mascot, so the doodles are grouped in one place instead of scattered.</p>
+</div>
+<main>
+    <section class="hero m-hero m-b">
+      <div class="hero__inner">
+        <div class="hero__intro">
+          <h1 class="hero__title">Product Designer,<br />that builds <span class="accent">user-centered</span> products with an <span class="accent">AI workflow</span></h1>
+          <p class="hero__sub">4th year design undergrad @ UC Davis.<br />Certified <b>energy drink</b> enjoyer.</p>
+        </div>
+        <img class="hero__sumi" src="../assets/graphics/sumi/sketching.png" alt="" aria-hidden="true" />
+        <img class="doodle-star m-star m-star--b1" src="../assets/graphics/star.png" style="--rot:14deg" alt="" aria-hidden="true" />
+        <p class="hero__loc hero__foot-item">[ Based in Sacramento, CA ]</p>
+        <a class="hero__scroll hero__foot-item" href="#works">Scroll to see my work</a>
+      </div>
+    </section>
+    <!-- ============ SELECTED WORKS ============ -->
+    <section class="section wrap m-works" id="works-m-b" style="isolation:isolate">
+      <div class="works-sketch" aria-hidden="true">
+        <img class="sk-star sk-star--orange sk-1" src="../assets/graphics/star.png" alt="" />
+        <img class="sk-star sk-2" src="../assets/graphics/star.png" alt="" />
+        <img class="sk-cup sk-3" src="../assets/graphics/coffee.png" alt="" />
+        <span class="sk-ink sk-ink--orange sk-4">
+          <svg viewBox="0 0 120 74" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 5c22-3 47 4 63 19 9 8 14 19 12 30"/>
+            <path d="M3 5c21 1 44 9 58 23 10 10 15 22 13 33" opacity=".45"/>
+            <path d="M69 62l9 12 13-8"/>
+          </svg>
+        </span>
+        <span class="sk-ink sk-5">
+          <svg viewBox="0 0 74 26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+            <path d="M2 14c8-11 16 11 24 0s16 11 24 0 16 8 22 2"/>
+          </svg>
+        </span>
+      </div>
+
+      <div class="worktiles" data-reveal-stagger>
+        <a class="wcard" data-cursor="view" href="../work/vendrs.html">
+          <span class="wcard__paper">
+            <span class="wcard__tape" aria-hidden="true"></span>
+            <!-- animated thumbnail: the event page rests here, the rest of the
+                 product flies in on hover (".wthumb" in css/style.css) -->
+            <span class="wcard__frame">
+              <span class="wthumb">
+                <span class="wthumb__bg" aria-hidden="true">
+                  <svg viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice">
+                    <ellipse class="blob blob--a" cx="120" cy="110" rx="190" ry="150" />
+                    <ellipse class="blob blob--b" cx="690" cy="430" rx="220" ry="170" />
+                    <path class="line" d="M-20 150 C 140 90, 250 210, 400 170 S 680 60, 830 130" />
+                    <path class="line" d="M-20 330 C 160 280, 280 400, 430 350 S 700 250, 830 320" />
+                    <path class="route" d="M60 470 C 120 330, 60 250, 150 170 S 300 90, 360 30" />
+                  </svg>
+                </span>
+                <span class="wthumb__fly wf--feed"><img src="../assets/graphics/thumbs/vendrs/feed.jpg" alt="" loading="lazy" decoding="async" /></span>
+                <span class="wthumb__fly wf--onb"><img src="../assets/graphics/thumbs/vendrs/onboarding.jpg" alt="" loading="lazy" decoding="async" /></span>
+                <span class="wthumb__fly wf--market"><img src="../assets/graphics/thumbs/vendrs/market.jpg" alt="" loading="lazy" decoding="async" /></span>
+                <span class="wthumb__fly wf--confirm"><img src="../assets/graphics/thumbs/vendrs/confirm.png" alt="" loading="lazy" decoding="async" /></span>
+                <span class="wthumb__pop wp--1" aria-hidden="true"><svg width="26" height="32" viewBox="0 0 26 32" fill="none"><path d="M13 31s11-11.2 11-18a11 11 0 1 0-22 0c0 6.8 11 18 11 18z" fill="#fff"/><circle cx="13" cy="12.6" r="4.6" fill="#1ea2c4"/></svg></span>
+                <span class="wthumb__pop wp--2" aria-hidden="true"><svg width="20" height="25" viewBox="0 0 26 32" fill="none"><path d="M13 31s11-11.2 11-18a11 11 0 1 0-22 0c0 6.8 11 18 11 18z" fill="#fff" fill-opacity=".92"/><circle cx="13" cy="12.6" r="4.6" fill="#2b5fd9"/></svg></span>
+                <span class="wthumb__pop wp--3" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2.5l2.3 6.1 6.2 2.4-6.2 2.4L12 21.5l-2.3-8.1L3.5 11l6.2-2.4z" fill="#ffd166"/></svg></span>
+                <img class="wthumb__base" src="../assets/graphics/thumbs/vendrs/event.jpg" alt="Vendrs case study cover: the event page for an Asian Night Market" width="1200" height="700" loading="lazy" decoding="async" />
+              </span>
+              <span class="wthumb__tag">Case study</span>
+              <span class="wcard__go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+            </span>
+            <span class="wcard__foot">
+              <h3 class="wcard__title">Vendrs</h3>
+              <span class="wcard__pills">
+              <span class="wcard__pill" data-drawably="pill">B2C</span>
+              <span class="wcard__pill" data-drawably="pill">Desktop</span>
+              <span class="wcard__pill" data-drawably="pill">Client</span>
+              </span>
+            </span>
+          </span>
+        </a>
+
+        <a class="wcard" data-cursor="view" href="../work/qac-gallery.html">
+          <span class="wcard__paper">
+            <span class="wcard__tape" aria-hidden="true"></span>
+            <!-- animated thumbnail: the events page rests here, the rest of the
+                 site flies in on hover (".wthumb" in css/style.css) -->
+            <span class="wcard__frame">
+              <span class="wthumb wthumb--qac">
+                <span class="wthumb__bg" aria-hidden="true">
+                  <img class="qac-splat" src="../assets/graphics/thumbs/qac/splatter.svg" alt="" loading="lazy" decoding="async" />
+                </span>
+                <span class="wthumb__fly wf--signin"><img src="../assets/graphics/thumbs/qac/signin.jpg" alt="" loading="lazy" decoding="async" /></span>
+                <span class="wthumb__fly wf--shop"><img src="../assets/graphics/thumbs/qac/workshop.jpg" alt="" loading="lazy" decoding="async" /></span>
+                <span class="wthumb__fly wf--workshops"><img src="../assets/graphics/thumbs/qac/workshops.jpg" alt="" loading="lazy" decoding="async" /></span>
+                <span class="wthumb__fly wf--rent"><img src="../assets/graphics/thumbs/qac/rent.jpg" alt="" loading="lazy" decoding="async" /></span>
+                <span class="wthumb__pop wp--1" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2.5l2.3 6.1 6.2 2.4-6.2 2.4L12 21.5l-2.3-8.1L3.5 11l6.2-2.4z" fill="#f5a623"/></svg></span>
+                <span class="wthumb__pop wp--2" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" fill="#8bd46a"/></svg></span>
+                <span class="wthumb__pop wp--3" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2.5l2.3 6.1 6.2 2.4-6.2 2.4L12 21.5l-2.3-8.1L3.5 11l6.2-2.4z" fill="#e879b8"/></svg></span>
+                <img class="wthumb__base" src="../assets/graphics/thumbs/qac/events.jpg" alt="QAC Gallery case study cover: the events and bookings page" width="1200" height="675" loading="lazy" decoding="async" />
+              </span>
+              <span class="wthumb__tag">Case study</span>
+              <span class="wcard__go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+            </span>
+            <span class="wcard__foot">
+              <h3 class="wcard__title">QAC Gallery Redesign</h3>
+              <span class="wcard__pills">
+              <span class="wcard__pill" data-drawably="pill">B2C</span>
+              <span class="wcard__pill" data-drawably="pill">Desktop</span>
+              <span class="wcard__pill" data-drawably="pill">Client</span>
+              </span>
+            </span>
+          </span>
+        </a>
+      </div>
+    </section>
+
+</main>
+<div class="mockdiv"><hr /></div>
+<div class="mocknote">
+  <h2>Star placement C &middot; a small pair at the seam</h2>
+  <p>Two stars of different sizes near where the header meets the cards, off to one side.</p>
+</div>
+<main>
+    <section class="hero m-hero m-c">
+      <div class="hero__inner">
+        <div class="hero__intro">
+          <h1 class="hero__title">Product Designer,<br />that builds <span class="accent">user-centered</span> products with an <span class="accent">AI workflow</span></h1>
+          <p class="hero__sub">4th year design undergrad @ UC Davis.<br />Certified <b>energy drink</b> enjoyer.</p>
+        </div>
+        <img class="hero__sumi" src="../assets/graphics/sumi/sketching.png" alt="" aria-hidden="true" />
+        <img class="doodle-star m-star m-star--c1" src="../assets/graphics/star.png" style="--rot:-10deg" alt="" aria-hidden="true" />
+        <img class="doodle-star m-star m-star--c2" src="../assets/graphics/star.png" style="--rot:18deg" alt="" aria-hidden="true" />
+        <p class="hero__loc hero__foot-item">[ Based in Sacramento, CA ]</p>
+        <a class="hero__scroll hero__foot-item" href="#works">Scroll to see my work</a>
+      </div>
+    </section>
+    <!-- ============ SELECTED WORKS ============ -->
+    <section class="section wrap m-works" id="works-m-c" style="isolation:isolate">
+      <div class="works-sketch" aria-hidden="true">
+        <img class="sk-star sk-star--orange sk-1" src="../assets/graphics/star.png" alt="" />
+        <img class="sk-star sk-2" src="../assets/graphics/star.png" alt="" />
+        <img class="sk-cup sk-3" src="../assets/graphics/coffee.png" alt="" />
+        <span class="sk-ink sk-ink--orange sk-4">
+          <svg viewBox="0 0 120 74" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 5c22-3 47 4 63 19 9 8 14 19 12 30"/>
+            <path d="M3 5c21 1 44 9 58 23 10 10 15 22 13 33" opacity=".45"/>
+            <path d="M69 62l9 12 13-8"/>
+          </svg>
+        </span>
+        <span class="sk-ink sk-5">
+          <svg viewBox="0 0 74 26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+            <path d="M2 14c8-11 16 11 24 0s16 11 24 0 16 8 22 2"/>
+          </svg>
+        </span>
+      </div>
+
+      <div class="worktiles" data-reveal-stagger>
+        <a class="wcard" data-cursor="view" href="../work/vendrs.html">
+          <span class="wcard__paper">
+            <span class="wcard__tape" aria-hidden="true"></span>
+            <!-- animated thumbnail: the event page rests here, the rest of the
+                 product flies in on hover (".wthumb" in css/style.css) -->
+            <span class="wcard__frame">
+              <span class="wthumb">
+                <span class="wthumb__bg" aria-hidden="true">
+                  <svg viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice">
+                    <ellipse class="blob blob--a" cx="120" cy="110" rx="190" ry="150" />
+                    <ellipse class="blob blob--b" cx="690" cy="430" rx="220" ry="170" />
+                    <path class="line" d="M-20 150 C 140 90, 250 210, 400 170 S 680 60, 830 130" />
+                    <path class="line" d="M-20 330 C 160 280, 280 400, 430 350 S 700 250, 830 320" />
+                    <path class="route" d="M60 470 C 120 330, 60 250, 150 170 S 300 90, 360 30" />
+                  </svg>
+                </span>
+                <span class="wthumb__fly wf--feed"><img src="../assets/graphics/thumbs/vendrs/feed.jpg" alt="" loading="lazy" decoding="async" /></span>
+                <span class="wthumb__fly wf--onb"><img src="../assets/graphics/thumbs/vendrs/onboarding.jpg" alt="" loading="lazy" decoding="async" /></span>
+                <span class="wthumb__fly wf--market"><img src="../assets/graphics/thumbs/vendrs/market.jpg" alt="" loading="lazy" decoding="async" /></span>
+                <span class="wthumb__fly wf--confirm"><img src="../assets/graphics/thumbs/vendrs/confirm.png" alt="" loading="lazy" decoding="async" /></span>
+                <span class="wthumb__pop wp--1" aria-hidden="true"><svg width="26" height="32" viewBox="0 0 26 32" fill="none"><path d="M13 31s11-11.2 11-18a11 11 0 1 0-22 0c0 6.8 11 18 11 18z" fill="#fff"/><circle cx="13" cy="12.6" r="4.6" fill="#1ea2c4"/></svg></span>
+                <span class="wthumb__pop wp--2" aria-hidden="true"><svg width="20" height="25" viewBox="0 0 26 32" fill="none"><path d="M13 31s11-11.2 11-18a11 11 0 1 0-22 0c0 6.8 11 18 11 18z" fill="#fff" fill-opacity=".92"/><circle cx="13" cy="12.6" r="4.6" fill="#2b5fd9"/></svg></span>
+                <span class="wthumb__pop wp--3" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2.5l2.3 6.1 6.2 2.4-6.2 2.4L12 21.5l-2.3-8.1L3.5 11l6.2-2.4z" fill="#ffd166"/></svg></span>
+                <img class="wthumb__base" src="../assets/graphics/thumbs/vendrs/event.jpg" alt="Vendrs case study cover: the event page for an Asian Night Market" width="1200" height="700" loading="lazy" decoding="async" />
+              </span>
+              <span class="wthumb__tag">Case study</span>
+              <span class="wcard__go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+            </span>
+            <span class="wcard__foot">
+              <h3 class="wcard__title">Vendrs</h3>
+              <span class="wcard__pills">
+              <span class="wcard__pill" data-drawably="pill">B2C</span>
+              <span class="wcard__pill" data-drawably="pill">Desktop</span>
+              <span class="wcard__pill" data-drawably="pill">Client</span>
+              </span>
+            </span>
+          </span>
+        </a>
+
+        <a class="wcard" data-cursor="view" href="../work/qac-gallery.html">
+          <span class="wcard__paper">
+            <span class="wcard__tape" aria-hidden="true"></span>
+            <!-- animated thumbnail: the events page rests here, the rest of the
+                 site flies in on hover (".wthumb" in css/style.css) -->
+            <span class="wcard__frame">
+              <span class="wthumb wthumb--qac">
+                <span class="wthumb__bg" aria-hidden="true">
+                  <img class="qac-splat" src="../assets/graphics/thumbs/qac/splatter.svg" alt="" loading="lazy" decoding="async" />
+                </span>
+                <span class="wthumb__fly wf--signin"><img src="../assets/graphics/thumbs/qac/signin.jpg" alt="" loading="lazy" decoding="async" /></span>
+                <span class="wthumb__fly wf--shop"><img src="../assets/graphics/thumbs/qac/workshop.jpg" alt="" loading="lazy" decoding="async" /></span>
+                <span class="wthumb__fly wf--workshops"><img src="../assets/graphics/thumbs/qac/workshops.jpg" alt="" loading="lazy" decoding="async" /></span>
+                <span class="wthumb__fly wf--rent"><img src="../assets/graphics/thumbs/qac/rent.jpg" alt="" loading="lazy" decoding="async" /></span>
+                <span class="wthumb__pop wp--1" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2.5l2.3 6.1 6.2 2.4-6.2 2.4L12 21.5l-2.3-8.1L3.5 11l6.2-2.4z" fill="#f5a623"/></svg></span>
+                <span class="wthumb__pop wp--2" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" fill="#8bd46a"/></svg></span>
+                <span class="wthumb__pop wp--3" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2.5l2.3 6.1 6.2 2.4-6.2 2.4L12 21.5l-2.3-8.1L3.5 11l6.2-2.4z" fill="#e879b8"/></svg></span>
+                <img class="wthumb__base" src="../assets/graphics/thumbs/qac/events.jpg" alt="QAC Gallery case study cover: the events and bookings page" width="1200" height="675" loading="lazy" decoding="async" />
+              </span>
+              <span class="wthumb__tag">Case study</span>
+              <span class="wcard__go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+            </span>
+            <span class="wcard__foot">
+              <h3 class="wcard__title">QAC Gallery Redesign</h3>
+              <span class="wcard__pills">
+              <span class="wcard__pill" data-drawably="pill">B2C</span>
+              <span class="wcard__pill" data-drawably="pill">Desktop</span>
+              <span class="wcard__pill" data-drawably="pill">Client</span>
+              </span>
+            </span>
+          </span>
+        </a>
+      </div>
+    </section>
+
+</main>
+<div class="mockdiv"><hr /></div>
+<div class="mocknote" style="padding-bottom:70px">
+  <p><strong>All three:</strong> no "Featured works" heading, cards start right under the header so they peek, the energy drink line is on its own line, and the mascot sits level with the text above the cards. Hover a card to see the fly-in animation.</p>
+</div>
+<script src="../assets/vendor/drawably/drawably.classic.js?v=0.4.2"></script>
+<script>
+  /* the cards sit piled until the real page adds .is-in on scroll; this mockup is
+     static, so flip it here to show the separated state the visitor sees */
+  document.querySelectorAll("[data-reveal-stagger], [data-reveal]").forEach(function (e) { e.classList.add("is-in"); });
+</script>
+</body>
+</html>

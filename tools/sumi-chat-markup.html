@@ -1,0 +1,33 @@
+<!--
+  SUMI CHAT: stashed 2026-10-02 (removed from the pages for now).
+  To bring it back, paste the block below just before the first <script> tag
+  at the bottom of index.html, about.html, work/vendrs.html and
+  work/qac-gallery.html. On the two work/ pages change the image paths from
+  "assets/..." to "../assets/...".
+
+  The styles (.buddy, .chat*) are still in css/style.css and the logic is
+  still in js/main.js (the chat IIFE at the end, plus the buddy greeting
+  bubble). Both bail out quietly when this markup is missing, so nothing else
+  needs to change. The answers live in the intents list inside that IIFE.
+-->
+  <!-- Sumi chat: scripted Q&A about Anthony (see main.js) -->
+  <button class="buddy" type="button" aria-label="Ask Sumi about Anthony">
+    <span class="buddy__bubble"></span>
+    <img src="assets/graphics/sumi/default.png" alt="" />
+  </button>
+  <div class="chat" role="dialog" aria-label="Ask about Anthony">
+    <div class="chat__head">
+      <span class="chat__avatar"><img src="assets/graphics/sumi/happy.png" alt="" /></span>
+      <div>
+        <p class="chat__title">Ask about Anthony</p>
+        <p class="chat__sub">Sumi knows the portfolio</p>
+      </div>
+      <button class="chat__close" type="button" aria-label="Close chat">&times;</button>
+    </div>
+    <div class="chat__log" role="log" aria-live="polite"></div>
+    <div class="chat__chips"></div>
+    <form class="chat__form">
+      <input class="chat__input" type="text" placeholder="Ask me something…" autocomplete="off" aria-label="Ask a question" />
+      <button class="chat__send" type="submit" aria-label="Send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></button>
+    </form>
+  </div>

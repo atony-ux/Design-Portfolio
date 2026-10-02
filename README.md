@@ -25,7 +25,7 @@ mascot character.
 
 ## Design tokens
 Defined once in `css/style.css` `:root` — brand blue `#213c97`, backgrounds,
-IBM Plex Serif (italic accents) + Overused Grotesk (body), radii, shadows, motion.
+IBM Plex Serif (italic accents) + Archivo (body), radii, shadows, motion.
 
 ## To finish before shipping
 - Drop your real `assets/resume.pdf` in (the Resume links point there).

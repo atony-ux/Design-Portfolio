@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Animated thumbnail harness</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet" />
+  <!-- The site stylesheet is the single source of truth for .wthumb. This page
+       is only a harness: it shows the same card the home page shows, without
+       the preloader, nav, scroll reveal or page transition in the way. Tune the
+       animation in css/style.css and both this and the home page update. -->
+  <link rel="stylesheet" href="../css/style.css?v=x133" />
+  <style>
+    body { padding: 44px 24px 80px; background: var(--bg, #f4f2ec); }
+    .harness { max-width: 1120px; margin: 0 auto; }
+    .harness__head { margin-bottom: 26px; }
+    .harness__head h1 { margin: 0 0 6px; font-size: 26px; letter-spacing: -.02em; }
+    .harness__head p { margin: 0; font-size: 14px; color: var(--ink-50, #5b6880); }
+    .harness .worktiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+      gap: 34px; align-items: start; }
+    .harness .slot { display: grid; place-items: center; min-height: 280px; border-radius: 20px;
+      border: 2px dashed rgba(16, 16, 40, .18); color: var(--ink-50, #8b95a8);
+      font-size: 14px; text-align: center; padding: 24px; line-height: 1.5; }
+  </style>
+</head>
+<body>
+  <div class="harness">
+    <div class="harness__head">
+      <h1>Animated case study thumbnails</h1>
+      <p>Both cards exactly as the home page shows them. Hover it: the event page is the frame that is always there, and the rest of the product flies in around and over it.</p>
+    </div>
+
+    <div class="worktiles">
+      <a class="wcard" href="../work/vendrs.html">
+        <span class="wcard__paper">
+          <span class="wcard__tape" aria-hidden="true"></span>
+          <span class="wcard__frame">
+            <span class="wthumb">
+              <span class="wthumb__bg" aria-hidden="true">
+                <svg viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice">
+                  <ellipse class="blob blob--a" cx="120" cy="110" rx="190" ry="150" />
+                  <ellipse class="blob blob--b" cx="690" cy="430" rx="220" ry="170" />
+                  <path class="line" d="M-20 150 C 140 90, 250 210, 400 170 S 680 60, 830 130" />
+                  <path class="line" d="M-20 330 C 160 280, 280 400, 430 350 S 700 250, 830 320" />
+                  <path class="route" d="M60 470 C 120 330, 60 250, 150 170 S 300 90, 360 30" />
+                </svg>
+              </span>
+              <span class="wthumb__fly wf--feed"><img src="../assets/graphics/thumbs/vendrs/feed.jpg" alt="" /></span>
+              <span class="wthumb__fly wf--onb"><img src="../assets/graphics/thumbs/vendrs/onboarding.jpg" alt="" /></span>
+              <span class="wthumb__fly wf--market"><img src="../assets/graphics/thumbs/vendrs/market.jpg" alt="" /></span>
+              <span class="wthumb__fly wf--confirm"><img src="../assets/graphics/thumbs/vendrs/confirm.png" alt="" /></span>
+              <span class="wthumb__pop wp--1" aria-hidden="true"><svg width="26" height="32" viewBox="0 0 26 32" fill="none"><path d="M13 31s11-11.2 11-18a11 11 0 1 0-22 0c0 6.8 11 18 11 18z" fill="#fff"/><circle cx="13" cy="12.6" r="4.6" fill="#1ea2c4"/></svg></span>
+              <span class="wthumb__pop wp--2" aria-hidden="true"><svg width="20" height="25" viewBox="0 0 26 32" fill="none"><path d="M13 31s11-11.2 11-18a11 11 0 1 0-22 0c0 6.8 11 18 11 18z" fill="#fff" fill-opacity=".92"/><circle cx="13" cy="12.6" r="4.6" fill="#2b5fd9"/></svg></span>
+              <span class="wthumb__pop wp--3" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2.5l2.3 6.1 6.2 2.4-6.2 2.4L12 21.5l-2.3-8.1L3.5 11l6.2-2.4z" fill="#ffd166"/></svg></span>
+              <img class="wthumb__base" src="../assets/graphics/thumbs/vendrs/event.jpg" alt="Vendrs case study cover: the event page for an Asian Night Market" width="1200" height="700" />
+            </span>
+            <span class="wthumb__tag">Case study</span>
+            <span class="wcard__go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+          </span>
+          <span class="wcard__foot">
+            <h3 class="wcard__title">Vendrs</h3>
+            <span class="wcard__pills">
+              <span class="wcard__pill">B2C</span>
+              <span class="wcard__pill">Desktop</span>
+              <span class="wcard__pill">Client</span>
+            </span>
+          </span>
+        </span>
+      </a>
+
+      <a class="wcard" href="../work/qac-gallery.html">
+        <span class="wcard__paper">
+          <span class="wcard__tape" aria-hidden="true"></span>
+          <span class="wcard__frame">
+            <span class="wthumb wthumb--qac">
+              <span class="wthumb__bg" aria-hidden="true">
+                <img class="qac-splat" src="../assets/graphics/thumbs/qac/splatter.svg" alt="" />
+              </span>
+              <span class="wthumb__fly wf--signin"><img src="../assets/graphics/thumbs/qac/signin.jpg" alt="" /></span>
+              <span class="wthumb__fly wf--shop"><img src="../assets/graphics/thumbs/qac/workshop.jpg" alt="" /></span>
+              <span class="wthumb__fly wf--workshops"><img src="../assets/graphics/thumbs/qac/workshops.jpg" alt="" /></span>
+              <span class="wthumb__fly wf--rent"><img src="../assets/graphics/thumbs/qac/rent.jpg" alt="" /></span>
+              <span class="wthumb__pop wp--1" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2.5l2.3 6.1 6.2 2.4-6.2 2.4L12 21.5l-2.3-8.1L3.5 11l6.2-2.4z" fill="#f5a623"/></svg></span>
+              <span class="wthumb__pop wp--2" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" fill="#8bd46a"/></svg></span>
+              <span class="wthumb__pop wp--3" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2.5l2.3 6.1 6.2 2.4-6.2 2.4L12 21.5l-2.3-8.1L3.5 11l6.2-2.4z" fill="#e879b8"/></svg></span>
+              <img class="wthumb__base" src="../assets/graphics/thumbs/qac/events.jpg" alt="QAC Gallery case study cover: the events and bookings page" width="1200" height="675" />
+            </span>
+            <span class="wthumb__tag">Case study</span>
+            <span class="wcard__go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+          </span>
+          <span class="wcard__foot">
+            <h3 class="wcard__title">QAC Gallery Redesign</h3>
+            <span class="wcard__pills">
+              <span class="wcard__pill">B2C</span>
+              <span class="wcard__pill">Desktop</span>
+              <span class="wcard__pill">Client</span>
+            </span>
+          </span>
+        </span>
+      </a>
+    </div>
+  </div>
+</body>
+</html>

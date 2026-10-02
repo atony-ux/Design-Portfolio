@@ -4,16 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About · Anthony N.</title>
-  <meta name="description" content="Anthony N., an emerging Product Designer from Roseville, California, studying design at UC Davis. Experience, toolkit, and life beyond the canvas." />
+  <meta name="description" content="Anthony N., an emerging Product Designer from Roseville, California, studying design at UC Davis. The story so far, and life beyond the canvas." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet" />
-  <link href="https://fonts.cdnfonts.com/css/overused-grotesk" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/vendor/drawably/style.css?v=0.4.2" />
+  <link rel="stylesheet" href="css/style.css?v=x147" />
 </head>
 <body>
-  <div class="progress" aria-hidden="true"></div>
-
   <!-- ============ NAV ============ -->
   <div class="nav-outer">
     <nav class="nav" aria-label="Primary">
@@ -24,12 +24,9 @@
       <div class="nav__group">
         <div class="nav__links">
           <a class="nav__link" href="index.html#works"><span class="num">01</span>Works</a>
-          <a class="nav__link is-active" href="about.html"><span class="num">02</span>About</a>
-          <a class="nav__link" href="index.html#contact"><span class="num">03</span>Contact</a>
+          <a class="nav__link" href="about.html"><span class="num">02</span>About</a>
+          <a class="nav__link" href="https://drive.google.com/file/d/1PTcfJpEMcfS_W2Cb9v0fJxFMJBmGtGmB/view" target="_blank" rel="noopener">Resume</a>
         </div>
-        <a class="nav__cta" data-magnetic="0.25" href="https://drive.google.com/file/d/1PTcfJpEMcfS_W2Cb9v0fJxFMJBmGtGmB/view" target="_blank">Resume
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
-        </a>
       </div>
     </nav>
   </div>
@@ -38,182 +35,251 @@
     <!-- ============ A BIT ABOUT ME ============ -->
     <section class="about-hero about-hero--photo-left wrap">
       <div class="about-hero__photo" data-reveal>
-        <img class="doodle-star doodle-star--float" src="assets/graphics/star.png" style="--rot:-12deg" alt="" aria-hidden="true" />
-        <img src="assets/graphics/portrait.jpg" alt="Portrait of Anthony" />
+        <img src="assets/graphics/portrait-about.jpg" alt="Portrait of Anthony" width="528" height="660" />
       </div>
       <div class="about-hero__copy" data-reveal>
-        <span class="sec-eyebrow">A BIT ABOUT ME</span>
         <h1 class="sec-title"><span class="about-hero__hi">Hi,</span> I'm <span class="plain">Anthony</span></h1>
-        <p>I'm a product designer from Roseville, California, studying design at UC Davis. I got here the roundabout way: a high-school graphic design class, then two years of computer science, before I finally admitted the thing I actually loved was design.</p>
-        <p>Being my family's unofficial tech support taught me early how much a badly designed product costs people. That is the whole reason I do UX. Good, quiet, intuitive design makes someone's day a little easier, and that is worth getting right.</p>
-        <p class="signoff">When I'm not in Figma you'll catch me making beats, out on a run, or losing a <b>ranked Tekken</b> match.</p>
+        <p>I'm a design student at UC Davis, originally from Roseville, California. I started out as a computer science major and spent two years there, but I've always been drawn to creative things. I've been producing music for over 8 years, and I first started designing to make the graphics for my own music.</p>
+        <p>Now I get to combine the technical thinking I picked up from CS with the creative side of music that I love, and design is where those two meet.</p>
+        <p class="signoff">When I'm not in Figma you'll catch me on FL Studio, out on a run, or losing a Tekken match.</p>
       </div>
+      <img class="about-hero__mascot" src="assets/graphics/sumi/notebook-about.png" alt="" aria-hidden="true" width="319" height="560" />
     </section>
 
-    <!-- ============ EXPERIENCE & EDUCATION ============ -->
-    <section class="section wrap" id="experience">
-      <div class="sec-head" data-reveal>
-        <div>
-          <span class="sec-eyebrow">THE PATH SO FAR</span>
-          <h2 class="sec-title">Experience &amp; <span class="plain">education</span></h2>
+
+    <!-- ============ OUTSIDE OF DESIGN ============ -->
+    <!-- ============ OUTSIDE OF DESIGN (playground) ============ -->
+    <section class="pg-sec" id="hobbies">
+      <div class="pgd" id="playground">
+
+        <div class="pg-hd">
+          <h2 class="pg-title">Outside design</h2>
         </div>
-      </div>
-      <div class="reswrap" data-reveal>
-        <span class="exp-eyebrow">Experience</span>
-        <div class="explist">
-          <div class="exprow">
-            <span class="exprow__logo"><img src="assets/graphics/logo-include.jpg" alt="#include logo" /></span>
-            <div class="exprow__main">
-              <div class="exprow__line"><h4 class="exprow__role">UX Design Lead</h4><span class="exprow__date"><span class="now">Incoming</span></span></div>
-              <p class="exprow__org">#include</p>
-              <p class="exprow__note">Leading and mentoring a beginner design cohort through a two-quarter client project.</p>
+
+        <!-- my work: home of the site-wide music player ("Music" in js/main.js) -->
+        <div class="pg-it pg-it--music" style="left:4%;top:9.5%;width:clamp(180px,15.6vw,224px);transform:rotate(-3.5deg)">
+          <div class="pg-sleeve" data-player>
+            <span class="pg-disc"><img src="assets/graphics/cd.jpg" alt="" /></span>
+            <span class="pg-lab" style="margin-bottom:6px">My work<span class="pg-count" data-mp-count>1 / 6</span></span>
+            <span class="pg-sleeve__t" data-mp-title>10dollar</span>
+            <div class="pg-player">
+              <span class="pg-time pg-time--now" data-mp-elapsed>0:00</span>
+              <span class="pg-seek" data-mp-seek role="slider" tabindex="0" aria-label="Seek"><span class="pg-prog"><span class="pg-prog__bar" data-mp-bar></span></span></span>
+              <span class="pg-time" data-mp-dur>1:31</span>
             </div>
-          </div>
-          <div class="exprow">
-            <span class="exprow__logo"><img src="assets/graphics/logo-prod.png" alt="Prod. Davis logo" /></span>
-            <div class="exprow__main">
-              <div class="exprow__line"><h4 class="exprow__role">Graphic Designer</h4><span class="exprow__date">Sep 2026 to <span class="now">Present</span></span></div>
-              <p class="exprow__org">Prod. Davis</p>
-              <p class="exprow__note">Designed Vendrs end to end in a 6-week sprint, then presented to a panel of industry judges.</p>
+            <div class="pg-ctrls">
+              <button class="pg-skip" type="button" data-mp-prev aria-label="Previous track"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 6v12l-9-6z"/><path d="M5.3 6h2.3v12H5.3z"/></svg></button>
+              <button class="pg-play" type="button" data-mp-play aria-label="Play">
+                <svg class="pg-play__i" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+                <svg class="pg-play__p" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5h3v13H8zM13 5.5h3v13h-3z"/></svg>
+              </button>
+              <button class="pg-skip" type="button" data-mp-next aria-label="Next track"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 6v12l9-6z"/><path d="M16.4 6h2.3v12h-2.3z"/></svg></button>
             </div>
-          </div>
-          <div class="exprow">
-            <span class="exprow__logo"><img src="assets/graphics/logo-di.jpg" alt="Design Interactive logo" /></span>
-            <div class="exprow__main">
-              <div class="exprow__line"><h4 class="exprow__role">UX Cohort Designer</h4><span class="exprow__date">Apr to May 2026</span></div>
-              <p class="exprow__org">Design Interactive</p>
-              <p class="exprow__note">Built a product concept under mentor guidance and helped shape a shared Figma component library.</p>
-            </div>
-          </div>
-          <div class="exprow">
-            <span class="exprow__logo"><img src="assets/graphics/logo-atd.jpg" alt="All Things Design logo" /></span>
-            <div class="exprow__main">
-              <div class="exprow__line"><h4 class="exprow__role">UI/UX Intern</h4><span class="exprow__date">Jan to Mar 2026</span></div>
-              <p class="exprow__org">All Things Design</p>
-              <p class="exprow__note">Redesigned the QAC Gallery site for an Oakland LGBTQ+ arts org, focused on accessibility.</p>
-            </div>
+            <!-- volume: the mini bar's vertical pop-up, parked in the card's top-right corner -->
+            <span class="mp__vol pg-cvol">
+              <button class="mp__btn mp__volbtn" type="button" data-mp-mute aria-label="Mute">
+                <svg class="mp__vol-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4z" fill="currentColor" stroke="none"/><path d="M15.5 9.5a3.5 3.5 0 0 1 0 5M18 7a7 7 0 0 1 0 10"/></svg>
+                <svg class="mp__vol-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4z" fill="currentColor" stroke="none"/><path d="M16 9.5l5 5M21 9.5l-5 5"/></svg>
+              </button>
+              <span class="mp__volwrap"><input type="range" min="0" max="100" step="1" value="50" orient="vertical" aria-orientation="vertical" data-mp-vol aria-label="Volume" /><span class="mp__volpct" data-mp-volpct aria-hidden="true"></span></span>
+            </span>
           </div>
         </div>
 
-        <span class="exp-eyebrow">Education</span>
-        <div class="explist">
-          <div class="exprow">
-            <span class="exprow__logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></span>
-            <div class="exprow__main">
-              <div class="exprow__line"><h4 class="exprow__role">B.A. Design</h4><span class="exprow__date">Expected 2026</span></div>
-              <p class="exprow__org">UC Davis</p>
-              <p class="exprow__note">UI/UX and interactive media · Davis, CA.</p>
-            </div>
-          </div>
-          <div class="exprow">
-            <span class="exprow__logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></span>
-            <div class="exprow__main">
-              <div class="exprow__line"><h4 class="exprow__role">A.A. Applied Art &amp; Design</h4></div>
-              <p class="exprow__org">Sierra College</p>
-              <p class="exprow__note">Design foundations and visual craft · Rocklin, CA.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ HOBBIES / BEYOND DESIGN ============ -->
-    <section class="section wrap" id="hobbies">
-      <img class="doodle-star doodle-star--float" src="assets/graphics/star.png" style="width:40px;top:clamp(30px,4vw,60px);right:5%;--rot:12deg" alt="" aria-hidden="true" />
-      <div class="sec-head" data-reveal>
-        <div>
-          <h2 class="sec-title">When I'm not <span class="plain">in Figma</span></h2>
-        </div>
-      </div>
-
-      <div class="hobbies" data-reveal-stagger>
-        <!-- MAIN / biggest -->
-        <div class="hobby hobby--musicprod">
-          <div class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-          <div class="cd"><img src="assets/graphics/cd.jpg" alt="CD spinning while I produce" /></div>
-          <div class="hobby__cap"><div class="t">Music production</div><div class="s">Making beats &amp; mixing, my main creative outlet outside design</div></div>
-        </div>
-
-        <div class="hobby hobby--tekken">
-          <span class="hobby__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 11h4M8 9v4"/><circle cx="15" cy="12" r="1"/><circle cx="18" cy="10" r="1"/><path d="M17.5 5.5H6.5a4 4 0 0 0-3.95 3.35l-1.1 6.5A2.8 2.8 0 0 0 4.2 18.5a2.8 2.8 0 0 0 2.4-1.35L7.5 15.5h9l.9 1.65a2.8 2.8 0 0 0 2.4 1.35 2.8 2.8 0 0 0 2.75-3.15l-1.1-6.5A4 4 0 0 0 17.5 5.5Z"/></svg></span>
-          <span class="hobby__badge">RANKED</span>
-          <div class="hobby__cap"><div class="t">Competitive Tekken 8</div><div class="s">Ranked grind &amp; combo labbing</div></div>
-        </div>
-
-        <div class="hobby hobby--running">
-          <img class="hobby__sumi" data-mascot src="assets/graphics/sumi/running.png" alt="" aria-hidden="true" />
-          <div class="hobby__cap"><div class="t">Running</div><div class="s">Clearing my head, one loop at a time</div></div>
-        </div>
-
-        <div class="hobby hobby--friends">
-          <span class="hobby__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
-          <div class="hobby__cap"><div class="t">Hanging with friends</div><div class="s">The best debugging is a good group hang</div></div>
-        </div>
-
-        <div class="hobby hobby--music">
-          <div class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
-          <a class="spotify" href="https://open.spotify.com/" target="_blank" rel="noopener" aria-label="Open my Spotify playlist">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm4.6 14.42a.62.62 0 0 1-.86.2c-2.35-1.44-5.31-1.76-8.8-.96a.62.62 0 1 1-.28-1.21c3.82-.87 7.09-.5 9.73 1.11.3.18.39.56.21.86Zm1.23-2.74a.78.78 0 0 1-1.07.26c-2.69-1.66-6.79-2.13-9.97-1.17a.78.78 0 0 1-.46-1.49c3.64-1.1 8.16-.58 11.25 1.32.36.22.48.71.25 1.08Zm.11-2.86C14.72 8.88 9.5 8.7 6.53 9.6a.94.94 0 1 1-.55-1.8c3.41-1.03 9.18-.83 12.8 1.32a.94.94 0 0 1-.97 1.6Z"/></svg>
+        <!-- the music name -->
+        <div class="pg-it pg-it--artist" style="left:25%;top:11%;width:clamp(210px,18.4vw,264px);transform:rotate(2.5deg)">
+          <a class="pg-card pg-artist" href="https://soundcloud.com/atonyn" target="_blank" rel="noopener">
+            <span class="pg-artist__mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M2 14v3M5 12v5M8 9.5v7.5M11 11v6"/><path d="M13.5 17V8.9c2.4-1.4 5.4 0 5.8 2.9 1.6-.4 3 .8 3 2.3 0 1.6-1.2 2.9-2.8 2.9h-6z" fill="currentColor" stroke="none"/></svg></span>
+            <span class="pg-artist__name">Atony</span>
+            <span class="pg-artist__sub">This is where I release my music.</span>
           </a>
-          <img class="hobby__sumi" data-mascot src="assets/graphics/sumi/listening-to-music.png" alt="" aria-hidden="true" />
-          <div class="hobby__cap"><div class="t">Music while I work</div><div class="s">Tap the icon for my design + coding playlist →</div></div>
         </div>
-      </div>
 
-      <!-- photobooth strips, showcase images (swap in your own photos) -->
-      <span class="pb-eyebrow">✦&nbsp;&nbsp;SNAPSHOTS&nbsp;&nbsp;✦</span>
-      <div class="photobooth" data-reveal-stagger>
-        <div class="pbstrip">
-          <div class="pbframe pbframe--top"><img src="assets/graphics/photobooth/adv-1.jpg" alt="Adventure snapshot" /></div>
-          <div class="pbframe"><img src="assets/graphics/photobooth/adv-2.jpg" alt="Adventure snapshot" /></div>
-          <div class="pbframe pbframe--top"><img src="assets/graphics/photobooth/adv-3.jpg" alt="Adventure snapshot" /></div>
-          <div class="pbstrip__label">Adventures</div>
+        <!-- app icons -->
+        <div class="pg-it pg-app" style="left:55%;top:11.5%;transform:rotate(-4deg)">
+          <a href="https://www.strava.com/" target="_blank" rel="noopener" aria-label="Strava">
+            <span class="pg-app__tile" style="--app:#fc4c02">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10.4 2 4.6 13.4h3.4L10.4 8.6l2.4 4.8h3.4z"/><path d="M15.4 13.4 13.7 16.8 12 13.4H9.4l4.3 8.6 4.3-8.6z" opacity=".72"/></svg>
+            </span>
+            <span class="pg-app__label">Strava</span>
+          </a>
         </div>
-        <div class="pbstrip">
-          <div class="pbframe"><img src="assets/graphics/photobooth/leo-1.jpg" alt="Leo" /></div>
-          <div class="pbframe"><img src="assets/graphics/photobooth/leo-2.jpg" alt="Leo" /></div>
-          <div class="pbframe"><img src="assets/graphics/photobooth/leo-3.jpg" alt="Leo" /></div>
-          <div class="pbstrip__label">Leo</div>
+
+        <div class="pg-it pg-app" style="left:64%;top:8.5%;transform:rotate(3deg)">
+          <a href="https://www.linkedin.com/in/anthony-nguyen-a79683392/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <span class="pg-app__tile" style="--app:#0a66c2">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.2 9.3H3.4V21h2.8zM4.8 3a1.7 1.7 0 1 0 0 3.4A1.7 1.7 0 0 0 4.8 3M21 14.1c0-3.2-1.7-4.7-4-4.7a3.5 3.5 0 0 0-3.1 1.7V9.3H11.1V21h2.8v-6.2c0-1.4.6-2.3 1.9-2.3s1.8.8 1.8 2.3V21H21z"/></svg>
+            </span>
+            <span class="pg-app__label">LinkedIn</span>
+          </a>
         </div>
-        <div class="pbstrip">
-          <div class="pbframe"><img src="assets/graphics/photobooth/prod-1.jpg" alt="Prod. Davis" /></div>
-          <div class="pbframe"><video src="assets/graphics/photobooth/prod-bass.mp4" poster="assets/graphics/photobooth/prod-2.jpg" muted autoplay loop playsinline preload="metadata"></video></div>
-          <div class="pbframe"><video src="assets/graphics/photobooth/prod-clip.mp4" poster="assets/graphics/photobooth/prod-3.jpg" muted autoplay loop playsinline preload="metadata"></video></div>
-          <div class="pbstrip__label">Prod. Atony</div>
+
+        <div class="pg-it pg-app" style="left:73%;top:12.5%;transform:rotate(-2deg)">
+          <a href="https://drive.google.com/file/d/1PTcfJpEMcfS_W2Cb9v0fJxFMJBmGtGmB/view" target="_blank" rel="noopener" aria-label="Resume, PDF">
+            <span class="pg-app__tile" style="--app:#213c97">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>
+            </span>
+            <span class="pg-app__label">Resume</span>
+          </a>
         </div>
+
+        <!-- tekken, as a polaroid -->
+        <div class="pg-it pg-it--evo" style="left:78%;top:31%;width:clamp(180px,16.4vw,236px);transform:rotate(4deg)">
+          <span class="pg-pol pg-pol--solo">
+            <img src="assets/graphics/tekken-evo.jpg" alt="Playing Tekken 8 against ATIF at EVO" />
+            <span>vs ATIF at EVO</span>
+          </span>
+        </div>
+
+        <!-- interests -->
+        <div class="pg-it pg-it--me" style="left:3.6%;top:50%;width:clamp(140px,12.8vw,184px);transform:rotate(-4deg)">
+          <span class="pg-pol pg-pol--tall">
+            <img src="assets/graphics/portrait.jpg" alt="Portrait of Anthony" />
+            <span>me</span>
+          </span>
+        </div>
+
+        <div class="pg-it pg-it--hobbies" style="left:19%;top:57%;width:clamp(234px,20.4vw,292px);transform:rotate(2deg)">
+          <div class="pg-pad">
+            <div class="pg-lab" style="margin-top:6px">Hobbies</div>
+            <div class="pg-chips">
+              <span class="pg-chip pg-chip--b" data-drawably="pill">Music production</span>
+              <span class="pg-chip" data-drawably="pill">Design</span>
+              <span class="pg-chip pg-chip--o" data-drawably="pill">Consuming energy drinks</span>
+              <span class="pg-chip" data-drawably="pill">Games</span>
+              <span class="pg-chip" data-drawably="pill">Running</span>
+              <span class="pg-chip" data-drawably="pill">Sports</span>
+              <span class="pg-chip pg-chip--b" data-drawably="pill">Traveling</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pg-it pg-it--now" style="left:66%;top:60%;width:clamp(224px,19.6vw,278px);transform:rotate(-2.5deg)">
+          <div class="pg-card">
+            <div class="pg-lab">Currently working on</div>
+            <div class="pg-now">
+              <div class="pg-now__row">
+                <span class="pg-now__dot" aria-hidden="true"></span>
+                <span><span class="pg-now__t">School</span><span class="pg-now__s">Final year of design at UC Davis</span></span>
+              </div>
+              <div class="pg-now__row">
+                <span class="pg-now__dot" aria-hidden="true"></span>
+                <span><span class="pg-now__t">Searching for internships</span><span class="pg-now__s">Product and UX, open to remote</span></span>
+              </div>
+              <div class="pg-now__row">
+                <span class="pg-now__dot" aria-hidden="true"></span>
+                <span><span class="pg-now__t">A new album</span><span class="pg-now__s">Slowly, one loop at a time</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pg-it pg-plain" style="left:33%;top:87%;width:clamp(90px,7.8vw,112px);transform:rotate(-3deg)">
+          <img src="assets/graphics/tools-ui.png" alt="" aria-hidden="true" />
+        </div>
+
+        <img class="pg-star" src="assets/graphics/headphones.png" style="left:47%;top:22%;width:28px;transform:rotate(-14deg)" alt="" aria-hidden="true" />
+        <img class="pg-star pg-star--b" src="assets/graphics/beamed-notes.png" style="left:69%;top:62%;width:24px;transform:rotate(12deg)" alt="" aria-hidden="true" />
+        <img class="pg-star" src="assets/graphics/bass-clef.png" style="left:24%;top:44%;width:24px;transform:rotate(20deg)" alt="" aria-hidden="true" />
+
+        <!-- ---------- the photo wallet ---------- -->
+        <button class="pg-wallet" id="pg-wallet" type="button" aria-pressed="false"
+                aria-label="Open the photo wallet">
+          <span class="pg-wallet__peek" aria-hidden="true">
+            <i style="--r:-9deg;--x:-18px"></i><i style="--r:5deg;--x:6px"></i><i style="--r:13deg;--x:26px"></i>
+          </span>
+          <span class="pg-wallet__body">
+            <span class="pg-wallet__flap"></span>
+            <span class="pg-wallet__label">Photos</span>
+          </span>
+          <span class="pg-wallet__cue">tap to open</span>
+        </button>
+
+        <!-- photo mode controls, either side of the docked wallet -->
+        <button class="pg-arrange pg-arrange--sort" type="button" data-arrange="sort" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.6"/></svg>
+          <span>Sort</span>
+        </button>
+        <button class="pg-arrange pg-arrange--scatter" type="button" data-arrange="scatter">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="3.5" width="8" height="6.5" rx="1.4" transform="rotate(-14 6.5 6.75)"/><rect x="13.5" y="2.5" width="8" height="6.5" rx="1.4" transform="rotate(12 17.5 5.75)"/><rect x="7.5" y="13.5" width="8" height="6.5" rx="1.4" transform="rotate(-5 11.5 16.75)"/></svg>
+          <span>Scatter</span>
+        </button>
+
+        <div class="pg-photos">
+          <button class="pg-photo" type="button" data-group="friends" style="--tx:-0.5vw;--ty:56.7svh" aria-label="Open photo: dinner party"><img src="assets/graphics/about-photos/p03.jpg" alt="Friends gathered around a table for dinner" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="town" style="--tx:9.4vw;--ty:3.3svh" aria-label="Open photo: japantown"><img src="assets/graphics/about-photos/p07.jpg" alt="The Japantown sign tower on a cloudy day" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="gaming" style="--tx:1.7vw;--ty:95.1svh" aria-label="Open photo: tekken at the arcade"><img src="assets/graphics/about-photos/p08.jpg" alt="Playing Tekken on arcade cabinets" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="school" style="--tx:95.0vw;--ty:38.1svh" aria-label="Open photo: study session"><img src="assets/graphics/about-photos/p09.jpg" alt="Classmates at a table with laptops" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="travels" style="--tx:37.1vw;--ty:-22.3svh" aria-label="Open photo: night skiing"><img src="assets/graphics/about-photos/p10.jpg" alt="Ski slopes lit up at night" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="friends" style="--tx:-105.8vw;--ty:-69.9svh" aria-label="Open photo: the whole crew"><img src="assets/graphics/about-photos/p11.jpg" alt="A big group selfie at night" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="music" style="--tx:100.5vw;--ty:-82.7svh" aria-label="Open photo: reverie in blue"><img src="assets/graphics/about-photos/p12.jpg" alt="Cover art for Reverie in Blue by Atony" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="travels" style="--tx:47.1vw;--ty:90.4svh" aria-label="Open photo: lakeside hike"><img src="assets/graphics/about-photos/p14.jpg" alt="Hiking a rocky trail beside a lake" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="friends" style="--tx:-34.8vw;--ty:-3.7svh" aria-label="Open photo: late night drive"><img src="assets/graphics/about-photos/p15.jpg" alt="Riding in a car at night under the moon" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="town" style="--tx:10.0vw;--ty:-119.9svh" aria-label="Open photo: skyline at night"><img src="assets/graphics/about-photos/p16.jpg" alt="Two friends walking toward a city skyline at night" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="friends" style="--tx:-98.2vw;--ty:-1.6svh" aria-label="Open photo: foggy night out"><img src="assets/graphics/about-photos/p17.jpg" alt="Two friends outside on a foggy night" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="town" style="--tx:64.0vw;--ty:9.1svh" aria-label="Open photo: bay bridge lights"><img src="assets/graphics/about-photos/p18.jpg" alt="The Bay Bridge lit up at night" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="town" style="--tx:103.5vw;--ty:-1.1svh" aria-label="Open photo: downtown at night"><img src="assets/graphics/about-photos/p19.jpg" alt="Downtown towers at night from a waterfront park" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="town" style="--tx:-89.4vw;--ty:-119.2svh" aria-label="Open photo: by the ocean"><img src="assets/graphics/about-photos/p21.jpg" alt="Friends on coastal rocks at dusk" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="town" style="--tx:78.6vw;--ty:-109.0svh" aria-label="Open photo: golden gate at sunset"><img src="assets/graphics/about-photos/p22.jpg" alt="The Golden Gate Bridge in fog at sunset" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="town" style="--tx:81.3vw;--ty:38.2svh" aria-label="Open photo: golden hour walk"><img src="assets/graphics/about-photos/p23.jpg" alt="Two friends walking down a street at golden hour" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="school" style="--tx:-57.9vw;--ty:80.3svh" aria-label="Open photo: presenting vendrs"><img src="assets/graphics/about-photos/p24.jpg" alt="The Vendrs team holding certificates in front of the project slide" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="school" style="--tx:62.8vw;--ty:-43.3svh" aria-label="Open photo: certificate day"><img src="assets/graphics/about-photos/p25.jpg" alt="Holding certificates in front of balloons" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="travels" style="--tx:104.2vw;--ty:-22.8svh" aria-label="Open photo: up the ridge"><img src="assets/graphics/about-photos/p27.jpg" alt="Hiking up a dry ridge under big clouds" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="travels" style="--tx:-61.9vw;--ty:14.3svh" aria-label="Open photo: islands off the coast"><img src="assets/graphics/about-photos/p28.jpg" alt="Coastline and islands seen from a hilltop" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="travels" style="--tx:30.7vw;--ty:15.3svh" aria-label="Open photo: made it to the top"><img src="assets/graphics/about-photos/p29.jpg" alt="View over the ocean and a beach town from a hilltop" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="travels" style="--tx:-1.1vw;--ty:-41.0svh" aria-label="Open photo: pool at night"><img src="assets/graphics/about-photos/p30.jpg" alt="A resort pool lit up at night between palm trees" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="travels" style="--tx:-20.8vw;--ty:-119.5svh" aria-label="Open photo: high rises at night"><img src="assets/graphics/about-photos/p31.jpg" alt="High rise towers at night under a cloudy sky" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="friends" style="--tx:45.4vw;--ty:-109.9svh" aria-label="Open photo: sleepy pup"><img src="assets/graphics/about-photos/p32.jpg" alt="A small dog resting on a bed" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="travels" style="--tx:-37.7vw;--ty:-83.9svh" aria-label="Open photo: yosemite valley"><img src="assets/graphics/about-photos/p34.jpg" alt="Looking down Yosemite Valley" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="travels" style="--tx:-102.4vw;--ty:-28.8svh" aria-label="Open photo: big trees trail"><img src="assets/graphics/about-photos/p35.jpg" alt="Hikers on a trail through tall trees" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="friends" style="--tx:111.7vw;--ty:-110.1svh" aria-label="Open photo: ferry ride"><img src="assets/graphics/about-photos/p36.jpg" alt="Two friends posing on a ferry deck" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="friends" style="--tx:-35.2vw;--ty:46.4svh" aria-label="Open photo: souvenir hunting"><img src="assets/graphics/about-photos/p38.jpg" alt="Friends browsing a small shop" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="travels" style="--tx:-27.4vw;--ty:79.1svh" aria-label="Open photo: waterfall stop"><img src="assets/graphics/about-photos/p40.jpg" alt="A tall waterfall in a mossy forest" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="travels" style="--tx:31.7vw;--ty:-84.4svh" aria-label="Open photo: root-covered trail"><img src="assets/graphics/about-photos/p42.jpg" alt="A forest trail covered in roots" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="travels" style="--tx:70.3vw;--ty:-83.4svh" aria-label="Open photo: jungle creek"><img src="assets/graphics/about-photos/p43.jpg" alt="A creek running under big tangled trees" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="travels" style="--tx:35.1vw;--ty:46.7svh" aria-label="Open photo: quiet stream"><img src="assets/graphics/about-photos/p44.jpg" alt="A calm stream in a green forest" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="gaming" style="--tx:102.4vw;--ty:93.6svh" aria-label="Open photo: crt wall at evo"><img src="assets/graphics/about-photos/p46.jpg" alt="A wall of old CRT TVs in an exhibit at EVO" loading="lazy" decoding="async" /></button>
+        </div>
+
       </div>
     </section>
+
   </main>
 
   <!-- ============ FOOTER / CONTACT ============ -->
   <footer class="footer" id="contact">
     <div class="footer__inner wrap">
-      <div class="footer__cta" data-reveal>
-        <img class="footer__mascot" data-mascot src="assets/graphics/sumi/excited.png" alt="" />
-        <span class="footer__eyebrow">✦&nbsp;&nbsp;GOT SOMETHING IN MIND?&nbsp;&nbsp;✦</span>
-        <h2 class="footer__title">Let's <span class="serif">work</span> together</h2>
-        <a class="footer__emailbtn" data-cursor="view" href="mailto:atonyn584@gmail.com">atonyn584@gmail.com
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
-        </a>
-        <div class="footer__chips"><span class="chip"><span class="chip__pulse"></span>Open to internships</span></div>
-        <nav class="footer__nav">
-          <a href="https://drive.google.com/file/d/1PTcfJpEMcfS_W2Cb9v0fJxFMJBmGtGmB/view" target="_blank">✦ Resume</a>
-          <a href="https://www.linkedin.com/in/anthony-nguyen-a79683392/" target="_blank" rel="noopener">✦ LinkedIn</a>
-          <a href="mailto:atonyn584@gmail.com">✦ Email</a>
-        </nav>
+      <div class="footer__top" data-reveal>
+        <p class="footer__hello">Thanks for stopping by, <span class="serif">let's chat.</span></p>
+
+        <div class="footer__group">
+          <span class="footer__label">Contact</span>
+          <a href="mailto:atonyn584@gmail.com">atonyn584@gmail.com</a>
+        </div>
+
+        <div class="footer__group">
+          <span class="footer__label">Menu</span>
+          <p class="footer__links">
+            <a href="index.html#works">Works</a><i>|</i><a href="about.html">About</a><i>|</i><a href="https://drive.google.com/file/d/1PTcfJpEMcfS_W2Cb9v0fJxFMJBmGtGmB/view" target="_blank" rel="noopener">Resume</a>
+          </p>
+        </div>
+
+        <div class="footer__group">
+          <span class="footer__label">Elsewhere</span>
+          <p class="footer__links">
+            <a href="https://www.linkedin.com/in/anthony-nguyen-a79683392/" target="_blank" rel="noopener">LinkedIn</a>
+          </p>
+        </div>
       </div>
+
       <div class="footer__bottom">
-        <span>© <span data-year>2026</span> Anthony N. · Sacramento, CA</span>
-        <span class="made">Designed in Figma, built with Claude, and a lot of energy drinks.</span>
+        <span>&copy; <span data-year>2026</span> Anthony N. &#183; Sacramento, CA</span>
+        <span class="made">Designed in Figma, built in Claude.</span>
       </div>
     </div>
   </footer>
 
-  <button class="buddy" aria-label="Say hi to the mascot">
-    <span class="buddy__bubble"></span>
-    <img src="assets/graphics/sumi/default.png" alt="" />
-  </button>
-
-  <script src="js/main.js"></script>
+  <script src="assets/vendor/drawably/drawably.classic.js?v=0.4.2"></script>
+  <script src="js/main.js?v=x147"></script>
 </body>
 </html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vendrs case study v4 · mockup</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/vendor/drawably/style.css?v=0.4.2" />
+  <!-- MOCKUP on the real stylesheet, same .cs--col / .v-* system as the live page.
+       work/vendrs.html is untouched. -->
+  <link rel="stylesheet" href="../css/style.css?v=x133" />
+  <style>
+    [data-reveal], [data-reveal-stagger] > * { opacity: 1 !important; transform: none !important; }
+    .mocknote { max-width: 980px; margin: 0 auto; padding: 26px 24px 0; }
+    .mocknote p { margin: 0; font-size: 13.5px; color: var(--ink-50); line-height: 1.6; }
+    .mocknote b { color: var(--orange); letter-spacing: .1em; text-transform: uppercase; font-size: 11.5px; }
+    .mocknote ul { margin: 10px 0 0; padding-left: 18px; font-size: 13.5px; color: var(--ink-50); line-height: 1.6; }
+    .cs--col .cs__body { margin-left: auto; margin-right: auto; }
+  </style>
+</head>
+<body>
+
+<div class="mocknote">
+  <p><b>Mockup</b><br />Reworked structure, same system. Based on two articles about case-study structure:</p>
+  <ul>
+    <li>Cut Audience from its own section (with two compare cards) down to one sentence inside The Problem &mdash; it was a taxonomy debate, not a moment where the plan broke.</li>
+    <li>Removed the "What testing changed" section at the end and moved each testing finding into the section it belongs to (Onboarding, Events Map), so the moment testing proved something wrong sits next to the screens instead of in a bullet list nobody reaches.</li>
+    <li>8 sections down to 6: Context, Problem, Research, Onboarding, Events Map, Outcome.</li>
+  </ul>
+</div>
+
+<main class="wrap cs cs--col">
+  <nav class="case-nav" aria-label="Case study sections">
+    <div class="case-nav__inner">
+      <a class="case-nav__link" href="#context">Context</a>
+      <a class="case-nav__link" href="#problem">Problem</a>
+      <a class="case-nav__link" href="#research">Research</a>
+      <a class="case-nav__link" href="#onboarding">Onboarding</a>
+      <a class="case-nav__link" href="#map">Events Map</a>
+      <a class="case-nav__link" href="#results">Outcome</a>
+    </div>
+  </nav>
+
+  <div class="cs__body">
+    <header class="case-head" data-reveal>
+      <p class="case-head__cat">PRODUCT DESIGN</p>
+      <h1 class="case-head__title">Helping small businesses discover their next market</h1>
+      <p class="case-head__desc">Vendrs is a platform for Gen Z owners running a shop alongside school. On a team of five, I designed the two features that decide whether they find anywhere to sell: onboarding and the Events Map.</p>
+      <dl class="v-meta">
+        <div><dt>Role</dt><dd>Product Designer</dd></div>
+        <div><dt>Tools</dt><dd>Figma, FigJam</dd></div>
+        <div><dt>Team</dt><dd>1 lead, 4 designers</dd></div>
+        <div><dt>Timeline</dt><dd>8 weeks, 2026</dd></div>
+      </dl>
+    </header>
+
+    <section class="cs-block cs-block--tight" data-reveal>
+      <div class="cs-shot"><img src="../assets/graphics/vendrs/events-map.jpg" alt="The Vendrs Events Map: pins for nearby markets beside a scannable list" /></div>
+      <p class="cs-figcap">The Events Map: what is nearby on the right, the same events listed by distance on the left.</p>
+    </section>
+
+    <section class="cs-block cs-narrow" id="context" data-reveal>
+      <span class="cs-eyebrow">CONTEXT</span>
+      <h2 class="cs-h2">Five designers, eight weeks, a prompt broad enough to build ten products from</h2>
+      <p class="cs-text">Vendrs is a web platform for people running a small business on their own. The prompt covered operating a business, sharing resources and connecting with a local community, so the real design challenge was scope: deciding which parts deserved real screens in eight weeks, and which were wish list.</p>
+      <p class="cs-text">I took the two that decide whether an owner ever reaches value at all: getting into the product, and finding somewhere to sell.</p>
+      <ul class="v-impact">
+        <li><b>My features</b><span>Onboarding and the Events Map, end to end.</span></li>
+        <li><b>The shared primitive</b><span>Business type, picked once, filters the rest of the product.</span></li>
+        <li><b>The team's</b><span>Events feed, Marketplace, Homepage and Dashboard.</span></li>
+      </ul>
+    </section>
+
+    <section class="cs-block cs-narrow" id="problem" data-reveal>
+      <span class="cs-eyebrow">THE PROBLEM</span>
+      <h2 class="cs-h2">Everything at once, with nothing holding it together</h2>
+      <p class="cs-text">Running a small business means juggling operations, finances and growth all at once, often with no centralized support. Owners struggle to discover local selling opportunities, connect with other business owners nearby, and find the tools and resources they need to run operations smoothly.</p>
+      <p class="cs-text">Discovery was the loudest of those: a shop lives across group chats, spreadsheets and Instagram DMs, and the thing that actually grows it, getting a table at a market, ran on word of mouth. Owners heard about markets through a friend's story, usually after applications had closed.</p>
+      <p class="cs-text">Even the word "small business" needed deciding first. The label covers a 500-person company by the SBA's own definition and a student selling earrings at a table, so we chose Gen Z owners running a shop alongside school, close enough through UC Davis markets that we could actually talk to them instead of guessing.</p>
+      <blockquote class="cs-pull" style="margin-top:clamp(26px,3vw,40px)">
+        <p>How might we help small business owners operate their businesses, share resources, and connect with their local community through an accessible and intuitive platform?</p>
+        <cite>The question we designed against</cite>
+      </blockquote>
+    </section>
+
+    <section class="cs-block cs-narrow" id="research" data-reveal>
+      <span class="cs-eyebrow">RESEARCH</span>
+      <h2 class="cs-h2">They didn't lack ambition. They lacked infrastructure.</h2>
+      <p class="cs-text">20+ survey responses showed how common each problem was, and 10 interviews with art, food and service owners showed why it mattered. Three numbers set the priorities.</p>
+      <div class="v-stats">
+        <div class="v-stat"><b>97%</b><span>want a bigger audience for what they make</span></div>
+        <div class="v-stat"><b>80%</b><span>run the entire shop by themselves</span></div>
+        <div class="v-stat"><b>70%</b><span>want to scale, with no system to do it</span></div>
+      </div>
+    </section>
+
+    <section class="cs-block" id="onboarding" data-reveal>
+      <div class="cs-narrow">
+        <span class="cs-eyebrow">ONBOARDING</span>
+        <h2 class="cs-h2">Ask for less, and make every answer work twice</h2>
+        <p class="cs-text">Owners abandon tools that demand setup before showing value, so I kept onboarding to four steps and gave each one a job beyond collecting data.</p>
+
+        <div class="v-compare">
+          <div class="v-card v-card--no">
+            <span class="v-card__tag">&#10005; Rejected</span>
+            <h4>One long profile form</h4>
+            <p>Complete, but it front-loads the work and reads as paperwork before any value arrives.</p>
+          </div>
+          <div class="v-card v-card--yes">
+            <span class="v-card__tag">&#10003; Shipped</span>
+            <h4>Four steps, one decision each</h4>
+            <p>Social login opens it, so the highest-friction moment lands before we ask for trust.</p>
+          </div>
+        </div>
+
+        <div class="v-tabs" role="tablist" aria-label="Onboarding steps">
+          <button class="v-tab" role="tab" type="button" aria-selected="true" aria-controls="p1" id="t1"><em>01</em>Log in</button>
+          <button class="v-tab" role="tab" type="button" aria-selected="false" aria-controls="p2" id="t2"><em>02</em>Business type</button>
+          <button class="v-tab" role="tab" type="button" aria-selected="false" aria-controls="p3" id="t3"><em>03</em>Location</button>
+          <button class="v-tab" role="tab" type="button" aria-selected="false" aria-controls="p4" id="t4"><em>04</em>Goals</button>
+          <button class="v-tab" role="tab" type="button" aria-selected="false" aria-controls="p5" id="t5"><em>05</em>Whole flow</button>
+        </div>
+
+        <div class="v-stage">
+          <figure class="v-panel" role="tabpanel" id="p1" aria-labelledby="t1">
+            <span class="cs-shot"><img src="../assets/graphics/vendrs/login.png" alt="Vendrs log in screen with Google and Apple options" /></span>
+            <figcaption>Continue with Google or Apple comes first. Inventing a password is the highest-friction moment, and it used to land before anyone had a reason to trust us.</figcaption>
+          </figure>
+          <figure class="v-panel" role="tabpanel" id="p2" aria-labelledby="t2" hidden>
+            <span class="cs-shot"><img src="../assets/graphics/vendrs/business-type.png" alt="Onboarding step 2 of 4: choosing a business type" /></span>
+            <figcaption>The one answer the rest of the product reuses. It labels the owner for the community and becomes the filter the Events Map runs on.</figcaption>
+          </figure>
+          <figure class="v-panel" role="tabpanel" id="p3" aria-labelledby="t3" hidden>
+            <div class="v-missing">Location screen<span>Screenshot coming</span></div>
+            <figcaption>Location is what makes the Events Map useful on the first visit: it is the anchor distance-first sorting measures from.</figcaption>
+          </figure>
+          <figure class="v-panel" role="tabpanel" id="p4" aria-labelledby="t4" hidden>
+            <div class="v-missing">Goals screen<span>Screenshot coming</span></div>
+            <figcaption>Goals seed the first feed, so the product opens with something to act on instead of a blank state.</figcaption>
+          </figure>
+          <figure class="v-panel" role="tabpanel" id="p5" aria-labelledby="t5" hidden>
+            <span class="cs-shot cs-shot--crop"><video src="../assets/graphics/vendrs/onboarding.webm" autoplay muted loop playsinline preload="metadata"></video></span>
+            <figcaption>End to end. Testing cut one step that read as busywork, which lifted completion.</figcaption>
+          </figure>
+        </div>
+
+        <p class="cs-text" style="margin-top:clamp(20px,2.5vw,28px)">Testing still found a weak link: one step read as busywork. I cut it and led with value instead, and completion went up.</p>
+      </div>
+    </section>
+
+    <section class="cs-block" id="map" data-reveal>
+      <div class="cs-narrow">
+        <span class="cs-eyebrow">EVENTS MAP</span>
+        <h2 class="cs-h2">Discovery you can see, sorted by what you can reach</h2>
+        <p class="cs-text">Discovery was the loudest pain in research, so I made it spatial. Pins show what is around you, a side panel lists the same events for scanning, and the filters are the business types from onboarding, so a food vendor lands on food events with zero setup.</p>
+      </div>
+
+      <div class="cs-figure-block">
+        <div class="cs-shot"><video src="../assets/graphics/vendrs/eventfeed.mp4" autoplay muted loop playsinline preload="metadata"></video></div>
+        <p class="cs-figcap">In the prototype: filter the feed, switch to the map, and selecting an event in the list highlights its pin.</p>
+      </div>
+
+      <div class="cs-narrow">
+        <div class="v-compare">
+          <div class="v-card v-card--no">
+            <span class="v-card__tag">&#10005; Rejected</span>
+            <h4>Another events feed</h4>
+            <p>Familiar, but it buries the thing owners judge an event on: can I physically get there.</p>
+          </div>
+          <div class="v-card v-card--yes">
+            <span class="v-card__tag">&#10003; Shipped</span>
+            <h4>Map and list as one surface</h4>
+            <p>Two views of one set, synced both ways, sorted by distance and filtered by business type.</p>
+          </div>
+        </div>
+        <p class="cs-text" style="margin-top:clamp(20px,2.5vw,28px)">Testing found a gap even here: people read the map and the list as separate tools. I tightened the sync until selecting an event in one obviously drove the other.</p>
+      </div>
+    </section>
+
+    <section class="cs-block cs-narrow" id="results" data-reveal>
+      <span class="cs-eyebrow">OUTCOME</span>
+      <h2 class="cs-h2">The boring early decision was the one that compounded</h2>
+      <p class="cs-text">Business type looked like a form field. It became the backbone of discovery: onboarding did real work instead of collecting data, and the Events Map inherited personalisation for free.</p>
+      <p class="cs-text">The team cut a second, customer-facing flow rather than explain two audiences at once, a smaller product that stayed usable beat a bigger one that didn't. Next I would add messaging so owners can mentor each other, and build that customer-facing side to drive foot traffic back to the vendors.</p>
+    </section>
+
+    <!-- NEXT PROJECT -->
+    <div class="next" data-reveal>
+      <span class="next__eyebrow">NEXT PROJECT</span>
+      <a class="card" data-tilt data-cursor="view" href="../work/qac-gallery.html">
+        <div class="card__head">
+          <div class="card__top"><span class="card__cat">PRODUCT DESIGN • CLIENT</span>
+            <span class="card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+          </div>
+          <h3 class="card__title">QAC Gallery Redesign</h3>
+          <p class="card__desc">An accessibility-first, artist-forward redesign for an Oakland LGBTQ+ arts gallery.</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</main>
+
+<div class="mocknote" style="padding-bottom:70px">
+  <p><b>Notes</b><br />Section count: 8 &rarr; 6. Word count in the trimmed sections (Audience/Problem merge) is roughly half of the two originals combined. Everything else, images, tabs, meta row, next-project card, is unchanged. If this direction is right I'll apply the same cuts to QAC (it doesn't have a separate Audience section, but "The pages I built" can absorb its own testing note the same way).</p>
+</div>
+
+<script>
+  document.querySelectorAll('.v-tabs[role="tablist"]').forEach(function (list) {
+    var tabs = [].slice.call(list.querySelectorAll('[role="tab"]'));
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        tabs.forEach(function (t) {
+          var panel = document.getElementById(t.getAttribute('aria-controls'));
+          var on = t === tab;
+          t.setAttribute('aria-selected', String(on));
+          if (panel) panel.hidden = !on;
+        });
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

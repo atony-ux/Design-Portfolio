@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vendrs case study v2 · mockup</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/vendor/drawably/style.css?v=0.4.2" />
+  <!-- MOCKUP on the real stylesheet. work/vendrs.html is untouched. -->
+  <link rel="stylesheet" href="../css/style.css?v=x133" />
+  <style>
+    [data-reveal], [data-reveal-stagger] > * { opacity: 1 !important; transform: none !important; }
+    .mocknote { max-width: 980px; margin: 0 auto; padding: 26px 24px 0; }
+    .mocknote p { margin: 0; font-size: 13.5px; color: var(--ink-50); }
+    .mocknote b { color: var(--orange); letter-spacing: .1em; text-transform: uppercase; font-size: 11.5px; }
+
+    /* ---------- pieces this new structure needs ---------- */
+    .v-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 18px 24px;
+      margin-top: clamp(26px, 3vw, 40px); padding-top: 22px; border-top: 1px solid var(--line); }
+    .v-meta dt { font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-30); margin-bottom: 6px; }
+    .v-meta dd { margin: 0; font-size: 15px; color: var(--ink); font-weight: 450; }
+
+    .v-impact { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; margin-top: 26px; }
+    .v-impact li { list-style: none; border: 1px solid var(--line); border-radius: var(--r-lg); padding: 18px 20px; background: var(--white); }
+    .v-impact b { display: block; font-size: 15px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+    .v-impact span { font-size: 14px; color: var(--ink-75); line-height: 1.5; }
+
+    .v-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: clamp(18px, 3vw, 40px);
+      margin-top: clamp(26px, 3vw, 40px); }
+    .v-stat b { display: block; font-size: clamp(38px, 5vw, 62px); font-weight: 600; letter-spacing: -0.03em; color: var(--blue); line-height: 1; }
+    .v-stat span { display: block; margin-top: 8px; font-size: 14.5px; color: var(--ink-75); max-width: 24ch; }
+
+    .v-compare { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin-top: 24px; }
+    .v-card { border: 1px solid var(--line); border-radius: var(--r-lg); padding: 20px; background: var(--white); }
+    .v-card--no { background: #fbf7f5; border-color: rgba(179,73,26,.22); }
+    .v-card--yes { background: #f5f8ff; border-color: rgba(33,60,151,.22); }
+    .v-card__tag { display: inline-flex; align-items: center; gap: 7px; font-size: 12.5px; font-weight: 500;
+      letter-spacing: .04em; text-transform: uppercase; margin-bottom: 10px; }
+    .v-card--no .v-card__tag { color: var(--orange); }
+    .v-card--yes .v-card__tag { color: var(--blue); }
+    .v-card h4 { margin: 0 0 8px; font-size: 16.5px; font-weight: 500; color: var(--ink); }
+    .v-card p { margin: 0; font-size: 14px; line-height: 1.55; color: var(--ink-75); }
+
+    /* ---------- sized like vivianzhao.ca/tiesandtopics ----------
+       Her case study runs a 720px column at 1440 wide, and the images are the
+       same width as the text, not wider. Everything below caps to that. */
+    .cs__body { --col: 720px; }
+    .cs-narrow, .cs-block > .cs-narrow { max-width: var(--col); margin-inline: auto; }
+    .cs-figure-block, .cs-block--tight .cs-shot, .cs-figure-block .cs-shot,
+    .cs-figure-block .duo, .v-impact, .v-stats, .v-compare, .v-steps, .cs-pull,
+    .case-head > * { max-width: var(--col); margin-inline: auto; }
+    .case-head { display: flex; flex-direction: column; }
+    .cs-figure-block .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .cs-shot, .cs-shot img, .cs-shot video { border-radius: var(--r-sm); }
+    .cs-h2 { font-size: clamp(22px, 2.2vw, 29px); }
+    .cs-text { font-size: 16px; }
+    .cs-figcap { text-align: left; }
+
+    .v-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin-top: 24px; counter-reset: s; }
+    .v-step { border-top: 2px solid var(--blue); padding-top: 12px; }
+    .v-step b { display: block; font-size: 15px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+    .v-step span { font-size: 14px; color: var(--ink-75); line-height: 1.5; }
+  </style>
+</head>
+<body>
+
+<div class="mocknote">
+  <p><b>Mockup</b><br />New structure for the Vendrs case study, modelled on the four you sent: short framing, an explicit role list, decisions shown as comparisons, and the two features you owned carrying the page. The live page is unchanged.</p>
+</div>
+
+<main class="wrap cs">
+  <nav class="case-nav" aria-label="Case study sections">
+    <div class="case-nav__inner">
+      <a class="case-nav__link" href="#overview">Role</a>
+      <a class="case-nav__link" href="#problem">Problem</a>
+      <a class="case-nav__link" href="#onboarding">Onboarding</a>
+      <a class="case-nav__link" href="#map">Events Map</a>
+      <a class="case-nav__link" href="#results">Results</a>
+    </div>
+  </nav>
+
+  <div class="cs__body">
+
+    <header class="case-head" data-reveal>
+      <a class="case-back" href="../index.html#works"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>All work</a>
+      <p class="case-head__cat">PRODUCT DESIGN · DESIGN INTERACTIVE</p>
+      <h1 class="case-head__title">Getting a side hustle from sign&#8209;up to its first market</h1>
+      <p class="case-head__desc">Vendrs is a home base for Gen Z business owners. I owned the two features that decide whether they stay: onboarding and the Events Map.</p>
+      <dl class="v-meta">
+        <div><dt>Role</dt><dd>Product Designer</dd></div>
+        <div><dt>I owned</dt><dd>Onboarding, Events Map</dd></div>
+        <div><dt>Team</dt><dd>5 designers</dd></div>
+        <div><dt>Timeline</dt><dd>8 weeks, 2026</dd></div>
+      </dl>
+    </header>
+
+    <section class="cs-block cs-block--tight" data-reveal>
+      <div class="cs-shot"><video src="../assets/graphics/vendrs/eventfeed.mp4" autoplay muted loop playsinline preload="metadata"></video></div>
+      <p class="cs-figcap">The Events Map in the live prototype: filter, scan, pick the market you can actually get to.</p>
+    </section>
+
+    <section class="cs-block cs-narrow" id="overview" data-reveal>
+      <span class="cs-eyebrow">MY IMPACT</span>
+      <h2 class="cs-h2">Two features, one taxonomy holding them together</h2>
+      <ul class="v-impact">
+        <li><b>Cut onboarding to four steps</b><span>Social login first, one decision per screen, value before forms.</span></li>
+        <li><b>Made discovery spatial</b><span>A map and list that stay in sync, sorted by how far away the market is.</span></li>
+        <li><b>Set the shared primitive</b><span>Business type, picked once in onboarding, filters the whole product.</span></li>
+      </ul>
+    </section>
+
+    <section class="cs-block cs-narrow" id="problem" data-reveal>
+      <span class="cs-eyebrow">THE PROBLEM</span>
+      <h2 class="cs-h2">The drive was there. The infrastructure wasn't.</h2>
+      <p class="cs-text">Owners ran their shops out of group chats, spreadsheets and Instagram DMs. Markets were heard about through a friend's story, usually too late to apply.</p>
+      <div class="v-stats">
+        <div class="v-stat"><b>97%</b><span>want a bigger audience for what they make</span></div>
+        <div class="v-stat"><b>80%</b><span>run the entire shop by themselves</span></div>
+        <div class="v-stat"><b>70%</b><span>want to scale, with no system to do it</span></div>
+      </div>
+      <blockquote class="cs-pull" style="margin-top:clamp(28px,3.5vw,44px)">
+        <p>They didn't lack ambition. They lacked infrastructure.</p>
+        <cite>The pattern behind all 40+ interview observations</cite>
+      </blockquote>
+    </section>
+
+    <section class="cs-block" id="onboarding" data-reveal>
+      <div class="cs-narrow">
+        <span class="cs-eyebrow">FEATURE 01 · ONBOARDING</span>
+        <h2 class="cs-h2">Ask for less, and make every answer work twice</h2>
+        <p class="cs-text">Owners abandon tools that demand setup before showing value. The question was how little we could ask and still personalise the product on day one.</p>
+        <div class="v-compare">
+          <div class="v-card v-card--no">
+            <span class="v-card__tag">&#10005; Rejected</span>
+            <h4>One long profile form</h4>
+            <p>Complete, but it front-loads the work and reads as paperwork before any value arrives.</p>
+          </div>
+          <div class="v-card v-card--yes">
+            <span class="v-card__tag">&#10003; Shipped</span>
+            <h4>Four steps, one decision each</h4>
+            <p>Social login opens it, so the highest-friction moment lands before we ask for trust.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="cs-figure-block">
+        <div class="duo">
+          <div class="cs-shot cs-shot--frame"><img src="../assets/graphics/vendrs/business-type.png" alt="Onboarding step 2 of 4: choosing a business type" /></div>
+          <div class="cs-shot cs-shot--frame"><img src="../assets/graphics/vendrs/login.png" alt="Vendrs log in screen" /></div>
+        </div>
+        <p class="cs-figcap">Step 2 sets business type: the one answer the rest of the product reuses.</p>
+      </div>
+
+      <div class="cs-narrow">
+        <div class="v-steps">
+          <div class="v-step"><b>Log in</b><span>Google or Apple, no password to invent.</span></div>
+          <div class="v-step"><b>Business type</b><span>Becomes the filter the Events Map runs on.</span></div>
+          <div class="v-step"><b>Location</b><span>Feeds distance-first sorting later.</span></div>
+          <div class="v-step"><b>Goals</b><span>Shapes the first feed instead of a blank state.</span></div>
+        </div>
+      </div>
+
+      <div class="cs-figure-block">
+        <div class="cs-shot cs-shot--crop"><video src="../assets/graphics/vendrs/onboarding.webm" autoplay muted loop playsinline preload="metadata"></video></div>
+        <p class="cs-figcap">The full flow. Testing cut one step that read as busywork, which lifted completion.</p>
+      </div>
+    </section>
+
+    <section class="cs-block" id="map" data-reveal>
+      <div class="cs-narrow">
+        <span class="cs-eyebrow">FEATURE 02 · EVENTS MAP</span>
+        <h2 class="cs-h2">Discovery you can see, sorted by what you can reach</h2>
+        <p class="cs-text">Discovery was the loudest pain in research, so I made it spatial: pins for context, a list for scanning, and the closest market in the top slot.</p>
+      </div>
+
+      <div class="cs-figure-block">
+        <div class="cs-shot"><img src="../assets/graphics/vendrs/events-map.jpg" alt="Events Map: pins beside a scannable list of nearby markets" /></div>
+        <p class="cs-figcap">Selecting an event in the list highlights its pin, and the filters come straight from onboarding.</p>
+      </div>
+
+      <div class="cs-narrow">
+        <div class="v-compare">
+          <div class="v-card v-card--no">
+            <span class="v-card__tag">&#10005; Rejected</span>
+            <h4>A feed of events</h4>
+            <p>Familiar, but it hides the one thing owners judge an event on: can I physically get there.</p>
+          </div>
+          <div class="v-card v-card--yes">
+            <span class="v-card__tag">&#10003; Shipped</span>
+            <h4>Map and list as one surface</h4>
+            <p>Two views of the same set, synced both ways, sorted by distance and filtered by business type.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-block cs-narrow" id="results" data-reveal>
+      <span class="cs-eyebrow">WHAT TESTING CHANGED</span>
+      <h2 class="cs-h2">Two of three changes landed on my features</h2>
+      <ul class="cs-ul">
+        <li><b>Events Map.</b> Testers read the map and list as separate tools, so I tightened the sync until selecting in one obviously drove the other.</li>
+        <li><b>Onboarding.</b> I cut the step people called busywork and led with value instead, which lifted completion.</li>
+        <li><b>Marketplace (teammate's feature).</b> A confusing two-column layout became a scannable horizontal one.</li>
+      </ul>
+    </section>
+
+    <section class="cs-block cs-narrow" data-reveal>
+      <span class="cs-eyebrow">TAKEAWAY</span>
+      <h2 class="cs-h2">The boring early decision was the one that compounded</h2>
+      <p class="cs-text">Business type looked like a form field. It ended up being the backbone of discovery: onboarding did real work instead of collecting data, and the Events Map inherited personalisation for free. Next, I'd add messaging so owners can mentor each other, and build the customer-facing side to drive foot traffic back to the vendors.</p>
+    </section>
+
+  </div>
+</main>
+
+<div class="mocknote" style="padding-bottom:70px">
+  <p><b>Notes</b><br />Same facts as your current page, restructured and cut by roughly half. I did not invent metrics: "lifted completion" stays qualitative because the current page has no number for it. If you have real numbers (completion rate, testers, events listed), send them and I will put them in the hero and the testing section, which is where all four reference studies put theirs.</p>
+</div>
+
+</body>
+</html>

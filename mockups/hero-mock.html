@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Header options · Anthony N.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/vendor/drawably/style.css" />
+  <!-- MOCKUP. Loads the REAL site stylesheet, so this is your current design with
+       only the header changes applied. Nothing on the live pages changed. -->
+  <link rel="stylesheet" href="../css/style.css?v=x133" />
+  <style>
+    body { background: var(--bg); }
+    .mocknote { max-width: var(--maxw); margin: 0 auto; padding: 30px var(--gutter) 0; }
+    .mocknote h2 { font-size: 15px; letter-spacing: .12em; text-transform: uppercase; color: var(--orange); margin: 0 0 4px; }
+    .mocknote p { margin: 0; font-size: 14px; color: var(--ink-50); max-width: 70ch; }
+    .mockdiv { max-width: var(--maxw); margin: 54px auto 0; padding-inline: var(--gutter); }
+    .mockdiv hr { border: none; border-top: 1px dashed var(--line); }
+    /* the real title fades in via JS on the live page; keep it visible here */
+    .hero__title { opacity: 1; transform: none; }
+
+    /* ---------- the proposed header changes ---------- */
+    /* smaller headline, closer to the 36 to 42px both reference sites use */
+    .m-hero .hero__title { font-size: clamp(27px, 2.7vw, 38px); line-height: 1.28; max-width: 21ch; }
+    .m-hero .hero__sub { margin-top: 18px; font-size: clamp(14.5px, 1.15vw, 16.5px); }
+    .m-hero .hero__inner { min-height: 0; padding-block: clamp(30px, 5vw, 64px); }
+    .m-hero .hero__stage { align-self: center; }
+    .m-hero .hero__composite { height: min(52svh, 470px); }
+    /* the small print under the hero, kept but reduced to one line of links */
+    .m-meta { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: center;
+      font-size: 14px; color: var(--ink-50); }
+    .m-meta a { color: var(--ink); border-bottom: 1.5px solid var(--orange-hi); padding-bottom: 1px; }
+  </style>
+</head>
+<body>
+
+<div class="mocknote">
+  <h2>Option A &nbsp;·&nbsp; one sentence, three clauses (closest to hellokatliu)</h2>
+  <p>Smaller headline. No tags, no "Based in Sacramento", no "Scroll to see my work". The two small lines under it carry the year, the school and the current role, the way Kat Liu's header does.</p>
+</div>
+
+<section class="hero m-hero">
+  <div class="hero__inner">
+    <div class="hero__intro">
+      <h1 class="hero__title">Product designer with client work, <span class="accent">AI in my workflow</span>, and an unhealthy love for energy drinks.</h1>
+      <p class="hero__sub">4th year design undergrad @ UC Davis.</p>
+      <div class="m-meta">
+        <span>Currently designing @ <a href="#">Prod. Davis</a></span>
+        <span>Incoming UX lead @ <a href="#">#include</a></span>
+      </div>
+    </div>
+    <div class="hero__stage">
+      <img class="hero__composite" src="../assets/graphics/header-image.png" alt="Anthony's mascot sketching, blue duotone collage" />
+    </div>
+    <img class="doodle-star doodle-star--float hero__star hero__star--1" src="../assets/graphics/star.png" style="--rot:-12deg" alt="" aria-hidden="true" />
+    <img class="doodle-star doodle-star--float hero__star hero__star--2" src="../assets/graphics/star.png" style="--rot:14deg" alt="" aria-hidden="true" />
+  </div>
+</section>
+
+<div class="mockdiv"><hr /></div>
+
+<div class="mocknote">
+  <h2>Option B &nbsp;·&nbsp; keeps your current sentence, adds the AI line</h2>
+  <p>Your existing headline with the serif italic accent you already use, extended so the AI workflow is part of the claim rather than a tag. Same smaller size, same removals.</p>
+</div>
+
+<section class="hero m-hero">
+  <div class="hero__inner">
+    <div class="hero__intro">
+      <h1 class="hero__title">Product designer that values <span class="accent">user-centered</span> digital experiences, built with AI in the workflow.</h1>
+      <p class="hero__sub">4th year design undergrad @ UC Davis. <span class="nowrap">Certified <b>energy drink</b> enjoyer.</span></p>
+      <div class="m-meta">
+        <span>Currently designing @ <a href="#">Prod. Davis</a></span>
+        <span>Incoming UX lead @ <a href="#">#include</a></span>
+      </div>
+    </div>
+    <div class="hero__stage">
+      <img class="hero__composite" src="../assets/graphics/header-image.png" alt="Anthony's mascot sketching, blue duotone collage" />
+    </div>
+    <img class="doodle-star doodle-star--float hero__star hero__star--1" src="../assets/graphics/star.png" style="--rot:-12deg" alt="" aria-hidden="true" />
+    <img class="doodle-star doodle-star--float hero__star hero__star--2" src="../assets/graphics/star.png" style="--rot:14deg" alt="" aria-hidden="true" />
+  </div>
+</section>
+
+<div class="mockdiv"><hr /></div>
+
+<div class="mocknote">
+  <h2>Option C &nbsp;·&nbsp; shortest, lets the collage carry the page</h2>
+  <p>One clean claim, one small line. Least text of the three.</p>
+</div>
+
+<section class="hero m-hero">
+  <div class="hero__inner">
+    <div class="hero__intro">
+      <h1 class="hero__title">Product designer building <span class="accent">user-centered</span> work, with AI as part of how I design.</h1>
+      <p class="hero__sub">4th year design @ UC Davis, currently designing @ Prod. Davis.</p>
+    </div>
+    <div class="hero__stage">
+      <img class="hero__composite" src="../assets/graphics/header-image.png" alt="Anthony's mascot sketching, blue duotone collage" />
+    </div>
+    <img class="doodle-star doodle-star--float hero__star hero__star--1" src="../assets/graphics/star.png" style="--rot:-12deg" alt="" aria-hidden="true" />
+    <img class="doodle-star doodle-star--float hero__star hero__star--2" src="../assets/graphics/star.png" style="--rot:14deg" alt="" aria-hidden="true" />
+  </div>
+</section>
+
+<div class="mockdiv" style="margin-bottom:60px"><hr /></div>
+<div class="mocknote" style="padding-bottom:60px">
+  <p><strong>All three:</strong> headline drops from 49px to about 38px at desktop, the AI Workflow and Figma tags are gone, and so are "[ Based in Sacramento, CA ]" and "Scroll to see my work". The down arrow, the floating stars and the collage stay. "Fourth-year" now reads "4th year".</p>
+</div>
+
+</body>
+</html>

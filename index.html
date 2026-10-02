@@ -9,21 +9,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet" />
-  <link href="https://fonts.cdnfonts.com/css/overused-grotesk" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/vendor/drawably/style.css?v=0.4.2" />
+  <link rel="stylesheet" href="css/style.css?v=x147" />
 </head>
 <body>
-  <!-- ============ PRELOADER ============ -->
-  <div class="preloader" aria-hidden="true">
-    <div class="preloader__inner">
-      <img class="preloader__mascot" src="assets/graphics/sumi/excited.png" alt="" />
-      <div class="preloader__word"><span>Anthony&nbsp;N.</span></div>
-      <div class="preloader__bar"><i></i></div>
-    </div>
-  </div>
-
-  <div class="progress" aria-hidden="true"></div>
-
   <!-- ============ NAV ============ -->
   <div class="nav-outer">
     <nav class="nav" aria-label="Primary">
@@ -33,123 +23,108 @@
       <button class="nav__toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
       <div class="nav__group">
         <div class="nav__links">
-          <a class="nav__link" data-spy="works" href="#works"><span class="num">01</span>Works</a>
+          <a class="nav__link" href="#works"><span class="num">01</span>Works</a>
           <a class="nav__link" href="about.html"><span class="num">02</span>About</a>
-          <a class="nav__link" data-spy="contact" href="#contact"><span class="num">03</span>Contact</a>
+          <a class="nav__link" href="https://drive.google.com/file/d/1PTcfJpEMcfS_W2Cb9v0fJxFMJBmGtGmB/view" target="_blank" rel="noopener">Resume</a>
         </div>
-        <a class="nav__cta" data-magnetic="0.25" href="https://drive.google.com/file/d/1PTcfJpEMcfS_W2Cb9v0fJxFMJBmGtGmB/view" target="_blank">Resume
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
-        </a>
       </div>
     </nav>
   </div>
 
   <main>
     <!-- ============ HERO ============ -->
-    <section class="hero wrap">
-      <div class="hero__grid">
+    <section class="hero">
+      <div class="hero__inner">
         <div class="hero__intro">
-          <img class="doodle-star doodle-star--float hero__star hero__star--1" src="assets/graphics/star.png" style="--rot:-8deg" alt="" aria-hidden="true" />
-          <img class="doodle-star doodle-star--float hero__star hero__star--2" src="assets/graphics/star.png" style="--rot:10deg;animation-delay:.6s" alt="" aria-hidden="true" />
-          <img class="doodle-star doodle-star--float hero__star hero__star--3" src="assets/graphics/star.png" style="--rot:-14deg;animation-delay:1s" alt="" aria-hidden="true" />
-          <p class="hero__eyebrow">PRODUCT DESIGNER</p>
-          <h1 class="hero__title">I design for <span class="accent">user-centered</span><br /> digital experiences</h1>
-          <p class="hero__sub">Fourth-year design undergrad @ UC Davis. Certified <b>Figma + Claude</b> enjoyer.</p>
-          <div class="hero__tags">
-            <span class="tag">Figma</span>
-            <span class="tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg>AI Workflow</span>
-          </div>
+          <h1 class="hero__title">Product Designer,<br />that builds <span class="accent">user-centered</span> products with <span class="accent">intention</span></h1>
+          <p class="hero__sub">4th year design undergrad @ UC Davis.<br />I love <b>music</b>.</p>
         </div>
 
-        <div class="hero__stage" data-reveal>
-          <div class="sumi-note sumi-note--float" aria-hidden="true">
-            <span class="sumi-note__name">Sumi</span>
-            <svg class="sumi-note__arrow" viewBox="0 0 140 74" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M5 62C33 40 72 22 132 20" />
-              <path d="M132 20c-7 .4-13 2-19 5M132 20c-5-4-9-9-11-15" />
-            </svg>
-          </div>
-          <img class="hero__composite" data-mascot data-parallax="0.03" src="assets/graphics/header-image.png" alt="Anthony's mascot sketching with an energy drink, set inside a Japanese stairwell, blue duotone" />
+        <div class="hero__sumi-wrap">
+          <img class="hero__sumi" data-mascot src="assets/graphics/sumi/sketching.png" alt="Sumi, Anthony's mascot, sitting and sketching" />
+          <span class="hero__sumi-bubble">psst, try typing "music" ✦</span>
         </div>
-      </div>
 
-      <div class="hero__foot" data-reveal>
-        <span class="hero__foot-item">[ Based in Sacramento, CA ]</span>
-        <span class="hero__foot-item hero__scroll">Scroll to see my work
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
-        </span>
+        <img class="doodle-star doodle-star--float hero__star hero__star--1" src="assets/graphics/eighth-note.png" style="--rot:-12deg" alt="" aria-hidden="true" />
+        <img class="doodle-star doodle-star--float hero__star hero__star--2" src="assets/graphics/beamed-notes.png" style="--rot:14deg;animation-delay:.6s" alt="" aria-hidden="true" />
+
       </div>
     </section>
 
     <!-- ============ SELECTED WORKS ============ -->
-    <section class="section wrap" id="works">
-      <img class="doodle-star doodle-star--float" src="assets/graphics/star.png" style="width:44px;top:clamp(40px,6vw,80px);right:4%;--rot:12deg" alt="" aria-hidden="true" />
-      <div class="sec-head" data-reveal>
-        <div>
-          <h2 class="sec-title">Things I've <span class="plain">designed</span></h2>
-        </div>
-      </div>
+    <section class="section wrap" id="works" style="isolation:isolate">
 
-      <div class="works" data-reveal-stagger>
-        <a class="card w-1" data-tilt data-cursor="view" href="work/vendrs.html">
-          <div class="card__head">
-            <div class="card__top"><span class="card__cat">PRODUCT DESIGN</span>
-              <span class="card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
-            <h3 class="card__title">Vendrs</h3>
-            <p class="card__desc">A tool that helps small business owners discover vendor opportunities and manage their operations more efficiently.</p>
-          </div>
-          <div class="card__media">
-            <div class="duo"><img src="assets/graphics/proj-a.jpg" alt="Vendrs product screens" /></div>
-            <div class="noren" aria-hidden="true"><span></span><span></span></div>
-            <span class="noren__label">Vendrs</span>
-          </div>
+      <div class="worktiles" data-reveal-stagger>
+        <a class="wcard" data-cursor="view" href="work/vendrs.html">
+          <span class="wcard__paper">
+            <span class="wcard__tape" aria-hidden="true"></span>
+            <!-- animated thumbnail: the event page rests here, the rest of the
+                 product flies in on hover (".wthumb" in css/style.css) -->
+            <span class="wcard__frame">
+              <span class="wthumb">
+                <span class="wthumb__bg" aria-hidden="true">
+                  <svg viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice">
+                    <ellipse class="blob blob--a" cx="120" cy="110" rx="190" ry="150" />
+                    <ellipse class="blob blob--b" cx="690" cy="430" rx="220" ry="170" />
+                    <path class="line" d="M-20 150 C 140 90, 250 210, 400 170 S 680 60, 830 130" />
+                    <path class="line" d="M-20 330 C 160 280, 280 400, 430 350 S 700 250, 830 320" />
+                    <path class="route" d="M60 470 C 120 330, 60 250, 150 170 S 300 90, 360 30" />
+                  </svg>
+                </span>
+                <span class="wthumb__fly wf--feed"><img src="assets/graphics/thumbs/vendrs/feed.jpg" alt="" loading="lazy" decoding="async" /></span>
+                <span class="wthumb__fly wf--onb"><img src="assets/graphics/thumbs/vendrs/onboarding.jpg" alt="" loading="lazy" decoding="async" /></span>
+                <span class="wthumb__fly wf--market"><img src="assets/graphics/thumbs/vendrs/market.jpg" alt="" loading="lazy" decoding="async" /></span>
+                <span class="wthumb__fly wf--confirm"><img src="assets/graphics/thumbs/vendrs/confirm.png" alt="" loading="lazy" decoding="async" /></span>
+                <span class="wthumb__pop wp--1" aria-hidden="true"><svg width="26" height="32" viewBox="0 0 26 32" fill="none"><path d="M13 31s11-11.2 11-18a11 11 0 1 0-22 0c0 6.8 11 18 11 18z" fill="#fff"/><circle cx="13" cy="12.6" r="4.6" fill="#1ea2c4"/></svg></span>
+                <span class="wthumb__pop wp--2" aria-hidden="true"><svg width="20" height="25" viewBox="0 0 26 32" fill="none"><path d="M13 31s11-11.2 11-18a11 11 0 1 0-22 0c0 6.8 11 18 11 18z" fill="#fff" fill-opacity=".92"/><circle cx="13" cy="12.6" r="4.6" fill="#2b5fd9"/></svg></span>
+                <span class="wthumb__pop wp--3" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2.5l2.3 6.1 6.2 2.4-6.2 2.4L12 21.5l-2.3-8.1L3.5 11l6.2-2.4z" fill="#ffd166"/></svg></span>
+                <img class="wthumb__base wthumb__base--map" src="assets/graphics/thumbs/vendrs/events-map.jpg" alt="Vendrs case study cover: the Events Map, a list of nearby events beside a map with pins" width="1200" height="922" loading="lazy" decoding="async" />
+              </span>
+              <span class="wthumb__tag">Case study</span>
+              <span class="wcard__go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+            </span>
+            <span class="wcard__foot">
+              <h3 class="wcard__title">Vendrs</h3>
+              <span class="wcard__pills">
+              <span class="wcard__pill" data-drawably="pill">B2C</span>
+              <span class="wcard__pill" data-drawably="pill">Desktop</span>
+              </span>
+            </span>
+          </span>
         </a>
 
-        <a class="card w-2" data-tilt data-cursor="view" href="work/qac-gallery.html">
-          <div class="card__head">
-            <div class="card__top"><span class="card__cat">PRODUCT DESIGN • CLIENT</span>
-              <span class="card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
-            <h3 class="card__title">QAC Gallery<br />Redesign</h3>
-            <p class="card__desc">A redesign for an Oakland LGBTQ+ arts gallery, focused on accessibility, showcasing artists, and a warmer community experience.</p>
-          </div>
-          <div class="card__media">
-            <div class="duo"><img src="assets/graphics/proj-b.jpg" alt="QAC Gallery redesign screens" /></div>
-            <div class="noren" aria-hidden="true"><span></span><span></span></div>
-            <span class="noren__label">QAC Gallery</span>
-          </div>
-        </a>
-
-        <a class="card w-3" data-tilt data-cursor="view" href="work/uc-davis-app.html">
-          <div class="card__head">
-            <div class="card__top"><span class="card__cat">PRODUCT DESIGN</span>
-              <span class="card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
-            <h3 class="card__title">UC Davis Mobile App</h3>
-            <p class="card__desc">Reimagining the campus app around the flows students actually use every day: schedules, transit, dining, and events.</p>
-          </div>
-          <div class="card__media">
-            <div class="duo"><img src="assets/graphics/proj-c.jpg" alt="UC Davis app redesign screens" /></div>
-            <div class="noren" aria-hidden="true"><span></span><span></span></div>
-            <span class="noren__label">UC Davis App</span>
-          </div>
-        </a>
-      </div>
-    </section>
-
-    <!-- ============ ABOUT LEAD ============ -->
-    <section class="section wrap" id="meet">
-      <div class="meet" data-reveal>
-        <div class="meet__media" data-parallax="-0.03">
-          <img class="doodle-star doodle-star--float" src="assets/graphics/star.png" style="width:42px;top:-18px;left:-12px;--rot:-12deg" alt="" aria-hidden="true" />
-          <img class="meet__photo" src="assets/graphics/from-code.jpg" alt="Anthony presenting design work to teammates" />
-          <img class="meet__sumi" data-mascot src="assets/graphics/sumi/holding-notebook.png" alt="" aria-hidden="true" />
-        </div>
-        <div class="meet__copy">
-          <span class="sec-eyebrow">THE PERSON BEHIND THE PIXELS</span>
-          <h2 class="sec-title">More than <span class="plain">the work</span></h2>
-          <p>Two years of computer science, a hard turn into design, and a lot of learning out loud. Off the clock you'll catch me making beats, running, and playing far too much Tekken.</p>
-          <a class="btn" data-cursor="view" href="about.html">More about me
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
+        <div class="wcard wcard--soon" data-cursor="Coming soon" tabindex="0" role="group" aria-disabled="true" aria-label="QAC Gallery Redesign, coming soon">
+          <span class="wcard__paper">
+            <span class="wcard__tape" aria-hidden="true"></span>
+            <!-- animated thumbnail: the events page rests here, the rest of the
+                 site flies in on hover (".wthumb" in css/style.css) -->
+            <span class="wcard__frame">
+              <span class="wthumb wthumb--qac">
+                <span class="wthumb__bg" aria-hidden="true">
+                  <img class="qac-splat" src="assets/graphics/thumbs/qac/splatter.svg" alt="" loading="lazy" decoding="async" />
+                </span>
+                <span class="wthumb__fly wf--signin"><img src="assets/graphics/thumbs/qac/signin.jpg" alt="" loading="lazy" decoding="async" /></span>
+                <span class="wthumb__fly wf--shop"><img src="assets/graphics/thumbs/qac/workshop.jpg" alt="" loading="lazy" decoding="async" /></span>
+                <span class="wthumb__fly wf--workshops"><img src="assets/graphics/thumbs/qac/workshops.jpg" alt="" loading="lazy" decoding="async" /></span>
+                <span class="wthumb__fly wf--rent"><img src="assets/graphics/thumbs/qac/rent.jpg" alt="" loading="lazy" decoding="async" /></span>
+                <span class="wthumb__pop wp--1" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2.5l2.3 6.1 6.2 2.4-6.2 2.4L12 21.5l-2.3-8.1L3.5 11l6.2-2.4z" fill="#f5a623"/></svg></span>
+                <span class="wthumb__pop wp--2" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" fill="#8bd46a"/></svg></span>
+                <span class="wthumb__pop wp--3" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2.5l2.3 6.1 6.2 2.4-6.2 2.4L12 21.5l-2.3-8.1L3.5 11l6.2-2.4z" fill="#e879b8"/></svg></span>
+                <img class="wthumb__base" src="assets/graphics/thumbs/qac/events.jpg" alt="QAC Gallery case study cover: the events and bookings page" width="1200" height="675" loading="lazy" decoding="async" />
+              </span>
+              <span class="wthumb__tag">Case study</span>
+              <span class="wcard__soon" aria-hidden="true"><b>Coming soon</b></span>
+              <span class="wcard__go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+            </span>
+            <span class="wcard__foot">
+              <h3 class="wcard__title">QAC Gallery Redesign</h3>
+              <span class="wcard__pills">
+              <span class="wcard__pill" data-drawably="pill">B2C</span>
+              <span class="wcard__pill" data-drawably="pill">Desktop</span>
+              <span class="wcard__pill" data-drawably="pill">Client</span>
+              </span>
+            </span>
+          </span>
         </div>
       </div>
     </section>
@@ -158,33 +133,37 @@
   <!-- ============ FOOTER / CONTACT ============ -->
   <footer class="footer" id="contact">
     <div class="footer__inner wrap">
-      <div class="footer__cta" data-reveal>
-        <img class="footer__mascot" data-mascot src="assets/graphics/sumi/excited.png" alt="" />
-        <span class="footer__eyebrow">✦&nbsp;&nbsp;GOT SOMETHING IN MIND?&nbsp;&nbsp;✦</span>
-        <h2 class="footer__title">Let's <span class="serif">work</span> together</h2>
-        <a class="footer__emailbtn" data-cursor="view" href="mailto:atonyn584@gmail.com">atonyn584@gmail.com
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
-        </a>
-        <div class="footer__chips"><span class="chip"><span class="chip__pulse"></span>Open to internships</span></div>
-        <nav class="footer__nav">
-          <a href="https://drive.google.com/file/d/1PTcfJpEMcfS_W2Cb9v0fJxFMJBmGtGmB/view" target="_blank">✦ Resume</a>
-          <a href="https://www.linkedin.com/in/anthony-nguyen-a79683392/" target="_blank" rel="noopener">✦ LinkedIn</a>
-          <a href="mailto:atonyn584@gmail.com">✦ Email</a>
-        </nav>
+      <div class="footer__top" data-reveal>
+        <p class="footer__hello">Thanks for stopping by, <span class="serif">let's chat.</span></p>
+
+        <div class="footer__group">
+          <span class="footer__label">Contact</span>
+          <a href="mailto:atonyn584@gmail.com">atonyn584@gmail.com</a>
+        </div>
+
+        <div class="footer__group">
+          <span class="footer__label">Menu</span>
+          <p class="footer__links">
+            <a href="#works">Works</a><i>|</i><a href="about.html">About</a><i>|</i><a href="https://drive.google.com/file/d/1PTcfJpEMcfS_W2Cb9v0fJxFMJBmGtGmB/view" target="_blank" rel="noopener">Resume</a>
+          </p>
+        </div>
+
+        <div class="footer__group">
+          <span class="footer__label">Elsewhere</span>
+          <p class="footer__links">
+            <a href="https://www.linkedin.com/in/anthony-nguyen-a79683392/" target="_blank" rel="noopener">LinkedIn</a>
+          </p>
+        </div>
       </div>
+
       <div class="footer__bottom">
-        <span>© <span data-year>2026</span> Anthony N. · Sacramento, CA</span>
-        <span class="made">Designed in Figma, built with Claude, and a lot of energy drinks.</span>
+        <span>&copy; <span data-year>2026</span> Anthony N. &#183; Sacramento, CA</span>
+        <span class="made">Designed in Figma, built in Claude.</span>
       </div>
     </div>
   </footer>
 
-  <!-- ============ FLOATING MASCOT BUDDY ============ -->
-  <button class="buddy" aria-label="Say hi to the mascot">
-    <span class="buddy__bubble"></span>
-    <img src="assets/graphics/sumi/default.png" alt="" />
-  </button>
-
-  <script src="js/main.js"></script>
+  <script src="assets/vendor/drawably/drawably.classic.js?v=0.4.2"></script>
+  <script src="js/main.js?v=x147"></script>
 </body>
 </html>

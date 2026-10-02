@@ -4,222 +4,176 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>QAC Gallery Redesign · Case Study · Anthony N.</title>
-  <meta name="description" content="A redesign of the QAC Gallery website, a more accessible, engaging, and community-centered digital experience for an Oakland LGBTQ+ arts organization." />
+  <meta name="description" content="QA Gallery case study: the events, workshops and booking experience for an Oakland LGBTQ+ arts gallery, designed by Anthony N." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet" />
-  <link href="https://fonts.cdnfonts.com/css/overused-grotesk" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css?v=x147" />
 </head>
 <body>
-  <div class="progress" aria-hidden="true"></div>
-
-  <div class="nav-outer">
-    <nav class="nav" aria-label="Primary">
-      <a class="nav__brand" href="../index.html">
-        Anthony N.
-      </a>
-      <button class="nav__toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
-      <div class="nav__group">
-        <div class="nav__links">
-          <a class="nav__link" href="../index.html#works"><span class="num">01</span>Works</a>
-          <a class="nav__link" href="../about.html"><span class="num">02</span>About</a>
-          <a class="nav__link" href="../index.html#contact"><span class="num">03</span>Contact</a>
-        </div>
-        <a class="nav__cta" data-magnetic="0.25" href="https://drive.google.com/file/d/1PTcfJpEMcfS_W2Cb9v0fJxFMJBmGtGmB/view" target="_blank">Resume
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
-        </a>
-      </div>
+  <div class="nav-outer nav-outer--case">
+    <nav class="nav nav--case" aria-label="Primary">
+      <a class="nav__back" href="../index.html#works"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>Back</a>
+      <a class="nav__brand" href="../index.html">Anthony N.</a>
     </nav>
   </div>
 
-  <main class="wrap cs">
+  <main class="wrap cs cs--col">
     <!-- SECTION NAV -->
     <nav class="case-nav" aria-label="Case study sections">
       <div class="case-nav__inner">
-        <a class="case-nav__link" href="#overview">Overview</a>
-        <a class="case-nav__link" href="#problem">Problem</a>
-        <a class="case-nav__link" href="#research">Research</a>
-        <a class="case-nav__link" href="#design">Design</a>
+        <a class="case-nav__link" href="#context">Context</a>
+        <a class="case-nav__link" href="#problem">Research</a>
+        <a class="case-nav__link" href="#nav">Navigation</a>
+        <a class="case-nav__link" href="#booking">Booking</a>
+        <a class="case-nav__link" href="#pages">Pages</a>
         <a class="case-nav__link" href="#results">Results</a>
       </div>
     </nav>
 
     <div class="cs__body">
     <header class="case-head" data-reveal>
-      <img class="case-sumi" data-mascot src="../assets/graphics/sumi/presenting-design.png" alt="" aria-hidden="true" />
-      <a class="case-back" href="../index.html#works"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>All work</a>
-      <p class="case-head__cat">PRODUCT DESIGN • CLIENT</p>
-      <h1 class="case-head__title">QAC Gallery<br /><span class="serif">Redesign</span></h1>
-      <p class="case-head__desc">Rebuilding an Oakland arts gallery's website into something <span class="serif">accessible, artist-forward</span>, and easy to act on.</p>
-      <dl class="case-meta">
+      <p class="case-head__cat">PRODUCT DESIGN · CLIENT</p>
+      <h1 class="case-head__title">Making a gallery's events easy to find and book</h1>
+      <p class="case-head__desc">QA Gallery shows LGBTQ+ artists in Oakland. My first client project, where I designed the events and booking experience, from the navigation down to the pages people actually land on.</p>
+      <dl class="v-meta">
         <div><dt>Role</dt><dd>UI/UX Designer</dd></div>
-        <div><dt>Focus</dt><dd>Events &amp; booking</dd></div>
+        <div><dt>Tools</dt><dd>Figma, FigJam</dd></div>
+        <div><dt>Team</dt><dd>1 PM, 4 designers</dd></div>
         <div><dt>Timeline</dt><dd>Jan to Mar 2026</dd></div>
-        <div><dt>Team</dt><dd>1 PM + 4 designers</dd></div>
       </dl>
     </header>
 
-    <!-- HERO IMAGE -->
-    <div class="case-hero" data-reveal data-parallax="-0.03">
-      <div class="duo"><img src="../assets/graphics/qac/events-cards.png" alt="QA Gallery redesign, the Upcoming Events section" /></div>
-    </div>
-
-    <!-- OVERVIEW -->
-    <section class="cs-block cs-narrow" id="overview" data-reveal>
-      <span class="cs-eyebrow">OVERVIEW</span>
-      <h2 class="cs-h2">A home for <span class="serif">LGBTQ+ artists</span>, hard to actually use</h2>
-      <p class="cs-text">QAC Gallery is an Oakland space that shows LGBTQ+ artists, runs events, and offers creative resources. This was my first client project, working with a PM and three other designers. The site had the art, but it buried it. I focused on the part people actually come to the site to do: find events and book the space.</p>
+    <section class="cs-block cs-block--tight" data-reveal>
+      <div class="cs-shot"><img src="../assets/graphics/qac/events-cards.jpg" alt="Upcoming Events as scannable cards" /></div>
+      <p class="cs-figcap">Upcoming Events after the redesign: one card carries the date, the tags and the next step.</p>
     </section>
 
-    <!-- PROBLEM -->
+    <section class="cs-block cs-narrow" id="context" data-reveal>
+      <span class="cs-eyebrow">CONTEXT</span>
+      <h2 class="cs-h2">A real client, a real deadline</h2>
+      <p class="cs-text">QA Gallery runs exhibitions, workshops and a rentable space. The site had the art but buried it: a nine-item nav and event details scattered across cluttered pages. A PM and four designers split the rebuild; I took the part people come to the site to do.</p>
+      <ul class="v-impact">
+        <li><b>My pages</b><span>Events, event detail, workshops, Rent The Space.</span></li>
+        <li><b>My call</b><span>Cut the nav and give booking its own home.</span></li>
+        <li><b>The team's</b><span>Rebrand, membership tiers, online shop.</span></li>
+      </ul>
+    </section>
+
     <section class="cs-block cs-narrow" id="problem" data-reveal>
-      <span class="cs-eyebrow">THE PROBLEM</span>
-      <h2 class="cs-h2">The art was there, but hard to <span class="serif">find and act on</span></h2>
-      <p class="cs-text">The old site fought itself: a nine-item nav, weak hierarchy, and event details scattered across cluttered pages. So we framed the work around one question.</p>
+      <span class="cs-eyebrow">RESEARCH</span>
+      <h2 class="cs-h2">Everyone in this space makes the same mistake</h2>
+      <p class="cs-text">A client interview set the priorities. A competitive scan of other galleries showed the same two weaknesses everywhere: visual clutter and weak calls to action. That gap was the opening.</p>
       <blockquote class="cs-pull">
         <p>How might we help people discover events, engage with the gallery, and support it, without getting lost?</p>
-        <cite>Our design question</cite>
+        <cite>The question we designed against</cite>
       </blockquote>
     </section>
 
-    <!-- RESEARCH -->
-    <section class="cs-block" id="research" data-reveal>
+    <section class="cs-block" id="nav" data-reveal>
       <div class="cs-narrow">
-        <span class="cs-eyebrow">RESEARCH</span>
-        <h2 class="cs-h2">The client first, then the field</h2>
-        <p class="cs-text">A client interview gave us four priorities. A competitive scan of other galleries showed the same weaknesses everywhere: visual clutter and weak structure. That was the opening. Lead with clear navigation, real hierarchy, and obvious calls to action.</p>
-      </div>
-      <div class="stickboard stickboard--4">
-        <div class="stickcol">
-          <div class="stickcol__h"><span class="stickcol__dot"></span>What the client asked for</div>
-          <div class="sticky sticky--b">Relaunch a <b>tiered membership</b> program</div>
-          <div class="sticky sticky--b">Redesign the <b>online shop</b></div>
-        </div>
-        <div class="stickcol">
-          <div class="stickcol__h"><span class="stickcol__dot"></span>&nbsp;</div>
-          <div class="sticky sticky--m">Make <b>navigation</b> clearer</div>
-          <div class="sticky sticky--m">Rebrand from QAC to <b>QA Gallery</b>, modern-museum feel</div>
-        </div>
-        <div class="stickcol stickcol--key">
-          <div class="stickcol__h"><span class="stickcol__dot"></span>Where I focused</div>
-          <div class="sticky sticky--y">Events are the reason people visit</div>
-          <div class="sticky sticky--y">Booking a workshop or the space was confusing</div>
-        </div>
-        <div class="stickcol">
-          <div class="stickcol__h"><span class="stickcol__dot"></span>From the competitive scan</div>
-          <div class="sticky sticky--p">Rivals drown the art in clutter</div>
-          <div class="sticky sticky--p">Weak CTAs, unclear next steps</div>
-        </div>
-      </div>
-      <p class="cs-figcap">★ The starred column is where I spent my time: the events and booking experience.</p>
-    </section>
-
-    <!-- IDEATION / IA -->
-    <section class="cs-block" data-reveal>
-      <div class="cs-split">
-        <div>
-          <span class="cs-eyebrow">INFORMATION ARCHITECTURE</span>
-          <h2 class="cs-h2">Fewer routes, clearer signage</h2>
-          <p class="cs-text">Affinity mapping pointed at the same fix from every angle: simplify. I trimmed the top nav so the important paths stopped competing for attention, and gave events, workshops, and booking their own focused pages instead of one crowded catch-all.</p>
-          <div class="cs-stats" style="margin-top:clamp(20px,2.5vw,32px)">
-            <div><div class="cs-stat__n">9 &rarr; 7</div><div class="cs-stat__l">nav items, cut to the ones that matter</div></div>
-            <div><div class="cs-stat__n">3</div><div class="cs-stat__l">focused subpages: events, workshops, booking</div></div>
-          </div>
-        </div>
-        <div class="cs-split__media">
-          <div class="fig-wrap">
-            <div class="cs-shot"><img src="../assets/graphics/qac/workshop.png" alt="Workshop Scheduling section with clear cards" /></div>
-            <div class="dood" style="top:-26px;left:4%">
-              <span class="dood__note">give booking its own home</span>
-              <svg class="dood__arrow" viewBox="0 0 90 60"><path d="M6 6C30 8 66 16 80 50"/><path d="M80 50c-8-2-15-2-22 1M80 50c2-8 0-16-5-22"/></svg>
-            </div>
-          </div>
+        <span class="cs-eyebrow">NAVIGATION</span>
+        <h2 class="cs-h2">Fewer routes, clearer signage</h2>
+        <p class="cs-text">Affinity mapping pointed at the same fix from every angle: simplify. I trimmed the top nav so the important paths stopped competing, and gave events, workshops and booking their own pages instead of one crowded catch-all.</p>
+        <div class="v-stats">
+          <div class="v-stat"><b>9&#8594;7</b><span>nav items, cut to the ones people use</span></div>
+          <div class="v-stat"><b>3</b><span>focused pages: events, workshops, booking</span></div>
+          <div class="v-stat"><b>1</b><span>obvious next step per page</span></div>
         </div>
       </div>
     </section>
 
-    <!-- KEY ITERATION -->
-    <section class="cs-block cs-narrow" data-reveal>
-      <span class="cs-eyebrow">KEY ITERATION · BOOKING FLOW</span>
-      <h2 class="cs-h2">Pick the workshop, <span class="serif">then</span> the date</h2>
-      <p class="cs-text">Our first booking flow asked people to choose a date before they knew what they were signing up for. Testing made the fix obvious: people want to understand the workshop first. I reordered the flow to browse and select the workshop, <span class="squig">then</span> choose the date. A small reorder, a much calmer decision.</p>
-    </section>
-
-    <!-- FINAL DESIGNS -->
-    <section class="cs-block" id="design" data-reveal>
+    <section class="cs-block" id="booking" data-reveal>
       <div class="cs-narrow">
-        <span class="cs-eyebrow">FINAL DESIGNS</span>
-        <h2 class="cs-h2">Clean, artist-forward, easy to <span class="serif">scan</span></h2>
-        <p class="cs-text">The rebrand dropped the "C" to become QA Gallery, with paint-splatter accents that nod to the work on the walls. Cluttered pages became clear cards with complete titles, dates, and tags, and every event and workshop leads with the details you need to commit.</p>
-      </div>
-      <div class="cs-figure-block">
-        <div class="fig-wrap">
-          <div class="cs-shot"><img src="../assets/graphics/qac/events-cards.png" alt="Upcoming Events as clean, scannable cards" /></div>
-          <div class="dood" style="top:42%;left:-2%">
-            <span class="dood__note">one card,<br>everything you need</span>
-            <svg class="dood__arrow" viewBox="0 0 90 50"><path d="M4 44C30 48 64 40 84 16"/><path d="M84 16c-8 1-16 0-23-3M84 16c-3 7-8 13-15 16"/></svg>
+        <span class="cs-eyebrow">BOOKING FLOW</span>
+        <h2 class="cs-h2">Pick the workshop, then the date</h2>
+        <p class="cs-text">Our first flow asked people to choose a date before they knew what they were signing up for. Testing made the fix obvious: understand the workshop first, commit second.</p>
+        <div class="v-compare">
+          <div class="v-card v-card--no">
+            <span class="v-card__tag">&#10005; First version</span>
+            <h4>Date, then workshop</h4>
+            <p>Calendar first. People were asked to commit to a slot before they knew what it was for.</p>
+          </div>
+          <div class="v-card v-card--yes">
+            <span class="v-card__tag">&#10003; After testing</span>
+            <h4>Workshop, then date</h4>
+            <p>Browse, read what you will make, then pick a time. A small reorder, a much calmer decision.</p>
           </div>
         </div>
-        <p class="cs-figcap">Upcoming Events: cluttered listings became scannable cards with date, time, and a clear next step.</p>
       </div>
-      <div class="cs-split">
-        <div>
-          <h3 class="cs-h3">Event pages that get to the point</h3>
-          <p class="cs-text">Date, location, and a single obvious RSVP sit up top. Everything else, the overview and what is included, follows underneath for people who want it.</p>
-        </div>
-        <div class="cs-split__media">
-          <div class="cs-shot cs-shot--crop-tall" style="--pos:top"><img src="../assets/graphics/qac/event-detail.png" alt="Event detail page with the RSVP up front" /></div>
-        </div>
-      </div>
+
       <div class="cs-figure-block">
-        <div class="cs-shot"><img src="../assets/graphics/qac/rent-space.png" alt="Rent The Space section with dimensions, capacity, and booking" /></div>
-        <p class="cs-figcap">Rent The Space puts the practical details, size, capacity, and booking, within reach.</p>
-      </div>
-      <div class="cs-figure-block">
-        <div class="cs-shot"><img src="../assets/graphics/qac/workshop.png" alt="Workshop Scheduling with themed clay workshops" /></div>
-        <p class="cs-figcap">Workshops lead with price, duration, and what you will make, behind one booking button.</p>
+        <div class="cs-shot"><img src="../assets/graphics/qac/workshop.jpg" alt="Workshop scheduling page with price, duration and a single booking button" /></div>
+        <p class="cs-figcap">Workshops lead with price, duration and what you will make, behind one booking button.</p>
       </div>
     </section>
 
-    <!-- QUOTE -->
-    <section class="cs-block cs-block--tight" data-reveal>
+    <section class="cs-block" id="pages" data-reveal>
+      <div class="cs-narrow">
+        <span class="cs-eyebrow">THE PAGES I BUILT</span>
+        <h2 class="cs-h2">Every page leads with the detail you need to commit</h2>
+        <p class="cs-text">Same rule on all four: the practical facts up top, the story underneath, one obvious action.</p>
+
+        <div class="v-tabs" role="tablist" aria-label="Pages">
+          <button class="v-tab" role="tab" type="button" aria-selected="true" aria-controls="q1" id="qt1"><em>01</em>Events</button>
+          <button class="v-tab" role="tab" type="button" aria-selected="false" aria-controls="q2" id="qt2"><em>02</em>Event detail</button>
+          <button class="v-tab" role="tab" type="button" aria-selected="false" aria-controls="q3" id="qt3"><em>03</em>Workshops</button>
+          <button class="v-tab" role="tab" type="button" aria-selected="false" aria-controls="q4" id="qt4"><em>04</em>Rent the space</button>
+        </div>
+
+        <div class="v-stage">
+          <figure class="v-panel" role="tabpanel" id="q1" aria-labelledby="qt1">
+            <span class="cs-shot"><img src="../assets/graphics/qac/events-cards.jpg" alt="Upcoming Events as scannable cards" /></span>
+            <figcaption>Cluttered listings became cards with the full title, date, tags and a clear next step, so the page can be skimmed in one pass.</figcaption>
+          </figure>
+          <figure class="v-panel" role="tabpanel" id="q2" aria-labelledby="qt2" hidden>
+            <span class="cs-shot"><img src="../assets/graphics/qac/event-detail.png" alt="Event detail page with RSVP up front" /></span>
+            <figcaption>Date, location and a single RSVP sit above the fold. The overview and what is included follow for people who want them.</figcaption>
+          </figure>
+          <figure class="v-panel" role="tabpanel" id="q3" aria-labelledby="qt3" hidden>
+            <span class="cs-shot"><img src="../assets/graphics/qac/workshop.jpg" alt="Workshop scheduling page" /></span>
+            <figcaption>Price, duration and the finished object first, because that is what people decide on. One booking button, no competing links.</figcaption>
+          </figure>
+          <figure class="v-panel" role="tabpanel" id="q4" aria-labelledby="qt4" hidden>
+            <span class="cs-shot"><img src="../assets/graphics/qac/rent-space.jpg" alt="Rent The Space page with dimensions, capacity and booking" /></span>
+            <figcaption>Rent The Space puts the practical details, size, capacity and booking, within reach instead of behind an email.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-block cs-narrow" id="results" data-reveal>
+      <span class="cs-eyebrow">OUTCOME</span>
+      <h2 class="cs-h2">Delivered on time, through a client gap</h2>
       <blockquote class="cs-pull">
         <p>It finally feels like us. The art comes first, and everyone can find their way around.</p>
-        <cite>QAC Gallery stakeholder</cite>
+        <cite>QA Gallery stakeholder</cite>
       </blockquote>
+      <ul class="cs-ul">
+        <li><b>What shipped.</b> A trimmed nav, three focused pages and a booking flow that matches how people decide.</li>
+        <li><b>What is next.</b> Confirm membership tiers and store inventory, another round of usability testing, and finish the migration onto Wix.</li>
+      </ul>
     </section>
 
-    <!-- REFLECTION + NEXT -->
-    <section class="cs-block" id="results" data-reveal>
-      <div class="cs-split">
-        <div>
-          <span class="cs-eyebrow">REFLECTION</span>
-          <h2 class="cs-h2">Designing for a client and its users</h2>
-          <p class="cs-text">My first client project taught me to hold user needs and business goals at the same time, and to decide which wins when they pull apart. Communication gaps and a family emergency on the client side meant we pushed forward on our own judgment, and still delivered on time.</p>
-        </div>
-        <div>
-          <span class="cs-eyebrow">NEXT STEPS</span>
-          <h2 class="cs-h2">To take it further</h2>
-          <ul class="cs-ul">
-            <li>Confirm membership tiers and store inventory with the client.</li>
-            <li>Run another round of usability testing and add testimonials.</li>
-            <li>Finish the migration onto Wix.</li>
-          </ul>
-        </div>
-      </div>
+    <section class="cs-block cs-narrow" data-reveal>
+      <span class="cs-eyebrow">TAKEAWAY</span>
+      <h2 class="cs-h2">Holding user needs and business goals at once</h2>
+      <p class="cs-text">My first client project taught me to carry both, and to decide which wins when they pull apart. Communication gaps and a family emergency on the client side meant we moved on our own judgment and still delivered on time.</p>
     </section>
+
 
     <!-- NEXT PROJECT -->
     <div class="next" data-reveal>
       <span class="next__eyebrow">NEXT PROJECT</span>
-      <a class="card" data-tilt data-cursor="view" href="uc-davis-app.html">
+      <a class="card" data-tilt data-cursor="view" href="vendrs.html">
         <div class="card__head">
-          <div class="card__top"><span class="card__cat">PRODUCT DESIGN • MOBILE</span>
-            <span class="card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
-          <h3 class="card__title">UC Davis Mobile App</h3>
-          <p class="card__desc">Reimagining the campus app around the flows students use every day.</p>
+          <div class="card__top"><span class="card__cat">PRODUCT DESIGN</span>
+            <span class="card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+          </div>
+          <h3 class="card__title">Vendrs</h3>
+          <p class="card__desc">Onboarding and an Events Map that help emerging business owners find their next market.</p>
         </div>
       </a>
     </div>
@@ -228,32 +182,36 @@
 
   <footer class="footer" id="contact">
     <div class="footer__inner wrap">
-      <div class="footer__cta" data-reveal>
-        <img class="footer__mascot" data-mascot src="../assets/graphics/sumi/excited.png" alt="" />
-        <span class="footer__eyebrow">✦&nbsp;&nbsp;GOT SOMETHING IN MIND?&nbsp;&nbsp;✦</span>
-        <h2 class="footer__title">Let's <span class="serif">work</span> together</h2>
-        <a class="footer__emailbtn" data-cursor="view" href="mailto:atonyn584@gmail.com">atonyn584@gmail.com
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
-        </a>
-        <div class="footer__chips"><span class="chip"><span class="chip__pulse"></span>Open to internships</span></div>
-        <nav class="footer__nav">
-          <a href="https://drive.google.com/file/d/1PTcfJpEMcfS_W2Cb9v0fJxFMJBmGtGmB/view" target="_blank">✦ Resume</a>
-          <a href="https://www.linkedin.com/in/anthony-nguyen-a79683392/" target="_blank" rel="noopener">✦ LinkedIn</a>
-          <a href="mailto:atonyn584@gmail.com">✦ Email</a>
-        </nav>
+      <div class="footer__top" data-reveal>
+        <p class="footer__hello">Thanks for stopping by, <span class="serif">let's chat.</span></p>
+
+        <div class="footer__group">
+          <span class="footer__label">Contact</span>
+          <a href="mailto:atonyn584@gmail.com">atonyn584@gmail.com</a>
+        </div>
+
+        <div class="footer__group">
+          <span class="footer__label">Menu</span>
+          <p class="footer__links">
+            <a href="../index.html#works">Works</a><i>|</i><a href="../about.html">About</a><i>|</i><a href="https://drive.google.com/file/d/1PTcfJpEMcfS_W2Cb9v0fJxFMJBmGtGmB/view" target="_blank" rel="noopener">Resume</a>
+          </p>
+        </div>
+
+        <div class="footer__group">
+          <span class="footer__label">Elsewhere</span>
+          <p class="footer__links">
+            <a href="https://www.linkedin.com/in/anthony-nguyen-a79683392/" target="_blank" rel="noopener">LinkedIn</a>
+          </p>
+        </div>
       </div>
+
       <div class="footer__bottom">
-        <span>© <span data-year>2026</span> Anthony N. · Sacramento, CA</span>
-        <span class="made">Designed in Figma, built with Claude, and a lot of energy drinks.</span>
+        <span>&copy; <span data-year>2026</span> Anthony N. &#183; Sacramento, CA</span>
+        <span class="made">Designed in Figma, built in Claude.</span>
       </div>
     </div>
   </footer>
 
-  <button class="buddy" aria-label="Say hi to the mascot">
-    <span class="buddy__bubble"></span>
-    <img src="../assets/graphics/sumi/default.png" alt="" />
-  </button>
-
-  <script src="../js/main.js"></script>
+  <script src="../js/main.js?v=x147"></script>
 </body>
 </html>

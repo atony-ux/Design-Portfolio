@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>drawably preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet" />
+  <!-- the site's own stylesheet, so the "Today" column is the real thing -->
+  <link rel="stylesheet" href="../css/style.css?v=x133" />
+  <!-- drawably, vendored (see HANDOFF "drawably, vendored") -->
+  <link rel="stylesheet" href="../assets/vendor/drawably/style.css" />
+  <style>
+    /* ---------------------------------------------------------------------
+       drawably PREVIEW. Nothing on the live pages uses drawably yet; this page
+       shows each real candidate as it is today next to a drawably version, in
+       the site's own palette, so the user can pick which ones to convert.
+       Must be served: ES modules do not load from file://.
+       --------------------------------------------------------------------- */
+    :root {
+      /* The library themes from these. --drawably-ink is the TEXT colour and
+         falls back to the stroke when unset, so it is set explicitly. */
+      --drawably-stroke: var(--blue);
+      --drawably-fill: var(--blue);
+      --drawably-ink: var(--blue);
+      --drawably-paper: var(--white);
+    }
+    /* Warm variant. The site's rule: --orange-hi is decoration only, never for
+       type. Strokes use it; any text, and a filled button, use --orange.
+       Without --drawably-ink here, badge text inherited the stroke and came out
+       in --orange-hi, breaking that rule. */
+    .warm { --drawably-stroke: var(--orange-hi); --drawably-fill: var(--orange); --drawably-ink: var(--orange); }
+    .drawably-button { font-family: var(--sans); }
+    /* drawably's badge defaults to 12px Geist Mono with 1px 7px padding. Geist
+       Mono is not loaded here, so it fell back to a system monospace and read as
+       cramped typewriter text beside the site's pills. Match the pill instead. */
+    .drawably-badge { font-family: var(--sans); font-size: 11.5px; padding: 4px 11px; }
+
+    body { background: var(--bg); padding: 44px 24px 96px; }
+    .dz { max-width: 1080px; margin: 0 auto; }
+    .dz__top { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    .dz__top h1 { margin: 0 0 6px; font-size: 28px; letter-spacing: -.02em; }
+    .dz__top p { margin: 0; max-width: 620px; font-size: 14px; line-height: 1.5; color: var(--ink-50); }
+    .dz__re { flex: none; padding: 10px 16px; border: 1px solid var(--line); border-radius: 999px;
+      background: var(--white); font: 600 13px/1 var(--sans); color: var(--ink-75); cursor: pointer; }
+    .dz__re:hover { border-color: var(--blue); color: var(--blue); }
+
+    .dz__sec { margin-top: 38px; }
+    .dz__h { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin: 0 0 12px; }
+    .dz__h h2 { margin: 0; font-size: 19px; letter-spacing: -.01em; }
+    .dz__h span { font-size: 12.5px; color: var(--ink-50); }
+    .dz__row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .dz__panel { position: relative; min-height: 120px; padding: 20px 22px 22px; border-radius: 18px;
+      background: var(--white); box-shadow: var(--sh-card); outline: 1px solid var(--line); outline-offset: -1px; }
+    .dz__tag { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;
+      font: 600 10.5px/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-50); }
+    .dz__tag code { font: 500 11px/1 ui-monospace, Menlo, monospace; letter-spacing: 0; text-transform: none;
+      color: var(--blue); background: var(--blue-mist); padding: 3px 6px; border-radius: 5px; }
+    .dz__panel--new .dz__tag { color: var(--blue); }
+    .dz__flex { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 14px; }
+    .dz__note { margin: 14px 0 0; font-size: 12.5px; line-height: 1.5; color: var(--ink-50); }
+    .dz__hero { margin: 0; font-size: 20px; line-height: 1.5; }
+    .dz__sechead .sec-title { margin: 0; }
+    .dz__list { margin: 0; padding-left: 26px; display: grid; gap: 10px; }
+    .dz__list b { display: block; font-size: 14.5px; }
+    .dz__list span { font-size: 12.5px; color: var(--ink-50); }
+    .dz__tabs { display: inline-flex; gap: 22px; font: 600 14px/1 var(--sans); }
+    .dz__tabs span { padding: 6px 0 8px; cursor: pointer; color: var(--ink-50); }
+    .dz__tabs span[aria-selected="true"] { color: var(--ink); }
+    /* the site's tier tabs, lifted out of their panel for the Today column */
+    .dz__tl { display: inline-flex; padding: 3px; border-radius: 999px; background: var(--blue-mist); }
+    .dz__tl button { padding: 7px 13px; border: 0; border-radius: 999px; background: transparent;
+      font: 600 12.5px/1 var(--sans); color: var(--ink-50); }
+    .dz__tl button[aria-selected="true"] { background: #fff; color: var(--blue); box-shadow: 0 2px 6px rgba(16,16,40,.12); }
+    @media (max-width: 760px) { .dz__row { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <main class="dz">
+    <div class="dz__top">
+      <div>
+        <h1>drawably on your portfolio</h1>
+        <p>Each row is something already on your site. Left is how it looks today, right is the drawably version in your blue and orange. Hover the drawn ones: they re-sketch and the strokes boil. Nothing on your live pages has changed.</p>
+      </div>
+      <button class="dz__re" id="resketch" type="button">Re-sketch everything</button>
+    </div>
+
+    <!-- 1. Button -->
+    <section class="dz__sec">
+      <div class="dz__h"><h2>Button</h2><span>Home, "More about me"</span></div>
+      <div class="dz__row">
+        <div class="dz__panel">
+          <div class="dz__tag">Today</div>
+          <div class="dz__flex">
+            <a class="btn" href="#" onclick="return false">More about me
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="dz__panel dz__panel--new">
+          <div class="dz__tag">drawably <code>drawablyButton</code></div>
+          <div class="dz__flex">
+            <button type="button" data-d="btn-solid">More about me</button>
+            <button type="button" data-d="btn-outline">More about me</button>
+            <button type="button" data-d="btn-scribble">More about me</button>
+          </div>
+          <div class="dz__flex warm" style="margin-top:12px">
+            <button type="button" data-d="btn-solid">More about me</button>
+            <button type="button" data-d="btn-outline">More about me</button>
+          </div>
+          <p class="dz__note">Solid, outline, then scribble; the second row is warm. Scribble is shown once as a warning: its hatching hides the label, so it does not suit anything with words on it.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Work card tags -->
+    <section class="dz__sec">
+      <div class="dz__h"><h2>Work card tags</h2><span>Home, under each case study</span></div>
+      <div class="dz__row">
+        <div class="dz__panel">
+          <div class="dz__tag">Today</div>
+          <div class="dz__flex">
+            <span class="wcard__pill">B2C</span><span class="wcard__pill">Desktop</span><span class="wcard__pill">Client</span>
+          </div>
+        </div>
+        <div class="dz__panel dz__panel--new">
+          <div class="dz__tag">drawably <code>drawablyBadge</code></div>
+          <div class="dz__flex">
+            <span data-d="badge">B2C</span><span data-d="badge">Desktop</span><span data-d="badge">Client</span>
+          </div>
+          <div class="dz__flex warm" style="margin-top:12px">
+            <span data-d="badge">B2C</span><span data-d="badge">Desktop</span><span data-d="badge">Client</span>
+          </div>
+          <p class="dz__note">Blue, then warm. Set in your sans at the same size as the pills they would replace.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Hobby chips -->
+    <section class="dz__sec">
+      <div class="dz__h"><h2>Hobby chips</h2><span>About, the Hobbies card</span></div>
+      <div class="dz__row">
+        <div class="dz__panel">
+          <div class="dz__tag">Today</div>
+          <div class="pg-chips">
+            <span class="pg-chip pg-chip--b">Music production</span>
+            <span class="pg-chip">Design</span>
+            <span class="pg-chip pg-chip--o">Consuming energy drinks</span>
+            <span class="pg-chip">Games</span>
+            <span class="pg-chip">Running</span>
+            <span class="pg-chip">Sports</span>
+            <span class="pg-chip pg-chip--b">Traveling</span>
+          </div>
+        </div>
+        <div class="dz__panel dz__panel--new">
+          <div class="dz__tag">drawably <code>drawablyBadge</code></div>
+          <div class="dz__flex">
+            <span data-d="badge">Music production</span>
+            <span data-d="badge">Design</span>
+            <span class="warm"><span data-d="badge">Consuming energy drinks</span></span>
+            <span data-d="badge">Games</span>
+            <span data-d="badge">Running</span>
+            <span data-d="badge">Sports</span>
+            <span data-d="badge">Traveling</span>
+          </div>
+          <p class="dz__note">Energy drinks keeps its orange accent, as a warm outline.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Section underline -->
+    <section class="dz__sec">
+      <div class="dz__h"><h2>Section title underline</h2><span>Every page, under the section headings</span></div>
+      <div class="dz__row">
+        <div class="dz__panel">
+          <div class="dz__tag">Today</div>
+          <div class="dz__sechead">
+            <h2 class="sec-title">Featured <span class="plain">works</span></h2>
+            <span class="sec-rule" aria-hidden="true"><svg viewBox="0 0 260 16" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M4 8c58 5 143 6 252-2"/><path d="M9 13c54 3 132 3 236-3" opacity=".4"/></svg></span>
+          </div>
+        </div>
+        <div class="dz__panel dz__panel--new">
+          <div class="dz__tag">drawably <code>drawablyUnderline</code></div>
+          <div class="dz__sechead">
+            <h2 class="sec-title">Featured <span class="plain" data-d="underline">works</span></h2>
+          </div>
+          <p class="dz__note">Re-sketches on hover. Your current underline is already hand-drawn, so this one is the closest call.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Word emphasis -->
+    <section class="dz__sec">
+      <div class="dz__h"><h2>Word emphasis</h2><span>Home hero, "energy drink"</span></div>
+      <div class="dz__row">
+        <div class="dz__panel">
+          <div class="dz__tag">Today</div>
+          <p class="dz__hero">Certified <b>energy drink</b> enjoyer.</p>
+        </div>
+        <div class="dz__panel dz__panel--new">
+          <div class="dz__tag">drawably <code>drawablyHighlight</code> / <code>drawablyCircle</code></div>
+          <p class="dz__hero">Certified <span class="warm"><span data-d="highlight">energy drink</span></span> enjoyer.</p>
+          <p class="dz__hero" style="margin-top:14px">Certified <span class="warm"><span data-d="circle">energy drink</span></span> enjoyer.</p>
+          <p class="dz__note">Marker wash, then a pen loop around the words.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Currently working on -->
+    <section class="dz__sec">
+      <div class="dz__h"><h2>Currently working on</h2><span>About, the status card</span></div>
+      <div class="dz__row">
+        <div class="dz__panel">
+          <div class="dz__tag">Today</div>
+          <div class="pg-now">
+            <div class="pg-now__row"><span class="pg-now__dot" aria-hidden="true"></span><span><span class="pg-now__t">School</span><span class="pg-now__s">Final year of design at UC Davis</span></span></div>
+            <div class="pg-now__row"><span class="pg-now__dot" aria-hidden="true"></span><span><span class="pg-now__t">Searching for internships</span><span class="pg-now__s">Product and UX, open to remote</span></span></div>
+            <div class="pg-now__row"><span class="pg-now__dot" aria-hidden="true"></span><span><span class="pg-now__t">A new album</span><span class="pg-now__s">Slowly, one loop at a time</span></span></div>
+          </div>
+        </div>
+        <div class="dz__panel dz__panel--new">
+          <div class="dz__tag">drawably <code>drawablyList</code></div>
+          <ul class="dz__list" data-d="list">
+            <li><b>School</b><span>Final year of design at UC Davis</span></li>
+            <li><b>Searching for internships</b><span>Product and UX, open to remote</span></li>
+            <li><b>A new album</b><span>Slowly, one loop at a time</span></li>
+          </ul>
+          <p class="dz__note">Sketched check marks in place of the dots.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Tabs -->
+    <section class="dz__sec">
+      <div class="dz__h"><h2>Tabs</h2><span>About, the tier list (currently work in progress)</span></div>
+      <div class="dz__row">
+        <div class="dz__panel">
+          <div class="dz__tag">Today</div>
+          <div class="dz__tl" role="tablist">
+            <button type="button" aria-selected="true">My list</button>
+            <button type="button" aria-selected="false">Make yours</button>
+          </div>
+        </div>
+        <div class="dz__panel dz__panel--new">
+          <div class="dz__tag">drawably <code>drawablyTabs</code></div>
+          <div class="dz__tabs" data-d="tabs" role="tablist">
+            <span role="tab" aria-selected="true">My list</span>
+            <span role="tab" aria-selected="false">Make yours</span>
+          </div>
+          <p class="dz__note">Click a tab: the pen underline moves to it.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script type="module">
+    import {
+      drawablyButton, drawablyBadge, drawablyUnderline, drawablyHighlight,
+      drawablyCircle, drawablyList, drawablyTabs
+    } from "../assets/vendor/drawably/dist/index.js";
+
+    const sketches = [];
+    const each = (sel, fn) => document.querySelectorAll(sel).forEach((el) => sketches.push(fn(el)));
+
+    each("[data-d='btn-solid']", (el) => drawablyButton(el, { variant: "solid" }));
+    each("[data-d='btn-outline']", (el) => drawablyButton(el, { variant: "outline" }));
+    each("[data-d='btn-scribble']", (el) => drawablyButton(el, { variant: "scribble" }));
+    each("[data-d='badge']", (el) => drawablyBadge(el, { variant: "outline" }));
+    each("[data-d='badge-scribble']", (el) => drawablyBadge(el, { variant: "scribble" }));
+    each("[data-d='underline']", (el) => drawablyUnderline(el));
+    each("[data-d='highlight']", (el) => drawablyHighlight(el));
+    each("[data-d='circle']", (el) => drawablyCircle(el));
+    each("[data-d='list']", (el) => drawablyList(el, { marker: "check" }));
+
+    document.querySelectorAll("[data-d='tabs']").forEach((el) => {
+      const tabs = drawablyTabs(el, { active: 0 });
+      sketches.push(tabs);
+      [...el.children].forEach((tab, i) => tab.addEventListener("click", () => {
+        [...el.children].forEach((t, j) => t.setAttribute("aria-selected", String(i === j)));
+        tabs.setActive(i);
+      }));
+    });
+
+    /* not every handle can re-sketch (composites only expose destroy), so ask first */
+    document.getElementById("resketch").addEventListener("click", () => {
+      sketches.forEach((s) => { if (s && typeof s.resketch === "function") s.resketch(); });
+    });
+
+    /* a hook for checking the page from the console */
+    window.__drawably = { count: sketches.length, sketches };
+  </script>
+</body>
+</html>

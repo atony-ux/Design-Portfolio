@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>No-serif proposal: About</title>
+<style>
+  body { margin: 0; background: #f4f2ec; font-family: -apple-system, system-ui, sans-serif; }
+  .bar { padding: 14px 20px; background: #fff; border-bottom: 1px solid rgba(0,0,0,.1); font-size: 13px; color: #555; }
+  .bar b { color: #b3491a; letter-spacing: .1em; text-transform: uppercase; font-size: 11.5px; }
+  iframe { display: block; width: 100%; border: 0; height: 2400px; }
+</style>
+</head>
+<body>
+<div class="bar"><b>Proposal preview</b> &nbsp; About with the serif italic removed everywhere (one font: Archivo). The live pages are unchanged.</div>
+<iframe id="frame" src="/about.html" title="preview"></iframe>
+<script>
+var PAGE = 'about';
+var OVERRIDE = `
+/* ---- proposal: one font. --serif now points at the sans, and every spot that
+   set italic goes upright. Blue accent colour is kept. ---- */
+:root { --serif: "Archivo", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+.serif, .hero__title .accent, .hero__foot-item, .fact__k, .worklist__num,
+.footer__bottom .made, .case-quote p, .cs-fig__cap, .cs-figcap, .cs-stat__n,
+.cs-pull p, .cs-donut__pct, .cs-col__h, .stickcol__h, .pg-hd em, .pg-sleeve__t,
+.tl__title em, .about-hero__copy .sec-title, .marquee__item .serif { font-style: normal; }
+/* the serif carried its weight visually; nudge a few spots so they do not read thin */
+.hero__title .accent, .about-hero__copy .sec-title, .pg-hd em, .tl__title em { font-weight: 500; }
+.fact__k, .cs-stat__n, .cs-donut__pct { font-weight: 600; }
+.cs-pull p, .case-quote p { font-weight: 500; }
+`;
+var HERO = `
+/* ---- proposal: the new header (option M, upright) ---- */
+.hero__inner { grid-template-columns: 1fr !important; min-height: 0 !important;
+  padding-block: clamp(46px,7vw,90px) clamp(72px,8vw,100px) !important; }
+.hero__stage, .hero__tags { display: none !important; }
+.hero__intro { max-width: none !important; }
+.hero__title { font-size: clamp(26px,3.1vw,40px) !important; line-height: 1.24 !important;
+  max-width: none !important; width: 100% !important; font-weight: 500 !important; }
+.hero__sub { margin-top: 20px !important; font-size: clamp(15px,1.2vw,17px) !important; }
+.hero__star--1 { top: 2% !important; left: -2% !important; width: 34px !important; }
+.hero__star--2 { top: 6% !important; left: 92% !important; }
+.hero__loc { position: absolute; left: 0; bottom: 6px; margin: 0; }
+.hero__scroll { position: absolute; right: 0; bottom: 6px; }
+.m-sumi { position: absolute; right: 0; bottom: 42px; width: clamp(64px,6vw,84px);
+  height: auto; pointer-events: none; z-index: 2; }
+`;
+
+  var f = document.getElementById('frame');
+  f.addEventListener('load', function () {
+    var d = f.contentDocument;
+    var s = d.createElement('style');
+    s.textContent = OVERRIDE + (PAGE === 'index' ? HERO : '');
+    d.head.appendChild(s);
+    if (PAGE === 'index') {
+      var t = d.querySelector('.hero__title');
+      t.innerHTML = 'Product Designer that values <span class="accent">user-centered</span> digital experiences<br />and a <span class="accent">productive AI workflow</span>';
+      var stage = d.querySelector('.hero__stage');
+      if (stage) {
+        var img = d.createElement('img');
+        img.className = 'm-sumi';
+        img.src = 'assets/graphics/sumi/sketching.png';
+        img.alt = '';
+        d.querySelector('.hero__inner').appendChild(img);
+      }
+    }
+    setTimeout(function () {
+      f.style.height = d.documentElement.scrollHeight + 'px';
+      document.body.setAttribute('data-ready', '1');
+    }, 900);
+  });
+
+</script>
+</body>
+</html>

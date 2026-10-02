@@ -4,17 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vendrs · Case Study · Anthony N.</title>
-  <meta name="description" content="Vendrs, a web platform giving emerging Gen Z business owners the structure to grow. I owned the onboarding flow and the Events Map across an 8-week UC Davis design sprint." />
+  <meta name="description" content="Vendrs case study: onboarding and the Events Map for emerging small business owners, designed by Anthony N. over an 8-week sprint." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet" />
-  <link href="https://fonts.cdnfonts.com/css/overused-grotesk" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css?v=x147" />
 </head>
 <body>
-  <div class="progress" aria-hidden="true"></div>
-
   <div class="nav-outer">
     <nav class="nav" aria-label="Primary">
       <a class="nav__brand" href="../index.html">
@@ -25,347 +23,367 @@
         <div class="nav__links">
           <a class="nav__link" href="../index.html#works"><span class="num">01</span>Works</a>
           <a class="nav__link" href="../about.html"><span class="num">02</span>About</a>
-          <a class="nav__link" href="../index.html#contact"><span class="num">03</span>Contact</a>
+          <a class="nav__link" href="https://drive.google.com/file/d/1PTcfJpEMcfS_W2Cb9v0fJxFMJBmGtGmB/view" target="_blank" rel="noopener">Resume</a>
         </div>
-        <a class="nav__cta" data-magnetic="0.25" href="https://drive.google.com/file/d/1PTcfJpEMcfS_W2Cb9v0fJxFMJBmGtGmB/view" target="_blank">Resume
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
-        </a>
       </div>
     </nav>
   </div>
 
-  <main class="wrap cs">
+  <main class="wrap cs cs--col">
     <!-- SECTION NAV -->
     <nav class="case-nav" aria-label="Case study sections">
       <div class="case-nav__inner">
-        <a class="case-nav__link" href="#overview">Overview</a>
-        <a class="case-nav__link" href="#problem">Problem</a>
-        <a class="case-nav__link" href="#research">Research</a>
+        <a class="case-nav__link" href="#context">Overview</a>
+        <a class="case-nav__link" href="#problem">The Problem</a>
         <a class="case-nav__link" href="#solution">Solution</a>
-        <a class="case-nav__link" href="#results">Results</a>
+        <a class="case-nav__link" href="#research">Research Findings</a>
+        <a class="case-nav__link" href="#prioritization">Feature Prioritization</a>
+        <a class="case-nav__link" href="#onboarding">Onboarding</a>
+        <a class="case-nav__link" href="#map">Events Map</a>
+        <a class="case-nav__link" href="#reflection">Reflection</a>
+        <a class="case-nav__link" href="#results">Outcome</a>
+        <a class="case-nav__top" href="#"><span aria-hidden="true">&uarr;</span> Back to top</a>
       </div>
     </nav>
 
     <div class="cs__body">
-    <header class="case-head" data-reveal>
-      <img class="case-sumi" data-mascot src="../assets/graphics/sumi/building-prototype.png" alt="" aria-hidden="true" />
-      <a class="case-back" href="../index.html#works"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>All work</a>
-      <p class="case-head__cat">PRODUCT DESIGN</p>
-      <h1 class="case-head__title">Vendrs</h1>
-      <p class="case-head__desc">A web platform that gives emerging Gen&nbsp;Z business owners the <span class="serif">structure to grow</span>, without the overwhelm.</p>
-      <dl class="case-meta">
+    <header class="case-head">
+      <p class="case-head__cat">VENDRS</p>
+      <h1 class="case-head__title">Helping emerging small businesses discover their next market</h1>
+      <dl class="v-meta">
         <div><dt>Role</dt><dd>Product Designer</dd></div>
-        <div><dt>My features</dt><dd>Onboarding · Events Map</dd></div>
-        <div><dt>Timeline</dt><dd>8 weeks, team of 5</dd></div>
-        <div><dt>Tools</dt><dd>Figma</dd></div>
+        <div><dt>Tools</dt><dd>Figma, FigJam</dd></div>
+        <div><dt>Team</dt><dd>1 lead, 4 designers</dd></div>
+        <div><dt>Timeline</dt><dd>8 weeks, 2026</dd></div>
       </dl>
     </header>
 
-    <!-- HERO IMAGE -->
-    <div class="case-hero" data-reveal data-parallax="-0.03">
-      <div class="duo"><img src="../assets/graphics/vendrs/login.png" alt="Vendrs log in screen with the branded map motif" /></div>
-    </div>
+    <section class="cs-block cs-block--tight">
+      <div class="wcard">
+        <span class="wcard__frame" style="isolation:isolate">
+          <span class="wthumb">
+            <span class="wthumb__bg" aria-hidden="true">
+              <svg viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice">
+                <ellipse class="blob blob--a" cx="120" cy="110" rx="190" ry="150" />
+                <ellipse class="blob blob--b" cx="690" cy="430" rx="220" ry="170" />
+                <path class="line" d="M-20 150 C 140 90, 250 210, 400 170 S 680 60, 830 130" />
+                <path class="line" d="M-20 330 C 160 280, 280 400, 430 350 S 700 250, 830 320" />
+                <path class="route" d="M60 470 C 120 330, 60 250, 150 170 S 300 90, 360 30" />
+              </svg>
+            </span>
+            <span class="wthumb__fly wf--feed"><img src="../assets/graphics/thumbs/vendrs/feed.jpg" alt="" loading="lazy" decoding="async" /></span>
+            <span class="wthumb__fly wf--onb"><img src="../assets/graphics/thumbs/vendrs/onboarding.jpg" alt="" loading="lazy" decoding="async" /></span>
+            <span class="wthumb__fly wf--market"><img src="../assets/graphics/thumbs/vendrs/market.jpg" alt="" loading="lazy" decoding="async" /></span>
+            <span class="wthumb__fly wf--confirm"><img src="../assets/graphics/thumbs/vendrs/confirm.png" alt="" loading="lazy" decoding="async" /></span>
+            <span class="wthumb__pop wp--1" aria-hidden="true"><svg width="26" height="32" viewBox="0 0 26 32" fill="none"><path d="M13 31s11-11.2 11-18a11 11 0 1 0-22 0c0 6.8 11 18 11 18z" fill="#fff"/><circle cx="13" cy="12.6" r="4.6" fill="#1ea2c4"/></svg></span>
+            <span class="wthumb__pop wp--2" aria-hidden="true"><svg width="20" height="25" viewBox="0 0 26 32" fill="none"><path d="M13 31s11-11.2 11-18a11 11 0 1 0-22 0c0 6.8 11 18 11 18z" fill="#fff" fill-opacity=".92"/><circle cx="13" cy="12.6" r="4.6" fill="#2b5fd9"/></svg></span>
+            <span class="wthumb__pop wp--3" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2.5l2.3 6.1 6.2 2.4-6.2 2.4L12 21.5l-2.3-8.1L3.5 11l6.2-2.4z" fill="#ffd166"/></svg></span>
+            <img class="wthumb__base wthumb__base--map" src="../assets/graphics/thumbs/vendrs/events-map.jpg" alt="Vendrs Events Map: a list of nearby events beside a map with pins" width="1200" height="922" />
+          </span>
+          <span class="wthumb__tag">Case study</span>
+        </span>
+      </div>
+    </section>
 
-    <!-- OVERVIEW -->
-    <section class="cs-block cs-narrow" id="overview" data-reveal>
+    <section class="cs-block cs-narrow" id="context">
       <span class="cs-eyebrow">OVERVIEW</span>
-      <h2 class="cs-h2">A home base for people building a business on the side</h2>
-      <p class="cs-text">Vendrs came out of an 8-week Design Interactive sprint. Five of us set out to help small business owners operate, share resources, and connect with their community in one place. I owned two features end to end: the <b>onboarding flow</b> and the <b>Events Map</b>.</p>
-      <p class="cs-text">This case study focuses on those two, because they are where I made the decisions that shaped how the product feels and how its pieces fit together.</p>
-    </section>
-
-    <section class="cs-block cs-block--tight" data-reveal>
-      <div class="fig-wrap">
-        <div class="cs-shot"><video src="../assets/graphics/vendrs/eventfeed.mp4" autoplay muted loop playsinline preload="metadata"></video></div>
-        <div class="dood dood--float" style="top:-34px;right:3%">
-          <span class="dood__note">the product, in motion</span>
-          <svg class="dood__arrow" viewBox="0 0 90 60"><path d="M84 6C58 8 20 16 10 50"/><path d="M10 50c8-2 15-2 22 1M10 50c-2-8 0-16 5-22"/></svg>
-        </div>
-      </div>
-      <p class="cs-figcap">Browsing and filtering events in the live prototype.</p>
-    </section>
-
-    <!-- PROBLEM -->
-    <section class="cs-block cs-narrow" id="problem" data-reveal>
-      <span class="cs-eyebrow">THE PROBLEM</span>
-      <h2 class="cs-h2">The drive was there. The <span class="serif">infrastructure</span> wasn't.</h2>
-      <p class="cs-text">Every owner we spoke to was resourceful, but their tools were scattered across group chats, spreadsheets, and Instagram DMs. Discovery was the loudest pain: people heard about local markets through a friend's story, usually too late to apply. And when they tried new tools, setup asked for too much before showing any value, so they left.</p>
-      <blockquote class="cs-pull">
-        <p>They didn't lack ambition. They lacked infrastructure.</p>
-        <cite>The pattern behind every interview</cite>
-      </blockquote>
-    </section>
-
-    <!-- RESEARCH -->
-    <section class="cs-block" id="research" data-reveal>
-      <div class="cs-narrow">
-        <span class="cs-eyebrow">RESEARCH</span>
-        <h2 class="cs-h2">Listening before designing</h2>
-        <p class="cs-text">We paired quantitative surveys with one-on-one interviews. Surveys told us how common a problem was; interviews told us why it mattered. Three numbers reset our priorities.</p>
-      </div>
-
-      <div class="cs-donuts">
-        <div class="cs-donut">
-          <div class="cs-donut__ring">
-            <svg viewBox="0 0 120 120"><circle class="track" cx="60" cy="60" r="52" stroke-width="12"/><circle class="val" cx="60" cy="60" r="52" stroke-width="12" stroke-dasharray="228.7 326.7"/></svg>
-            <span class="cs-donut__pct">70%</span>
-          </div>
-          <p class="cs-donut__l">of owners want to scale their business</p>
-        </div>
-        <div class="cs-donut">
-          <div class="cs-donut__ring">
-            <svg viewBox="0 0 120 120"><circle class="track" cx="60" cy="60" r="52" stroke-width="12"/><circle class="val" cx="60" cy="60" r="52" stroke-width="12" stroke-dasharray="316.9 326.7"/></svg>
-            <span class="cs-donut__pct">97%</span>
-          </div>
-          <p class="cs-donut__l">want a bigger audience for what they make</p>
-        </div>
-        <div class="cs-donut">
-          <div class="cs-donut__ring">
-            <svg viewBox="0 0 120 120"><circle class="track" cx="60" cy="60" r="52" stroke-width="12"/><circle class="val" cx="60" cy="60" r="52" stroke-width="12" stroke-dasharray="261.4 326.7"/></svg>
-            <span class="cs-donut__pct">80%</span>
-          </div>
-          <p class="cs-donut__l">run their shop entirely by themselves</p>
-        </div>
-      </div>
-
-      <div class="cs-narrow" style="margin-top:clamp(32px,4vw,52px)">
-        <span class="cs-eyebrow">AFFINITY MAP</span>
-        <h2 class="cs-h2">40+ observations, <span class="serif">five themes</span></h2>
-        <p class="cs-text">We wrote every quote and data point on a sticky note and clustered them. Below are the headliners from each group. Two of them, the starred ones, are exactly where my features ended up living.</p>
-      </div>
-      <div class="stickboard stickboard--5">
-        <div class="stickcol stickcol--key">
-          <div class="stickcol__h"><span class="stickcol__dot"></span>Marketing</div>
-          <div class="sticky sticky--b"><b>Bigger audience</b> (56% of survey)</div>
-          <div class="sticky sticky--b">Discovery is word of mouth</div>
-          <div class="sticky sticky--b">Posting consistently is hard</div>
-        </div>
-        <div class="stickcol">
-          <div class="stickcol__h"><span class="stickcol__dot"></span>Finance</div>
-          <div class="sticky sticky--y">Ads eat into margin</div>
-          <div class="sticky sticky--y">Own shop is more profitable</div>
-          <div class="sticky sticky--y">Permits &amp; pricing are murky</div>
-        </div>
-        <div class="stickcol stickcol--key">
-          <div class="stickcol__h"><span class="stickcol__dot"></span>Operations</div>
-          <div class="sticky sticky--m"><b>68%</b> rely on an outside website</div>
-          <div class="sticky sticky--m">Juggling the shop with school</div>
-          <div class="sticky sticky--m">Inventory is guesswork</div>
-        </div>
-        <div class="stickcol">
-          <div class="stickcol__h"><span class="stickcol__dot"></span>Logistics</div>
-          <div class="sticky sticky--p">Bookings live in Insta DMs</div>
-          <div class="sticky sticky--p">Slow client communication</div>
-          <div class="sticky sticky--p">Wearing every role</div>
-        </div>
-        <div class="stickcol">
-          <div class="stickcol__h"><span class="stickcol__dot"></span>Other</div>
-          <div class="sticky sticky--v"><b>68%</b> are arts &amp; crafts</div>
-          <div class="sticky sticky--v">Started as a hobby</div>
-          <div class="sticky sticky--v">Work-life balance</div>
-        </div>
-      </div>
-      <p class="cs-figcap">★ Marketing and Operations became my Events Map (audience and discovery) and onboarding (a lighter way to start).</p>
-    </section>
-
-    <!-- SOLUTION -->
-    <section class="cs-block" id="solution" data-reveal>
-      <div class="cs-narrow">
-        <span class="cs-eyebrow">SOLUTION · SCOPING</span>
-        <h2 class="cs-h2">Deciding what to build first</h2>
-        <p class="cs-text">A long wish list and eight weeks forced a hard call. We ranked features by impact and how hard they would be to copy, then drew a line. My two features sat at the top.</p>
-      </div>
-      <div class="stickboard stickboard--4">
-        <div class="stickcol">
-          <div class="stickcol__h"><span class="stickcol__dot"></span>High priority</div>
-          <div class="sticky sticky--m">Sign-in that captures business scope</div>
-          <div class="sticky sticky--m">Events near me, with RSVP</div>
-          <div class="sticky sticky--m">Owner profile &amp; templates</div>
-        </div>
-        <div class="stickcol">
-          <div class="stickcol__h"><span class="stickcol__dot"></span>Medium</div>
-          <div class="sticky sticky--y">Mini marketplace</div>
-          <div class="sticky sticky--y">Community board</div>
-          <div class="sticky sticky--y">Messaging</div>
-        </div>
-        <div class="stickcol">
-          <div class="stickcol__h"><span class="stickcol__dot"></span>Low</div>
-          <div class="sticky sticky--p">Community forums</div>
-          <div class="sticky sticky--p">Discount tools</div>
-          <div class="sticky sticky--p">Booking system</div>
-        </div>
-        <div class="stickcol">
-          <div class="stickcol__h"><span class="stickcol__dot"></span>Out of scope</div>
-          <div class="sticky sticky--g">Payroll tracking</div>
-          <div class="sticky sticky--g">Seller verification</div>
-          <div class="sticky sticky--g">Password-coded forums</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SOLUTION: ONBOARDING (my feature) -->
-    <section class="cs-block" data-reveal>
-      <div class="cs-narrow">
-        <span class="cs-eyebrow">SOLUTION · ONBOARDING</span>
-        <h2 class="cs-h2">Onboarding that earns trust in <span class="serif">four steps</span> <span class="dood-sign"><svg viewBox="0 0 42 24"><path d="M40 8c-11-6-24-3-33 5"/><path d="M7 13 8 4M7 13 1 8"/></svg>my feature</span></h2>
-        <p class="cs-text">People abandon tools that ask too much up front, so I kept onboarding to four quick steps and made each one pull its weight. The decision I care most about is <span class="squig">business type</span>. It labels the owner for the community, and it becomes a filter the rest of the product reuses, including my Events Map. One choice, a personalized feed from day one.</p>
-      </div>
-      <div class="cs-figure-block">
-        <div class="fig-wrap" style="max-width:480px;margin-inline:auto">
-          <div class="cs-shot cs-shot--frame"><img src="../assets/graphics/vendrs/business-type.png" alt="Onboarding step 2 of 4: choosing a business type" /></div>
-          <div class="dood" style="top:30%;right:-16%">
-            <span class="dood__note">picked once,<br>reused everywhere</span>
-            <svg class="dood__arrow" viewBox="0 0 90 50"><path d="M86 42C58 48 24 40 6 18"/><path d="M6 18c8 1 16 0 23-3M6 18c3 7 8 13 15 16"/></svg>
-          </div>
-        </div>
-        <p class="cs-figcap">Step 2 sets the business type, the primitive my Events Map filters reuse.</p>
-      </div>
-      <div class="cs-figure-block">
-        <div class="cs-shot cs-shot--crop"><video src="../assets/graphics/vendrs/onboarding.webm" autoplay muted loop playsinline preload="metadata"></video></div>
-        <p class="cs-figcap">The full four-step flow: log in, business type, location, and goals.</p>
-      </div>
-      <div class="cs-narrow">
-        <ul class="cs-ul">
-          <li><b>One decision per screen.</b> Progressive disclosure keeps momentum and stops the form from feeling like paperwork.</li>
-          <li><b>Social login first.</b> Continue with Google or Apple removes the highest-friction moment before a user has any reason to trust us.</li>
-          <li><b>Business type as a reusable filter.</b> The same taxonomy powers the feed and the Events Map, so onboarding does real work instead of just collecting data.</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- SOLUTION: EVENTS MAP (my feature) -->
-    <section class="cs-block" data-reveal>
-      <div class="cs-narrow">
-        <span class="cs-eyebrow">SOLUTION · EVENTS MAP</span>
-        <h2 class="cs-h2">Turning discovery into something you can <span class="serif">see</span> <span class="dood-sign"><svg viewBox="0 0 42 24"><path d="M40 8c-11-6-24-3-33 5"/><path d="M7 13 8 4M7 13 1 8"/></svg>my feature</span></h2>
-        <p class="cs-text">Discovery was the number one pain, so I made it spatial. The Events Map pins nearby markets, mirrors them in a scannable list, and sorts by distance so the closest opportunity is the first thing you notice. The filters reuse the exact business types from onboarding, so a food vendor lands on food events with zero setup.</p>
-      </div>
-      <div class="cs-figure-block">
-        <div class="fig-wrap">
-          <div class="cs-shot"><img src="../assets/graphics/vendrs/events-map.jpg" alt="Vendrs Events Map: pinned markets, a synced list, and industry filters" /></div>
-          <div class="dood" style="top:40%;left:17%">
-            <span class="dood__note">same event, two views</span>
-            <svg class="dood__arrow" style="width:clamp(130px,20vw,230px)" viewBox="0 0 130 30"><path d="M6 15C46 5 84 5 124 15"/><path d="M6 15 13 9M6 15 13 21"/><path d="M124 15 117 9M124 15 117 21"/></svg>
-          </div>
-          <div class="dood" style="top:1%;left:45%">
-            <span class="dood__note">filters = onboarding<br>business types</span>
-            <svg class="dood__ring" viewBox="0 0 150 60"><path d="M75 5C33 5 7 17 7 31 7 46 45 55 93 54 133 53 145 41 142 27 139 16 117 5 75 5Z"/></svg>
-          </div>
-        </div>
-        <p class="cs-figcap">Selecting an event in the list highlights its pin, and the filters come straight from onboarding.</p>
-      </div>
-      <div class="cs-narrow">
-        <ul class="cs-ul">
-          <li><b>Map plus list, one surface.</b> Spatial for context, list for scanning. Selecting in one highlights the other.</li>
-          <li><b>Distance-first sorting.</b> The closest market wins the top slot, because proximity is what owners optimize for.</li>
-          <li><b>Filters tied to onboarding.</b> Reusing the taxonomy meant zero extra setup and a feed that felt personal immediately.</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- THE REST OF THE PRODUCT -->
-    <section class="cs-block" data-reveal>
-      <div class="cs-narrow">
-        <span class="cs-eyebrow">THE REST OF THE PRODUCT</span>
-        <h2 class="cs-h2">Marketplace and Dashboard, on a shared system</h2>
-        <p class="cs-text">My teammates led the Marketplace and the Dashboard. To keep four sets of hands feeling like one product, we designed against a shared system, so a button, a card, or a filter behaves the same everywhere.</p>
-      </div>
-      <div class="cs-grid cs-grid--2">
-        <div>
-          <div class="cs-shot cs-shot--crop"><video src="../assets/graphics/vendrs/marketplace.webm" autoplay muted loop playsinline preload="metadata"></video></div>
-          <p class="cs-figcap">Marketplace: templates and resources owners can search and buy.</p>
-        </div>
-        <div>
-          <div class="cs-shot cs-shot--crop"><video src="../assets/graphics/vendrs/dashboard.mp4" autoplay muted loop playsinline preload="metadata"></video></div>
-          <p class="cs-figcap">Dashboard: analytics with recommended next steps.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- DESIGN SYSTEM + TYPOGRAPHY -->
-    <section class="cs-block" data-reveal>
-      <div class="cs-narrow">
-        <span class="cs-eyebrow">DESIGN SYSTEM</span>
-        <h2 class="cs-h2">One system so four designers ship one product</h2>
-        <p class="cs-text">A calm blue palette keeps the interface quiet so the vendors' own products and photos lead. We standardized icons, colors, and button states early, which is what let each of us build a different feature without the seams showing.</p>
-      </div>
-      <div class="cs-figure-block">
-        <div class="cs-shot cs-shot--frame"><img src="../assets/graphics/vendrs/design-system.png" alt="Vendrs design system: icon set, color palette, and button states" /></div>
-      </div>
-
-      <div class="cs-narrow" style="margin-top:clamp(24px,3vw,40px)">
-        <span class="cs-eyebrow">TYPE SCALE · HOST GROTESK</span>
-      </div>
-      <div class="cs-type">
-        <div class="cs-type__row"><span class="cs-type__sample" style="font-size:clamp(40px,6vw,60px);font-weight:600">Heading 1</span><span class="cs-type__meta"><span class="cs-type__name">Heading 1</span><span class="cs-type__px">64px</span></span></div>
-        <div class="cs-type__row"><span class="cs-type__sample" style="font-size:clamp(32px,4.6vw,46px);font-weight:600">Heading 2</span><span class="cs-type__meta"><span class="cs-type__name">Heading 2</span><span class="cs-type__px">48px</span></span></div>
-        <div class="cs-type__row"><span class="cs-type__sample" style="font-size:clamp(24px,3.2vw,32px);font-weight:600">Heading 3</span><span class="cs-type__meta"><span class="cs-type__name">Heading 3</span><span class="cs-type__px">32px</span></span></div>
-        <div class="cs-type__row"><span class="cs-type__sample" style="font-size:24px;font-weight:600">Heading 4</span><span class="cs-type__meta"><span class="cs-type__name">Heading 4</span><span class="cs-type__px">24px</span></span></div>
-        <div class="cs-type__row"><span class="cs-type__sample" style="font-size:20px;font-weight:600">Heading 5</span><span class="cs-type__meta"><span class="cs-type__name">Heading 5</span><span class="cs-type__px">20px</span></span></div>
-        <div class="cs-type__row"><span class="cs-type__sample" style="font-size:16px;font-weight:700">Body text bold</span><span class="cs-type__meta"><span class="cs-type__name">Body bold</span><span class="cs-type__px">16px</span></span></div>
-        <div class="cs-type__row"><span class="cs-type__sample" style="font-size:16px;font-weight:400">Body text regular</span><span class="cs-type__meta"><span class="cs-type__name">Body</span><span class="cs-type__px">16px</span></span></div>
-        <div class="cs-type__row"><span class="cs-type__sample" style="font-size:14px;font-weight:400;color:var(--ink-75)">Caption text</span><span class="cs-type__meta"><span class="cs-type__name">Caption</span><span class="cs-type__px">14px</span></span></div>
-        <div class="cs-type__row"><span class="cs-type__sample" style="font-size:12px;font-weight:400;color:var(--ink-50)">Caption text small</span><span class="cs-type__meta"><span class="cs-type__name">Caption</span><span class="cs-type__px">12px</span></span></div>
-      </div>
-    </section>
-
-    <!-- RESULTS -->
-    <section class="cs-block cs-narrow" id="results" data-reveal>
-      <span class="cs-eyebrow">RESULTS &amp; REFLECTION</span>
-      <h2 class="cs-h2">What testing changed, and what I'd do next</h2>
-      <p class="cs-text">Usability testing pushed three changes. Two landed on my features, which told me the map-to-list relationship and the length of onboarding were doing real work for people.</p>
+      <h2 class="cs-h2">Starting a business can be exciting but scary</h2>
+      <p class="cs-text">Starting a small business is an exciting but overwhelming endeavor, aspiring entrepreneurs often don't know where to begin when it comes to finding reliable suppliers, managing inventory, and handling the operational side of running a business. Without guidance or the right tools, the early stages can feel <b>scattered and discouraging</b>, making it hard to gain momentum.</p>
+      <p class="cs-text">My team and I were challenged with creating a product that can help these emerging small businesses scale in an <b>8 week sprint</b>.</p>
+      <p class="cs-text"><b>My contributions</b></p>
       <ul class="cs-ul">
-        <li><b>Events Map.</b> Testers wanted the map and list to feel like one thing, so I tightened the sync and made the active event obvious in both places at once.</li>
-        <li><b>Onboarding.</b> I cut a step people read as busywork and led with value instead of forms, which lifted completion.</li>
-        <li><b>Marketplace (team).</b> We replaced a confusing two-column layout with a scannable horizontal one after testing.</li>
+        <li>Designed <b>onboarding</b>, from research to final design</li>
+        <li>Designed the <b>Events Map</b>, from research to final design</li>
+        <li>Helped drive the <b>feature prioritization list</b> to keep the team on track for our 8 week timeline</li>
       </ul>
-      <p class="cs-text">If this kept going, I'd add messaging so owners can form groups and mentor newcomers, and build out the customer-facing side to drive foot traffic back to vendors.</p>
-      <p class="cs-text">My biggest takeaway: a small taxonomy decision in onboarding quietly became the backbone of discovery. The early, boring calls are the ones that compound.</p>
     </section>
 
-    <!-- NEXT PROJECT -->
-    <div class="next" data-reveal>
-      <span class="next__eyebrow">NEXT PROJECT</span>
-      <a class="card" data-tilt data-cursor="view" href="qac-gallery.html">
-        <div class="card__head">
-          <div class="card__top"><span class="card__cat">PRODUCT DESIGN • CLIENT</span>
-            <span class="card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
-          <h3 class="card__title">QAC Gallery Redesign</h3>
-          <p class="card__desc">An accessibility-first, artist-forward redesign for an Oakland LGBTQ+ arts gallery.</p>
+    <section class="cs-block cs-narrow" id="problem">
+      <span class="cs-eyebrow">THE PROBLEM</span>
+      <h2 class="cs-h2">Many emerging small businesses want to scale, but lack the resources, staff, and opportunity to do so</h2>
+      <p class="cs-text">Running a small business means <b>juggling operations, finances, and growth all at once</b>. This can be difficult especially if you have no centralized support. Many owners struggle to scale because they lack the staff, customers, and internal knowledge needed to grow.</p>
+
+      <div class="cs-figure-block">
+        <img src="../assets/graphics/vendrs/problem-overwhelmed.png" alt="Doodle illustration of an emerging business owner juggling a laptop, product box, calendar, phone, and paperwork all at once" style="width:100%;height:auto;display:block" />
+      </div>
+
+      <div class="v-statement">
+        <p class="v-statement__label">The problem statement:</p>
+        <blockquote>How might we help emerging small business owners operate their businesses, share resources, and expand their customer reach through an accessible and intuitive platform?</blockquote>
+      </div>
+    </section>
+
+    <section class="cs-block cs-narrow" id="solution">
+      <span class="cs-eyebrow">SOLUTION</span>
+      <h2 class="cs-h2">Vendrs brings discovery, resources, and operations into one platform</h2>
+      <p class="cs-text">I helped build a platform for emerging small business owners that brings operations, discovery, and community into one place, instead of the group chats, spreadsheets, and missed opportunities from before.</p>
+
+      <h3 class="cs-h3" style="margin-top:clamp(28px,3.5vw,40px)">Main Features</h3>
+
+      <div class="v-feature-list">
+        <div class="v-feature">
+          <span class="v-feature__visual"><img src="../assets/graphics/vendrs/solution-community.jpg" alt="The Vendrs Events Feed: spotlighted markets and events near you" /></span>
+          <div class="v-feature__body">
+            <h4>Community</h4>
+            <p>A feed for discovering, applying to local vending opportunities, and to connect with other emerging businesses.</p>
+          </div>
         </div>
-      </a>
-    </div>
+        <div class="v-feature">
+          <span class="v-feature__visual"><img src="../assets/graphics/vendrs/solution-marketplace.jpg" alt="The Vendrs Marketplace: search and browse categories for business resources" /></span>
+          <div class="v-feature__body">
+            <h4>Marketplace</h4>
+            <p>Business resources in one place: Excel templates, operational guides, and the tools owners need to run things.</p>
+          </div>
+        </div>
+        <div class="v-feature">
+          <span class="v-feature__visual"><img src="../assets/graphics/vendrs/solution-dashboard.jpg" alt="The Vendrs Dashboard: a revenue chart with a suggestion based on weekly performance" /></span>
+          <div class="v-feature__body">
+            <h4>Dashboard</h4>
+            <p>Finances and business performance, tracked in one view.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-block cs-narrow" id="research">
+      <span class="cs-eyebrow">RESEARCH FINDINGS</span>
+      <h2 class="cs-h2">They didn't lack ambition. They lacked infrastructure.</h2>
+      <p class="cs-text"><b>20+ survey responses</b> showed how common each problem was, <b>10 interviews</b> with UC Davis market vendors showed why it mattered, and <b>secondary research</b> on street events confirmed discovery was worth solving.</p>
+      <p class="cs-text" style="margin-top:clamp(16px,2vw,20px)">Some insights:</p>
+      <div class="v-stats">
+        <div class="v-stat"><b>97%</b><span>want a bigger audience for what they make</span></div>
+        <div class="v-stat"><b>80%</b><span>run the entire shop by themselves</span></div>
+        <div class="v-stat"><b>70%</b><span>want to scale, with no system to do it</span></div>
+      </div>
+
+      <h3 class="cs-h3" style="margin-top:clamp(26px,3vw,36px)">Key Findings</h3>
+
+      <div class="v-findings" style="margin-top:clamp(14px,1.8vw,18px)">
+        <p><b>Discovery ran on luck.</b> Even established sellers found markets through word of mouth and flyers, with nothing built for it.</p>
+        <p><b>Everyone rebuilt the basics.</b> Newer owners had no templates or guides to start from, so they worked out the operational side alone.</p>
+        <p><b>Growth was hard to manage solo.</b> Owners needed to track performance and run things efficiently without hiring extra help.</p>
+      </div>
+
+      <div class="v-side" style="margin-top:clamp(26px,3vw,36px)">
+        <figure class="v-side__fig">
+          <img src="../assets/graphics/vendrs/mascot-vendor.png" alt="Doodle of the Sumi mascot running a street market stall" />
+          <figcaption>Source: <a href="https://www.sciencedirect.com/science/article/abs/pii/S2214140515006611" target="_blank" rel="noopener">2015 study on Sunday Streets</a></figcaption>
+        </figure>
+        <div class="v-side__text">
+          <h3 class="cs-h3">Vending works</h3>
+          <p class="cs-text">I conducted secondary research on open street events and found that businesses that took part saw real gains in traffic and revenue. Vending could help owners reach more customers.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-block cs-narrow" id="prioritization">
+      <span class="cs-eyebrow">FEATURE PRIORITIZATION</span>
+      <h2 class="cs-h2">We were too ambitious.</h2>
+      <p class="cs-text">The team was ambitious, but an eight week timeline meant one main focus, not ten half-built ones. I made sure that our priorities were set on features that targeted our scope the best.</p>
+
+      <p class="cs-text" style="margin-top:clamp(16px,2vw,20px)">The biggest cut I made was a customer-facing flow I'd floated early on. No research justified it, and the timeline couldn't absorb a fourth surface.</p>
+
+      <div class="cs-figure-block" style="margin-top:clamp(24px,3vw,32px)">
+        <div class="cs-shot"><img src="../assets/graphics/vendrs/feature-prioritization.jpg" alt="Feature prioritization board with High Priority, Medium Priority, Low Priority and Out of scope columns" /></div>
+      </div>
+    </section>
+
+    <section class="cs-block" id="onboarding">
+      <div class="cs-narrow">
+        <span class="cs-eyebrow">ONBOARDING</span>
+        <h2 class="cs-h2">Quick and simple setup</h2>
+        <p class="cs-text">No one likes a long setup so I intentionally made it short and efficient for users to get right into the platform.</p>
+
+        <div class="cs-figure-block">
+          <div class="cs-shot"><video autoplay muted loop playsinline preload="metadata">
+            <source src="../assets/graphics/vendrs/onboarding-flow.webm" type="video/webm" />
+            <source src="../assets/graphics/vendrs/onboarding-flow.mp4" type="video/mp4" />
+          </video></div>
+        </div>
+
+        <h3 class="cs-h3" style="margin-top:clamp(28px,3.5vw,40px)">Key Frames</h3>
+
+        <div class="v-keys">
+          <div class="v-key"><span class="v-key__shot"><img src="../assets/graphics/vendrs/onboarding-step-2.png" alt="Onboarding step 2 of 4: choosing every business type that applies" /></span></div>
+          <div class="v-key"><span class="v-key__shot"><img src="../assets/graphics/vendrs/onboarding-step-3.png" alt="Onboarding step 3 of 4: business profile with picture, name, neighborhood and a short bio" /></span></div>
+          <div class="v-key"><span class="v-key__shot"><img src="../assets/graphics/vendrs/onboarding-step-4.png" alt="Onboarding step 4 of 4: choosing between vendor events and markets, inventory management, or the business marketplace" /></span></div>
+        </div>
+
+        <p class="cs-text" style="margin-top:clamp(20px,2.5vw,28px)">The main focus of these screens is to set up your business profile so you can connect with others. I wanted every account labeled with its business, so users can easily see what others do and where they are based. Knowing which features each user chooses also gives data on what different kinds of businesses value most.</p>
+
+      </div>
+    </section>
+
+    <section class="cs-block" id="map">
+      <div class="cs-narrow">
+        <span class="cs-eyebrow">EVENTS MAP</span>
+        <h2 class="cs-h2">Discovery you can see, sorted by what you can reach</h2>
+        <p class="cs-text">I designed the Events Map to give owners a <b>visual way to search for nearby events</b>. Pins show what is around you, a side panel lists the same events for scanning, and filters sort out the events that match your interest.</p>
+      </div>
+
+      <div class="cs-figure-block">
+        <div class="cs-shot"><img src="../assets/graphics/vendrs/map-feature-main.jpg" alt="Vendrs Events Map: a filterable list of nearby events beside a map with pins for each one" /></div>
+      </div>
+
+      <div class="cs-narrow">
+        <h3 class="cs-h3" style="margin-top:clamp(28px,3.5vw,40px)">Designing for Familiarity</h3>
+        <p class="cs-text" style="margin-top:clamp(14px,1.8vw,18px)"><b>Jakob's Law</b> says users expect new products to work like the ones they already use, so I kept the same structure as other platforms like <b>Google Maps</b> and <b>Apple Maps</b>: pins, search placement, filter chips, a current-location button. Nothing needed an explanation.</p>
+
+        <div class="v-baf v-fam" style="margin-top:clamp(20px,2.5vw,28px)">
+          <div class="v-fam__group">
+            <div class="v-fam__stack">
+              <button class="v-fam__thumb" type="button" data-lightbox>
+                <img src="../assets/graphics/vendrs/familiarity-googlemaps.png" alt="Google Maps: a search results list beside a map with pins for nearby places" />
+              </button>
+              <button class="v-fam__thumb" type="button" data-lightbox>
+                <img src="../assets/graphics/vendrs/familiarity-applemaps.png" alt="Apple Maps: a search results list beside a dark-mode map" />
+              </button>
+            </div>
+            <span class="v-baf__label">Familiar Tools</span>
+          </div>
+          <div class="v-fam__group">
+            <button class="v-fam__thumb v-fam__thumb--single" type="button" data-lightbox>
+              <img src="../assets/graphics/vendrs/familiarity-vendrs.png" alt="The Vendrs Events Map, built on the same search-and-pin patterns" />
+            </button>
+            <span class="v-baf__label">My Design</span>
+          </div>
+        </div>
+
+        <h3 class="cs-h3" style="margin-top:clamp(28px,3.5vw,40px)">What business owners care about</h3>
+        <p class="cs-text" style="margin-top:clamp(14px,1.8vw,18px)">Google Maps and Apple Maps are built to answer <i>where should I go</i>. Vendrs needed to answer a different question: <i>is this worth applying to</i>. Testing showed vendors kept searching the card for two things it didn't have, the fee to apply and how many spots were already taken. Popular events fill fast, and applying just to learn it's full wastes time. I added both directly to the card.</p>
+
+        <div class="v-baf" style="margin-top:clamp(20px,2.5vw,28px)">
+          <div>
+            <div style="aspect-ratio:834/476;display:flex;align-items:flex-end">
+              <img src="../assets/graphics/vendrs/event-card-before.png" alt="Before: an event card showing only category, distance, date and location" style="width:100%;height:auto;display:block" />
+            </div>
+            <span class="v-baf__label">Before</span>
+            <ul class="v-checklist v-checklist--no">
+              <li>Copied what a map app would show</li>
+              <li>No fee shown</li>
+              <li>No spots-left shown</li>
+            </ul>
+          </div>
+          <div>
+            <div style="aspect-ratio:834/476;display:flex;align-items:flex-end">
+              <img src="../assets/graphics/vendrs/event-card-after.png" alt="After: the same event card with a $150 fee and 49 of 50 spots added" style="width:100%;height:auto;display:block" />
+            </div>
+            <span class="v-baf__label">After</span>
+            <ul class="v-checklist v-checklist--yes">
+              <li>Fee visible at a glance</li>
+              <li>Spots remaining visible at a glance</li>
+              <li>Easy to skip what isn't worth it</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3 class="cs-h3" style="margin-top:clamp(28px,3.5vw,40px)">Pins that say more</h3>
+        <p class="cs-text" style="margin-top:clamp(14px,1.8vw,18px)">Testing showed that a pin only revealed its name when you hovered over it, and many people clicked into an event just to check the date and time. Now <b>every pin shows its name</b>, and hovering one opens a card with the image, date and time, so you can scan the map and get what you need without an extra click.</p>
+
+        <div class="v-baf">
+          <div>
+            <div class="cs-shot">
+              <img src="../assets/graphics/vendrs/map-pin-before-v2.jpg" alt="Before: only the hovered pin shows its name, the other pins on the map are unlabeled" />
+            </div>
+            <span class="v-baf__label">Before</span>
+            <ul class="v-checklist v-checklist--no">
+              <li>Names only showed on hover</li>
+              <li>Date and time took a click</li>
+            </ul>
+          </div>
+          <div>
+            <div class="cs-shot">
+              <img src="../assets/graphics/vendrs/map-pin-after-v2.jpg" alt="After: every pin shows its name, and hovering one opens a card with the event image, date and time" />
+            </div>
+            <span class="v-baf__label">After</span>
+            <ul class="v-checklist v-checklist--yes">
+              <li>All names visible at once</li>
+              <li>Card with date and time on hover</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-block cs-narrow" id="reflection">
+      <span class="cs-eyebrow">REFLECTION</span>
+      <h2 class="cs-h2">What I learned</h2>
+
+      <ul class="cs-ul" style="margin-top:clamp(18px,2.2vw,24px)">
+        <li><b>Don't hold back.</b> There is no stupid idea, and I learned not to be scared to voice mine, whether or not I thought it was good enough. I sensed that I've gotten better at voicing my opinions and ideas and at being confident in my abilities, while always staying open-minded and ready to learn.</li>
+        <li><b>Don't ideate too soon.</b> It's easy to get lost in ideas, and research can disprove many of the ones made before it.</li>
+        <li><b>Remember the main objective.</b> It's important not to lose sight of what the project is actually for.</li>
+      </ul>
+
+      <h3 class="cs-h3" style="margin-top:clamp(28px,3.5vw,40px)">What I'd do differently</h3>
+      <p class="cs-text" style="margin-top:clamp(14px,1.8vw,18px)">Looking back, and from the industry feedback we got, Vendrs would have been stronger with <b>one strong main emphasis</b> instead of three. It should have been <b>discovery</b>, because that is where the research pointed. Building Community, Marketplace and Dashboard side by side spread us thin, and a jack of all trades is a master of none.</p>
+      <p class="cs-text" style="margin-top:clamp(14px,1.8vw,18px)">We also built our identity around the idea of vendors, but most of our ideas weren't chosen to support it.</p>
+
+      <div class="cs-figure-block">
+        <img src="../assets/graphics/vendrs/jack-of-all-trades.png" alt="Doodle of the mascot with six arms holding a paintbrush, wrench, laptop, camera, hammer and pencil, labeled jack of all trades, master of none" style="width:100%;height:auto;display:block" />
+      </div>
+
+      <h3 class="cs-h3" style="margin-top:clamp(26px,3vw,36px)">If I had more time</h3>
+      <ul class="cs-ul" style="margin-top:clamp(14px,1.8vw,18px)">
+        <li><b>Messaging between owners.</b> Let sellers connect directly, form groups by business type, and answer questions newer owners have.</li>
+        <li><b>A customer-facing side.</b> A secondary user type would help owners reach buyers directly, driving traffic back to vendor events and building the customer base research said they needed. Research also showed that many owners run online shops, so it would be another way to drive more traffic to an online business.</li>
+      </ul>
+    </section>
+
+    <section class="cs-block cs-narrow" id="results">
+      <span class="cs-eyebrow">OUTCOME</span>
+      <h2 class="cs-h2">Presenting Vendrs to a panel of industry judges</h2>
+      <p class="cs-text">We closed the sprint by presenting the final product to a panel of industry judges: <b>Chris Ota</b> (Staff Product Designer, LinkedIn), <b>Ken Skistimas</b> (Director of UX, ServiceNow), and <b>Aditi Jain</b> (UI Designer, Computrition).</p>
+
+      <div class="cs-figure-block" style="margin-top:clamp(24px,3vw,32px)">
+        <div class="cs-shot"><img src="../assets/graphics/vendrs/team-photo.jpg" alt="The Vendrs team holding certificates of completion, with the Events Feed shown on screen behind them" /></div>
+      </div>
+
+      <p class="cs-text" style="margin-top:clamp(20px,2.5vw,28px)">Thank you to our judges, to our industry mentor <b>Laura Yien</b>, and to <b>Design Interactive</b> for the opportunity.</p>
+    </section>
+
+
     </div><!-- /cs__body -->
   </main>
 
   <footer class="footer" id="contact">
     <div class="footer__inner wrap">
-      <div class="footer__cta" data-reveal>
-        <img class="footer__mascot" data-mascot src="../assets/graphics/sumi/excited.png" alt="" />
-        <span class="footer__eyebrow">✦&nbsp;&nbsp;GOT SOMETHING IN MIND?&nbsp;&nbsp;✦</span>
-        <h2 class="footer__title">Let's <span class="serif">work</span> together</h2>
-        <a class="footer__emailbtn" data-cursor="view" href="mailto:atonyn584@gmail.com">atonyn584@gmail.com
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
-        </a>
-        <div class="footer__chips"><span class="chip"><span class="chip__pulse"></span>Open to internships</span></div>
-        <nav class="footer__nav">
-          <a href="https://drive.google.com/file/d/1PTcfJpEMcfS_W2Cb9v0fJxFMJBmGtGmB/view" target="_blank">✦ Resume</a>
-          <a href="https://www.linkedin.com/in/anthony-nguyen-a79683392/" target="_blank" rel="noopener">✦ LinkedIn</a>
-          <a href="mailto:atonyn584@gmail.com">✦ Email</a>
-        </nav>
+      <div class="footer__top">
+        <p class="footer__hello">Thanks for stopping by, <span class="serif">let's chat.</span></p>
+
+        <div class="footer__group">
+          <span class="footer__label">Contact</span>
+          <a href="mailto:atonyn584@gmail.com">atonyn584@gmail.com</a>
+        </div>
+
+        <div class="footer__group">
+          <span class="footer__label">Menu</span>
+          <p class="footer__links">
+            <a href="../index.html#works">Works</a><i>|</i><a href="../about.html">About</a><i>|</i><a href="https://drive.google.com/file/d/1PTcfJpEMcfS_W2Cb9v0fJxFMJBmGtGmB/view" target="_blank" rel="noopener">Resume</a>
+          </p>
+        </div>
+
+        <div class="footer__group">
+          <span class="footer__label">Elsewhere</span>
+          <p class="footer__links">
+            <a href="https://www.linkedin.com/in/anthony-nguyen-a79683392/" target="_blank" rel="noopener">LinkedIn</a>
+          </p>
+        </div>
       </div>
+
       <div class="footer__bottom">
-        <span>© <span data-year>2026</span> Anthony N. · Sacramento, CA</span>
-        <span class="made">Designed in Figma, built with Claude, and a lot of energy drinks.</span>
+        <span>&copy; <span data-year>2026</span> Anthony N. &#183; Sacramento, CA</span>
+        <span class="made">Designed in Figma, built in Claude.</span>
       </div>
     </div>
   </footer>
 
-  <button class="buddy" aria-label="Say hi to the mascot">
-    <span class="buddy__bubble"></span>
-    <img src="../assets/graphics/sumi/default.png" alt="" />
-  </button>
+  <!-- Lightbox: click any .v-fam__thumb to see it full size (see main.js) -->
+  <div class="v-lightbox" id="vLightbox" hidden>
+    <button class="v-lightbox__close" type="button" aria-label="Close">&times;</button>
+    <img class="v-lightbox__img" src="" alt="" />
+  </div>
 
-  <script src="../js/main.js"></script>
+  <script src="../js/main.js?v=x147"></script>
 </body>
 </html>

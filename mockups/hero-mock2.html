@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Header options 2 · Anthony N.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/vendor/drawably/style.css" />
+  <!-- MOCKUP on the real stylesheet. Nothing on the live pages changed. -->
+  <link rel="stylesheet" href="../css/style.css?v=x133" />
+  <style>
+    body { background: var(--bg); }
+    .mocknote { max-width: var(--maxw); margin: 0 auto; padding: 34px var(--gutter) 0; }
+    .mocknote h2 { font-size: 14px; letter-spacing: .12em; text-transform: uppercase; color: var(--orange); margin: 0 0 4px; }
+    .mocknote p { margin: 0; font-size: 14px; color: var(--ink-50); max-width: 74ch; }
+    .mockdiv { max-width: var(--maxw); margin: 40px auto 0; padding-inline: var(--gutter); }
+    .mockdiv hr { border: none; border-top: 1px dashed var(--line); }
+    .hero__title { opacity: 1; transform: none; }
+
+    /* ---------- shared: no collage, text spans the page ---------- */
+    .m-hero .hero__inner { grid-template-columns: 1fr; min-height: 0;
+      padding-block: clamp(46px, 7vw, 92px) clamp(74px, 8vw, 104px); }
+    .m-hero .hero__intro { max-width: none; }
+    .m-hero .hero__sub { margin-top: 20px; font-size: clamp(15px, 1.2vw, 17px); }
+    /* the two corner lines, kept */
+    .m-hero .hero__loc { position: absolute; left: 0; bottom: 6px; margin: 0; }
+    .m-hero .hero__scroll { position: absolute; right: 0; bottom: 6px; }
+    .m-hero .hero__foot-item { font-size: clamp(13.5px, 1.1vw, 16px); }
+    /* Sumi, decorative, bottom right */
+    .m-sumi { position: absolute; right: 0; bottom: 34px; height: auto; pointer-events: none; z-index: 2; }
+
+    /* ---------- D: one wide sentence, biggest type ---------- */
+    .m-d .hero__title { font-size: clamp(30px, 4vw, 54px); line-height: 1.16; max-width: 26ch; font-weight: 500; }
+    .m-d .m-sumi { width: clamp(120px, 15vw, 190px); bottom: 44px; right: 2%; }
+
+    /* ---------- E: two short lines, mascot larger in the corner ---------- */
+    .m-e .hero__title { font-size: clamp(28px, 3.4vw, 46px); line-height: 1.2; max-width: 22ch; }
+    .m-e .m-sumi { width: clamp(140px, 18vw, 230px); bottom: 20px; right: 0; }
+
+    /* ---------- F: small type, wide measure (closest to hellokatliu) ---------- */
+    .m-f .hero__title { font-size: clamp(25px, 2.7vw, 37px); line-height: 1.3; max-width: 34ch; font-weight: 500; }
+    .m-f .m-sumi { width: clamp(110px, 13vw, 165px); bottom: 42px; right: 4%; }
+
+    /* ---------- G: centered, mascot tucked into the right corner ---------- */
+    .m-g .hero__inner { text-align: center; }
+    .m-g .hero__title { font-size: clamp(28px, 3.6vw, 48px); line-height: 1.2; max-width: 24ch; margin-inline: auto; }
+    .m-g .hero__sub { margin-inline: auto; }
+    .m-g .m-sumi { width: clamp(120px, 14vw, 180px); bottom: 26px; right: 1%; }
+    .m-g .hero__star--1 { left: 4%; }
+  </style>
+</head>
+<body>
+
+<div class="mocknote">
+  <h2>Option D &nbsp;·&nbsp; one wide sentence, biggest type</h2>
+  <p>No collage. The sentence runs across the page, Sumi sits in the bottom-right corner as decoration, and the two corner lines stay.</p>
+</div>
+<section class="hero m-hero m-d">
+  <div class="hero__inner">
+    <div class="hero__intro">
+      <h1 class="hero__title">Product designer with client work, <span class="accent">AI in my workflow</span>, and an unhealthy love for energy drinks.</h1>
+      <p class="hero__sub">4th year design undergrad @ UC Davis. <span class="nowrap">Certified <b>energy drink</b> enjoyer.</span></p>
+    </div>
+    <img class="doodle-star doodle-star--float hero__star hero__star--1" src="../assets/graphics/star.png" style="--rot:-12deg" alt="" aria-hidden="true" />
+    <img class="doodle-star doodle-star--float hero__star hero__star--2" src="../assets/graphics/star.png" style="--rot:14deg;top:8%;left:74%" alt="" aria-hidden="true" />
+    <img class="m-sumi" src="../assets/graphics/sumi/sketching.png" alt="" aria-hidden="true" />
+    <p class="hero__loc hero__foot-item">[ Based in Sacramento, CA ]</p>
+    <a class="hero__scroll hero__foot-item" href="#">Scroll to see my work</a>
+  </div>
+</section>
+
+<div class="mockdiv"><hr /></div>
+
+<div class="mocknote">
+  <h2>Option E &nbsp;·&nbsp; short claim, larger mascot</h2>
+  <p>Fewer words up top, Sumi bigger in the corner so the empty right side is doing something.</p>
+</div>
+<section class="hero m-hero m-e">
+  <div class="hero__inner">
+    <div class="hero__intro">
+      <h1 class="hero__title">Product designer building <span class="accent">user-centered</span> work, with AI in the workflow.</h1>
+      <p class="hero__sub">4th year design undergrad @ UC Davis. <span class="nowrap">Certified <b>energy drink</b> enjoyer.</span></p>
+    </div>
+    <img class="doodle-star doodle-star--float hero__star hero__star--1" src="../assets/graphics/star.png" style="--rot:-12deg" alt="" aria-hidden="true" />
+    <img class="doodle-star doodle-star--float hero__star hero__star--2" src="../assets/graphics/star.png" style="--rot:14deg;top:12%;left:56%" alt="" aria-hidden="true" />
+    <img class="m-sumi" src="../assets/graphics/sumi/cross-legged.png" alt="" aria-hidden="true" />
+    <p class="hero__loc hero__foot-item">[ Based in Sacramento, CA ]</p>
+    <a class="hero__scroll hero__foot-item" href="#">Scroll to see my work</a>
+  </div>
+</section>
+
+<div class="mockdiv"><hr /></div>
+
+<div class="mocknote">
+  <h2>Option F &nbsp;·&nbsp; smaller type, wide measure (closest to hellokatliu)</h2>
+  <p>Her header is only about 42px and runs long across the column. This is the same idea at your scale.</p>
+</div>
+<section class="hero m-hero m-f">
+  <div class="hero__inner">
+    <div class="hero__intro">
+      <h1 class="hero__title">Product designer who values <span class="accent">user-centered</span> digital experiences, uses AI as part of the process, and runs on energy drinks.</h1>
+      <p class="hero__sub">4th year design undergrad @ UC Davis. <span class="nowrap">Certified <b>energy drink</b> enjoyer.</span></p>
+    </div>
+    <img class="doodle-star doodle-star--float hero__star hero__star--1" src="../assets/graphics/star.png" style="--rot:-12deg" alt="" aria-hidden="true" />
+    <img class="doodle-star doodle-star--float hero__star hero__star--2" src="../assets/graphics/star.png" style="--rot:14deg;top:9%;left:80%" alt="" aria-hidden="true" />
+    <img class="m-sumi" src="../assets/graphics/sumi/leaning.png" alt="" aria-hidden="true" />
+    <p class="hero__loc hero__foot-item">[ Based in Sacramento, CA ]</p>
+    <a class="hero__scroll hero__foot-item" href="#">Scroll to see my work</a>
+  </div>
+</section>
+
+<div class="mockdiv"><hr /></div>
+
+<div class="mocknote">
+  <h2>Option G &nbsp;·&nbsp; centered</h2>
+  <p>Same content, centered, with Sumi tucked into the right corner. The most different of the four.</p>
+</div>
+<section class="hero m-hero m-g">
+  <div class="hero__inner">
+    <div class="hero__intro">
+      <h1 class="hero__title">Product designer with client work, <span class="accent">AI in my workflow</span>, and an unhealthy love for energy drinks.</h1>
+      <p class="hero__sub">4th year design undergrad @ UC Davis. <span class="nowrap">Certified <b>energy drink</b> enjoyer.</span></p>
+    </div>
+    <img class="doodle-star doodle-star--float hero__star hero__star--1" src="../assets/graphics/star.png" style="--rot:-12deg" alt="" aria-hidden="true" />
+    <img class="doodle-star doodle-star--float hero__star hero__star--2" src="../assets/graphics/star.png" style="--rot:14deg;top:10%;left:88%" alt="" aria-hidden="true" />
+    <img class="m-sumi" src="../assets/graphics/sumi/sitting.png" alt="" aria-hidden="true" />
+    <p class="hero__loc hero__foot-item">[ Based in Sacramento, CA ]</p>
+    <a class="hero__scroll hero__foot-item" href="#">Scroll to see my work</a>
+  </div>
+</section>
+
+<div class="mockdiv" style="margin-bottom:50px"><hr /></div>
+<div class="mocknote" style="padding-bottom:70px">
+  <p><strong>All four:</strong> no collage, no tags, no "currently designing" or "incoming" lines. Under the headline: only the UC Davis line and the energy drink line. "[ Based in Sacramento, CA ]" and "Scroll to see my work" stay in the corners, and Sumi is decorative in the bottom-right. Each uses a different pose, so say if you prefer one of the others.</p>
+</div>
+
+</body>
+</html>
