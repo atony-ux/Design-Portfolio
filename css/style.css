@@ -737,6 +737,10 @@ main.cs { animation: cs-enter .65s var(--ease) backwards; }
 body.is-leaving { opacity: 0; transition: opacity .28s ease; }
 @media (prefers-reduced-motion: reduce) { main.cs { animation: none; } body.is-leaving { opacity: 1; transition: none; } }
 
+/* the section pill bar is for desktop only (there it becomes the side list below);
+   on phones and tablets it is hidden */
+@media (max-width: 999px) { .case-nav { display: none; } }
+
 /* desktop: two-column layout  -  compact sticky TOC + a wide content column
    sitting close to the nav */
 @media (min-width: 1000px) {
