@@ -1,0 +1,6 @@
+# Not part of the site: keep these out of the public deploy
+mockups
+tools
+HANDOFF.md
+README.md
+.claude
