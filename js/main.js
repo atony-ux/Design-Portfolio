@@ -473,7 +473,7 @@
     bar.setAttribute("aria-label", "Music player");
     var SPK = '<path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4z" fill="currentColor" stroke="none"/>';
     bar.innerHTML =
-      '<span class="mp__disc" aria-hidden="true"><img src="' + ROOT + 'assets/graphics/cd.jpg" alt="" /></span>' +
+      '<span class="mp__disc" aria-hidden="true"><img src="' + ROOT + 'assets/graphics/cd.webp" alt="" /></span>' +
       '<span class="mp__meta"><span class="mp__t" data-mp-title></span>' +
         '<span class="mp__s"><span data-mp-elapsed></span> / <span data-mp-dur></span> &middot; <span data-mp-count></span></span></span>' +
       '<button class="mp__btn" type="button" data-mp-prev aria-label="Previous track"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 6v12l-9-6z"/><path d="M5.3 6h2.3v12H5.3z"/></svg></button>' +
@@ -1312,6 +1312,22 @@
       updateActiveSection();
     }
   }
+
+  /* -------------------------------------------------- Looping videos only run while on screen
+     An autoplaying loop keeps decoding frames even when it is scrolled far out of
+     view. Pause each one when it leaves the viewport and resume when it returns. */
+  (function () {
+    var vids = $$("video[autoplay]");
+    if (!vids.length || !("IntersectionObserver" in window)) return;
+    var vio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        var v = e.target;
+        if (e.isIntersecting) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+        else v.pause();
+      });
+    }, { threshold: 0.05 });
+    vids.forEach(function (v) { vio.observe(v); });
+  })();
 
   /* -------------------------------------------------- Lightbox
      Click anything with [data-lightbox] (a <button> wrapping an <img>) to see

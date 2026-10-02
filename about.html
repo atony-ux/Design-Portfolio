@@ -7,11 +7,9 @@
   <meta name="description" content="Anthony N., an emerging Product Designer from Roseville, California, studying design at UC Davis. The story so far, and life beyond the canvas." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300..700;1,300..700&family=Caveat:wght@600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/vendor/drawably/style.css?v=0.4.2" />
-  <link rel="stylesheet" href="css/style.css?v=x147" />
+  <link rel="stylesheet" href="css/style.css?v=x148" />
 </head>
 <body>
   <!-- ============ NAV ============ -->
@@ -35,7 +33,7 @@
     <!-- ============ A BIT ABOUT ME ============ -->
     <section class="about-hero about-hero--photo-left wrap">
       <div class="about-hero__photo" data-reveal>
-        <img src="assets/graphics/portrait-about.jpg" alt="Portrait of Anthony" width="528" height="660" />
+        <img src="assets/graphics/portrait-about.webp" alt="Portrait of Anthony" width="528" height="660" />
       </div>
       <div class="about-hero__copy" data-reveal>
         <h1 class="sec-title"><span class="about-hero__hi">Hi,</span> I'm <span class="plain">Anthony</span></h1>
@@ -59,7 +57,7 @@
         <!-- my work: home of the site-wide music player ("Music" in js/main.js) -->
         <div class="pg-it pg-it--music" style="left:4%;top:9.5%;width:clamp(180px,15.6vw,224px);transform:rotate(-3.5deg)">
           <div class="pg-sleeve" data-player>
-            <span class="pg-disc"><img src="assets/graphics/cd.jpg" alt="" /></span>
+            <span class="pg-disc"><img src="assets/graphics/cd.webp" alt="" loading="lazy" decoding="async" /></span>
             <span class="pg-lab" style="margin-bottom:6px">My work<span class="pg-count" data-mp-count>1 / 6</span></span>
             <span class="pg-sleeve__t" data-mp-title>10dollar</span>
             <div class="pg-player">
@@ -126,7 +124,7 @@
         <!-- tekken, as a polaroid -->
         <div class="pg-it pg-it--evo" style="left:78%;top:31%;width:clamp(180px,16.4vw,236px);transform:rotate(4deg)">
           <span class="pg-pol pg-pol--solo">
-            <img src="assets/graphics/tekken-evo.jpg" alt="Playing Tekken 8 against ATIF at EVO" />
+            <img src="assets/graphics/tekken-evo.webp" alt="Playing Tekken 8 against ATIF at EVO" loading="lazy" decoding="async" />
             <span>vs ATIF at EVO</span>
           </span>
         </div>
@@ -134,7 +132,7 @@
         <!-- interests -->
         <div class="pg-it pg-it--me" style="left:3.6%;top:50%;width:clamp(140px,12.8vw,184px);transform:rotate(-4deg)">
           <span class="pg-pol pg-pol--tall">
-            <img src="assets/graphics/portrait.jpg" alt="Portrait of Anthony" />
+            <img src="assets/graphics/portrait.webp" alt="Portrait of Anthony" loading="lazy" decoding="async" />
             <span>me</span>
           </span>
         </div>
@@ -175,12 +173,12 @@
         </div>
 
         <div class="pg-it pg-plain" style="left:33%;top:87%;width:clamp(90px,7.8vw,112px);transform:rotate(-3deg)">
-          <img src="assets/graphics/tools-ui.png" alt="" aria-hidden="true" />
+          <img src="assets/graphics/tools-ui.png" alt="" aria-hidden="true" loading="lazy" decoding="async" />
         </div>
 
-        <img class="pg-star" src="assets/graphics/headphones.png" style="left:47%;top:22%;width:28px;transform:rotate(-14deg)" alt="" aria-hidden="true" />
-        <img class="pg-star pg-star--b" src="assets/graphics/beamed-notes.png" style="left:69%;top:62%;width:24px;transform:rotate(12deg)" alt="" aria-hidden="true" />
-        <img class="pg-star" src="assets/graphics/bass-clef.png" style="left:24%;top:44%;width:24px;transform:rotate(20deg)" alt="" aria-hidden="true" />
+        <img class="pg-star" src="assets/graphics/headphones.webp" style="left:47%;top:22%;width:28px;transform:rotate(-14deg)" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+        <img class="pg-star pg-star--b" src="assets/graphics/beamed-notes.webp" style="left:69%;top:62%;width:24px;transform:rotate(12deg)" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+        <img class="pg-star" src="assets/graphics/bass-clef.webp" style="left:24%;top:44%;width:24px;transform:rotate(20deg)" alt="" aria-hidden="true" loading="lazy" decoding="async" />
 
         <!-- ---------- the photo wallet ---------- -->
         <button class="pg-wallet" id="pg-wallet" type="button" aria-pressed="false"
@@ -206,39 +204,39 @@
         </button>
 
         <div class="pg-photos">
-          <button class="pg-photo" type="button" data-group="friends" style="--tx:-0.5vw;--ty:56.7svh" aria-label="Open photo: dinner party"><img src="assets/graphics/about-photos/p03.jpg" alt="Friends gathered around a table for dinner" loading="lazy" decoding="async" /></button>
-          <button class="pg-photo" type="button" data-group="town" style="--tx:9.4vw;--ty:3.3svh" aria-label="Open photo: japantown"><img src="assets/graphics/about-photos/p07.jpg" alt="The Japantown sign tower on a cloudy day" loading="lazy" decoding="async" /></button>
-          <button class="pg-photo" type="button" data-group="gaming" style="--tx:1.7vw;--ty:95.1svh" aria-label="Open photo: tekken at the arcade"><img src="assets/graphics/about-photos/p08.jpg" alt="Playing Tekken on arcade cabinets" loading="lazy" decoding="async" /></button>
-          <button class="pg-photo" type="button" data-group="school" style="--tx:95.0vw;--ty:38.1svh" aria-label="Open photo: study session"><img src="assets/graphics/about-photos/p09.jpg" alt="Classmates at a table with laptops" loading="lazy" decoding="async" /></button>
-          <button class="pg-photo" type="button" data-group="travels" style="--tx:37.1vw;--ty:-22.3svh" aria-label="Open photo: night skiing"><img src="assets/graphics/about-photos/p10.jpg" alt="Ski slopes lit up at night" loading="lazy" decoding="async" /></button>
-          <button class="pg-photo" type="button" data-group="friends" style="--tx:-105.8vw;--ty:-69.9svh" aria-label="Open photo: the whole crew"><img src="assets/graphics/about-photos/p11.jpg" alt="A big group selfie at night" loading="lazy" decoding="async" /></button>
-          <button class="pg-photo" type="button" data-group="music" style="--tx:100.5vw;--ty:-82.7svh" aria-label="Open photo: reverie in blue"><img src="assets/graphics/about-photos/p12.jpg" alt="Cover art for Reverie in Blue by Atony" loading="lazy" decoding="async" /></button>
-          <button class="pg-photo" type="button" data-group="travels" style="--tx:47.1vw;--ty:90.4svh" aria-label="Open photo: lakeside hike"><img src="assets/graphics/about-photos/p14.jpg" alt="Hiking a rocky trail beside a lake" loading="lazy" decoding="async" /></button>
-          <button class="pg-photo" type="button" data-group="friends" style="--tx:-34.8vw;--ty:-3.7svh" aria-label="Open photo: late night drive"><img src="assets/graphics/about-photos/p15.jpg" alt="Riding in a car at night under the moon" loading="lazy" decoding="async" /></button>
-          <button class="pg-photo" type="button" data-group="town" style="--tx:10.0vw;--ty:-119.9svh" aria-label="Open photo: skyline at night"><img src="assets/graphics/about-photos/p16.jpg" alt="Two friends walking toward a city skyline at night" loading="lazy" decoding="async" /></button>
-          <button class="pg-photo" type="button" data-group="friends" style="--tx:-98.2vw;--ty:-1.6svh" aria-label="Open photo: foggy night out"><img src="assets/graphics/about-photos/p17.jpg" alt="Two friends outside on a foggy night" loading="lazy" decoding="async" /></button>
-          <button class="pg-photo" type="button" data-group="town" style="--tx:64.0vw;--ty:9.1svh" aria-label="Open photo: bay bridge lights"><img src="assets/graphics/about-photos/p18.jpg" alt="The Bay Bridge lit up at night" loading="lazy" decoding="async" /></button>
-          <button class="pg-photo" type="button" data-group="town" style="--tx:103.5vw;--ty:-1.1svh" aria-label="Open photo: downtown at night"><img src="assets/graphics/about-photos/p19.jpg" alt="Downtown towers at night from a waterfront park" loading="lazy" decoding="async" /></button>
-          <button class="pg-photo" type="button" data-group="town" style="--tx:-89.4vw;--ty:-119.2svh" aria-label="Open photo: by the ocean"><img src="assets/graphics/about-photos/p21.jpg" alt="Friends on coastal rocks at dusk" loading="lazy" decoding="async" /></button>
-          <button class="pg-photo" type="button" data-group="town" style="--tx:78.6vw;--ty:-109.0svh" aria-label="Open photo: golden gate at sunset"><img src="assets/graphics/about-photos/p22.jpg" alt="The Golden Gate Bridge in fog at sunset" loading="lazy" decoding="async" /></button>
-          <button class="pg-photo" type="button" data-group="town" style="--tx:81.3vw;--ty:38.2svh" aria-label="Open photo: golden hour walk"><img src="assets/graphics/about-photos/p23.jpg" alt="Two friends walking down a street at golden hour" loading="lazy" decoding="async" /></button>
-          <button class="pg-photo" type="button" data-group="school" style="--tx:-57.9vw;--ty:80.3svh" aria-label="Open photo: presenting vendrs"><img src="assets/graphics/about-photos/p24.jpg" alt="The Vendrs team holding certificates in front of the project slide" loading="lazy" decoding="async" /></button>
-          <button class="pg-photo" type="button" data-group="school" style="--tx:62.8vw;--ty:-43.3svh" aria-label="Open photo: certificate day"><img src="assets/graphics/about-photos/p25.jpg" alt="Holding certificates in front of balloons" loading="lazy" decoding="async" /></button>
-          <button class="pg-photo" type="button" data-group="travels" style="--tx:104.2vw;--ty:-22.8svh" aria-label="Open photo: up the ridge"><img src="assets/graphics/about-photos/p27.jpg" alt="Hiking up a dry ridge under big clouds" loading="lazy" decoding="async" /></button>
-          <button class="pg-photo" type="button" data-group="travels" style="--tx:-61.9vw;--ty:14.3svh" aria-label="Open photo: islands off the coast"><img src="assets/graphics/about-photos/p28.jpg" alt="Coastline and islands seen from a hilltop" loading="lazy" decoding="async" /></button>
-          <button class="pg-photo" type="button" data-group="travels" style="--tx:30.7vw;--ty:15.3svh" aria-label="Open photo: made it to the top"><img src="assets/graphics/about-photos/p29.jpg" alt="View over the ocean and a beach town from a hilltop" loading="lazy" decoding="async" /></button>
-          <button class="pg-photo" type="button" data-group="travels" style="--tx:-1.1vw;--ty:-41.0svh" aria-label="Open photo: pool at night"><img src="assets/graphics/about-photos/p30.jpg" alt="A resort pool lit up at night between palm trees" loading="lazy" decoding="async" /></button>
-          <button class="pg-photo" type="button" data-group="travels" style="--tx:-20.8vw;--ty:-119.5svh" aria-label="Open photo: high rises at night"><img src="assets/graphics/about-photos/p31.jpg" alt="High rise towers at night under a cloudy sky" loading="lazy" decoding="async" /></button>
-          <button class="pg-photo" type="button" data-group="friends" style="--tx:45.4vw;--ty:-109.9svh" aria-label="Open photo: sleepy pup"><img src="assets/graphics/about-photos/p32.jpg" alt="A small dog resting on a bed" loading="lazy" decoding="async" /></button>
-          <button class="pg-photo" type="button" data-group="travels" style="--tx:-37.7vw;--ty:-83.9svh" aria-label="Open photo: yosemite valley"><img src="assets/graphics/about-photos/p34.jpg" alt="Looking down Yosemite Valley" loading="lazy" decoding="async" /></button>
-          <button class="pg-photo" type="button" data-group="travels" style="--tx:-102.4vw;--ty:-28.8svh" aria-label="Open photo: big trees trail"><img src="assets/graphics/about-photos/p35.jpg" alt="Hikers on a trail through tall trees" loading="lazy" decoding="async" /></button>
-          <button class="pg-photo" type="button" data-group="friends" style="--tx:111.7vw;--ty:-110.1svh" aria-label="Open photo: ferry ride"><img src="assets/graphics/about-photos/p36.jpg" alt="Two friends posing on a ferry deck" loading="lazy" decoding="async" /></button>
-          <button class="pg-photo" type="button" data-group="friends" style="--tx:-35.2vw;--ty:46.4svh" aria-label="Open photo: souvenir hunting"><img src="assets/graphics/about-photos/p38.jpg" alt="Friends browsing a small shop" loading="lazy" decoding="async" /></button>
-          <button class="pg-photo" type="button" data-group="travels" style="--tx:-27.4vw;--ty:79.1svh" aria-label="Open photo: waterfall stop"><img src="assets/graphics/about-photos/p40.jpg" alt="A tall waterfall in a mossy forest" loading="lazy" decoding="async" /></button>
-          <button class="pg-photo" type="button" data-group="travels" style="--tx:31.7vw;--ty:-84.4svh" aria-label="Open photo: root-covered trail"><img src="assets/graphics/about-photos/p42.jpg" alt="A forest trail covered in roots" loading="lazy" decoding="async" /></button>
-          <button class="pg-photo" type="button" data-group="travels" style="--tx:70.3vw;--ty:-83.4svh" aria-label="Open photo: jungle creek"><img src="assets/graphics/about-photos/p43.jpg" alt="A creek running under big tangled trees" loading="lazy" decoding="async" /></button>
-          <button class="pg-photo" type="button" data-group="travels" style="--tx:35.1vw;--ty:46.7svh" aria-label="Open photo: quiet stream"><img src="assets/graphics/about-photos/p44.jpg" alt="A calm stream in a green forest" loading="lazy" decoding="async" /></button>
-          <button class="pg-photo" type="button" data-group="gaming" style="--tx:102.4vw;--ty:93.6svh" aria-label="Open photo: crt wall at evo"><img src="assets/graphics/about-photos/p46.jpg" alt="A wall of old CRT TVs in an exhibit at EVO" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="friends" style="--tx:-0.5vw;--ty:56.7svh" aria-label="Open photo: dinner party"><img src="assets/graphics/about-photos/p03.webp" alt="Friends gathered around a table for dinner" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="town" style="--tx:9.4vw;--ty:3.3svh" aria-label="Open photo: japantown"><img src="assets/graphics/about-photos/p07.webp" alt="The Japantown sign tower on a cloudy day" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="gaming" style="--tx:1.7vw;--ty:95.1svh" aria-label="Open photo: tekken at the arcade"><img src="assets/graphics/about-photos/p08.webp" alt="Playing Tekken on arcade cabinets" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="school" style="--tx:95.0vw;--ty:38.1svh" aria-label="Open photo: study session"><img src="assets/graphics/about-photos/p09.webp" alt="Classmates at a table with laptops" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="travels" style="--tx:37.1vw;--ty:-22.3svh" aria-label="Open photo: night skiing"><img src="assets/graphics/about-photos/p10.webp" alt="Ski slopes lit up at night" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="friends" style="--tx:-105.8vw;--ty:-69.9svh" aria-label="Open photo: the whole crew"><img src="assets/graphics/about-photos/p11.webp" alt="A big group selfie at night" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="music" style="--tx:100.5vw;--ty:-82.7svh" aria-label="Open photo: reverie in blue"><img src="assets/graphics/about-photos/p12.webp" alt="Cover art for Reverie in Blue by Atony" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="travels" style="--tx:47.1vw;--ty:90.4svh" aria-label="Open photo: lakeside hike"><img src="assets/graphics/about-photos/p14.webp" alt="Hiking a rocky trail beside a lake" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="friends" style="--tx:-34.8vw;--ty:-3.7svh" aria-label="Open photo: late night drive"><img src="assets/graphics/about-photos/p15.webp" alt="Riding in a car at night under the moon" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="town" style="--tx:10.0vw;--ty:-119.9svh" aria-label="Open photo: skyline at night"><img src="assets/graphics/about-photos/p16.webp" alt="Two friends walking toward a city skyline at night" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="friends" style="--tx:-98.2vw;--ty:-1.6svh" aria-label="Open photo: foggy night out"><img src="assets/graphics/about-photos/p17.webp" alt="Two friends outside on a foggy night" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="town" style="--tx:64.0vw;--ty:9.1svh" aria-label="Open photo: bay bridge lights"><img src="assets/graphics/about-photos/p18.webp" alt="The Bay Bridge lit up at night" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="town" style="--tx:103.5vw;--ty:-1.1svh" aria-label="Open photo: downtown at night"><img src="assets/graphics/about-photos/p19.webp" alt="Downtown towers at night from a waterfront park" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="town" style="--tx:-89.4vw;--ty:-119.2svh" aria-label="Open photo: by the ocean"><img src="assets/graphics/about-photos/p21.webp" alt="Friends on coastal rocks at dusk" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="town" style="--tx:78.6vw;--ty:-109.0svh" aria-label="Open photo: golden gate at sunset"><img src="assets/graphics/about-photos/p22.webp" alt="The Golden Gate Bridge in fog at sunset" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="town" style="--tx:81.3vw;--ty:38.2svh" aria-label="Open photo: golden hour walk"><img src="assets/graphics/about-photos/p23.webp" alt="Two friends walking down a street at golden hour" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="school" style="--tx:-57.9vw;--ty:80.3svh" aria-label="Open photo: presenting vendrs"><img src="assets/graphics/about-photos/p24.webp" alt="The Vendrs team holding certificates in front of the project slide" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="school" style="--tx:62.8vw;--ty:-43.3svh" aria-label="Open photo: certificate day"><img src="assets/graphics/about-photos/p25.webp" alt="Holding certificates in front of balloons" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="travels" style="--tx:104.2vw;--ty:-22.8svh" aria-label="Open photo: up the ridge"><img src="assets/graphics/about-photos/p27.webp" alt="Hiking up a dry ridge under big clouds" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="travels" style="--tx:-61.9vw;--ty:14.3svh" aria-label="Open photo: islands off the coast"><img src="assets/graphics/about-photos/p28.webp" alt="Coastline and islands seen from a hilltop" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="travels" style="--tx:30.7vw;--ty:15.3svh" aria-label="Open photo: made it to the top"><img src="assets/graphics/about-photos/p29.webp" alt="View over the ocean and a beach town from a hilltop" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="travels" style="--tx:-1.1vw;--ty:-41.0svh" aria-label="Open photo: pool at night"><img src="assets/graphics/about-photos/p30.webp" alt="A resort pool lit up at night between palm trees" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="travels" style="--tx:-20.8vw;--ty:-119.5svh" aria-label="Open photo: high rises at night"><img src="assets/graphics/about-photos/p31.webp" alt="High rise towers at night under a cloudy sky" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="friends" style="--tx:45.4vw;--ty:-109.9svh" aria-label="Open photo: sleepy pup"><img src="assets/graphics/about-photos/p32.webp" alt="A small dog resting on a bed" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="travels" style="--tx:-37.7vw;--ty:-83.9svh" aria-label="Open photo: yosemite valley"><img src="assets/graphics/about-photos/p34.webp" alt="Looking down Yosemite Valley" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="travels" style="--tx:-102.4vw;--ty:-28.8svh" aria-label="Open photo: big trees trail"><img src="assets/graphics/about-photos/p35.webp" alt="Hikers on a trail through tall trees" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="friends" style="--tx:111.7vw;--ty:-110.1svh" aria-label="Open photo: ferry ride"><img src="assets/graphics/about-photos/p36.webp" alt="Two friends posing on a ferry deck" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="friends" style="--tx:-35.2vw;--ty:46.4svh" aria-label="Open photo: souvenir hunting"><img src="assets/graphics/about-photos/p38.webp" alt="Friends browsing a small shop" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="travels" style="--tx:-27.4vw;--ty:79.1svh" aria-label="Open photo: waterfall stop"><img src="assets/graphics/about-photos/p40.webp" alt="A tall waterfall in a mossy forest" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="travels" style="--tx:31.7vw;--ty:-84.4svh" aria-label="Open photo: root-covered trail"><img src="assets/graphics/about-photos/p42.webp" alt="A forest trail covered in roots" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="travels" style="--tx:70.3vw;--ty:-83.4svh" aria-label="Open photo: jungle creek"><img src="assets/graphics/about-photos/p43.webp" alt="A creek running under big tangled trees" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="travels" style="--tx:35.1vw;--ty:46.7svh" aria-label="Open photo: quiet stream"><img src="assets/graphics/about-photos/p44.webp" alt="A calm stream in a green forest" loading="lazy" decoding="async" /></button>
+          <button class="pg-photo" type="button" data-group="gaming" style="--tx:102.4vw;--ty:93.6svh" aria-label="Open photo: crt wall at evo"><img src="assets/graphics/about-photos/p46.webp" alt="A wall of old CRT TVs in an exhibit at EVO" loading="lazy" decoding="async" /></button>
         </div>
 
       </div>
@@ -280,6 +278,6 @@
   </footer>
 
   <script src="assets/vendor/drawably/drawably.classic.js?v=0.4.2"></script>
-  <script src="js/main.js?v=x147"></script>
+  <script src="js/main.js?v=x148"></script>
 </body>
 </html>

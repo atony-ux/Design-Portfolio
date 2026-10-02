@@ -1669,3 +1669,21 @@ Same system as the Vendrs rewrite (`.cs--col` plus the `.v-*` components, no new
   moved to `../Portfolio2.0 removed files/` (page under `work/`). QAC's next-project card now points at
   Vendrs, and the chat's projects answer offers two case studies instead of three. The home page never
   linked it. Cache token `?v=x72`.
+
+## Performance pass (2026-10-02)
+- **Images are WebP now.** 82 jpg/png files (anything used and over 40KB) were converted to `.webp`
+  next to where they were, and every reference in the html/css/js was rewritten. Photos use quality 80,
+  big doodle/screenshot PNGs quality 86 (alpha kept), small PNGs lossless. A few oversized files were also
+  downscaled (solution-*, mascot-vendor, feature-prioritization, sumi/sketching, listening-to-music-crop).
+  Originals are in `../Portfolio2.0 removed files/originals-before-optimizing-2/`. **When adding new
+  images, export WebP (or run them through Pillow `save(..., "WEBP", quality=80)`)**; a 1000px photo is ~100KB.
+- Unused 30MB of old Vendrs videos (eventfeed, marketplace, dashboard, onboarding.webm) plus two stray PNGs
+  moved to `../Portfolio2.0 removed files/unused-assets-2026-10-02/`.
+- Below-the-fold `<img>` tags have `loading="lazy" decoding="async"`; hero images stay eager.
+- `main.js`: looping `<video autoplay>` pauses when scrolled off screen and resumes when it returns.
+- Google Fonts: dropped the unused IBM Plex Serif request and merged Archivo + Caveat into one request.
+- Nav blur lightened (sticky bar 18px/1.6 to 12px/1.2, case-study side nav 12px to 8px).
+- `vercel.json` sets cache headers (`/assets` 1 day + stale-while-revalidate, `/css` and `/js` 1 hour).
+  Because assets are cached, **give a replaced image a new filename** or visitors can see the old one
+  for up to a day. `.vercelignore` keeps mockups/tools/notes out of the deploy.
+- Measured at 1440px: Vendrs 7.9MB to 3.9MB after a full scroll (2.4MB on first load), About 7.3MB to 3.5MB.
