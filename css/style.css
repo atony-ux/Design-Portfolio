@@ -1180,15 +1180,23 @@ body.is-leaving { opacity: 0; transition: opacity .28s ease; }
    Column width and headline size follow the studies the user benchmarked
    against (vivianzhao.ca/tiesandtopics runs a 720px column and a 36px h1).
    ===================================================================== */
-.cs--col .cs__body { --col: 720px; }
+/* --col is the width of figures, grids and the header (widened from 720 on 2026-10-02, when the
+   page margins shrank); --text keeps paragraphs at a readable line length. Both left-align to the
+   same edge, so text and figures still share one left edge. */
+.cs--col .cs__body { --col: 1100px; --text: 720px; }
 @media (min-width: 981px) {
   /* left-anchored, not centered: the section nav's column now lines up with the
      Back link above it (2026-09-28), so the body no longer needs the negative
      margin that used to pull it back from a centered .cs row. */
   .cs--col { justify-content: flex-start; }
-  .cs--col .cs__body { flex: 0 1 auto; width: min(100%, calc(var(--col) + 120px)); }
+  /* fills the space between the section list and the right page margin, so figures end on the same
+     right edge as the nav and the home cards; --col only caps it on very wide screens */
+  .cs--col .cs__body { flex: 1 1 0; min-width: 0; max-width: var(--col); }
 }
-.cs--col .cs-narrow, .cs--col .cs-block > .cs-narrow { max-width: var(--col); margin-inline: auto; }
+.cs--col .cs-narrow, .cs--col .cs-block > .cs-narrow { max-width: var(--col); margin-inline: 0; }
+/* only the reading text stays at --text; figures, grids and cards in the same block use the full column */
+.cs--col .cs-narrow > :is(.cs-eyebrow, .cs-h2, .cs-h3, .cs-text, .cs-ul, .v-statement),
+.cs--col .cs-block > :is(.cs-eyebrow, .cs-h2, .cs-h3, .cs-text, .cs-ul, .v-statement) { max-width: var(--text); }
 .cs--col .cs-figure-block, .cs--col .cs-block--tight .cs-shot, .cs--col .cs-figure-block .cs-shot,
 .cs--col .cs-figure-block .duo, .cs--col .v-impact, .cs--col .v-stats, .cs--col .v-compare,
 .cs--col .v-triad, .cs--col .v-feature-list, .cs--col .v-baf, .cs--col .cs-pull, .cs--col .v-tabs, .cs--col .v-stage,
