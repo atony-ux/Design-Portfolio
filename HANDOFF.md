@@ -1687,3 +1687,13 @@ Same system as the Vendrs rewrite (`.cs--col` plus the `.v-*` components, no new
   Because assets are cached, **give a replaced image a new filename** or visitors can see the old one
   for up to a day. `.vercelignore` keeps mockups/tools/notes out of the deploy.
 - Measured at 1440px: Vendrs 7.9MB to 3.9MB after a full scroll (2.4MB on first load), About 7.3MB to 3.5MB.
+
+## Wider layout (2026-10-02)
+- **Container tokens changed:** `--maxw` 1160px to **1280px**, `--gutter` `clamp(20px, 7vw, 112px)` to
+  **`clamp(20px, 5.56vw, 80px)`**. At a 1440 screen the side margins are now 80px (were 140px), matching
+  the reference portfolio (emilee369.github.io/portfolio). Nav, hero and `.wrap` all read these two tokens, so
+  they still line up; **if you change one, change both.** This reverses the older "more page margin" note above.
+- Home case-study cards: column gap is now `clamp(20px, 2vw, 28px)`, so at 1440 each card is 626px wide.
+- `.hero__scroll` inset uses 80px (was 104px) and `.about-hero__mascot` sits at `right: var(--gutter)` so it
+  stays inside the margin instead of touching the screen edge.
+- The case-study reading column (`.cs--col`, 720px) is unchanged on purpose; only its side nav moved out to the margin.

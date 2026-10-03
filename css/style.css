@@ -67,8 +67,8 @@
   --sh-lift: 0 8px 20px rgba(16, 16, 40, 0.055);
 
   /* layout */
-  --maxw: 1160px;
-  --gutter: clamp(20px, 7vw, 112px);
+  --maxw: 1280px;                          /* content column; 80px side margins at a 1440 screen */
+  --gutter: clamp(20px, 5.56vw, 80px);
 
   /* motion */
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -390,7 +390,7 @@ body.cursor-active .pgd.is-photos .pg-photo.is-zoomed { cursor: zoom-out; }
 /* pinned to the bottom of the hero box, matching the approved layout */
 .hero__loc { position: absolute; left: 0; bottom: 34px; margin: 0; z-index: 4; }
 .hero__scroll { position: absolute; right: 0; bottom: 34px; z-index: 4;
-  margin-right: max(0px, calc(104px - var(--gutter)));
+  margin-right: max(0px, calc(80px - var(--gutter)));
   display: inline-flex; align-items: center; gap: 10px; white-space: nowrap; }
 .hero__down { position: absolute; left: 50%; bottom: 26px; z-index: 4;
   transform: translateX(-50%); color: var(--blue); opacity: .85;
@@ -533,7 +533,7 @@ body.cursor-active .pgd.is-photos .pg-photo.is-zoomed { cursor: zoom-out; }
 }
 
 /* Sumi with the notebook, standing in the bottom-right corner of the intro */
-.about-hero__mascot { position: absolute; right: 0; bottom: 0; width: clamp(56px, 5.5vw, 80px); height: auto;
+.about-hero__mascot { position: absolute; right: var(--gutter); bottom: 0; width: clamp(56px, 5.5vw, 80px); height: auto;
   pointer-events: none; user-select: none; }
 @media (max-width: 900px) {
   .about-hero { padding-bottom: 104px; }
@@ -1455,7 +1455,7 @@ body.is-leaving { opacity: 0; transition: opacity .28s ease; }
 .worktiles {
   margin-top: 0;
   display: grid; grid-template-columns: repeat(2, 1fr);
-  gap: clamp(26px,3vw,44px) clamp(24px,2.8vw,38px);
+  gap: clamp(26px,3vw,44px) clamp(20px,2vw,28px);
   align-items: start;
 }
 
