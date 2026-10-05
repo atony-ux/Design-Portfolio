@@ -335,15 +335,8 @@ body.cursor-active .pgd.is-photos .pg-photo.is-zoomed { cursor: zoom-out; }
   padding-block: clamp(46px, 7.5vw, 112px) clamp(30px, 4vw, 56px); }
 .hero__intro { position: relative; z-index: 3; }
 .hero__title { margin: 0; font-weight: 500; font-size: clamp(26px, 3.1vw, 40px); line-height: 1.24; letter-spacing: -0.025em; color: var(--ink); max-width: none; opacity: 0; transform: translateY(18px); }
-/* the longer tagline can run under Sumi in the top-right of the hero, so on desktop it stops short of her */
-@media (min-width: 1025px) { .hero__title { max-width: calc(100% - 160px); } }
 .hero__title.reveal { opacity: 1; transform: none; transition: opacity .8s var(--ease), transform .8s var(--ease); }
 .hero__title .accent { color: var(--blue); font-weight: 500; white-space: nowrap; padding-right: .02em; }
-/* "Product Designer," and the tagline are one headline in two spans: same size, weight, color and spacing
-   (matched at the user's request; they briefly had different sizes and weights). The role sits on its own
-   line, the tagline follows, and the two blue accent words stay. */
-.hero__role, .hero__lede { display: block; font-size: clamp(26px, 3.1vw, 40px); font-weight: 500; line-height: 1.24;
-  letter-spacing: -0.025em; color: var(--ink); }
 /* the two small lines under the headline are deliberately large and light, like
    the reference site's: they read as a second line of the header, not caption text */
 .hero__sub { margin: 18px 0 0; font-size: clamp(17px, 1.7vw, 23px); font-weight: 300; line-height: 1.45; color: var(--ink-50); max-width: 60ch; }
