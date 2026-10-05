@@ -1696,8 +1696,9 @@ Same system as the Vendrs rewrite (`.cs--col` plus the `.v-*` components, no new
 - Home case-study cards: column gap is now `clamp(20px, 2vw, 28px)`, so at 1440 each card is 626px wide.
 - `.hero__scroll` inset uses 80px (was 104px) and `.about-hero__mascot` sits at `right: var(--gutter)` so it
   stays inside the margin instead of touching the screen edge.
-- **Vendrs case-study column widened (same day).** `.cs--col .cs__body` now fills the space between the section
-  list and the right page margin (1050px at a 1440 screen, was 720px), capped by `--col: 1100px`. Figures, grids,
-  the header and cards use that full width; **paragraphs and headings stay at `--text: 720px`**, left-aligned to the
-  same edge, so line length stays readable. No image is upscaled (displayed/natural width max 0.75 at 1440).
-  Below 981px the layout is the old stacked one; the section pill bar is hidden below 1000px.
+- **Vendrs case-study column (revised 2026-10-05).** It was widened to 1050px to fill the margins and the user said
+  that was far too wide, so it is now `--col: 800px` (figures, grids, header, hero card) with `--text: 740px`
+  (paragraphs and headings), both left-aligned to one edge, set about 60px in from the section list
+  (`margin-left: clamp(0px, 4vw, 60px)`). 740px matches the case-study column on claireyokota.com. The original
+  was 720px for everything. No image is upscaled. Below 981px the layout is the stacked one; the section pill
+  bar is hidden below 1000px.

@@ -1180,18 +1180,19 @@ body.is-leaving { opacity: 0; transition: opacity .28s ease; }
    Column width and headline size follow the studies the user benchmarked
    against (vivianzhao.ca/tiesandtopics runs a 720px column and a 36px h1).
    ===================================================================== */
-/* --col is the width of figures, grids and the header (widened from 720 on 2026-10-02, when the
-   page margins shrank); --text keeps paragraphs at a readable line length. Both left-align to the
-   same edge, so text and figures still share one left edge. */
-.cs--col .cs__body { --col: 1100px; --text: 720px; }
+/* --col is the width of figures, grids and the header; --text is the paragraph width. Both left-align to
+   the same edge, so text and figures share one left edge. Was 720 for both; nudged up on 2026-10-05 to
+   sit near the 740px column of the portfolio the user benchmarked (claireyokota.com). It was briefly
+   1050 (filling the margins) and the user found that far too wide. */
+.cs--col .cs__body { --col: 800px; --text: 740px; }
 @media (min-width: 981px) {
   /* left-anchored, not centered: the section nav's column now lines up with the
      Back link above it (2026-09-28), so the body no longer needs the negative
      margin that used to pull it back from a centered .cs row. */
   .cs--col { justify-content: flex-start; }
-  /* fills the space between the section list and the right page margin, so figures end on the same
-     right edge as the nav and the home cards; --col only caps it on very wide screens */
-  .cs--col .cs__body { flex: 1 1 0; min-width: 0; max-width: var(--col); }
+  /* a modest column set slightly in from the section list (the margin keeps its left edge where the
+     older centered layout had it, about 370px at a 1440 screen) */
+  .cs--col .cs__body { flex: 0 1 var(--col); min-width: 0; margin-left: clamp(0px, 4vw, 60px); }
 }
 .cs--col .cs-narrow, .cs--col .cs-block > .cs-narrow { max-width: var(--col); margin-inline: 0; }
 /* only the reading text stays at --text; figures, grids and cards in the same block use the full column */
