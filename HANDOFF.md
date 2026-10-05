@@ -1697,8 +1697,8 @@ Same system as the Vendrs rewrite (`.cs--col` plus the `.v-*` components, no new
 - `.hero__scroll` inset uses 80px (was 104px) and `.about-hero__mascot` sits at `right: var(--gutter)` so it
   stays inside the margin instead of touching the screen edge.
 - **Vendrs case-study column (revised 2026-10-05).** It was widened to 1050px to fill the margins and the user said
-  that was far too wide, so it is now `--col: 800px` (figures, grids, header, hero card) with `--text: 740px`
-  (paragraphs and headings), both left-aligned to one edge, set in from the section list
+  that was far too wide, so it is now `--col: 800px` (figures, grids, header, hero card) with `--text: var(--col)`
+  (paragraphs and headings now match the images; it was 740px until the user asked for consistent widths), both left-aligned to one edge, set in from the section list
   (`margin-left: clamp(0px, calc((100vw - 1000px) * .23), 100px)`, which puts the column's left edge at 410px on a 1440 screen (it was 450px, level with claireyokota.com, and the user asked to nudge it left), and 0 at 1000px so small laptops keep the full 740px). 740px matches the case-study column on claireyokota.com. The original
   was 720px for everything. No image is upscaled. Below 981px the layout is the stacked one; the section pill
   bar is hidden below 1000px.

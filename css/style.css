@@ -1180,11 +1180,12 @@ body.is-leaving { opacity: 0; transition: opacity .28s ease; }
    Column width and headline size follow the studies the user benchmarked
    against (vivianzhao.ca/tiesandtopics runs a 720px column and a 36px h1).
    ===================================================================== */
-/* --col is the width of figures, grids and the header; --text is the paragraph width. Both left-align to
-   the same edge, so text and figures share one left edge. Was 720 for both; nudged up on 2026-10-05 to
+/* --col is the width of figures, grids and the header; --text is the paragraph width. On 2026-10-05 the
+   user asked for the text to span the same width as the images, so --text now equals --col (it was 740
+   against 800). Both left-align to the same edge. Was 720 for both; nudged up on 2026-10-05 to
    sit near the 740px column of the portfolio the user benchmarked (claireyokota.com). It was briefly
    1050 (filling the margins) and the user found that far too wide. */
-.cs--col .cs__body { --col: 800px; --text: 740px; }
+.cs--col .cs__body { --col: 800px; --text: var(--col); }
 @media (min-width: 981px) {
   /* left-anchored, not centered: the section nav's column now lines up with the
      Back link above it (2026-09-28), so the body no longer needs the negative
@@ -1215,7 +1216,7 @@ body.is-leaving { opacity: 0; transition: opacity .28s ease; }
 .cs--col .case-head__title { font-size: clamp(26px, 2.9vw, 38px); line-height: 1.2; max-width: 28ch; }
 .cs--col .case-head__desc { font-size: clamp(15px, 1.3vw, 17px); max-width: 60ch; }
 .cs--col .cs-h2 { font-size: clamp(21px, 2.1vw, 28px); }
-.cs--col .cs-text { font-size: 16px; }
+.cs--col .cs-text { font-size: 16px; max-width: var(--text); }
 .cs--col .cs-figcap { text-align: left; }
 
 /* role / team / timeline table under the headline */
