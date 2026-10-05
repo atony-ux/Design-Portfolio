@@ -1565,7 +1565,7 @@
       a: "He's a fourth-year <strong>B.A. Design</strong> student at <strong>UC Davis</strong> (expected 2026), focused on UI/UX and interactive media. Before that he did an <strong>A.A. in Applied Art &amp; Design</strong> at Sierra College. He also spent two years in computer science before switching to design." },
 
     { k: ["contact","email","reach","reach out","hire","hiring","message","talk","connect","linkedin","get in touch","dm"],
-      a: "Best way is email: <a href='mailto:atonyn584@gmail.com'>atonyn584@gmail.com</a>. He's also on <a href='https://www.linkedin.com/in/anthony-nguyen-a79683392/' target='_blank' rel='noopener'>LinkedIn</a>." },
+      a: "Best way is email: <a href='mailto:anthonynguyen.ux@gmail.com'>anthonynguyen.ux@gmail.com</a>. He's also on <a href='https://www.linkedin.com/in/anthony-nguyen-a79683392/' target='_blank' rel='noopener'>LinkedIn</a>." },
 
     { k: ["resume","cv","curriculum"],
       a: "His resume is <a href='https://drive.google.com/file/d/1PTcfJpEMcfS_W2Cb9v0fJxFMJBmGtGmB/view' target='_blank' rel='noopener'>right here</a>." },
@@ -1583,7 +1583,7 @@
       a: "He's based in <strong>Sacramento, California</strong>, and studies up the road at UC Davis." },
 
     { k: ["available","availability","open","looking","opportunity","internship","full time","freelance"],
-      a: "He's <strong>open to internships</strong> and new grad opportunities. Email him at <a href='mailto:atonyn584@gmail.com'>atonyn584@gmail.com</a>." },
+      a: "He's <strong>open to internships</strong> and new grad opportunities. Email him at <a href='mailto:anthonynguyen.ux@gmail.com'>anthonynguyen.ux@gmail.com</a>." },
 
     { k: ["who","about","yourself","himself","bio","tell me","anthony","designer"],
       a: "Anthony is a design student at UC Davis, originally from Roseville, California. He spent two years as a computer science major, and he has produced music for over 8 years and first started designing to make the graphics for his own music. Now he combines the technical thinking from CS with the creative side of music in his design work." },
@@ -1592,7 +1592,7 @@
       a: "I'm <strong>Sumi</strong>, the little mascot Anthony draws all over this site. I'm scripted, not an AI. I just know his portfolio well." },
 
     { k: ["thanks","thank","ty","appreciate","cheers","nice","cool","awesome"],
-      a: "Anytime ✦ Ask me anything else, or just <a href='mailto:atonyn584@gmail.com'>email Anthony</a>." }
+      a: "Anytime ✦ Ask me anything else, or just <a href='mailto:anthonynguyen.ux@gmail.com'>email Anthony</a>." }
   ];
 
   var FALLBACK = "I'm not sure about that one. I only know Anthony's portfolio. Try asking about his <strong>experience</strong>, <strong>projects</strong>, <strong>education</strong>, <strong>hobbies</strong>, or <strong>how to contact him</strong>.";
