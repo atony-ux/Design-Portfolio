@@ -1190,9 +1190,10 @@ body.is-leaving { opacity: 0; transition: opacity .28s ease; }
      Back link above it (2026-09-28), so the body no longer needs the negative
      margin that used to pull it back from a centered .cs row. */
   .cs--col { justify-content: flex-start; }
-  /* a modest column set slightly in from the section list (the margin keeps its left edge where the
-     older centered layout had it, about 370px at a 1440 screen) */
-  .cs--col .cs__body { flex: 0 1 var(--col); min-width: 0; margin-left: clamp(0px, 4vw, 60px); }
+  /* the column is pushed in from the section list so its left edge sits where the benchmark's does
+     (about 450px at a 1440 screen). The offset grows with the screen and is 0 at 1000px, so on a
+     small laptop the text keeps its full 740px */
+  .cs--col .cs__body { flex: 0 1 var(--col); min-width: 0; margin-left: clamp(0px, calc((100vw - 1000px) * .32), 140px); }
 }
 .cs--col .cs-narrow, .cs--col .cs-block > .cs-narrow { max-width: var(--col); margin-inline: 0; }
 /* only the reading text stays at --text; figures, grids and cards in the same block use the full column */
