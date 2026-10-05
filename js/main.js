@@ -1568,7 +1568,7 @@
       a: "Best way is email: <a href='mailto:anthonynguyen.ux@gmail.com'>anthonynguyen.ux@gmail.com</a>. He's also on <a href='https://www.linkedin.com/in/anthony-nguyen-a79683392/' target='_blank' rel='noopener'>LinkedIn</a>." },
 
     { k: ["resume","cv","curriculum"],
-      a: "His resume is <a href='https://drive.google.com/file/d/1PTcfJpEMcfS_W2Cb9v0fJxFMJBmGtGmB/view' target='_blank' rel='noopener'>right here</a>." },
+      a: "His resume is <a href='" + up + "Anthony-Nguyen-Resume.pdf' target='_blank' rel='noopener'>right here</a>." },
 
     { k: ["project","projects","case study","case studies","portfolio","work samples","vendrs","qac","gallery","uc davis app","mobile","redesign","built","made"],
       a: "Two case studies:<br>• <a href='" + up + "work/vendrs.html'>Vendrs</a>: a platform for Gen Z business owners; he owned onboarding and the Events Map<br>• <a href='" + up + "work/qac-gallery.html'>QAC Gallery Redesign</a>: the events and booking experience for an Oakland arts gallery" },

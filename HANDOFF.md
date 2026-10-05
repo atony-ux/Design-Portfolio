@@ -1702,3 +1702,11 @@ Same system as the Vendrs rewrite (`.cs--col` plus the `.v-*` components, no new
   (`margin-left: clamp(0px, calc((100vw - 1000px) * .23), 100px)`, which puts the column's left edge at 410px on a 1440 screen (it was 450px, level with claireyokota.com, and the user asked to nudge it left), and 0 at 1000px so small laptops keep the full 740px). 740px matches the case-study column on claireyokota.com. The original
   was 720px for everything. No image is upscaled. Below 981px the layout is the stacked one; the section pill
   bar is hidden below 1000px.
+
+## Resume + card descriptions (2026-10-05)
+- **The resume is now a file on the site**, `Anthony-Nguyen-Resume.pdf` in the project root (served at
+  `atonyux.com/Anthony-Nguyen-Resume.pdf`), and every Resume link (nav, footers, the About playground app icon, Sumi's
+  answer) points at it instead of Google Drive. It sits in the root, not `/assets`, on purpose: `/assets` is cached for
+  a day (see `vercel.json`) and the root files are revalidated, so a replaced resume shows up right away.
+  **To update it, overwrite that file with the new PDF (same name) and push.**
+- Home page case-study cards have a one-line description under the title (`.wcard__text` / `.wcard__desc`).
