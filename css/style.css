@@ -1573,7 +1573,7 @@ body.is-leaving { opacity: 0; transition: opacity .28s ease; }
 
 /* label row, inside the same container as the image */
 .wcard__foot {
-  display: flex; align-items: center; justify-content: space-between;
+  display: flex; align-items: flex-start; justify-content: space-between;
   flex-wrap: wrap; gap: 8px 14px;
   padding: 15px 4px 12px;
 }
@@ -1584,7 +1584,9 @@ body.is-leaving { opacity: 0; transition: opacity .28s ease; }
 /* title with a one-line description underneath; the pills stay on the right */
 .wcard__text { display: flex; flex-direction: column; gap: 6px; min-width: 0; flex: 1 1 260px; }
 .wcard__desc { font-size: 14px; line-height: 1.4; color: var(--ink-50); }
-.wcard__pills { display: flex; flex-wrap: wrap; gap: 6px; }
+/* the pills line up with the title row: the margin centers the 22px pills on the title's line box */
+.wcard__pills { display: flex; flex-wrap: wrap; gap: 6px;
+  margin-top: max(0px, calc((clamp(18px, 1.6vw, 23px) * 1.1 - 22px) / 2)); }
 .wcard__pill {
   display: inline-flex; align-items: center;
   padding: 5px 11px; border-radius: var(--r-tag);
