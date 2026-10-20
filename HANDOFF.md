@@ -1807,3 +1807,7 @@ Same system as the Vendrs rewrite (`.cs--col` plus the `.v-*` components, no new
   `pointerType` touch/pen; with a mouse the bare surface does nothing (no grab cursor). Single photos can still be
   dragged. A "Swipe with two fingers to look around" pill (`.ab-gallery__hint`) shows on open and fades after the
   first swipe (`.has-swiped`).
+- **2026-10-20, later:** the LinkedIn app icon is gone from the About board (LinkedIn stays in the footer), and the
+  "n/m" counters on the community photo piles are gone. The hobby-gear idea (Eris 3.5 monitors, OP-1 as "dream gear",
+  the signed leverless cut out and flattened) is parked for later: see `mockups/about-hobbies.html`
+  (built by `tools/mk-about-hobbies-mockup.py`) and the images in `assets/graphics/hobbies/` (unused on the live page).

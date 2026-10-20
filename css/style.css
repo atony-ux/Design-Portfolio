@@ -2467,16 +2467,6 @@ body.is-leaving { opacity: 0; transition: opacity .28s ease; }
 .ab-note .pg-lab { margin-bottom: 4px; color: var(--orange); }
 .ab-note__t { margin: 0; font-family: var(--hand); font-size: 22px; font-weight: 600; line-height: 1.15; color: var(--ink); }
 
-/* LinkedIn, as one big app icon. `.ab-it .ab-app` beats the global `.pg-it a { display: block }`,
-   which had knocked the label off centre under the tile. */
-.ab-it .ab-app { display: flex; }
-.ab-app { display: flex; flex-direction: column; align-items: center; gap: 8px;
-  font-size: 13px; font-weight: 500; color: var(--ink-75); transition: transform .35s var(--ease-back); }
-.ab-app:hover { transform: translateY(-3px); }
-.ab-app__tile { width: 72px; height: 72px; border-radius: var(--r-md); display: grid; place-items: center;
-  color: #fff; background: var(--app); box-shadow: 0 10px 22px -10px rgba(16, 16, 40, 0.35); }
-.ab-app__tile svg { width: 34px; height: 34px; }
-
 /* scene two, right: community polaroids, each a little pile of three. The first card
    sits in flow and sizes the pile; the others lie under it, peeking out at an angle.
    data-i is a card's place in the pile (0 = on top), set by js/main.js. Pressing the
@@ -2505,9 +2495,6 @@ body.is-leaving { opacity: 0; transition: opacity .28s ease; }
   line-height: 1.1; color: var(--ink-75); }
 .ab-pol__ic { width: 22px; height: 22px; }
 div.ab-pol__deck { cursor: inherit; }   /* a single photo: nothing to flip */
-/* which photo of the pile: a small chip in the photo's bottom-right corner (no sticker sits there) */
-.ab-pol__img small { position: absolute; right: 8px; bottom: 8px; padding: 2px 7px; background: rgba(255,255,255,.88);
-  font-family: var(--sans); font-size: 11px; font-weight: 500; line-height: 1.5; letter-spacing: .04em; color: var(--ink-75); }
 .ab-pol__mood { position: absolute; z-index: 2; width: 60px; height: auto; pointer-events: none;
   filter: drop-shadow(0 4px 6px rgba(16, 16, 40, .12)); }
 
@@ -2560,7 +2547,7 @@ html.ab-gallery-open { overflow: hidden; }
 @media (max-width: 900px) {
   .ab { grid-template-columns: minmax(0, 1fr); gap: 40px; }
   .ab-board { width: auto; height: auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; align-items: start; }
-  .ab-board--main { grid-template-areas: "music music" "me strava" "me now" "evo artist" "apps apps"; }
+  .ab-board--main { grid-template-areas: "music music" "me strava" "me now" "evo artist"; }
   .ab-board--comm { gap: 24px 16px; }
   .ab-pol:nth-child(odd) { rotate: -2deg !important; }
   .ab-pol:nth-child(even) { rotate: 2deg !important; }
@@ -2577,7 +2564,6 @@ html.ab-gallery-open { overflow: hidden; }
   .ab-it--now    { grid-area: now; rotate: -1.5deg !important; align-self: stretch; }
   .ab-it--evo    { grid-area: evo; rotate: 2deg !important; }
   .ab-it--artist { grid-area: artist; rotate: -1.5deg !important; align-self: stretch; }
-  .ab-it--apps   { grid-area: apps; rotate: none !important; margin-top: 8px; }
   .ab-it:hover > * { translate: none; }
   .ab-it--music .pg-sleeve { margin-top: 48px; }
   .ab-it--now .ab-note, .ab-it--artist .pg-card { height: 100%; box-sizing: border-box; }
@@ -2587,7 +2573,6 @@ html.ab-gallery-open { overflow: hidden; }
   .ab-it--artist .pg-artist__name { font-size: 21px; }
   .ab-note { padding: 14px 14px 16px; }
   .ab-note__t { font-size: 20px; }
-  .ab-it--apps .ab-app { margin-inline: auto; }
   .ab-deco { display: none; }
   .ab-it--stack, .pgd.ab-gallery { display: none; }   /* the gallery needs a big screen, as before */
 }
