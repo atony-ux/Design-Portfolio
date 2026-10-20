@@ -1262,6 +1262,50 @@
     });
   })();
 
+  /* -------------------------------------------------- About: the photo stack opens the gallery
+     Since 2026-10-20 the playground stage (#playground) is a full-screen overlay
+     that stays hidden until the photo stack on the page is pressed. Showing it
+     and then pressing the wallet inside it runs the gallery exactly as before;
+     when the wallet closes the gallery, the overlay fades away again. */
+  (function () {
+    var stage = document.getElementById("playground");
+    var opener = document.querySelector("[data-gallery-open]");
+    var wallet = document.getElementById("pg-wallet");
+    if (!stage || !opener || !wallet || !stage.classList.contains("ab-gallery")) return;
+    var root = document.documentElement, hideTimer = 0;
+    function show() {
+      clearTimeout(hideTimer);
+      stage.classList.add("is-on");
+      stage.setAttribute("aria-hidden", "false");
+      root.classList.add("ab-gallery-open");
+      /* a short beat so the overlay is laid out before the wallet measures it
+         (a timer, not rAF: rAF does not run in every browser context) */
+      setTimeout(function () {
+        if (!stage.classList.contains("is-photos")) wallet.click();
+        wallet.focus({ preventScroll: true });
+      }, 40);
+    }
+    function hide() {
+      hideTimer = setTimeout(function () {
+        stage.classList.remove("is-on");
+        stage.setAttribute("aria-hidden", "true");
+        root.classList.remove("ab-gallery-open");
+        opener.focus({ preventScroll: true });
+      }, 520);   /* let the photos fly back into the stack first */
+    }
+    opener.addEventListener("click", show);
+    wallet.addEventListener("click", function () {
+      setTimeout(function () { if (!stage.classList.contains("is-photos")) hide(); }, 0);
+    });
+    /* Escape closes the gallery, but only when no photo is zoomed: that first
+       Escape belongs to the zoom (the photo module handles it) */
+    document.addEventListener("keydown", function (e) {
+      if (e.key !== "Escape" || !stage.classList.contains("is-photos")) return;
+      if (stage.classList.contains("is-zoomedmode")) return;
+      wallet.click();
+    }, true);
+  })();
+
   /* -------------------------------------------------- Nav shrinks inside the playground
      That section is meant to read as one screen, so the full-width bar collapses
      to a small floating pill while you are in it and expands again on the way

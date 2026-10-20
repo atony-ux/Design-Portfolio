@@ -2363,33 +2363,19 @@ body.is-leaving { opacity: 0; transition: opacity .28s ease; }
 }
 
 /* =====================================================================
-   ABOUT DESK (2026-10-20): the bio and the playground on one screen
-   Built from mockups/about-combined.html. The stage is still #playground
-   (.pgd), so dragging, the site-wide music player and the photo gallery run
-   on the same JS as before. The ID column and the bio are fixed blocks on that
-   stage; the cards on the right are the draggable .pg-it objects; the photo
-   stack is the old wallet (#pg-wallet), restyled.
-   Collage and drag from 1280px up. Between 901 and 1279 it stacks with no
-   drag and no gallery; at 900 and below the playground's phone grid takes over.
+   ABOUT (2026-10-20, v2): two calm columns + a full-screen photo gallery
+   The first version put the bio and the playground on one busy screen; this one
+   splits them. Left: the bio, sticky while you scroll. Right: the photo, then the
+   widgets stacked underneath (music player, EVO photo, Atony card, photo stack).
+   The photo stack opens the gallery: #playground is now a fixed overlay that is
+   hidden until then, so the old wallet / photo / Sort / Scatter JS runs as is.
    ===================================================================== */
-/* no snap: the desk is the top of the page, and snapping it to the very top on load slid the bio under the sticky nav */
-.ab-sec { margin-top: 0; scroll-snap-align: none; }
-.ab-desk .ab-id, .ab-desk .ab-bio { -webkit-user-select: text; user-select: text; }
+.ab { display: grid; grid-template-columns: minmax(0, 1fr) clamp(300px, 28vw, 380px);
+  gap: 0 clamp(48px, 7vw, 112px); align-items: start;
+  padding-top: clamp(32px, 4vw, 56px); padding-bottom: clamp(72px, 9vw, 128px); }
 
-/* left: the ID column */
-.ab-id__photo { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; display: block;
-  border-radius: var(--r-md); box-shadow: var(--sh-lift); }
-.ab-id__name { margin: 20px 0 0; font-size: 15px; font-weight: 600; }
-.ab-id__role { margin: 3px 0 0; font-size: 14px; color: var(--ink-50); }
-.ab-id__apps { display: flex; gap: 16px; margin-top: 18px; }
-.ab-app { display: flex; flex-direction: column; align-items: center; gap: 6px;
-  font-size: 11.5px; color: var(--ink-75); transition: transform .35s var(--ease-back); }
-.ab-app:hover { transform: translateY(-3px) rotate(-3deg); }
-.ab-app__tile { width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center;
-  color: #fff; background: var(--app); box-shadow: 0 8px 18px -10px rgba(16, 16, 40, 0.3); }
-.ab-app__tile svg { width: 22px; height: 22px; }
-
-/* middle: the bio */
+/* left: the bio (sticky so it stays beside the widgets as they scroll past) */
+.ab-bio { position: sticky; top: 104px; max-width: 560px; }
 .ab-bio__title { margin: 0; font-size: clamp(30px, 3.1vw, 40px); font-weight: 500; letter-spacing: -.025em; line-height: 1.15; }
 .ab-bio p:not(.ab-lab) { margin: 18px 0 0; font-size: 15px; line-height: 1.7; color: var(--ink-75); }
 .ab-bio p + p:not(.ab-lab) { margin-top: 12px; }
@@ -2402,16 +2388,31 @@ body.is-leaving { opacity: 0; transition: opacity .28s ease; }
 .ab-rows span { color: var(--ink-75); }
 .ab-rows a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--ink-30); text-underline-offset: 3px; }
 .ab-rows a:hover { color: var(--blue); text-decoration-color: var(--blue); }
-.ab-bio__sumi { width: 66px; height: auto; margin-top: 18px; transform: rotate(-3deg); }
+.ab-links { display: flex; gap: 16px; margin-top: 28px; }
+.ab-app { display: flex; flex-direction: column; align-items: center; gap: 6px;
+  font-size: 11.5px; color: var(--ink-75); transition: transform .35s var(--ease-back); }
+.ab-app:hover { transform: translateY(-3px); }
+.ab-app__tile { width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center;
+  color: #fff; background: var(--app); box-shadow: 0 8px 18px -10px rgba(16, 16, 40, 0.3); }
+.ab-app__tile svg { width: 22px; height: 22px; }
+.ab-bio__sumi { display: block; width: 62px; height: auto; margin-top: 28px; }
 
-/* the cards keep their playground look; only the sizes are set here */
-.ab-desk .pg-it--music { width: 220px; }
-.ab-desk .pg-it--evo { width: 190px; }
-.ab-desk .pg-it--artist { width: 214px; }
-.ab-hint { margin: 0; font-family: var(--hand); font-size: 21px; color: var(--ink-50); pointer-events: none; }
+/* right: the photo, then the widgets, one under another */
+.ab-side { display: grid; gap: 28px; }
+.ab-photo { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; display: block;
+  border-radius: var(--r-md); box-shadow: var(--sh-lift); }
+.ab-photo__cap { margin: -16px 0 0; font-size: 13.5px; color: var(--ink-50); }
+.ab-w { width: 100%; }
+.ab-w .pg-sleeve { margin-top: 56px; }       /* room for the disc that sits on top of the card */
+.ab-w--evo .pg-pol { display: block; }
+.ab-w--evo .pg-pol img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.ab-w--artist .pg-card { display: block; }
 
-/* the photo stack (the wallet, restyled as three fanned prints) */
-.ab-desk .ab-stack { width: 244px; height: 228px; }
+/* the photo stack: three fanned prints. Used twice: as the button on the page,
+   and as the wallet that docks at the bottom of the open gallery */
+.ab-stack { position: relative; display: block; width: 244px; height: 228px; padding: 0; border: 0;
+  background: none; cursor: pointer; font: inherit; color: inherit; }
+.ab-stack--open { justify-self: center; margin-top: 4px; }
 .ab-stack__ph { position: absolute; width: 146px; background: #fff; padding: 7px 7px 22px; border-radius: 3px;
   box-shadow: 0 10px 24px -12px rgba(16, 16, 40, .28), 0 2px 6px rgba(16, 16, 40, .05);
   transition: transform .45s var(--ease-back); }
@@ -2421,61 +2422,31 @@ body.is-leaving { opacity: 0; transition: opacity .28s ease; }
 .ab-stack__ph:nth-child(3) { left: 96px; top: 30px; transform: rotate(13deg); }
 .ab-stack:hover .ab-stack__ph:nth-child(1) { transform: rotate(-16deg) translate(-16px, -4px); }
 .ab-stack:hover .ab-stack__ph:nth-child(3) { transform: rotate(18deg) translate(16px, 4px); }
-.ab-desk .ab-stack__cue { position: absolute; left: 28px; bottom: -6px; margin: 0; white-space: nowrap;
+.ab-stack:focus-visible { outline: 2px solid var(--blue); outline-offset: 8px; border-radius: var(--r-md); }
+.ab-stack .ab-stack__cue { position: absolute; left: 28px; bottom: -6px; margin: 0; white-space: nowrap;
   font-family: var(--hand); font-size: 24px; font-weight: 700; letter-spacing: 0; text-transform: none;
   color: var(--blue); opacity: 1; transform: rotate(-4deg); }
 
-/* gallery open: the bio steps aside so the photos have the surface to themselves */
-.ab-desk .ab-id, .ab-desk .ab-bio, .ab-desk .ab-hint { transition: opacity .4s var(--ease), visibility .4s; }
-.ab-desk.is-photos .ab-id, .ab-desk.is-photos .ab-bio, .ab-desk.is-photos .ab-hint { opacity: 0; visibility: hidden; }
-/* the stack is taller than the old wallet, so it docks a little higher and Sort/Scatter sit wider */
-.ab-desk.is-photos .ab-stack { top: calc(100% - 222px); }
-.ab-desk .pg-arrange--sort { right: calc(50% + 118px); }
-.ab-desk .pg-arrange--scatter { left: calc(50% + 118px); }
+/* ---------- the gallery overlay ---------- */
+.ab-gallery-sec { margin: 0; position: static; overflow: visible; scroll-snap-align: none; }
+.pgd.ab-gallery { position: fixed; inset: 0; z-index: 400; width: auto; height: auto; min-height: 0; max-height: none;
+  background: var(--bg); opacity: 0; visibility: hidden; transition: opacity .3s var(--ease), visibility .3s; }
+.pgd.ab-gallery.is-on { opacity: 1; visibility: visible; }
+html.ab-gallery-open { overflow: hidden; }
+/* the wallet waits in the middle (the photos burst from there), then docks */
+.ab-gallery .pg-wallet.ab-stack { position: absolute; width: 244px; height: 228px; }
+.pgd.ab-gallery.is-photos .pg-wallet.ab-stack { top: calc(100% - 222px); }
+.ab-gallery .pg-arrange--sort { right: calc(50% + 118px); }
+.ab-gallery .pg-arrange--scatter { left: calc(50% + 118px); }
 
-/* ---------- 1280px and up: the collage ---------- */
-@media (min-width: 1280px) {
-  .ab-desk { --edge: max(var(--gutter), (100% - var(--maxw)) / 2); --side: 272px;
-    --main-l: calc(var(--edge) + var(--side) + 72px);
-    --main-w: calc(100% - 2 * var(--edge) - var(--side) - 72px);
-    height: calc(100svh - 64px); min-height: 720px; max-height: 960px; }
-  .ab-objs { display: contents; }
-  .ab-id { position: absolute; left: var(--edge); top: 28px; width: var(--side); z-index: 4; }
-  .ab-bio { position: absolute; left: var(--main-l); top: 34px; width: min(470px, calc(var(--main-w) * .5)); z-index: 4; }
-  .ab-desk .pg-it--music { right: var(--edge); top: 0; transform: rotate(3deg); }
-  .ab-desk .pg-it--evo { left: calc(var(--main-l) + var(--main-w) * .54); top: 62px; transform: rotate(-4deg); }
-  .ab-desk .pg-it--artist { left: calc(var(--main-l) + var(--main-w) * .52); top: 300px; transform: rotate(2.5deg); }
-  .ab-desk .ab-stack { left: calc(100% - var(--edge) - 122px); top: 440px; }
-  .ab-hint { position: absolute; left: calc(var(--main-l) + var(--main-w) * .5); top: 590px; transform: rotate(-3deg); z-index: 4; }
-  .ab-star { position: absolute; }
-  .ab-star--a { left: calc(var(--main-l) + var(--main-w) * .47); top: 36px; width: 28px; transform: rotate(-14deg); }
-  .ab-star--b { left: calc(var(--main-l) + var(--main-w) * .9); top: 380px; width: 24px; transform: rotate(12deg); }
-}
-
-/* ---------- 901 to 1279px: stacked, no drag, no gallery ---------- */
-@media (min-width: 901px) and (max-width: 1279px) {
-  .ab-desk { height: auto; min-height: 0; max-height: none; touch-action: auto;
-    max-width: calc(var(--maxw) + var(--gutter) * 2); margin-inline: auto;
-    padding: 28px var(--gutter) 72px;
-    display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 40px; align-items: start; }
-  .ab-objs { grid-column: 2; display: flex; flex-wrap: wrap; gap: 28px; align-items: flex-start; }
-  .ab-desk .ab-objs .pg-it { position: relative; cursor: default; }
-  .ab-desk .pg-star, .ab-hint, .ab-desk .pg-wallet, .ab-desk .pg-photos, .ab-desk .pg-arrange { display: none; }
-}
-
-/* ---------- 900px and below: the playground's phone grid, ID and bio first ---------- */
+/* ---------- smaller screens ---------- */
 @media (max-width: 900px) {
-  .ab-objs { display: contents; }
-  .ab-desk .ab-id { order: -2; grid-column: 1 / -1; }
-  .ab-desk .ab-id__photo { max-width: 260px; }
-  .ab-desk .ab-bio { order: -1; grid-column: 1 / -1; margin: 10px 0 14px; }
-  .ab-hint { display: none; }
-  /* the EVO photo and the Atony card share a row (the "me" polaroid it used to pair with is gone) */
-  .pgd.ab-desk .pg-it--artist { grid-column: span 3; }
-}
-/* 1280 to 1399: the right-hand area is narrow, so drop the note and let the cards breathe */
-@media (min-width: 1280px) and (max-width: 1399px) {
-  .ab-hint { display: none; }
-  .ab-desk .pg-it--artist { top: 318px; }
-  .ab-desk .ab-stack { top: 470px; }
+  .ab { grid-template-columns: 1fr; gap: 0; }
+  .ab-bio { position: static; max-width: none; order: 2; }
+  .ab-side { display: contents; }
+  .ab-photo { order: 1; max-width: 280px; }
+  .ab-photo__cap { order: 1; margin: 10px 0 24px; }
+  .ab-w, .ab-stack--open { order: 3; margin-top: 28px; }
+  .ab-w--music { max-width: 360px; }
+  .ab-stack--open, .pgd.ab-gallery { display: none; }   /* the gallery needs a big screen, as before */
 }
