@@ -2363,19 +2363,21 @@ body.is-leaving { opacity: 0; transition: opacity .28s ease; }
 }
 
 /* =====================================================================
-   ABOUT (2026-10-20, v2): two calm columns + a full-screen photo gallery
-   The first version put the bio and the playground on one busy screen; this one
-   splits them. Left: the bio, sticky while you scroll. Right: the photo, then the
-   widgets stacked underneath (music player, EVO photo, Atony card, photo stack).
-   The photo stack opens the gallery: #playground is now a fixed overlay that is
+   ABOUT (2026-10-20, v3): the bio + a small cluster of widgets
+   v1 put the bio and the playground on one busy screen; v2 split them into the
+   bio and one tall column of big widgets. v3 keeps the split but makes the right
+   side a compact cluster (after emilee369's about page): the photo and the
+   widgets, smaller, in two short columns. The whole thing is centred so the bio
+   and the widgets sit close together at any width.
+   The photo stack opens the gallery: #playground is a fixed overlay that is
    hidden until then, so the old wallet / photo / Sort / Scatter JS runs as is.
    ===================================================================== */
-.ab { display: grid; grid-template-columns: minmax(0, 1fr) clamp(300px, 28vw, 380px);
-  gap: 0 clamp(48px, 7vw, 112px); align-items: start;
-  padding-top: clamp(32px, 4vw, 56px); padding-bottom: clamp(72px, 9vw, 128px); }
+.ab { display: grid; grid-template-columns: minmax(0, 520px) 560px; justify-content: center;
+  gap: 0 clamp(56px, 6.67vw, 96px); align-items: start;
+  padding-top: clamp(40px, 5vw, 72px); padding-bottom: clamp(72px, 9vw, 128px); }
 
-/* left: the bio (sticky so it stays beside the widgets as they scroll past) */
-.ab-bio { position: sticky; top: 104px; max-width: 560px; }
+/* left: the bio (sticky in case the widgets run longer) */
+.ab-bio { position: sticky; top: 104px; }
 .ab-bio__title { margin: 0; font-size: clamp(30px, 3.1vw, 40px); font-weight: 500; letter-spacing: -.025em; line-height: 1.15; }
 .ab-bio p:not(.ab-lab) { margin: 18px 0 0; font-size: 15px; line-height: 1.7; color: var(--ink-75); }
 .ab-bio p + p:not(.ab-lab) { margin-top: 12px; }
@@ -2397,13 +2399,15 @@ body.is-leaving { opacity: 0; transition: opacity .28s ease; }
 .ab-app__tile svg { width: 22px; height: 22px; }
 .ab-bio__sumi { display: block; width: 62px; height: auto; margin-top: 28px; }
 
-/* right: the photo, then the widgets, one under another */
-.ab-side { display: grid; gap: 28px; }
+/* right: two short columns. Left: the photo, then EVO. Right: the music player
+   (its disc pokes above the card, which staggers the two), Atony, the photo stack */
+.ab-side { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; align-items: start; }
+.ab-col { display: grid; gap: 32px; align-content: start; }
+.ab-me { margin: 0; }
 .ab-photo { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; display: block;
   border-radius: var(--r-md); box-shadow: var(--sh-lift); }
-.ab-photo__cap { margin: -16px 0 0; font-size: 13.5px; color: var(--ink-50); }
+.ab-photo__cap { margin: 12px 0 0; font-size: 13px; color: var(--ink-50); }
 .ab-w { width: 100%; }
-.ab-w .pg-sleeve { margin-top: 56px; }       /* room for the disc that sits on top of the card */
 .ab-w--evo .pg-pol { display: block; }
 .ab-w--evo .pg-pol img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
 .ab-w--artist .pg-card { display: block; }
@@ -2440,13 +2444,22 @@ html.ab-gallery-open { overflow: hidden; }
 .ab-gallery .pg-arrange--scatter { left: calc(50% + 118px); }
 
 /* ---------- smaller screens ---------- */
+/* laptops: one column of widgets beside the bio */
+@media (max-width: 1199px) {
+  .ab { grid-template-columns: minmax(0, 520px) 264px; }
+  .ab-side { grid-template-columns: minmax(0, 1fr); }
+  .ab-col { display: contents; }
+  .ab-me { order: -2; }
+  .ab-w--music { order: -1; }
+}
+/* phones: the photo, the bio, then the widgets */
 @media (max-width: 900px) {
-  .ab { grid-template-columns: 1fr; gap: 0; }
-  .ab-bio { position: static; max-width: none; order: 2; }
-  .ab-side { display: contents; }
-  .ab-photo { order: 1; max-width: 280px; }
-  .ab-photo__cap { order: 1; margin: 10px 0 24px; }
-  .ab-w, .ab-stack--open { order: 3; margin-top: 28px; }
-  .ab-w--music { max-width: 360px; }
+  .ab { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .ab-bio { position: static; order: 2; }
+  .ab-side, .ab-col { display: contents; }
+  .ab-me { order: 1; max-width: 280px; margin-bottom: 24px; }
+  .ab-w { order: 3; max-width: 360px; margin-top: 32px; }
+  .ab-w--music { order: 3; }
+  .ab-w--evo, .ab-w--artist { order: 4; }
   .ab-stack--open, .pgd.ab-gallery { display: none; }   /* the gallery needs a big screen, as before */
 }

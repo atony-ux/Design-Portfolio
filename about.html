@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300..700;1,300..700&family=Caveat:wght@600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/vendor/drawably/style.css?v=0.4.2" />
-  <link rel="stylesheet" href="css/style.css?v=x182" />
+  <link rel="stylesheet" href="css/style.css?v=x183" />
 </head>
 <body>
   <!-- ============ NAV ============ -->
@@ -41,10 +41,10 @@
   </div>
 
   <main>
-    <!-- ============ ABOUT (2026-10-20, v2) ============
-         Two calm columns: the bio on the left stays in view, and the photo with
-         the widgets stacked under it scrolls on the right. The photo stack opens
-         the full-screen gallery (#playground) as an overlay. -->
+    <!-- ============ ABOUT (2026-10-20, v3) ============
+         The bio on the left; on the right, the photo and the widgets in two short
+         columns, small and close together. The photo stack opens the full-screen
+         gallery (#playground) as an overlay. -->
     <section class="ab wrap" id="about">
       <div class="ab-bio">
         <h1 class="ab-bio__title">Hi, I'm Anthony</h1>
@@ -66,63 +66,69 @@
       </div>
 
       <div class="ab-side">
-        <img class="ab-photo" src="assets/graphics/portrait-about-v2.webp" alt="Portrait of Anthony" width="800" height="1000" />
-        <p class="ab-photo__cap">Design @ UC Davis · Roseville, CA</p>
+        <div class="ab-col">
+          <figure class="ab-me">
+            <img class="ab-photo" src="assets/graphics/portrait-about-v2.webp" alt="Portrait of Anthony" width="800" height="1000" />
+            <figcaption class="ab-photo__cap">Design @ UC Davis · Roseville, CA</figcaption>
+          </figure>
 
-        <!-- my work: home of the site-wide music player ("Music" in js/main.js) -->
-        <div class="ab-w ab-w--music">
-          <div class="pg-sleeve" data-player>
-            <span class="pg-disc"><img src="assets/graphics/cd.webp" alt="" loading="lazy" decoding="async" /></span>
-            <span class="pg-lab" style="margin-bottom:6px">My work<span class="pg-count" data-mp-count>1 / 6</span></span>
-            <span class="pg-sleeve__t" data-mp-title>10dollar</span>
-            <div class="pg-player">
-              <span class="pg-time pg-time--now" data-mp-elapsed>0:00</span>
-              <span class="pg-seek" data-mp-seek role="slider" tabindex="0" aria-label="Seek"><span class="pg-prog"><span class="pg-prog__bar" data-mp-bar></span></span></span>
-              <span class="pg-time" data-mp-dur>1:31</span>
-            </div>
-            <div class="pg-ctrls">
-              <button class="pg-skip" type="button" data-mp-prev aria-label="Previous track"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 6v12l-9-6z"/><path d="M5.3 6h2.3v12H5.3z"/></svg></button>
-              <button class="pg-play" type="button" data-mp-play aria-label="Play">
-                <svg class="pg-play__i" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
-                <svg class="pg-play__p" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5h3v13H8zM13 5.5h3v13h-3z"/></svg>
-              </button>
-              <button class="pg-skip" type="button" data-mp-next aria-label="Next track"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 6v12l9-6z"/><path d="M16.4 6h2.3v12h-2.3z"/></svg></button>
-            </div>
-            <!-- volume: the mini bar's vertical pop-up, parked in the card's top-right corner -->
-            <span class="mp__vol pg-cvol">
-              <button class="mp__btn mp__volbtn" type="button" data-mp-mute aria-label="Mute">
-                <svg class="mp__vol-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4z" fill="currentColor" stroke="none"/><path d="M15.5 9.5a3.5 3.5 0 0 1 0 5M18 7a7 7 0 0 1 0 10"/></svg>
-                <svg class="mp__vol-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4z" fill="currentColor" stroke="none"/><path d="M16 9.5l5 5M21 9.5l-5 5"/></svg>
-              </button>
-              <span class="mp__volwrap"><input type="range" min="0" max="100" step="1" value="50" orient="vertical" aria-orientation="vertical" data-mp-vol aria-label="Volume" /><span class="mp__volpct" data-mp-volpct aria-hidden="true"></span></span>
+          <!-- tekken, as a polaroid -->
+          <div class="ab-w ab-w--evo">
+            <span class="pg-pol pg-pol--solo">
+              <img src="assets/graphics/tekken-evo.webp" alt="Playing Tekken 8 against ATIF at EVO" loading="lazy" decoding="async" />
+              <span>vs ATIF at EVO</span>
             </span>
           </div>
         </div>
 
-        <!-- tekken, as a polaroid -->
-        <div class="ab-w ab-w--evo">
-          <span class="pg-pol pg-pol--solo">
-            <img src="assets/graphics/tekken-evo.webp" alt="Playing Tekken 8 against ATIF at EVO" loading="lazy" decoding="async" />
-            <span>vs ATIF at EVO</span>
-          </span>
-        </div>
+        <div class="ab-col">
+          <!-- my work: home of the site-wide music player ("Music" in js/main.js) -->
+          <div class="ab-w ab-w--music">
+            <div class="pg-sleeve" data-player>
+              <span class="pg-disc"><img src="assets/graphics/cd.webp" alt="" loading="lazy" decoding="async" /></span>
+              <span class="pg-lab" style="margin-bottom:6px">My work<span class="pg-count" data-mp-count>1 / 6</span></span>
+              <span class="pg-sleeve__t" data-mp-title>10dollar</span>
+              <div class="pg-player">
+                <span class="pg-time pg-time--now" data-mp-elapsed>0:00</span>
+                <span class="pg-seek" data-mp-seek role="slider" tabindex="0" aria-label="Seek"><span class="pg-prog"><span class="pg-prog__bar" data-mp-bar></span></span></span>
+                <span class="pg-time" data-mp-dur>1:31</span>
+              </div>
+              <div class="pg-ctrls">
+                <button class="pg-skip" type="button" data-mp-prev aria-label="Previous track"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 6v12l-9-6z"/><path d="M5.3 6h2.3v12H5.3z"/></svg></button>
+                <button class="pg-play" type="button" data-mp-play aria-label="Play">
+                  <svg class="pg-play__i" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+                  <svg class="pg-play__p" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5h3v13H8zM13 5.5h3v13h-3z"/></svg>
+                </button>
+                <button class="pg-skip" type="button" data-mp-next aria-label="Next track"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 6v12l9-6z"/><path d="M16.4 6h2.3v12h-2.3z"/></svg></button>
+              </div>
+              <!-- volume: the mini bar's vertical pop-up, parked in the card's top-right corner -->
+              <span class="mp__vol pg-cvol">
+                <button class="mp__btn mp__volbtn" type="button" data-mp-mute aria-label="Mute">
+                  <svg class="mp__vol-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4z" fill="currentColor" stroke="none"/><path d="M15.5 9.5a3.5 3.5 0 0 1 0 5M18 7a7 7 0 0 1 0 10"/></svg>
+                  <svg class="mp__vol-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4z" fill="currentColor" stroke="none"/><path d="M16 9.5l5 5M21 9.5l-5 5"/></svg>
+                </button>
+                <span class="mp__volwrap"><input type="range" min="0" max="100" step="1" value="50" orient="vertical" aria-orientation="vertical" data-mp-vol aria-label="Volume" /><span class="mp__volpct" data-mp-volpct aria-hidden="true"></span></span>
+              </span>
+            </div>
+          </div>
 
-        <!-- the music name -->
-        <div class="ab-w ab-w--artist">
-          <a class="pg-card pg-artist" href="https://soundcloud.com/atonyn" target="_blank" rel="noopener">
-            <span class="pg-artist__mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M2 14v3M5 12v5M8 9.5v7.5M11 11v6"/><path d="M13.5 17V8.9c2.4-1.4 5.4 0 5.8 2.9 1.6-.4 3 .8 3 2.3 0 1.6-1.2 2.9-2.8 2.9h-6z" fill="currentColor" stroke="none"/></svg></span>
-            <span class="pg-artist__name">Atony</span>
-            <span class="pg-artist__sub">This is where I release my music.</span>
-          </a>
-        </div>
+          <!-- the music name -->
+          <div class="ab-w ab-w--artist">
+            <a class="pg-card pg-artist" href="https://soundcloud.com/atonyn" target="_blank" rel="noopener">
+              <span class="pg-artist__mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M2 14v3M5 12v5M8 9.5v7.5M11 11v6"/><path d="M13.5 17V8.9c2.4-1.4 5.4 0 5.8 2.9 1.6-.4 3 .8 3 2.3 0 1.6-1.2 2.9-2.8 2.9h-6z" fill="currentColor" stroke="none"/></svg></span>
+              <span class="pg-artist__name">Atony</span>
+              <span class="pg-artist__sub">This is where I release my music.</span>
+            </a>
+          </div>
 
-        <!-- opens the photo gallery -->
-        <button class="ab-stack ab-stack--open" type="button" data-gallery-open aria-controls="playground" aria-label="Open the photo gallery">
-          <span class="ab-stack__ph" aria-hidden="true"><img src="assets/graphics/about-photos/p22.webp?v=2" alt="" /></span>
-          <span class="ab-stack__ph" aria-hidden="true"><img src="assets/graphics/about-photos/p03.webp?v=2" alt="" /></span>
-          <span class="ab-stack__ph" aria-hidden="true"><img src="assets/graphics/about-photos/p29.webp?v=2" alt="" /></span>
-          <span class="ab-stack__cue">33 more photos →</span>
-        </button>
+          <!-- opens the photo gallery -->
+          <button class="ab-stack ab-stack--open" type="button" data-gallery-open aria-controls="playground" aria-label="Open the photo gallery">
+            <span class="ab-stack__ph" aria-hidden="true"><img src="assets/graphics/about-photos/p22.webp?v=2" alt="" /></span>
+            <span class="ab-stack__ph" aria-hidden="true"><img src="assets/graphics/about-photos/p03.webp?v=2" alt="" /></span>
+            <span class="ab-stack__ph" aria-hidden="true"><img src="assets/graphics/about-photos/p29.webp?v=2" alt="" /></span>
+            <span class="ab-stack__cue">33 more photos →</span>
+          </button>
+        </div>
       </div>
     </section>
 
@@ -221,6 +227,6 @@
   </footer>
 
   <script src="assets/vendor/drawably/drawably.classic.js?v=0.4.2"></script>
-  <script src="js/main.js?v=x182"></script>
+  <script src="js/main.js?v=x183"></script>
 </body>
 </html>

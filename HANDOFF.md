@@ -1711,19 +1711,24 @@ Same system as the Vendrs rewrite (`.cs--col` plus the `.v-*` components, no new
   **To update it, overwrite that file with the new PDF (same name) and push.**
 - Home page case-study cards have a one-line description under the title (`.wcard__text` / `.wcard__desc`).
 
-## About page: two calm columns + a gallery overlay (2026-10-20)
-- A first pass put the bio and the playground on one busy screen ("desk", from mockups/about-combined.html); the
-  user found it too much, so the same day it became **two columns**: `section.ab.wrap#about`.
+## About page: the bio + a small widget cluster, gallery as an overlay (2026-10-20)
+- Went through three versions in one day: v1 put the bio and the playground on one busy screen ("desk", from
+  mockups/about-combined.html); v2 split it into the bio and one tall column of big widgets; v3 (current, after
+  emilee369.github.io/portfolio/about.html) keeps the split but shrinks the right side into a compact cluster.
+  - `section.ab.wrap#about` is a centred grid: `minmax(0, 520px) 560px`, gap up to 96px, so the bio and the widgets
+    sit close together and everything fits on one screen at 1440.
   - Left `.ab-bio` (sticky, top 104px): "Hi, I'm Anthony", the bio, the "Outside of design" list, Resume/LinkedIn/Email
     tiles, Sumi.
-  - Right `.ab-side`: the portrait + caption, then the widgets stacked under it: the music sleeve (`.ab-w--music`, still
-    `.pg-sleeve[data-player]`, so the site-wide player works), the EVO polaroid, the Atony card, and the photo stack
-    button (`.ab-stack--open`, `data-gallery-open`).
+  - Right `.ab-side`: two `.ab-col` columns, 264px each. Column 1: the portrait (`figure.ab-me`, photo + caption) and
+    the EVO polaroid. Column 2: the music sleeve (`.ab-w--music`, still `.pg-sleeve[data-player]`, so the site-wide
+    player works), the Atony card, and the photo stack button (`.ab-stack--open`, `data-gallery-open`).
+  - 901 to 1199px: one 264px column of widgets (`.ab-col` is `display: contents`; photo, music, EVO, Atony, stack).
+    Phones: photo, bio, then music, EVO, Atony; no gallery.
 - **The gallery is an overlay now.** `#playground` (`.pgd.ab-gallery`) is `position: fixed` and hidden until the photo
   stack is pressed; a small IIFE in main.js ("About: the photo stack opens the gallery") shows it, then clicks
   `#pg-wallet` inside it, so the old wallet/photo/pan/Sort/Scatter code runs unchanged. Closing (the docked stack or
   Escape, unless a photo is zoomed) fades the overlay, unlocks scroll (`html.ab-gallery-open`) and returns focus.
-  It works at any width above 900px (it used to need the playground screen); phones still skip it.
+  It works at any width above 900px (it used to need the playground screen).
 - Nothing on the page is draggable any more (no `.pg-it` left). The drag engine still exists and is harmless.
 - Removed: the scattered collage, doodles, "drag these around" hint, the "me" polaroid, Hobbies chips, "Currently
   working on" card, app tiles, tools image, the "Outside design" heading. Their CSS is still in style.css (unused), as
