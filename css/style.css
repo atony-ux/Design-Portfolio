@@ -2498,15 +2498,16 @@ body.is-leaving { opacity: 0; transition: opacity .28s ease; }
 .ab-pol__deck:hover .ab-pol__card[data-i="2"] { transform: translate(-8px, 7px) rotate(-3.5deg); box-shadow: 0 1px 2px rgba(16,16,40,.08); }
 .ab-pol__card.is-out { z-index: 4; transform: translate(64%, -10%) rotate(14deg);
   transition-duration: .26s; transition-timing-function: var(--ease); }
-.ab-pol__img { display: grid; place-items: center; aspect-ratio: 4 / 3; overflow: hidden; background: var(--frame); color: var(--ink-30); }
+.ab-pol__img { position: relative; display: grid; place-items: center; aspect-ratio: 4 / 3; overflow: hidden; background: var(--frame); color: var(--ink-30); }
 .ab-pol__img svg { width: 34px; height: 34px; }
 .ab-pol__img img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .ab-pol__cap { position: relative; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 0 12px; font-family: var(--hand); font-size: 25px; font-weight: 700;
   line-height: 1.1; color: var(--ink-75); }
 .ab-pol__ic { width: 22px; height: 22px; }
 div.ab-pol__deck { cursor: inherit; }   /* a single photo: nothing to flip */
-.ab-pol__cap small { position: absolute; right: 2px; bottom: 14px; font-family: var(--sans); font-size: 11px; font-weight: 500;
-  letter-spacing: .04em; color: var(--ink-30); }
+/* which photo of the pile: a small chip in the photo's bottom-right corner (no sticker sits there) */
+.ab-pol__img small { position: absolute; right: 8px; bottom: 8px; padding: 2px 7px; background: rgba(255,255,255,.88);
+  font-family: var(--sans); font-size: 11px; font-weight: 500; line-height: 1.5; letter-spacing: .04em; color: var(--ink-75); }
 .ab-pol__mood { position: absolute; z-index: 2; width: 60px; height: auto; pointer-events: none;
   filter: drop-shadow(0 4px 6px rgba(16, 16, 40, .12)); }
 

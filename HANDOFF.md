@@ -1789,9 +1789,11 @@ Same system as the Vendrs rewrite (`.cs--col` plus the `.v-*` components, no new
   in underneath. Each card shows "n/3". The pile is `isolation: isolate` so the mood sticker stays on top.
 - **Real community photos (2026-10-20)** in `assets/graphics/communities/`: `<slug>-<n>.webp` (960x720, cropped 4:3
   and framed on the people) and `<slug>-logo.webp` (192px white square tiles; Prod. Davis's transparent wordmark was
-  set on a white square to match the others). Piles: #include 2, Prod. Davis 3, Design Interactive 1 (a plain
-  polaroid: `div.ab-pol__deck`, the flip script skips it), Codelab 4. The photo-to-community mapping was inferred from
-  the order the user sent them in (each logo after its photos, Prod. Davis's photos after its logo).
+  set on a white square to match the others). Piles: #include 4, Prod. Davis 3, Design Interactive 2, Codelab 1 (a
+  plain polaroid: `div.ab-pol__deck`, the flip script skips it). Which photo belongs where comes from the original
+  file names in ~/Desktop/communitiessss (a first pass guessed from paste order and got Codelab/DI/#include wrong).
+- The "n/m" counter is a chip in each photo's bottom-right corner (`.ab-pol__img small`); in the caption it ran into
+  long names like "Design Interactive".
 - Scene two heading is "My communities" with "Where I like to spend a lot of my time." under it (`.ab-comms__sub`);
   each list row and each polaroid caption starts with the community's logo tile (`.ab-comm__ic`, `.ab-pol__ic`).
 - `tools/shot.mjs` (Node 22+, no installs): drives headless Chrome over the DevTools protocol to screenshot a page
