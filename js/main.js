@@ -876,7 +876,8 @@
   })();
 
   /* -------------------------------------------------- Photo mode: infinite pannable surface
-     With the wallet open you can drag the empty surface to look around, and the
+     With the wallet open you swipe with two fingers on the trackpad to look
+     around (touchscreens drag the empty surface instead), and the
      space wraps: keep dragging and the same photos come back round.
 
      There are no clones. Each photo keeps ONE element and its position is taken
@@ -1190,9 +1191,34 @@
        never fight a photo drag or a button */
     stage.addEventListener("pointerdown", function () { if (glide) stopGlide(); }, true);
 
+    /* Trackpad first (2026-10-20): a two-finger swipe pans the surface in any
+       direction, like scrolling a page that has no edges (a mouse wheel pans up
+       and down, shift + wheel sideways). Click-and-drag panning is kept for
+       touchscreens only; with a mouse or trackpad, a drag on the bare surface
+       does nothing. A pinch (ctrlKey) is left to the browser, and while a photo
+       is zoomed the swipe is swallowed so the zoomed photo stays put. */
+    var wheelIdle = 0;
+    stage.addEventListener("wheel", function (e) {
+      if (!stage.classList.contains("is-photos") || e.ctrlKey) return;
+      e.preventDefault();
+      if (stage.classList.contains("is-zoomedmode")) return;
+      stopGlide();
+      stage.classList.add("has-swiped");   /* hides the "swipe to look around" cue */
+      var k = e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? stage.clientHeight : 1;
+      panX -= e.deltaX * k;
+      panY -= e.deltaY * k;
+      /* is-panning switches the photos' transitions off, so they track the
+         fingers exactly instead of easing behind them */
+      stage.classList.add("is-panning");
+      clearTimeout(wheelIdle);
+      wheelIdle = setTimeout(function () { if (!dragging) stage.classList.remove("is-panning"); }, 160);
+      apply();
+    }, { passive: false });
+
     stage.addEventListener("pointerdown", function (e) {
       if (!stage.classList.contains("is-photos")) return;
       if (e.target !== stage) return;             /* bare surface only */
+      if (e.pointerType === "mouse") return;      /* mouse/trackpad: swipe instead (above) */
       dragging = true;
       sx = e.clientX; sy = e.clientY; startX = panX; startY = panY;
       vx = 0; vy = 0; lastT = e.timeStamp; lastX = e.clientX; lastY = e.clientY;

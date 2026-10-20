@@ -145,9 +145,9 @@ body.cursor-active { cursor: none; }
 body.cursor-active a, body.cursor-active button,
 body.cursor-active .card, body.cursor-active [data-magnetic] { cursor: none; }
 body.cursor-active .pg-it, body.cursor-active .pg-photo,
-body.cursor-active .pgd.is-photos { cursor: grab; }
+body.cursor-active .pgd.is-photos { cursor: default; }
 body.cursor-active .pg-it:active, body.cursor-active .pg-photo:active,
-body.cursor-active .pg-photo.is-dragging, body.cursor-active .pgd.is-photos.is-panning { cursor: grabbing; }
+body.cursor-active .pg-photo.is-dragging { cursor: grabbing; }
 /* a zoomed photo keeps zoom-out; it must outrank the .pg-photo grab above,
    hence the same .pgd.is-photos prefix the original rule uses */
 body.cursor-active .pgd.is-photos .pg-photo.is-zoomed { cursor: zoom-out; }
@@ -2160,8 +2160,8 @@ body.is-leaving { opacity: 0; transition: opacity .28s ease; }
 /* only grabbable once they are actually out of the wallet */
 .pgd.is-photos .pg-photo { pointer-events: auto; }
 /* the bare surface becomes a pannable canvas in photo mode */
-.pgd.is-photos { cursor: grab; }
-.pgd.is-photos.is-panning { cursor: grabbing; }
+/* the surface pans with a trackpad swipe, not a drag, so no grab hand on it */
+.pgd.is-photos { cursor: default; }
 /* a live pan must not fight the burst transition, or every photo lags the cursor */
 .pgd.is-panning .pg-photo,
 .pgd.is-panning .pg-hd { transition: none; }
@@ -2538,6 +2538,12 @@ div.ab-pol__deck { cursor: inherit; }   /* a single photo: nothing to flip */
   background: var(--bg); opacity: 0; visibility: hidden; transition: opacity .3s var(--ease), visibility .3s; }
 .pgd.ab-gallery.is-on { opacity: 1; visibility: visible; }
 html.ab-gallery-open { overflow: hidden; }
+/* the first-time cue for trackpad panning; fades out after the first swipe (.has-swiped) */
+.ab-gallery__hint { position: absolute; left: 50%; top: 28px; z-index: 130; translate: -50% 0; margin: 0; padding: 7px 16px;
+  border-radius: var(--r-pill); background: var(--ink); color: #fff; font-size: 13px; pointer-events: none;
+  opacity: 0; transition: opacity .4s var(--ease); }
+.pgd.ab-gallery.is-photos .ab-gallery__hint { opacity: .9; transition-delay: .6s; }
+.pgd.ab-gallery.has-swiped .ab-gallery__hint { opacity: 0; transition-delay: 0s; }
 /* the wallet waits in the middle (the photos burst from there), then docks */
 .ab-gallery .pg-wallet.ab-stack { position: absolute; width: 244px; height: 228px; }
 .pgd.ab-gallery.is-photos .pg-wallet.ab-stack { top: calc(100% - 222px); }

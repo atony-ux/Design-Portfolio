@@ -1801,3 +1801,9 @@ Same system as the Vendrs rewrite (`.cs--col` plus the `.v-*` components, no new
   `node tools/shot.mjs "http://localhost:4323/about.html" /tmp/scene 1440 900 0,500,1000`.
 - Resume replaced 2026-10-20 with Anthony_Nguyen___Resume_UPDATED.pdf (same filename, `Anthony-Nguyen-Resume.pdf`).
   LinkedIn is linkedin.com/in/atonyn everywhere (the user confirmed it; the old /in/anthony-nguyen-a79683392 is gone).
+- **Gallery panning is trackpad-first (2026-10-20).** A `wheel` listener on `#playground` (passive: false) pans the
+  surface with two-finger swipes in any direction (mouse wheel: up/down, shift + wheel: sideways). Pinch (ctrlKey) is
+  left to the browser; while a photo is zoomed the swipe is swallowed. Click-and-drag panning now only runs for
+  `pointerType` touch/pen; with a mouse the bare surface does nothing (no grab cursor). Single photos can still be
+  dragged. A "Swipe with two fingers to look around" pill (`.ab-gallery__hint`) shows on open and fades after the
+  first swipe (`.has-swiped`).
