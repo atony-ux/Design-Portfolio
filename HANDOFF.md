@@ -1732,6 +1732,14 @@ Same system as the Vendrs rewrite (`.cs--col` plus the `.v-*` components, no new
   board); the portrait caption is a handwritten "me"; the Atony card is a row (56px SoundCloud mark, "Atony" and
   "My music" beside it); only LinkedIn is left as an app icon, at 72px (Resume is in the nav, Email in the footer);
   the Strava card links to the real profile (strava.com/athletes/88987403).
+- **Communities** (after elaineyu.design/about's "Experience + communities"): under the bio, `.ab-lab` label +
+  `ul.ab-comm` rows, name left and role right: #include / Design Lead, Prod. Davis / Graphic Designer, Design
+  Interactive / Cohort Designer, Codelab / UX Researcher. The bio now starts 24px below the board's top.
+- **Sumi's moods row** (`.ab-moods`, after the section, decorative/aria-hidden): nine stickers cut from the user's
+  3 x 3 moods sheet by `tools/moods.py` into `assets/graphics/sumi/moods/*.webp` (blue lines, white-filled faces,
+  transparent outside). Each tilts by `--r` and hops/flips on hover; 3 x 3 grid on phones.
+- The photo stack cue is now "More photos →". The LinkedIn label was off centre because the global
+  `.pg-it a { display: block }` beat `.ab-app { display: flex }`; fixed with `.ab-it .ab-app`.
 - **Halftone decorations** (`.ab-deco`, behind the pieces, hidden on phones): `assets/graphics/halftone-vinyl.webp`
   and `halftone-headphones.webp`, made by `tools/halftone.py` from the site's own flat doodles (shaded, then a dot
   grid in --blue). The user's two reference images (an "Ultramarine" painting by Mila Blau and an unsourced

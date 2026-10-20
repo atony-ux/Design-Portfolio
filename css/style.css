@@ -2381,14 +2381,22 @@ body.is-leaving { opacity: 0; transition: opacity .28s ease; }
    ===================================================================== */
 .ab { display: grid; grid-template-columns: minmax(0, 460px) 640px; justify-content: center;
   gap: 48px clamp(56px, 6.67vw, 96px); align-items: center;
-  padding-top: clamp(40px, 5vw, 64px); padding-bottom: clamp(72px, 9vw, 128px); }
+  padding-top: clamp(40px, 5vw, 64px); padding-bottom: clamp(40px, 5vw, 64px); }   /* the moods row follows */
 
 /* left: the bio, a little above the board's middle so it sits mid-screen */
-.ab-bio { align-self: start; margin-top: 88px; }
+.ab-bio { align-self: start; margin-top: 24px; }
 .ab-bio__title { margin: 0; font-size: clamp(30px, 3.1vw, 40px); font-weight: 500; letter-spacing: -.025em; line-height: 1.15; }
 .ab-bio p { margin: 18px 0 0; font-size: 15px; line-height: 1.7; color: var(--ink-75); }
 .ab-bio p + p { margin-top: 12px; }
 .ab-bio__sumi { display: block; width: 62px; height: auto; margin-top: 32px; }
+/* communities, after elaineyu.design/about: the name on the left, the role on the right */
+.ab-bio .ab-lab { margin: 40px 0 8px; font-size: 11.5px; font-weight: 600; line-height: 1.4; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--ink-30); }
+.ab-comm { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.ab-comm li { display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+  padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+.ab-comm b { font-weight: 500; color: var(--ink); }
+.ab-comm span { color: var(--ink-50); text-align: right; }
 
 /* right: the board. Each piece is a .pg-it (absolute, draggable, its tilt in an
    inline `rotate` so the drag engine, which only writes left/top, never fights
@@ -2433,13 +2441,23 @@ body.is-leaving { opacity: 0; transition: opacity .28s ease; }
 .ab-note .pg-lab { margin-bottom: 4px; color: var(--orange); }
 .ab-note__t { margin: 0; font-family: var(--hand); font-size: 22px; font-weight: 600; line-height: 1.15; color: var(--ink); }
 
-/* LinkedIn, as one big app icon */
+/* LinkedIn, as one big app icon. `.ab-it .ab-app` beats the global `.pg-it a { display: block }`,
+   which had knocked the label off centre under the tile. */
+.ab-it .ab-app { display: flex; }
 .ab-app { display: flex; flex-direction: column; align-items: center; gap: 8px;
   font-size: 13px; font-weight: 500; color: var(--ink-75); transition: transform .35s var(--ease-back); }
 .ab-app:hover { transform: translateY(-3px); }
 .ab-app__tile { width: 72px; height: 72px; border-radius: var(--r-md); display: grid; place-items: center;
   color: #fff; background: var(--app); box-shadow: 0 10px 22px -10px rgba(16, 16, 40, 0.35); }
 .ab-app__tile svg { width: 34px; height: 34px; }
+
+/* Sumi's moods: a row of nine stickers under the section; each one hops and flips its tilt on hover */
+.ab-moods { display: flex; justify-content: center; align-items: center; flex-wrap: wrap;
+  gap: 16px clamp(12px, 2.2vw, 32px); padding-bottom: clamp(72px, 9vw, 128px); }
+.ab-moods img { display: block; width: clamp(56px, 5.6vw, 80px); height: auto; rotate: var(--r, 0deg);
+  filter: drop-shadow(0 6px 8px rgba(16, 16, 40, .08));
+  transition: translate .35s var(--ease-back), rotate .35s var(--ease-back); }
+.ab-moods img:hover { translate: 0 -6px; rotate: calc(var(--r, 0deg) * -1); }
 
 /* decoration: halftone doodles (tools/halftone.py) behind the pieces */
 .ab-deco { position: absolute; z-index: 1; display: block; height: auto; pointer-events: none; user-select: none; }
@@ -2504,9 +2522,11 @@ html.ab-gallery-open { overflow: hidden; }
   .ab-note__t { font-size: 20px; }
   .ab-it--apps .ab-app { margin-inline: auto; }
   .ab-deco { display: none; }
+  .ab-moods { display: grid; grid-template-columns: repeat(3, 72px); justify-content: center; gap: 16px 28px; }
+  .ab-moods img { width: 72px; }
   .ab-it--stack, .pgd.ab-gallery { display: none; }   /* the gallery needs a big screen, as before */
 }
 @media (prefers-reduced-motion: reduce) {
-  .ab-it { transition: none; }
-  .ab-it:hover { translate: none; }
+  .ab-it, .ab-moods img { transition: none; }
+  .ab-it:hover, .ab-moods img:hover { translate: none; }
 }
