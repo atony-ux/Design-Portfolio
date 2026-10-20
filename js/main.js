@@ -476,7 +476,7 @@
     bar.setAttribute("aria-label", "Music player");
     var SPK = '<path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4z" fill="currentColor" stroke="none"/>';
     bar.innerHTML =
-      '<span class="mp__disc" aria-hidden="true"><img src="' + ROOT + 'assets/graphics/cd.webp" alt="" /></span>' +
+      '<span class="mp__disc" aria-hidden="true"><img src="' + ROOT + 'assets/graphics/cd-disc.webp" alt="" /></span>' +
       '<span class="mp__meta"><span class="mp__t" data-mp-title></span>' +
         '<span class="mp__s"><span data-mp-elapsed></span> / <span data-mp-dur></span> &middot; <span data-mp-count></span></span></span>' +
       '<button class="mp__btn" type="button" data-mp-prev aria-label="Previous track"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 6v12l-9-6z"/><path d="M5.3 6h2.3v12H5.3z"/></svg></button>' +
