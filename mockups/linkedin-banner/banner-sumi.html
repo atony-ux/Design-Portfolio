@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>LinkedIn Banner Sumi</title>
+<!-- LinkedIn banner, simple version (1584 x 396, render at 2x): just Sumi on the
+     portfolio grey with the site's paper grain. Sumi sits a little right of centre so
+     the profile photo (bottom-left on LinkedIn) never covers him. -->
+<style>
+  html, body { margin: 0; background: #fafafa; }
+  .bn { position: relative; width: 1584px; height: 396px; overflow: hidden; background: #fafafa; }
+  .bn::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .3; mix-blend-mode: multiply;
+    background-size: 240px; background-repeat: repeat;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .sumi { position: absolute; left: 716px; top: 40px; height: 316px; width: auto; display: block; }
+</style>
+</head>
+<body>
+  <div class="bn"><img class="sumi" src="sumi-current-trim.png" alt="" /></div>
+</body>
+</html>
