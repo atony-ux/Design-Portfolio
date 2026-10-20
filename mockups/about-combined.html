@@ -8,9 +8,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300..700;1,300..700&family=Caveat:wght@600;700&display=swap" rel="stylesheet" />
 <style>
-/* Mockup only. The About intro and the "Outside design" playground share one screen, the ID column
-   stays put while you scroll (elaine yu), and the communities play as a pinned photo reel whose
-   text swaps as you go (leif caratiquit). Tokens match css/style.css. */
+/* Mockup only. The About intro and the "Outside design" playground share one screen: an ID column
+   (elaine yu) beside the bio, with the playground objects scattered around it (emily wu).
+   Tokens match css/style.css. */
 :root{
   --blue:#213c97; --blue-soft:#e8ebf6; --orange-hi:#ef7a34;
   --bg:#fafafa; --frame:#f1f1f1; --white:#fff; --ink:#101010; --ink-75:rgba(16,16,16,.72); --ink-50:rgba(16,16,16,.62); --ink-30:rgba(16,16,16,.3);
@@ -42,7 +42,7 @@ p,h1,h2,h3{margin:0}
 .page{max-width:calc(var(--maxw) + var(--gutter)*2);margin:0 auto;padding:clamp(12px,2vw,28px) var(--gutter) 120px;
   display:grid;grid-template-columns:var(--side) minmax(0,1fr);gap:0 var(--gap);align-items:start}
 
-/* left: ID column. It stays in view the whole way down (elaine-style) */
+/* left: ID column (elaine-style) */
 .id{position:sticky;top:96px}
 .portrait{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--r-md);box-shadow:var(--sh-lift)}
 .id__name{font-size:15px;font-weight:600;margin-top:20px}
@@ -52,12 +52,6 @@ p,h1,h2,h3{margin:0}
 .app:hover{transform:translateY(-3px) rotate(-3deg)}
 .app i{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;color:#fff;background:var(--app);box-shadow:var(--sh-obj)}
 .app svg{width:22px;height:22px}
-/* where you are on the page: the two jump links fill in as you scroll */
-.id__toc{margin-top:28px;border-top:1px solid var(--line);padding-top:14px;display:grid;gap:8px}
-.id__toc a{font-size:13.5px;color:var(--ink-50);display:flex;align-items:center;gap:8px;transition:color .25s}
-.id__toc a::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--ink-30);transition:background .25s,transform .25s}
-.id__toc a.on{color:var(--ink);font-weight:600}
-.id__toc a.on::before{background:var(--blue);transform:scale(1.3)}
 
 /* ===================================================================== screen 1: bio + objects */
 .hero{position:relative;height:640px}
@@ -119,42 +113,12 @@ p,h1,h2,h3{margin:0}
 .doodle{position:absolute;pointer-events:none}
 .hint{position:absolute;left:51%;top:520px;font-family:var(--hand);font-size:21px;color:var(--ink-50);transform:rotate(-3deg)}
 
-/* scroll cue at the bottom of screen 1 */
-.cue{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--ink-50);margin-top:8px}
-.cue svg{width:18px;height:18px;color:var(--blue);animation:bob 1.9s ease-in-out infinite}
-@keyframes bob{50%{transform:translateY(4px)}}
 
-/* ===================================================================== screen 2+: communities reel */
-.comms{position:relative;height:300vh;margin-top:clamp(40px,6vw,90px)}
-.comms__pin{position:sticky;top:84px;height:calc(100vh - 100px);display:flex;flex-direction:column;justify-content:center;overflow:hidden}
-.comms .lab{margin:0 0 14px}
-.swap{position:relative;min-height:128px}
-.swap__item{position:absolute;inset:0 auto auto 0;max-width:520px;opacity:0;transform:translateY(10px);transition:opacity .45s var(--ease),transform .45s var(--ease)}
-.swap__item.on{opacity:1;transform:none}
-.swap__item h3{font-size:26px;font-weight:500;letter-spacing:-.02em}
-.swap__item p{font-size:15px;line-height:1.7;color:var(--ink-75);margin-top:10px}
-.swap__item .role{display:inline-block;font-size:12px;font-weight:600;color:var(--blue);background:var(--blue-soft);padding:4px 10px;border-radius:var(--r-pill);margin-left:10px;vertical-align:middle}
-.track{display:flex;gap:22px;margin-top:22px;will-change:transform}
-.shot{flex:none;width:clamp(300px,30vw,420px);aspect-ratio:4/3;border-radius:var(--r-md);background:var(--frame);
-  border:1.5px dashed rgba(16,16,16,.16);display:grid;place-items:center;align-content:center;gap:8px;color:var(--ink-50);font-size:13.5px;text-align:center}
-.shot svg{width:26px;height:26px;color:var(--ink-30)}
-.shot b{display:block;font-weight:600;color:var(--ink-75)}
-.shot--di{background:#f3f3f3} .shot--inc{background:#efefef}
-.progress{display:flex;gap:16px;margin-top:22px;align-items:center}
-.progress button{all:unset;cursor:pointer;display:flex;flex-direction:column;gap:7px;font-size:12.5px;color:var(--ink-50)}
-.progress button i{display:block;width:120px;height:3px;border-radius:3px;background:var(--line);overflow:hidden}
-.progress button i b{display:block;height:100%;width:0;background:var(--blue)}
-.progress button.on{color:var(--ink)}
-
-/* review helper for screenshots: lays the pinned reel out in place */
-body.review .comms{height:auto}
-body.review .comms__pin{position:static;height:640px}
 
 /* ===================================================================== smaller screens: no collage, no pinning */
 @media (max-width:1279px){
   .page{grid-template-columns:220px minmax(0,1fr);--gap:40px}
   .id{position:static}
-  .id__toc{display:none}
   .hero{height:auto}
   .bio,.obj,.hint{position:static;transform:none!important}
   .obj{top:auto!important;left:auto!important;right:auto!important}
@@ -162,13 +126,6 @@ body.review .comms__pin{position:static;height:640px}
   .objs{display:flex;flex-wrap:wrap;gap:26px;margin-top:40px;align-items:flex-start}
   .wallet{position:relative}
   .doodle,.hint{display:none}
-  .comms{height:auto}
-  .comms__pin{position:static;height:auto;overflow:visible}
-  .swap{min-height:0;display:grid;gap:28px}
-  .swap__item{position:static;opacity:1;transform:none}
-  .track{overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;transform:none!important}
-  .shot{scroll-snap-align:start}
-  .progress{display:none}
 }
 @media (min-width:1280px){ .objs{display:contents} }
 @media (max-width:760px){
@@ -187,7 +144,7 @@ body.review .comms__pin{position:static;height:640px}
 
 <main class="page">
 
-  <!-- ID column: stays in view while the page scrolls -->
+  <!-- ID column -->
   <aside class="id">
     <img class="portrait" src="../assets/graphics/portrait-about-v2.webp" alt="Portrait of Anthony" />
     <div class="id__name">Anthony Nguyen</div>
@@ -197,10 +154,6 @@ body.review .comms__pin{position:static;height:640px}
       <a class="app" href="https://www.linkedin.com/in/anthony-nguyen-a79683392/" style="--app:#0a66c2"><i><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.2 9.3H3.4V21h2.8zM4.8 3a1.7 1.7 0 1 0 0 3.4A1.7 1.7 0 0 0 4.8 3M21 14.1c0-3.2-1.7-4.7-4-4.7a3.5 3.5 0 0 0-3.1 1.7V9.3H11V21h2.8v-6.1c0-1.6.8-2.6 2.1-2.6s2.1.9 2.1 2.6V21H21z"/></svg></i>LinkedIn</a>
       <a class="app" href="mailto:anthonynguyen.ux@gmail.com" style="--app:#ef7a34"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg></i>Email</a>
     </div>
-    <nav class="id__toc">
-      <a href="#me" class="on" data-toc="me">About me</a>
-      <a href="#communities" data-toc="communities">My communities</a>
-    </nav>
   </aside>
 
   <div class="main">
@@ -249,74 +202,9 @@ body.review .comms__pin{position:static;height:640px}
       <img class="doodle" src="../assets/graphics/beamed-notes.webp" style="left:90%;top:326px;width:24px;transform:rotate(12deg)" alt="" />
       <div class="hint">psst, drag these around ↗</div>
     </section>
-    <a class="cue" href="#communities"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>Scroll for my communities</a>
 
-    <!-- screen 2: communities reel. Pinned while the photos slide past and the text swaps -->
-    <section class="comms" id="communities">
-      <div class="comms__pin">
-        <div class="lab">My communities</div>
-        <div class="swap">
-          <div class="swap__item on" data-c="0">
-            <h3>Design Interactive <span class="role">Product Designer</span></h3>
-            <p>Where Vendrs was born. I designed a tool for small business owners in a 6-week sprint with 3 designers, a PM, and an industry mentor, then pitched it to a panel of industry judges.</p>
-          </div>
-          <div class="swap__item" data-c="1">
-            <h3>#include <span class="role">Product Designer</span></h3>
-            <p>A cohort where I'm designing a website for the Juvenile Caduceus Clinic, taking it from early research all the way to a high-fidelity prototype with my team.</p>
-          </div>
-        </div>
-        <div class="track">
-          <div class="shot shot--di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3l2-2h6l2 2h3v12H4z"/><circle cx="12" cy="13" r="3.5"/></svg><span><b>Design Interactive</b>photo 1</span></div>
-          <div class="shot shot--di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3l2-2h6l2 2h3v12H4z"/><circle cx="12" cy="13" r="3.5"/></svg><span><b>Design Interactive</b>photo 2</span></div>
-          <div class="shot shot--di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3l2-2h6l2 2h3v12H4z"/><circle cx="12" cy="13" r="3.5"/></svg><span><b>Design Interactive</b>photo 3</span></div>
-          <div class="shot shot--inc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3l2-2h6l2 2h3v12H4z"/><circle cx="12" cy="13" r="3.5"/></svg><span><b>#include</b>photo 1</span></div>
-          <div class="shot shot--inc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3l2-2h6l2 2h3v12H4z"/><circle cx="12" cy="13" r="3.5"/></svg><span><b>#include</b>photo 2</span></div>
-          <div class="shot shot--inc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3l2-2h6l2 2h3v12H4z"/><circle cx="12" cy="13" r="3.5"/></svg><span><b>#include</b>photo 3</span></div>
-        </div>
-        <div class="progress">
-          <button class="on" type="button" data-go="0">Design Interactive<i><b></b></i></button>
-          <button type="button" data-go="1">#include<i><b></b></i></button>
-        </div>
-      </div>
-    </section>
   </div>
 </main>
 
-<script>
-/* the reel: while the section is pinned, scroll progress slides the photo track sideways and
-   swaps the community text at the halfway point (leif-style). Desktop only. */
-(function(){
-  var sec=document.querySelector('.comms'), track=document.querySelector('.track');
-  var items=[].slice.call(document.querySelectorAll('.swap__item'));
-  var segs=[].slice.call(document.querySelectorAll('.progress button'));
-  var toc=[].slice.call(document.querySelectorAll('.id__toc a'));
-  var mq=window.matchMedia('(min-width:1280px)');
-  function update(){
-    if(document.body.classList.contains('review')) return;
-    var r=sec.getBoundingClientRect();
-    var span=sec.offsetHeight-innerHeight+100;
-    var p=Math.min(1,Math.max(0,(-r.top+84)/span));
-    if(mq.matches){
-      var max=track.scrollWidth-track.parentElement.clientWidth;
-      track.style.transform='translateX('+(-p*max)+'px)';
-    }
-    var c=p<0.5?0:1;
-    items.forEach(function(it,i){it.classList.toggle('on',i===c)});
-    segs.forEach(function(s,i){s.classList.toggle('on',i===c);s.querySelector('b').style.width=Math.min(100,Math.max(0,(p-i*0.5)*200))+'%'});
-    var inComms=r.top<innerHeight*0.5;
-    toc.forEach(function(a){a.classList.toggle('on',(a.dataset.toc==='communities')===inComms)});
-  }
-  segs.forEach(function(s,i){s.addEventListener('click',function(){
-    var span=sec.offsetHeight-innerHeight+100; window.scrollTo({top:sec.offsetTop-84+span*(i?0.75:0.05),behavior:'smooth'})})});
-  addEventListener('scroll',update,{passive:true}); addEventListener('resize',update); update();
-  /* review helper: about-combined.html#at=0.6 opens the reel 60% of the way through */
-  var m=location.hash.match(/at=([\d.]+)/);
-  var rv=location.hash.match(/review=([\d.]+)/);
-  if(rv){ document.body.classList.add('review'); var pp=parseFloat(rv[1]); var mx=track.scrollWidth-track.parentElement.clientWidth;
-    track.style.transform='translateX('+(-pp*mx)+'px)'; var cc=pp<0.5?0:1;
-    items.forEach(function(it,i){it.classList.toggle('on',i===cc)}); segs.forEach(function(s,i){s.classList.toggle('on',i===cc);s.querySelector('b').style.width=Math.min(100,Math.max(0,(pp-i*0.5)*200))+'%'}); }
-  if(m){ document.documentElement.style.scrollBehavior='auto'; var span=sec.offsetHeight-innerHeight+100; scrollTo(0,sec.offsetTop-84+span*parseFloat(m[1])); update(); }
-})();
-</script>
 </body>
 </html>
