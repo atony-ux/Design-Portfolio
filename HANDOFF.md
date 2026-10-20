@@ -1793,4 +1793,4 @@ Same system as the Vendrs rewrite (`.cs--col` plus the `.v-*` components, no new
   after scrolling, which plain `--screenshot` cannot do:
   `node tools/shot.mjs "http://localhost:4323/about.html" /tmp/scene 1440 900 0,500,1000`.
 - Resume replaced 2026-10-20 with Anthony_Nguyen___Resume_UPDATED.pdf (same filename, `Anthony-Nguyen-Resume.pdf`).
-  Its LinkedIn link is linkedin.com/in/atonyn; the site's LinkedIn links use /in/anthony-nguyen-a79683392.
+  LinkedIn is linkedin.com/in/atonyn everywhere (the user confirmed it; the old /in/anthony-nguyen-a79683392 is gone).

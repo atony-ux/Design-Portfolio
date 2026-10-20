@@ -1721,7 +1721,7 @@
       a: "He's a fourth-year <strong>B.A. Design</strong> student at <strong>UC Davis</strong> (expected 2026), focused on UI/UX and interactive media. Before that he did an <strong>A.A. in Applied Art &amp; Design</strong> at Sierra College. He also spent two years in computer science before switching to design." },
 
     { k: ["contact","email","reach","reach out","hire","hiring","message","talk","connect","linkedin","get in touch","dm"],
-      a: "Best way is email: <a href='mailto:anthonynguyen.ux@gmail.com'>anthonynguyen.ux@gmail.com</a>. He's also on <a href='https://www.linkedin.com/in/anthony-nguyen-a79683392/' target='_blank' rel='noopener'>LinkedIn</a>." },
+      a: "Best way is email: <a href='mailto:anthonynguyen.ux@gmail.com'>anthonynguyen.ux@gmail.com</a>. He's also on <a href='https://www.linkedin.com/in/atonyn/' target='_blank' rel='noopener'>LinkedIn</a>." },
 
     { k: ["resume","cv","curriculum"],
       a: "His resume is <a href='" + up + "Anthony-Nguyen-Resume.pdf' target='_blank' rel='noopener'>right here</a>." },
