@@ -1625,7 +1625,7 @@
       a: "Figma is his main tool, and he leans on AI in his workflow (this site was built with Claude). Day to day that's UX research, wireframing, prototyping, design systems, and shipping real UI." },
 
     { k: ["hobby","hobbies","fun","free time","outside","music","beats","produce","production","soundcloud","spotify","run","running","strava","friends","tekken","game","games"],
-      a: "Outside of design: <strong>music production</strong> (on <a href='https://soundcloud.com/' target='_blank' rel='noopener'>SoundCloud</a> and <a href='https://open.spotify.com/' target='_blank' rel='noopener'>Spotify</a>), <strong>running</strong> (<a href='https://www.strava.com/' target='_blank' rel='noopener'>Strava</a>), and hanging with friends, usually with a Tekken set on." },
+      a: "Outside of design: <strong>music production</strong> (on <a href='https://soundcloud.com/' target='_blank' rel='noopener'>SoundCloud</a> and <a href='https://open.spotify.com/' target='_blank' rel='noopener'>Spotify</a>), <strong>running</strong> (<a href='https://www.strava.com/athletes/88987403' target='_blank' rel='noopener'>Strava</a>), and hanging with friends, usually with a Tekken set on." },
 
     { k: ["where","live","lives","based","location","from","city","sacramento","local"],
       a: "He's based in <strong>Sacramento, California</strong>, and studies up the road at UC Davis." },

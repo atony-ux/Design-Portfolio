@@ -2383,7 +2383,8 @@ body.is-leaving { opacity: 0; transition: opacity .28s ease; }
   gap: 48px clamp(56px, 6.67vw, 96px); align-items: center;
   padding-top: clamp(40px, 5vw, 64px); padding-bottom: clamp(72px, 9vw, 128px); }
 
-/* left: the bio */
+/* left: the bio, a little above the board's middle so it sits mid-screen */
+.ab-bio { align-self: start; margin-top: 88px; }
 .ab-bio__title { margin: 0; font-size: clamp(30px, 3.1vw, 40px); font-weight: 500; letter-spacing: -.025em; line-height: 1.15; }
 .ab-bio p { margin: 18px 0 0; font-size: 15px; line-height: 1.7; color: var(--ink-75); }
 .ab-bio p + p { margin-top: 12px; }
@@ -2399,14 +2400,17 @@ body.is-leaving { opacity: 0; transition: opacity .28s ease; }
 .ab-it img { -webkit-user-drag: none; user-select: none; }
 .ab-photo { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; display: block;
   border-radius: var(--r-md); box-shadow: var(--sh-lift); }
-.ab-photo__cap { margin: 10px 0 0; font-size: 12.5px; color: var(--ink-50); }
+.ab-photo__cap { margin: 8px 0 0; text-align: center; font-family: var(--hand); font-size: 26px; font-weight: 700;
+  line-height: 1; color: var(--ink-75); }
 .ab-it--evo .pg-pol { display: block; }
 .ab-it--evo .pg-pol img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
-.ab-it--artist .pg-card { display: block; padding: 14px; }
-.ab-it--artist .pg-artist__mark { width: 32px; height: 32px; border-radius: 10px; margin-bottom: 10px; }
-.ab-it--artist .pg-artist__mark svg { width: 19px; height: 19px; }
-.ab-it--artist .pg-artist__name { font-size: 22px; }
-.ab-it--artist .pg-artist__sub { margin-top: 6px; font-size: 12.5px; }
+/* Atony: a big SoundCloud mark with the name and "My music" beside it */
+.ab-it--artist .pg-card { display: flex; align-items: center; gap: 14px; padding: 12px; }
+.ab-it--artist .pg-artist__mark { flex: none; width: 56px; height: 56px; border-radius: var(--r-md); margin: 0; }
+.ab-it--artist .pg-artist__mark svg { width: 32px; height: 32px; }
+.pg-artist__txt { display: flex; flex-direction: column; min-width: 0; }
+.ab-it--artist .pg-artist__name { font-size: 24px; }
+.ab-it--artist .pg-artist__sub { margin-top: 4px; font-size: 13px; }
 .ab-it .pg-sleeve__t { font-size: 17px; }
 
 /* running: a little Strava card with a route doodle */
@@ -2429,16 +2433,16 @@ body.is-leaving { opacity: 0; transition: opacity .28s ease; }
 .ab-note .pg-lab { margin-bottom: 4px; color: var(--orange); }
 .ab-note__t { margin: 0; font-family: var(--hand); font-size: 22px; font-weight: 600; line-height: 1.15; color: var(--ink); }
 
-/* the links, as little app icons */
-.ab-apps { display: flex; gap: 16px; }
-.ab-app { display: flex; flex-direction: column; align-items: center; gap: 6px;
-  font-size: 11.5px; color: var(--ink-75); transition: transform .35s var(--ease-back); }
-.ab-app:nth-child(2) { rotate: 4deg; translate: 0 6px; }
-.ab-app:nth-child(3) { rotate: -3deg; }
+/* LinkedIn, as one big app icon */
+.ab-app { display: flex; flex-direction: column; align-items: center; gap: 8px;
+  font-size: 13px; font-weight: 500; color: var(--ink-75); transition: transform .35s var(--ease-back); }
 .ab-app:hover { transform: translateY(-3px); }
-.ab-app__tile { width: 48px; height: 48px; border-radius: 12px; display: grid; place-items: center;
-  color: #fff; background: var(--app); box-shadow: 0 8px 18px -10px rgba(16, 16, 40, 0.3); }
-.ab-app__tile svg { width: 22px; height: 22px; }
+.ab-app__tile { width: 72px; height: 72px; border-radius: var(--r-md); display: grid; place-items: center;
+  color: #fff; background: var(--app); box-shadow: 0 10px 22px -10px rgba(16, 16, 40, 0.35); }
+.ab-app__tile svg { width: 34px; height: 34px; }
+
+/* decoration: halftone doodles (tools/halftone.py) behind the pieces */
+.ab-deco { position: absolute; z-index: 1; display: block; height: auto; pointer-events: none; user-select: none; }
 
 /* the photo stack: three fanned prints. Used twice: as the button on the page,
    and as the wallet that docks at the bottom of the open gallery */
@@ -2474,6 +2478,7 @@ html.ab-gallery-open { overflow: hidden; }
 /* laptops: the bio on top, the board under it */
 @media (max-width: 1279px) {
   .ab { grid-template-columns: minmax(0, 640px); }
+  .ab-bio { margin-top: 0; }
 }
 /* phones: no room to scatter, so the pieces fall into a plain two-column grid
    (the global .pg-it rule at 900px already drops them out of position) */
@@ -2491,11 +2496,14 @@ html.ab-gallery-open { overflow: hidden; }
   .ab-it:hover { translate: none; }
   .ab-it--music .pg-sleeve { margin-top: 48px; }
   .ab-it--now .ab-note, .ab-it--artist .pg-card { height: 100%; box-sizing: border-box; }
-  .ab-it--artist .pg-card { display: flex; flex-direction: column; justify-content: center; }
+  .ab-it--artist .pg-card { gap: 10px; }
+  .ab-it--artist .pg-artist__mark { width: 44px; height: 44px; }
+  .ab-it--artist .pg-artist__mark svg { width: 26px; height: 26px; }
+  .ab-it--artist .pg-artist__name { font-size: 21px; }
   .ab-note { padding: 14px 14px 16px; }
   .ab-note__t { font-size: 20px; }
-  .ab-apps { justify-content: center; gap: 24px; }
-  .ab-app:nth-child(n) { rotate: none; translate: none; }
+  .ab-it--apps .ab-app { margin-inline: auto; }
+  .ab-deco { display: none; }
   .ab-it--stack, .pgd.ab-gallery { display: none; }   /* the gallery needs a big screen, as before */
 }
 @media (prefers-reduced-motion: reduce) {

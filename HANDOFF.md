@@ -1728,6 +1728,14 @@ Same system as the Vendrs rewrite (`.cs--col` plus the `.v-*` components, no new
   - The drag engine in main.js now runs on `#playground, .ab-board` (a forEach over stages) and is on at 901px+.
   - 901 to 1279px: the bio on top, the board under it (same 640px board). Phones: the board becomes a 2-column grid
     with `grid-template-areas` (music / me+strava / me+note / evo+artist / apps) and small fixed tilts; no gallery.
+- Later the same day: the bio sits `margin-top: 88px` from the board's top (mid-screen at 1440x900, not centred on the
+  board); the portrait caption is a handwritten "me"; the Atony card is a row (56px SoundCloud mark, "Atony" and
+  "My music" beside it); only LinkedIn is left as an app icon, at 72px (Resume is in the nav, Email in the footer);
+  the Strava card links to the real profile (strava.com/athletes/88987403).
+- **Halftone decorations** (`.ab-deco`, behind the pieces, hidden on phones): `assets/graphics/halftone-vinyl.webp`
+  and `halftone-headphones.webp`, made by `tools/halftone.py` from the site's own flat doodles (shaded, then a dot
+  grid in --blue). The user's two reference images (an "Ultramarine" painting by Mila Blau and an unsourced
+  halftone CD player) were NOT used, only the halftone idea.
 - **Paper grain, site-wide** (after rachelchen.tech): `body::after`, a fixed SVG fractal-noise tile (240px),
   `mix-blend-mode: multiply`, opacity `var(--grain, .3)` (same values as the reference; it darkens the page by about
   10 levels, as it does theirs). Lower `--grain` on `:root` to soften it.
