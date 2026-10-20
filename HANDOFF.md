@@ -1757,3 +1757,27 @@ Same system as the Vendrs rewrite (`.cs--col` plus the `.v-*` components, no new
   working on" card, app tiles, tools image, the "Outside design" heading. Their CSS is still in style.css (unused), as
   is `.about-hero`.
 - Drag-engine fix kept from the first pass: `moved` resets on every pointerdown.
+
+## Sharp corners + the About scroll scene (2026-10-20, About v5)
+- **Sharp corners, site-wide (a trial).** `--r-lg / --r-md / --r-sm` are 0 in `:root` (were 24 / 16 / 8). Cards,
+  thumbnails, photos and panels go square; pills (buttons, tags, chips) and circles stay round. Undo = put the three
+  numbers back.
+- **About is two scenes in one section** (`section.ab-scene > .ab`): scene one = `.ab-bio` + `.ab-board--main` (the
+  widgets), scene two = `.ab-comms` (Communities heading + list) + `.ab-board--comm` (four community polaroids,
+  freeform and draggable, each with a Sumi mood sticker from `assets/graphics/sumi/moods/`). The moods row under the
+  section is gone.
+- **GSAP 3.13 + ScrollTrigger** (cdnjs, only on about.html, before main.js). main.js "About: the scroll scene":
+  `gsap.matchMedia` for `(min-width: 1280px) and (min-height: 820px) and (prefers-reduced-motion: no-preference)`
+  adds `.ab.is-scene` (both scenes share one cell per side, stage = 100vh minus the nav), pins the stage for
+  `+=110%` and scrubs a timeline: widgets float up and away (random order, spin, fade), bio fades, polaroids drop in
+  and settle, the Communities list fades in. Otherwise (smaller/shorter screens, reduced motion, CDN missing) the
+  scenes stack: 2 x 2 grid at 1280+, one column below, a 2-column polaroid grid on phones.
+  - GSAP folds a piece's CSS `rotate`/`translate` into its own transform and writes `rotate:none; translate:none`
+    inline. So the polaroid tilts are read before the first `gsap.set` and used as the end rotation, and the hover
+    lift moved to the piece's children (`.ab-it:hover > *`).
+  - `html.ab-on-comms` + a `ab:scene` event tell the music module the sleeve is gone, so the mini bar takes over.
+- **Community photos are placeholders** (camera icon in `.ab-pol__img`). Put an `<img>` inside each `.ab-pol__img`
+  in place of the svg.
+- `tools/shot.mjs` (Node 22+, no installs): drives headless Chrome over the DevTools protocol to screenshot a page
+  after scrolling, which plain `--screenshot` cannot do:
+  `node tools/shot.mjs "http://localhost:4323/about.html" /tmp/scene 1440 900 0,500,1000`.

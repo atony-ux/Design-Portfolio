@@ -572,8 +572,9 @@
     var seeking = null;   /* 0..1 while a progress bar is being dragged */
     function showBar() {
       var photos = !!(stage && stage.classList.contains("is-photos"));
-      /* photo mode pulls the sleeve off the desk */
-      var away = photos;
+      /* photo mode pulls the sleeve off the desk, and so does the About scroll
+         scene once the widgets have been swept away (html.ab-on-comms) */
+      var away = photos || document.documentElement.classList.contains("ab-on-comms");
       bar.classList.toggle("is-shown", st.active && (!sleeve || !sleeveOnScreen || away));
       document.body.classList.toggle("mp-lift", photos);
     }
@@ -711,6 +712,7 @@
         showBar();
       }, { threshold: [0, 0.35, 1] }).observe(sleeve);
     }
+    window.addEventListener("ab:scene", showBar);
     /* photo mode sucks the sleeve into the wallet, so the bar takes over */
     if (stage && "MutationObserver" in window) {
       new MutationObserver(showBar).observe(stage, { attributes: true, attributeFilter: ["class"] });
@@ -1302,6 +1304,65 @@
       if (stage.classList.contains("is-zoomedmode")) return;
       wallet.click();
     }, true);
+  })();
+
+  /* -------------------------------------------------- About: the scroll scene (GSAP + ScrollTrigger)
+     Big, tall screens only. The stage pins for about a screen of scrolling while
+     the widgets are swept up off the board and the community polaroids drop in,
+     and the bio hands over to the Communities list. It is scrubbed, so scrolling
+     back up plays it in reverse. Anywhere else (narrow or short screens, reduced
+     motion, or the CDN scripts missing) nothing runs and the two scenes stack.
+     gsap.matchMedia undoes every inline style it set when the query stops matching. */
+  (function () {
+    var scene = document.querySelector(".ab-scene");
+    if (!scene || !window.gsap || !window.ScrollTrigger) return;
+    gsap.registerPlugin(ScrollTrigger);
+    var stage = scene.querySelector(".ab");
+    var nav = document.querySelector(".nav-outer");
+    var root = document.documentElement;
+    function navH() { return nav ? nav.offsetHeight : 0; }
+    function setScene(on) {
+      if (on === root.classList.contains("ab-on-comms")) return;
+      root.classList.toggle("ab-on-comms", on);
+      window.dispatchEvent(new Event("ab:scene"));   /* the music bar listens */
+    }
+    gsap.matchMedia().add("(min-width: 1280px) and (min-height: 820px) and (prefers-reduced-motion: no-preference)", function () {
+      stage.classList.add("is-scene");
+      stage.style.setProperty("--nav-h", navH() + "px");
+      var outs = gsap.utils.toArray(".ab-board--main > *");
+      var ins = gsap.utils.toArray(".ab-board--comm > *");
+      var bio = stage.querySelector(".ab-bio");
+      var comms = stage.querySelector(".ab-comms");
+      var rnd = gsap.utils.random;
+      /* GSAP folds each piece's CSS `rotate` into its own transform (and writes
+         rotate:none), so the polaroids' tilts are read first and used as the end
+         rotation, or they would land dead straight */
+      var tilts = ins.map(function (el) { return parseFloat(el.style.rotate) || 0; });
+      gsap.set(ins, { autoAlpha: 0, y: 160, rotation: function (i) { return tilts[i] + rnd(-16, 16); } });
+      gsap.set(comms, { autoAlpha: 0, y: 32 });
+      var tl = gsap.timeline({
+        defaults: { ease: "power2.inOut" },
+        scrollTrigger: {
+          trigger: scene, pin: stage, scrub: 0.6, invalidateOnRefresh: true,
+          start: function () { return "top " + navH() + "px"; },
+          end: "+=110%",
+          onUpdate: function (self) { setScene(self.progress > 0.5); }
+        }
+      });
+      /* swept off: each widget floats up and away with a spin, in random order */
+      tl.to(outs, {
+        autoAlpha: 0, scale: 0.86, duration: 0.5,
+        y: function () { return rnd(-280, -150); },
+        x: function () { return rnd(-70, 70); },
+        rotation: function () { return rnd(-28, 28); },
+        stagger: { each: 0.035, from: "random" }
+      }, 0)
+        .to(bio, { autoAlpha: 0, y: -36, duration: 0.35 }, 0.05)
+        /* dropped in: the polaroids land one after another and settle on their tilt */
+        .to(ins, { autoAlpha: 1, y: 0, rotation: function (i) { return tilts[i]; }, duration: 0.5, ease: "back.out(1.5)", stagger: 0.09 }, 0.45)
+        .to(comms, { autoAlpha: 1, y: 0, duration: 0.35 }, 0.5);
+      return function () { stage.classList.remove("is-scene"); setScene(false); };
+    });
   })();
 
   /* -------------------------------------------------- Nav shrinks inside the playground
