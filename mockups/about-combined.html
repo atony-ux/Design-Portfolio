@@ -8,56 +8,60 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300..700;1,300..700&family=Caveat:wght@600;700&display=swap" rel="stylesheet" />
 <style>
-/* Mockup only: the About intro and the "Outside design" playground merged into one screen.
-   Layout ideas: emily wu (bio set inside a scatter of personal objects) and elaine yu
-   (a compact ID column plus a short "verb - detail" list). Tokens match css/style.css. */
+/* Mockup only. The About intro and the "Outside design" playground share one screen, the ID column
+   stays put while you scroll (elaine yu), and the communities play as a pinned photo reel whose
+   text swaps as you go (leif caratiquit). Tokens match css/style.css. */
 :root{
-  --blue:#213c97; --blue-soft:#e8ebf6; --orange:#b3491a; --orange-hi:#ef7a34;
-  --bg:#fafafa; --white:#fff; --ink:#101010; --ink-75:rgba(16,16,16,.72); --ink-50:rgba(16,16,16,.62); --ink-30:rgba(16,16,16,.3);
+  --blue:#213c97; --blue-soft:#e8ebf6; --orange-hi:#ef7a34;
+  --bg:#fafafa; --frame:#f1f1f1; --white:#fff; --ink:#101010; --ink-75:rgba(16,16,16,.72); --ink-50:rgba(16,16,16,.62); --ink-30:rgba(16,16,16,.3);
   --line:rgba(16,16,16,.12);
   --r-lg:24px; --r-md:16px; --r-sm:8px; --r-pill:96px;
-  --sh-card:0 4px 12px rgba(16,16,40,.03); --sh-lift:0 8px 20px rgba(16,16,40,.055);
+  --sh-lift:0 8px 20px rgba(16,16,40,.055);
   --sh-obj:0 10px 24px -12px rgba(16,16,40,.28), 0 2px 6px rgba(16,16,40,.05);
-  --maxw:1280px; --gutter:clamp(20px,5.56vw,80px);
+  --maxw:1280px; --gutter:clamp(20px,5.56vw,80px); --side:272px; --gap:72px;
   --sans:"Archivo",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   --hand:"Caveat","Bradley Hand",cursive;
   --ease:cubic-bezier(.22,1,.36,1); --ease-back:cubic-bezier(.34,1.56,.64,1);
 }
 *,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{margin:0;font-family:var(--sans);background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
 img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
 p,h1,h2,h3{margin:0}
 
 /* nav (static copy of the site's) */
-.nav{display:flex;align-items:center;justify-content:space-between;max-width:calc(var(--maxw) + var(--gutter)*2);margin:0 auto;padding:16px var(--gutter)}
-.brand{font-family:var(--hand);font-size:30px;font-weight:700;color:var(--blue);letter-spacing:.01em}
+.nav{position:sticky;top:0;z-index:20;background:rgba(250,250,250,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.nav__in{display:flex;align-items:center;justify-content:space-between;max-width:calc(var(--maxw) + var(--gutter)*2);margin:0 auto;padding:14px var(--gutter)}
+.brand{font-family:var(--hand);font-size:30px;font-weight:700;color:var(--blue)}
 .links{display:flex;gap:6px}
 .links a{font-size:14px;font-weight:500;color:var(--ink-75);padding:8px 14px;border-radius:var(--r-pill)}
 .links a.on{color:var(--ink);background:rgba(16,16,40,.05)}
 
-/* ===================================================================== the desk */
-.desk{position:relative;max-width:calc(var(--maxw) + var(--gutter)*2);margin:0 auto;padding:clamp(12px,2vw,28px) var(--gutter) 40px}
-.canvas{position:relative;height:680px}
+/* ===================================================================== page: sticky ID column + main */
+.page{max-width:calc(var(--maxw) + var(--gutter)*2);margin:0 auto;padding:clamp(12px,2vw,28px) var(--gutter) 120px;
+  display:grid;grid-template-columns:var(--side) minmax(0,1fr);gap:0 var(--gap);align-items:start}
 
-/* left: the ID column (elaine-style) */
-.id{position:absolute;left:0;top:0;width:272px}
-.pol{background:var(--white);padding:10px 10px 0;border-radius:4px;box-shadow:var(--sh-obj);transition:transform .5s var(--ease-back)}
-.pol img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:2px}
-.pol figcaption,.pol span{display:block;font-family:var(--hand);font-size:22px;font-weight:600;color:var(--ink-75);text-align:center;padding:6px 0 8px}
-.id .pol{transform:rotate(-3deg)}
-.id .pol:hover{transform:rotate(-1deg) translateY(-4px)}
-.id__meta{margin-top:26px;padding-left:4px}
-.id__name{font-size:15px;font-weight:600}
+/* left: ID column. It stays in view the whole way down (elaine-style) */
+.id{position:sticky;top:96px}
+.portrait{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--r-md);box-shadow:var(--sh-lift)}
+.id__name{font-size:15px;font-weight:600;margin-top:20px}
 .id__role{font-size:14px;color:var(--ink-50);margin-top:3px}
 .id__apps{display:flex;gap:14px;margin-top:18px}
 .app{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:11.5px;color:var(--ink-75);transition:transform .35s var(--ease-back)}
 .app:hover{transform:translateY(-3px) rotate(-3deg)}
 .app i{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;color:#fff;background:var(--app);box-shadow:var(--sh-obj)}
 .app svg{width:22px;height:22px}
+/* where you are on the page: the two jump links fill in as you scroll */
+.id__toc{margin-top:28px;border-top:1px solid var(--line);padding-top:14px;display:grid;gap:8px}
+.id__toc a{font-size:13.5px;color:var(--ink-50);display:flex;align-items:center;gap:8px;transition:color .25s}
+.id__toc a::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--ink-30);transition:background .25s,transform .25s}
+.id__toc a.on{color:var(--ink);font-weight:600}
+.id__toc a.on::before{background:var(--blue);transform:scale(1.3)}
 
-/* center: the bio */
-.bio{position:absolute;left:26.9%;top:6px;width:36.7%}
+/* ===================================================================== screen 1: bio + objects */
+.hero{position:relative;height:640px}
+.bio{position:absolute;left:0;top:6px;width:min(470px,50%)}
 .bio h1{font-size:clamp(30px,3.1vw,40px);font-weight:500;letter-spacing:-.025em;line-height:1.15}
 .bio p{font-size:15px;line-height:1.7;color:var(--ink-75);margin-top:18px}
 .bio p + p{margin-top:12px}
@@ -69,16 +73,18 @@ p,h1,h2,h3{margin:0}
 .rows span{color:var(--ink-75)}
 .rows a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--ink-30);text-underline-offset:3px}
 .rows a:hover{text-decoration-color:var(--blue);color:var(--blue)}
+.bio .sumi{width:66px;margin-top:18px;transform:rotate(-3deg)}
 
-/* right: the scattered objects (emily-style). Each one keeps its playground job. */
 .obj{position:absolute;transition:transform .5s var(--ease-back)}
 .obj:hover{z-index:5}
-
+.pol{background:var(--white);padding:9px 9px 0;border-radius:4px;box-shadow:var(--sh-obj)}
+.pol img{width:100%;object-fit:cover;border-radius:2px}
+.pol figcaption{display:block;font-family:var(--hand);font-size:21px;font-weight:600;color:var(--ink-75);text-align:center;padding:5px 0 7px}
 /* music card */
-.music{right:0;top:0;width:228px;transform:rotate(3deg)}
+.music{right:0;top:0;width:220px;transform:rotate(3deg)}
 .music:hover{transform:rotate(1deg) translateY(-5px)}
 .sleeve{background:#f2f4fb;border-radius:var(--r-md);padding:16px 16px 14px;text-align:center;box-shadow:var(--sh-obj);outline:1px solid rgba(33,60,151,.1);outline-offset:-1px}
-.disc{width:112px;height:112px;margin:2px auto 12px;border-radius:50%;overflow:hidden;box-shadow:0 5px 14px rgba(16,16,40,.14);animation:spin 7s linear infinite}
+.disc{width:104px;height:104px;margin:2px auto 12px;border-radius:50%;overflow:hidden;box-shadow:0 5px 14px rgba(16,16,40,.14);animation:spin 7s linear infinite}
 .disc img{width:100%;height:100%;object-fit:cover}
 @keyframes spin{to{transform:rotate(360deg)}}
 .sleeve .k{font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-50)}
@@ -88,141 +94,229 @@ p,h1,h2,h3{margin:0}
 .ctrls{display:flex;justify-content:center;align-items:center;gap:14px;color:var(--blue)}
 .ctrls svg{width:16px;height:16px}
 .play{width:38px;height:38px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center}
-
-/* tekken polaroid */
-.evo{left:67.2%;top:36px;width:196px;transform:rotate(-4deg)}
+/* tekken */
+.evo{left:54%;top:34px;width:190px;transform:rotate(-4deg)}
 .evo:hover{transform:rotate(-2deg) translateY(-5px)}
 .evo img{aspect-ratio:4/3}
-
-/* photo wallet: a fanned stack that opens the gallery */
-.wallet{right:0;top:400px;width:250px;height:230px}
-.wallet .ph{position:absolute;width:150px;background:#fff;padding:7px 7px 22px;border-radius:3px;box-shadow:var(--sh-obj);transition:transform .45s var(--ease-back)}
-.wallet .ph img{aspect-ratio:1/1;object-fit:cover;border-radius:2px}
-.wallet .ph:nth-child(1){left:8px;top:22px;transform:rotate(-11deg)}
-.wallet .ph:nth-child(2){left:58px;top:6px;transform:rotate(4deg)}
-.wallet .ph:nth-child(3){left:100px;top:30px;transform:rotate(13deg)}
-.wallet:hover .ph:nth-child(1){transform:rotate(-16deg) translate(-16px,-4px)}
-.wallet:hover .ph:nth-child(3){transform:rotate(18deg) translate(16px,4px)}
-.wallet .tag{position:absolute;left:30px;bottom:-4px;font-family:var(--hand);font-size:24px;font-weight:700;color:var(--blue);transform:rotate(-4deg)}
-
 /* artist card */
-.artist{left:66.4%;top:292px;width:220px;transform:rotate(2.5deg)}
+.artist{left:53%;top:288px;width:214px;transform:rotate(2.5deg)}
 .artist:hover{transform:rotate(1deg) translateY(-5px)}
-.card{background:#fff;border-radius:var(--r-md);padding:16px 18px;box-shadow:var(--sh-obj);display:flex;gap:12px;align-items:center}
+.card{background:#fff;border-radius:var(--r-md);padding:15px 17px;box-shadow:var(--sh-obj);display:flex;gap:12px;align-items:center}
 .card .mk{flex:none;width:42px;height:42px;border-radius:12px;background:#ff5500;color:#fff;display:grid;place-items:center}
 .card .mk svg{width:22px;height:22px}
 .card b{display:block;font-size:17px;font-weight:600}
 .card small{display:block;font-size:12.5px;color:var(--ink-50);margin-top:2px;line-height:1.35}
-
-/* sumi + doodles */
-.bio .sumi{position:absolute;left:0;top:100%;margin-top:18px;width:70px;transform:rotate(-3deg)}
+/* photo wallet */
+.wallet{right:0;top:392px;width:244px;height:226px}
+.wallet .ph{position:absolute;width:146px;background:#fff;padding:7px 7px 22px;border-radius:3px;box-shadow:var(--sh-obj);transition:transform .45s var(--ease-back)}
+.wallet .ph img{aspect-ratio:1/1;object-fit:cover;border-radius:2px}
+.wallet .ph:nth-child(1){left:8px;top:22px;transform:rotate(-11deg)}
+.wallet .ph:nth-child(2){left:56px;top:6px;transform:rotate(4deg)}
+.wallet .ph:nth-child(3){left:96px;top:30px;transform:rotate(13deg)}
+.wallet:hover .ph:nth-child(1){transform:rotate(-16deg) translate(-16px,-4px)}
+.wallet:hover .ph:nth-child(3){transform:rotate(18deg) translate(16px,4px)}
+.wallet .tag{position:absolute;left:28px;bottom:-4px;font-family:var(--hand);font-size:24px;font-weight:700;color:var(--blue);transform:rotate(-4deg)}
 .doodle{position:absolute;pointer-events:none}
+.hint{position:absolute;left:51%;top:520px;font-family:var(--hand);font-size:21px;color:var(--ink-50);transform:rotate(-3deg)}
 
-/* small hint that this is a playground */
-.hint{position:absolute;left:64.5%;top:520px;font-family:var(--hand);font-size:21px;color:var(--ink-50);transform:rotate(-3deg)}
+/* scroll cue at the bottom of screen 1 */
+.cue{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--ink-50);margin-top:8px}
+.cue svg{width:18px;height:18px;color:var(--blue);animation:bob 1.9s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(4px)}}
 
-/* ===================================================================== small screens */
+/* ===================================================================== screen 2+: communities reel */
+.comms{position:relative;height:300vh;margin-top:clamp(40px,6vw,90px)}
+.comms__pin{position:sticky;top:84px;height:calc(100vh - 100px);display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+.comms .lab{margin:0 0 14px}
+.swap{position:relative;min-height:128px}
+.swap__item{position:absolute;inset:0 auto auto 0;max-width:520px;opacity:0;transform:translateY(10px);transition:opacity .45s var(--ease),transform .45s var(--ease)}
+.swap__item.on{opacity:1;transform:none}
+.swap__item h3{font-size:26px;font-weight:500;letter-spacing:-.02em}
+.swap__item p{font-size:15px;line-height:1.7;color:var(--ink-75);margin-top:10px}
+.swap__item .role{display:inline-block;font-size:12px;font-weight:600;color:var(--blue);background:var(--blue-soft);padding:4px 10px;border-radius:var(--r-pill);margin-left:10px;vertical-align:middle}
+.track{display:flex;gap:22px;margin-top:22px;will-change:transform}
+.shot{flex:none;width:clamp(300px,30vw,420px);aspect-ratio:4/3;border-radius:var(--r-md);background:var(--frame);
+  border:1.5px dashed rgba(16,16,16,.16);display:grid;place-items:center;align-content:center;gap:8px;color:var(--ink-50);font-size:13.5px;text-align:center}
+.shot svg{width:26px;height:26px;color:var(--ink-30)}
+.shot b{display:block;font-weight:600;color:var(--ink-75)}
+.shot--di{background:#f3f3f3} .shot--inc{background:#efefef}
+.progress{display:flex;gap:16px;margin-top:22px;align-items:center}
+.progress button{all:unset;cursor:pointer;display:flex;flex-direction:column;gap:7px;font-size:12.5px;color:var(--ink-50)}
+.progress button i{display:block;width:120px;height:3px;border-radius:3px;background:var(--line);overflow:hidden}
+.progress button i b{display:block;height:100%;width:0;background:var(--blue)}
+.progress button.on{color:var(--ink)}
+
+/* review helper for screenshots: lays the pinned reel out in place */
+body.review .comms{height:auto}
+body.review .comms__pin{position:static;height:640px}
+
+/* ===================================================================== smaller screens: no collage, no pinning */
 @media (max-width:1279px){
-  .canvas{height:auto}
-  .id,.bio,.obj,.hint{position:static;transform:none!important}
+  .page{grid-template-columns:220px minmax(0,1fr);--gap:40px}
+  .id{position:static}
+  .id__toc{display:none}
+  .hero{height:auto}
+  .bio,.obj,.hint{position:static;transform:none!important}
   .obj{top:auto!important;left:auto!important;right:auto!important}
-  .canvas{display:grid;grid-template-columns:240px 1fr;gap:36px 40px;align-items:start}
   .bio{width:auto}
-  .objs{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:28px;justify-content:center;align-items:flex-start}
+  .objs{display:flex;flex-wrap:wrap;gap:26px;margin-top:40px;align-items:flex-start}
   .wallet{position:relative}
   .doodle,.hint{display:none}
-  .bio .sumi{position:static;margin-top:20px}
+  .comms{height:auto}
+  .comms__pin{position:static;height:auto;overflow:visible}
+  .swap{min-height:0;display:grid;gap:28px}
+  .swap__item{position:static;opacity:1;transform:none}
+  .track{overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;transform:none!important}
+  .shot{scroll-snap-align:start}
+  .progress{display:none}
 }
 @media (min-width:1280px){ .objs{display:contents} }
-@media (max-width:680px){
-  .canvas{grid-template-columns:1fr}
-  .canvas > *{min-width:0}
+@media (max-width:760px){
+  .page{grid-template-columns:1fr}
+  .id{max-width:260px}
   .links a{padding:7px 9px;font-size:13px}
   .brand{font-size:26px}
-  .id{max-width:240px}
 }
 </style>
 </head>
 <body>
-<header class="nav">
+<header class="nav"><div class="nav__in">
   <a class="brand" href="../index.html">Anthony N.</a>
   <nav class="links"><a href="../index.html#works">Works</a><a class="on" href="#">About</a><a href="../Anthony-Nguyen-Resume.pdf">Resume</a></nav>
-</header>
+</div></header>
 
-<main class="desk">
-  <div class="canvas">
+<main class="page">
 
-    <!-- ID column -->
-    <aside class="id">
-      <figure class="pol" style="margin:0"><img src="../assets/graphics/portrait-about-v2.webp" alt="Portrait of Anthony" /><figcaption>me, at UC Davis</figcaption></figure>
-      <div class="id__meta">
-        <div class="id__name">Anthony Nguyen</div>
-        <div class="id__role">Design @ UC Davis · Roseville, CA</div>
-        <div class="id__apps">
-          <a class="app" href="../Anthony-Nguyen-Resume.pdf" style="--app:#213c97"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg></i>Resume</a>
-          <a class="app" href="https://www.linkedin.com/in/anthony-nguyen-a79683392/" style="--app:#0a66c2"><i><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.2 9.3H3.4V21h2.8zM4.8 3a1.7 1.7 0 1 0 0 3.4A1.7 1.7 0 0 0 4.8 3M21 14.1c0-3.2-1.7-4.7-4-4.7a3.5 3.5 0 0 0-3.1 1.7V9.3H11V21h2.8v-6.1c0-1.6.8-2.6 2.1-2.6s2.1.9 2.1 2.6V21H21z"/></svg></i>LinkedIn</a>
-          <a class="app" href="mailto:anthonynguyen.ux@gmail.com" style="--app:#ef7a34"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg></i>Email</a>
-        </div>
+  <!-- ID column: stays in view while the page scrolls -->
+  <aside class="id">
+    <img class="portrait" src="../assets/graphics/portrait-about-v2.webp" alt="Portrait of Anthony" />
+    <div class="id__name">Anthony Nguyen</div>
+    <div class="id__role">Design @ UC Davis · Roseville, CA</div>
+    <div class="id__apps">
+      <a class="app" href="../Anthony-Nguyen-Resume.pdf" style="--app:#213c97"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg></i>Resume</a>
+      <a class="app" href="https://www.linkedin.com/in/anthony-nguyen-a79683392/" style="--app:#0a66c2"><i><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.2 9.3H3.4V21h2.8zM4.8 3a1.7 1.7 0 1 0 0 3.4A1.7 1.7 0 0 0 4.8 3M21 14.1c0-3.2-1.7-4.7-4-4.7a3.5 3.5 0 0 0-3.1 1.7V9.3H11V21h2.8v-6.1c0-1.6.8-2.6 2.1-2.6s2.1.9 2.1 2.6V21H21z"/></svg></i>LinkedIn</a>
+      <a class="app" href="mailto:anthonynguyen.ux@gmail.com" style="--app:#ef7a34"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg></i>Email</a>
+    </div>
+    <nav class="id__toc">
+      <a href="#me" class="on" data-toc="me">About me</a>
+      <a href="#communities" data-toc="communities">My communities</a>
+    </nav>
+  </aside>
+
+  <div class="main">
+    <!-- screen 1 -->
+    <section class="hero" id="me">
+      <div class="bio">
+        <h1>Hi, I'm Anthony</h1>
+        <p>I'm a design student at UC Davis, originally from Roseville, California. I started out as a computer science major and spent two years there, but I've always been drawn to creative things. I've been producing music for over 8 years, and I first started designing to make the graphics for my own music.</p>
+        <p>Now I get to combine the technical thinking I picked up from CS with the creative side of music that I love, and design is where those two meet.</p>
+        <div class="lab">Outside of design</div>
+        <ul class="rows">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg><b>producing</b><span>beats on FL Studio, as <a href="https://soundcloud.com/atonyn">Atony</a></span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg><b>running</b><span>logging miles on <a href="https://www.strava.com/">Strava</a></span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="11" rx="5"/><path d="M7 11v3M5.5 12.5h3"/><circle cx="16" cy="11.5" r="1"/><circle cx="18" cy="13.5" r="1"/></svg><b>playing</b><span>ranked Tekken, and once at EVO</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><b>currently</b><span>final year at UC Davis, looking for internships</span></li>
+        </ul>
+        <img class="sumi" src="../assets/graphics/sumi/notebook-about.png" alt="" />
       </div>
-    </aside>
 
-    <!-- bio -->
-    <section class="bio">
-      <h1>Hi, I'm Anthony</h1>
-      <p>I'm a design student at UC Davis, originally from Roseville, California. I started out as a computer science major and spent two years there, but I've always been drawn to creative things. I've been producing music for over 8 years, and I first started designing to make the graphics for my own music.</p>
-      <p>Now I get to combine the technical thinking I picked up from CS with the creative side of music that I love, and design is where those two meet.</p>
-
-      <div class="lab">Outside of design</div>
-      <ul class="rows">
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg><b>producing</b><span>beats on FL Studio, as <a href="https://soundcloud.com/atonyn">Atony</a></span></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg><b>running</b><span>logging miles on <a href="https://www.strava.com/">Strava</a></span></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="11" rx="5"/><path d="M7 11v3M5.5 12.5h3"/><circle cx="16" cy="11.5" r="1"/><circle cx="18" cy="13.5" r="1"/></svg><b>playing</b><span>ranked Tekken, and once at EVO</span></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><b>currently</b><span>final year at UC Davis, looking for internships</span></li>
-      </ul>
-      <img class="sumi" src="../assets/graphics/sumi/notebook-about.png" alt="" />
-    </section>
-
-    <div class="objs">
-      <!-- my music: the site-wide player lives here -->
-      <div class="obj music">
-        <div class="sleeve">
-          <div class="disc"><img src="../assets/graphics/cd.webp" alt="" /></div>
-          <div class="k">My work · 1 / 6</div>
-          <div class="t">10dollar</div>
-          <div class="bar"><i></i></div>
-          <div class="ctrls">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 6v12l-9-6z"/><path d="M5.3 6h2.3v12H5.3z"/></svg>
-            <span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 6v12l9-6z"/><path d="M16.4 6h2.3v12h-2.3z"/></svg>
+      <div class="objs">
+        <div class="obj music">
+          <div class="sleeve">
+            <div class="disc"><img src="../assets/graphics/cd.webp" alt="" /></div>
+            <div class="k">My work · 1 / 6</div>
+            <div class="t">10dollar</div>
+            <div class="bar"><i></i></div>
+            <div class="ctrls">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 6v12l-9-6z"/><path d="M5.3 6h2.3v12H5.3z"/></svg>
+              <span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 6v12l9-6z"/><path d="M16.4 6h2.3v12h-2.3z"/></svg>
+            </div>
           </div>
         </div>
-      </div>
-
-      <!-- tekken -->
-      <figure class="obj evo pol" style="margin:0"><img src="../assets/graphics/tekken-evo.webp" alt="Playing Tekken at EVO" /><figcaption>vs ATIF at EVO</figcaption></figure>
-
-      <!-- artist -->
-      <a class="obj artist" href="https://soundcloud.com/atonyn">
-        <span class="card">
+        <figure class="obj evo pol" style="margin:0"><img src="../assets/graphics/tekken-evo.webp" alt="Playing Tekken at EVO" /><figcaption>vs ATIF at EVO</figcaption></figure>
+        <a class="obj artist" href="https://soundcloud.com/atonyn"><span class="card">
           <span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2 14v3M5 12v5M8 9.5v7.5M11 11v6"/><path d="M13.5 17V8.9c2.6-1.3 6.2.2 6.6 3.5 1.2-.3 2.4.5 2.4 1.9a2.6 2.6 0 0 1-2.6 2.7z"/></svg></span>
-          <span><b>Atony</b><small>This is where I release my music.</small></span>
-        </span>
-      </a>
+          <span><b>Atony</b><small>This is where I release my music.</small></span></span></a>
+        <a class="obj wallet" href="#">
+          <span class="ph"><img src="../assets/graphics/about-photos/p22.webp" alt="" /></span>
+          <span class="ph"><img src="../assets/graphics/about-photos/p03.webp" alt="" /></span>
+          <span class="ph"><img src="../assets/graphics/about-photos/p29.webp" alt="" /></span>
+          <span class="tag">33 more photos →</span>
+        </a>
+      </div>
+      <img class="doodle" src="../assets/graphics/headphones.webp" style="left:47%;top:8px;width:28px;transform:rotate(-14deg)" alt="" />
+      <img class="doodle" src="../assets/graphics/beamed-notes.webp" style="left:90%;top:326px;width:24px;transform:rotate(12deg)" alt="" />
+      <div class="hint">psst, drag these around ↗</div>
+    </section>
+    <a class="cue" href="#communities"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>Scroll for my communities</a>
 
-      <!-- photo wallet -->
-      <a class="obj wallet" href="#">
-        <span class="ph"><img src="../assets/graphics/about-photos/p22.webp" alt="" /></span>
-        <span class="ph"><img src="../assets/graphics/about-photos/p03.webp" alt="" /></span>
-        <span class="ph"><img src="../assets/graphics/about-photos/p29.webp" alt="" /></span>
-        <span class="tag">33 more photos →</span>
-      </a>
-    </div>
-
-    <img class="doodle" src="../assets/graphics/headphones.webp" style="left:62%;top:10px;width:30px;transform:rotate(-14deg)" alt="" />
-    <img class="doodle" src="../assets/graphics/beamed-notes.webp" style="left:92%;top:330px;width:26px;transform:rotate(12deg)" alt="" />
-    <img class="doodle" src="../assets/graphics/bass-clef.webp" style="left:22%;top:600px;width:22px;transform:rotate(18deg)" alt="" />
-    <div class="hint">psst, drag these around ↗</div>
+    <!-- screen 2: communities reel. Pinned while the photos slide past and the text swaps -->
+    <section class="comms" id="communities">
+      <div class="comms__pin">
+        <div class="lab">My communities</div>
+        <div class="swap">
+          <div class="swap__item on" data-c="0">
+            <h3>Design Interactive <span class="role">Product Designer</span></h3>
+            <p>Where Vendrs was born. I designed a tool for small business owners in a 6-week sprint with 3 designers, a PM, and an industry mentor, then pitched it to a panel of industry judges.</p>
+          </div>
+          <div class="swap__item" data-c="1">
+            <h3>#include <span class="role">Product Designer</span></h3>
+            <p>A cohort where I'm designing a website for the Juvenile Caduceus Clinic, taking it from early research all the way to a high-fidelity prototype with my team.</p>
+          </div>
+        </div>
+        <div class="track">
+          <div class="shot shot--di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3l2-2h6l2 2h3v12H4z"/><circle cx="12" cy="13" r="3.5"/></svg><span><b>Design Interactive</b>photo 1</span></div>
+          <div class="shot shot--di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3l2-2h6l2 2h3v12H4z"/><circle cx="12" cy="13" r="3.5"/></svg><span><b>Design Interactive</b>photo 2</span></div>
+          <div class="shot shot--di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3l2-2h6l2 2h3v12H4z"/><circle cx="12" cy="13" r="3.5"/></svg><span><b>Design Interactive</b>photo 3</span></div>
+          <div class="shot shot--inc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3l2-2h6l2 2h3v12H4z"/><circle cx="12" cy="13" r="3.5"/></svg><span><b>#include</b>photo 1</span></div>
+          <div class="shot shot--inc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3l2-2h6l2 2h3v12H4z"/><circle cx="12" cy="13" r="3.5"/></svg><span><b>#include</b>photo 2</span></div>
+          <div class="shot shot--inc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3l2-2h6l2 2h3v12H4z"/><circle cx="12" cy="13" r="3.5"/></svg><span><b>#include</b>photo 3</span></div>
+        </div>
+        <div class="progress">
+          <button class="on" type="button" data-go="0">Design Interactive<i><b></b></i></button>
+          <button type="button" data-go="1">#include<i><b></b></i></button>
+        </div>
+      </div>
+    </section>
   </div>
 </main>
+
+<script>
+/* the reel: while the section is pinned, scroll progress slides the photo track sideways and
+   swaps the community text at the halfway point (leif-style). Desktop only. */
+(function(){
+  var sec=document.querySelector('.comms'), track=document.querySelector('.track');
+  var items=[].slice.call(document.querySelectorAll('.swap__item'));
+  var segs=[].slice.call(document.querySelectorAll('.progress button'));
+  var toc=[].slice.call(document.querySelectorAll('.id__toc a'));
+  var mq=window.matchMedia('(min-width:1280px)');
+  function update(){
+    if(document.body.classList.contains('review')) return;
+    var r=sec.getBoundingClientRect();
+    var span=sec.offsetHeight-innerHeight+100;
+    var p=Math.min(1,Math.max(0,(-r.top+84)/span));
+    if(mq.matches){
+      var max=track.scrollWidth-track.parentElement.clientWidth;
+      track.style.transform='translateX('+(-p*max)+'px)';
+    }
+    var c=p<0.5?0:1;
+    items.forEach(function(it,i){it.classList.toggle('on',i===c)});
+    segs.forEach(function(s,i){s.classList.toggle('on',i===c);s.querySelector('b').style.width=Math.min(100,Math.max(0,(p-i*0.5)*200))+'%'});
+    var inComms=r.top<innerHeight*0.5;
+    toc.forEach(function(a){a.classList.toggle('on',(a.dataset.toc==='communities')===inComms)});
+  }
+  segs.forEach(function(s,i){s.addEventListener('click',function(){
+    var span=sec.offsetHeight-innerHeight+100; window.scrollTo({top:sec.offsetTop-84+span*(i?0.75:0.05),behavior:'smooth'})})});
+  addEventListener('scroll',update,{passive:true}); addEventListener('resize',update); update();
+  /* review helper: about-combined.html#at=0.6 opens the reel 60% of the way through */
+  var m=location.hash.match(/at=([\d.]+)/);
+  var rv=location.hash.match(/review=([\d.]+)/);
+  if(rv){ document.body.classList.add('review'); var pp=parseFloat(rv[1]); var mx=track.scrollWidth-track.parentElement.clientWidth;
+    track.style.transform='translateX('+(-pp*mx)+'px)'; var cc=pp<0.5?0:1;
+    items.forEach(function(it,i){it.classList.toggle('on',i===cc)}); segs.forEach(function(s,i){s.classList.toggle('on',i===cc);s.querySelector('b').style.width=Math.min(100,Math.max(0,(pp-i*0.5)*200))+'%'}); }
+  if(m){ document.documentElement.style.scrollBehavior='auto'; var span=sec.offsetHeight-innerHeight+100; scrollTo(0,sec.offsetTop-84+span*parseFloat(m[1])); update(); }
+})();
+</script>
 </body>
 </html>
