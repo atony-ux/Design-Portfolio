@@ -3,19 +3,28 @@
 <head>
 <meta charset="utf-8" />
 <title>LinkedIn Banner Sumi</title>
-<!-- LinkedIn banner, simple version (1584 x 396, render at 2x): just Sumi on the
-     portfolio grey with the site's paper grain. Sumi sits a little right of centre so
-     the profile photo (bottom-left on LinkedIn) never covers him. -->
+<!-- LinkedIn banner, simple version (1584 x 396, render at 2x): standing Sumi and
+     the site address in the logo's handwriting, on the portfolio grey with the site's
+     paper grain. The pair sits a little right of centre so the profile photo
+     (bottom-left on LinkedIn) never covers them. -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet" />
 <style>
   html, body { margin: 0; background: #fafafa; }
   .bn { position: relative; width: 1584px; height: 396px; overflow: hidden; background: #fafafa; }
   .bn::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .3; mix-blend-mode: multiply;
     background-size: 240px; background-repeat: repeat;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
-  .sumi { position: absolute; left: 777px; top: 40px; height: 316px; width: auto; display: block; }
+  /* Sumi and the link sit together as one group, centred a little right of the middle */
+  .grp { position: absolute; left: 0; right: 0; top: 40px; height: 316px; display: flex; align-items: center; justify-content: center;
+    gap: 40px; padding-left: 140px; }
+  .sumi { height: 316px; width: auto; display: block; }
+  .url { font-family: "Caveat", cursive; font-weight: 700; font-size: 52px; line-height: 1; color: #213c97; letter-spacing: .01em;
+    rotate: -3deg; translate: 0 -6px; }
 </style>
 </head>
 <body>
-  <div class="bn"><img class="sumi" src="sumi-standing-trim.png" alt="" /></div>
+  <div class="bn"><div class="grp"><img class="sumi" src="sumi-standing-trim.png" alt="" /><span class="url">atonyux.com</span></div></div>
 </body>
 </html>
