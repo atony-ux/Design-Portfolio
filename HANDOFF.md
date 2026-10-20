@@ -1710,3 +1710,22 @@ Same system as the Vendrs rewrite (`.cs--col` plus the `.v-*` components, no new
   a day (see `vercel.json`) and the root files are revalidated, so a replaced resume shows up right away.
   **To update it, overwrite that file with the new PDF (same name) and push.**
 - Home page case-study cards have a one-line description under the title (`.wcard__text` / `.wcard__desc`).
+
+## About page rebuilt as one "desk" (2026-10-20)
+- Built from `mockups/about-combined.html`. The old intro (`.about-hero`) and the separate "Outside design"
+  playground are now ONE section, `section.pg-sec.ab-sec#about-desk` > `.pgd.ab-desk#playground`.
+- The stage is still `#playground`, so the existing JS keeps working unchanged: drag (`.pg-it`), the site-wide
+  music player (`.pg-sleeve[data-player]`), the photo gallery (`#pg-wallet` + `.pg-photos`, Sort/Scatter).
+- Fixed blocks on the stage: `.ab-id` (portrait, name, Resume/LinkedIn/Email) and `.ab-bio` (bio + the
+  "Outside of design" list + Sumi). Draggable: music card, EVO polaroid, Atony card (inside `.ab-objs`, which is
+  `display: contents` on desktop). The wallet is restyled as three fanned prints (`.ab-stack`) with the label
+  "33 more photos"; JS now restores that label on close instead of "tap to open".
+- While the gallery is open, `.ab-id`, `.ab-bio` and the hint fade out (`.ab-desk.is-photos`).
+- Breakpoints: collage + drag + gallery at **1280px and up** (`draggable()` in main.js now checks 1280, was 901);
+  901 to 1279 stacks with no drag and no gallery; 900 and below uses the playground's phone grid with ID and bio first.
+- Removed from the page: the "me" polaroid, Hobbies chips, "Currently working on" card, app tiles (Strava, LinkedIn,
+  Resume), tools image, the "Outside design" heading. Their CSS is still in style.css (unused), as is `.about-hero`.
+- `.ab-sec` has `scroll-snap-align: none`: with snap on, the page snapped to the section on load and the bio slid
+  under the sticky nav.
+- Also fixed in the drag engine: `moved` resets on every pointerdown (a drag that ended on a non-link left it set,
+  and the next click on the photo stack or play button was swallowed).

@@ -350,7 +350,8 @@
     var stage = document.getElementById("playground");
     if (!stage) return;
     var active = null, dx = 0, dy = 0, sx = 0, sy = 0, pid = 0, top = 20, moved = false;
-    function draggable() { return window.matchMedia("(min-width: 901px)").matches; }
+    /* 1280 since the About desk (2026-10-20): below that the page stacks */
+    function draggable() { return window.matchMedia("(min-width: 1280px)").matches; }
     /* Without this, pressing a link and moving picks up the LINK (the browser's
        native drag-and-drop of the URL) instead of moving the card: the native
        drag fires pointercancel and the card drag dies. CSS -webkit-user-drag
@@ -361,6 +362,10 @@
     });
     stage.addEventListener("dragstart", function (e) { e.preventDefault(); });
     stage.addEventListener("pointerdown", function (e) {
+      /* every press starts clean: a drag that ended on something that is not a
+         link or button left `moved` set, and the next click anywhere (the photo
+         stack, the play button) was swallowed as if it were the end of a drag */
+      moved = false;
       if (!draggable()) return;
       var el = e.target.closest(".pg-it");
       if (!el) return;
@@ -735,6 +740,7 @@
     var wallet = document.getElementById("pg-wallet");
     if (!stage || !wallet) return;
     var cue  = wallet.querySelector(".pg-wallet__cue");
+    var cueClosed = cue ? cue.textContent : "";   /* the label it shows when shut */
     var open = false;
 
     function loose() {
@@ -769,8 +775,8 @@
     wallet.addEventListener("click", function () {
       open = !open;
       wallet.setAttribute("aria-pressed", String(open));
-      wallet.setAttribute("aria-label", open ? "Close the photo wallet" : "Open the photo wallet");
-      if (cue) cue.textContent = open ? "tap to close" : "tap to open";
+      wallet.setAttribute("aria-label", open ? "Close the photo gallery" : "Open the photo gallery");
+      if (cue) cue.textContent = open ? "tap to close" : cueClosed;
       if (open) { suck(); stage.classList.add("is-photos"); }
       else { stage.classList.remove("is-photos"); release(); }
     });
