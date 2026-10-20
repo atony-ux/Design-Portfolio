@@ -345,13 +345,11 @@
      Pointer events so mouse and touch both work. Each object keeps its tilt in
      an inline `transform`, so dragging only ever writes left/top and never
      fights the rotation. Disabled below 900px, where the layout collapses to a
-     plain stacked list. */
-  (function () {
-    var stage = document.getElementById("playground");
-    if (!stage) return;
+     plain stacked list. Runs on every stage: the gallery (#playground) and,
+     since About v4 (2026-10-20), the board of loose pieces (.ab-board). */
+  [].slice.call(document.querySelectorAll("#playground, .ab-board")).forEach(function (stage) {
     var active = null, dx = 0, dy = 0, sx = 0, sy = 0, pid = 0, top = 20, moved = false;
-    /* 1280 since the About desk (2026-10-20): below that the page stacks */
-    function draggable() { return window.matchMedia("(min-width: 1280px)").matches; }
+    function draggable() { return window.matchMedia("(min-width: 901px)").matches; }
     /* Without this, pressing a link and moving picks up the LINK (the browser's
        native drag-and-drop of the URL) instead of moving the card: the native
        drag fires pointercancel and the card drag dies. CSS -webkit-user-drag
@@ -406,7 +404,7 @@
     stage.addEventListener("click", function (e) {
       if (moved && e.target.closest("a, button")) { e.preventDefault(); e.stopPropagation(); moved = false; }
     }, true);
-  })();
+  });
 
   /* -------------------------------------------------- Music: one player for the whole site
      The "My work" sleeve in the about playground is its home, but the audio

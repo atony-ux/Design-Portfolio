@@ -89,6 +89,12 @@ body {
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
 }
+/* paper grain over the whole site (after rachelchen.tech): a tiny SVG noise
+   tile, multiplied over everything. pointer-events:none, so it never blocks a click. */
+body::after { content: ""; position: fixed; inset: 0; z-index: 9998; pointer-events: none;
+  opacity: var(--grain, .3); mix-blend-mode: multiply; background-size: 240px; background-repeat: repeat;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+@media (prefers-reduced-transparency: reduce) { body::after { opacity: .025; } }
 img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
 button { font-family: inherit; cursor: pointer; }
@@ -2363,60 +2369,81 @@ body.is-leaving { opacity: 0; transition: opacity .28s ease; }
 }
 
 /* =====================================================================
-   ABOUT (2026-10-20, v3): the bio + a small cluster of widgets
+   ABOUT (2026-10-20, v4): the bio + a board of loose pieces
    v1 put the bio and the playground on one busy screen; v2 split them into the
-   bio and one tall column of big widgets. v3 keeps the split but makes the right
-   side a compact cluster (after emilee369's about page): the photo and the
-   widgets, smaller, in two short columns. The whole thing is centred so the bio
-   and the widgets sit close together at any width.
+   bio and one tall column of big widgets; v3 made that column a tidy two-column
+   cluster. v4 loosens it again, but small (after emilee369's about page): every
+   piece is little, tilted a bit, and can be dragged around the board. The old
+   "Outside of design" list became pieces (Strava, the sticky note), so the left
+   side is just the bio, centred against the board.
    The photo stack opens the gallery: #playground is a fixed overlay that is
    hidden until then, so the old wallet / photo / Sort / Scatter JS runs as is.
    ===================================================================== */
-.ab { display: grid; grid-template-columns: minmax(0, 520px) 560px; justify-content: center;
-  gap: 0 clamp(56px, 6.67vw, 96px); align-items: start;
-  padding-top: clamp(40px, 5vw, 72px); padding-bottom: clamp(72px, 9vw, 128px); }
+.ab { display: grid; grid-template-columns: minmax(0, 460px) 640px; justify-content: center;
+  gap: 48px clamp(56px, 6.67vw, 96px); align-items: center;
+  padding-top: clamp(40px, 5vw, 64px); padding-bottom: clamp(72px, 9vw, 128px); }
 
-/* left: the bio (sticky in case the widgets run longer) */
-.ab-bio { position: sticky; top: 104px; }
+/* left: the bio */
 .ab-bio__title { margin: 0; font-size: clamp(30px, 3.1vw, 40px); font-weight: 500; letter-spacing: -.025em; line-height: 1.15; }
-.ab-bio p:not(.ab-lab) { margin: 18px 0 0; font-size: 15px; line-height: 1.7; color: var(--ink-75); }
-.ab-bio p + p:not(.ab-lab) { margin-top: 12px; }
-.ab-lab { margin: 34px 0 8px; font-size: 11.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-30); }
-.ab-rows { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
-.ab-rows li { display: grid; grid-template-columns: 28px 104px 1fr; align-items: center; gap: 6px;
-  padding: 11px 0; border-bottom: 1px solid var(--line); font-size: 14.5px; }
-.ab-rows svg { width: 18px; height: 18px; color: var(--blue); }
-.ab-rows b { font-weight: 600; color: var(--blue); }
-.ab-rows span { color: var(--ink-75); }
-.ab-rows a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--ink-30); text-underline-offset: 3px; }
-.ab-rows a:hover { color: var(--blue); text-decoration-color: var(--blue); }
-.ab-links { display: flex; gap: 16px; margin-top: 28px; }
-.ab-app { display: flex; flex-direction: column; align-items: center; gap: 6px;
-  font-size: 11.5px; color: var(--ink-75); transition: transform .35s var(--ease-back); }
-.ab-app:hover { transform: translateY(-3px); }
-.ab-app__tile { width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center;
-  color: #fff; background: var(--app); box-shadow: 0 8px 18px -10px rgba(16, 16, 40, 0.3); }
-.ab-app__tile svg { width: 22px; height: 22px; }
-.ab-bio__sumi { display: block; width: 62px; height: auto; margin-top: 28px; }
+.ab-bio p { margin: 18px 0 0; font-size: 15px; line-height: 1.7; color: var(--ink-75); }
+.ab-bio p + p { margin-top: 12px; }
+.ab-bio__sumi { display: block; width: 62px; height: auto; margin-top: 32px; }
 
-/* right: two short columns. Left: the photo, then EVO. Right: the music player
-   (its disc pokes above the card, which staggers the two), Atony, the photo stack */
-.ab-side { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; align-items: start; }
-.ab-col { display: grid; gap: 32px; align-content: start; }
-.ab-me { margin: 0; }
+/* right: the board. Each piece is a .pg-it (absolute, draggable, its tilt in an
+   inline `rotate` so the drag engine, which only writes left/top, never fights
+   it). Hover lifts a piece with `translate`, which leaves the tilt alone too. */
+.ab-board { position: relative; width: 640px; height: 740px; }
+.ab-it { margin: 0; transition: translate .35s var(--ease-back), box-shadow .25s var(--ease); }
+.ab-it:hover { translate: 0 -4px; }
+.ab-it a, .ab-it button { -webkit-user-drag: none; }
+.ab-it img { -webkit-user-drag: none; user-select: none; }
 .ab-photo { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; display: block;
   border-radius: var(--r-md); box-shadow: var(--sh-lift); }
-.ab-photo__cap { margin: 12px 0 0; font-size: 13px; color: var(--ink-50); }
-.ab-w { width: 100%; }
-.ab-w--evo .pg-pol { display: block; }
-.ab-w--evo .pg-pol img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
-.ab-w--artist .pg-card { display: block; }
+.ab-photo__cap { margin: 10px 0 0; font-size: 12.5px; color: var(--ink-50); }
+.ab-it--evo .pg-pol { display: block; }
+.ab-it--evo .pg-pol img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.ab-it--artist .pg-card { display: block; padding: 14px; }
+.ab-it--artist .pg-artist__mark { width: 32px; height: 32px; border-radius: 10px; margin-bottom: 10px; }
+.ab-it--artist .pg-artist__mark svg { width: 19px; height: 19px; }
+.ab-it--artist .pg-artist__name { font-size: 22px; }
+.ab-it--artist .pg-artist__sub { margin-top: 6px; font-size: 12.5px; }
+.ab-it .pg-sleeve__t { font-size: 17px; }
+
+/* running: a little Strava card with a route doodle */
+.ab-strava { display: block; padding: 8px 8px 12px; border-radius: var(--r-md); }
+.ab-strava__map { display: block; border-radius: var(--r-sm); background-color: var(--orange-soft);
+  background-image: linear-gradient(rgba(179,73,26,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(179,73,26,.08) 1px, transparent 1px);
+  background-size: 16px 16px; }
+.ab-strava__map svg { display: block; width: 100%; height: auto; }
+.ab-strava__route { fill: none; stroke: #fc4c02; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.ab-strava__start { fill: #fff; stroke: #fc4c02; stroke-width: 2; }
+.ab-strava__row { display: flex; align-items: center; gap: 6px; margin: 10px 4px 0; }
+.ab-strava__row .pg-lab { margin: 0; }
+.ab-strava__mark { display: grid; place-items: center; width: 20px; height: 20px; border-radius: 6px; background: #fc4c02; color: #fff; }
+.ab-strava__mark svg { width: 12px; height: 12px; }
+.ab-strava__t { display: block; margin: 4px 4px 0; font-size: 13px; line-height: 1.35; color: var(--ink-75); }
+
+/* currently: a taped sticky note */
+.ab-note { position: relative; padding: 18px 16px 18px; border-radius: 3px 3px 12px 3px; background: var(--orange-soft);
+  box-shadow: 0 1px 0 rgba(16,16,40,.05), 0 8px 18px -10px rgba(16, 16, 40, 0.248); }
+.ab-note .pg-lab { margin-bottom: 4px; color: var(--orange); }
+.ab-note__t { margin: 0; font-family: var(--hand); font-size: 22px; font-weight: 600; line-height: 1.15; color: var(--ink); }
+
+/* the links, as little app icons */
+.ab-apps { display: flex; gap: 16px; }
+.ab-app { display: flex; flex-direction: column; align-items: center; gap: 6px;
+  font-size: 11.5px; color: var(--ink-75); transition: transform .35s var(--ease-back); }
+.ab-app:nth-child(2) { rotate: 4deg; translate: 0 6px; }
+.ab-app:nth-child(3) { rotate: -3deg; }
+.ab-app:hover { transform: translateY(-3px); }
+.ab-app__tile { width: 48px; height: 48px; border-radius: 12px; display: grid; place-items: center;
+  color: #fff; background: var(--app); box-shadow: 0 8px 18px -10px rgba(16, 16, 40, 0.3); }
+.ab-app__tile svg { width: 22px; height: 22px; }
 
 /* the photo stack: three fanned prints. Used twice: as the button on the page,
    and as the wallet that docks at the bottom of the open gallery */
 .ab-stack { position: relative; display: block; width: 244px; height: 228px; padding: 0; border: 0;
   background: none; cursor: pointer; font: inherit; color: inherit; }
-.ab-stack--open { justify-self: center; margin-top: 4px; }
 .ab-stack__ph { position: absolute; width: 146px; background: #fff; padding: 7px 7px 22px; border-radius: 3px;
   box-shadow: 0 10px 24px -12px rgba(16, 16, 40, .28), 0 2px 6px rgba(16, 16, 40, .05);
   transition: transform .45s var(--ease-back); }
@@ -2444,22 +2471,34 @@ html.ab-gallery-open { overflow: hidden; }
 .ab-gallery .pg-arrange--scatter { left: calc(50% + 118px); }
 
 /* ---------- smaller screens ---------- */
-/* laptops: one column of widgets beside the bio */
-@media (max-width: 1199px) {
-  .ab { grid-template-columns: minmax(0, 520px) 264px; }
-  .ab-side { grid-template-columns: minmax(0, 1fr); }
-  .ab-col { display: contents; }
-  .ab-me { order: -2; }
-  .ab-w--music { order: -1; }
+/* laptops: the bio on top, the board under it */
+@media (max-width: 1279px) {
+  .ab { grid-template-columns: minmax(0, 640px); }
 }
-/* phones: the photo, the bio, then the widgets */
+/* phones: no room to scatter, so the pieces fall into a plain two-column grid
+   (the global .pg-it rule at 900px already drops them out of position) */
 @media (max-width: 900px) {
-  .ab { grid-template-columns: minmax(0, 1fr); gap: 0; }
-  .ab-bio { position: static; order: 2; }
-  .ab-side, .ab-col { display: contents; }
-  .ab-me { order: 1; max-width: 280px; margin-bottom: 24px; }
-  .ab-w { order: 3; max-width: 360px; margin-top: 32px; }
-  .ab-w--music { order: 3; }
-  .ab-w--evo, .ab-w--artist { order: 4; }
-  .ab-stack--open, .pgd.ab-gallery { display: none; }   /* the gallery needs a big screen, as before */
+  .ab { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .ab-board { width: auto; height: auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px;
+    grid-template-areas: "music music" "me strava" "me now" "evo artist" "apps apps"; align-items: start; }
+  .ab-it--music  { grid-area: music; rotate: none !important; }
+  .ab-it--me     { grid-area: me; rotate: -2deg !important; }
+  .ab-it--strava { grid-area: strava; rotate: 2deg !important; }
+  .ab-it--now    { grid-area: now; rotate: -1.5deg !important; align-self: stretch; }
+  .ab-it--evo    { grid-area: evo; rotate: 2deg !important; }
+  .ab-it--artist { grid-area: artist; rotate: -1.5deg !important; align-self: stretch; }
+  .ab-it--apps   { grid-area: apps; rotate: none !important; margin-top: 8px; }
+  .ab-it:hover { translate: none; }
+  .ab-it--music .pg-sleeve { margin-top: 48px; }
+  .ab-it--now .ab-note, .ab-it--artist .pg-card { height: 100%; box-sizing: border-box; }
+  .ab-it--artist .pg-card { display: flex; flex-direction: column; justify-content: center; }
+  .ab-note { padding: 14px 14px 16px; }
+  .ab-note__t { font-size: 20px; }
+  .ab-apps { justify-content: center; gap: 24px; }
+  .ab-app:nth-child(n) { rotate: none; translate: none; }
+  .ab-it--stack, .pgd.ab-gallery { display: none; }   /* the gallery needs a big screen, as before */
+}
+@media (prefers-reduced-motion: reduce) {
+  .ab-it { transition: none; }
+  .ab-it:hover { translate: none; }
 }
