@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>LinkedIn Banner</title>
+<!-- LinkedIn banner, 1584 x 396 (render at 2x for a crisp upload).
+     Built from the portfolio: the logo, the hero line, the paper grain, small tilted
+     pieces (the two case-study covers, a taped note, Sumi) and the hero's music notes.
+     The bottom-left is left empty on purpose: LinkedIn puts the profile photo there. -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300..700&family=Caveat:wght@600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --blue: #213c97; --orange: #b3491a; --orange-soft: #fbe9dd; --bg: #fafafa; --white: #fff;
+    --ink: #101010; --ink-50: rgba(16,16,16,.62); --ink-75: rgba(16,16,16,.72);
+    --sans: "Archivo", -apple-system, sans-serif; --hand: "Caveat", cursive;
+  }
+  html, body { margin: 0; background: var(--bg); }
+  .bn { position: relative; width: 1584px; height: 396px; overflow: hidden; background: var(--bg);
+    font-family: var(--sans); color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+  /* the site's grain, same tile and strength */
+  .bn::after { content: ""; position: absolute; inset: 0; z-index: 50; pointer-events: none; opacity: .3; mix-blend-mode: multiply;
+    background-size: 240px; background-repeat: repeat;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+
+  /* top-left: the logo, as in the site nav */
+  .logo { position: absolute; left: 56px; top: 34px; font-family: var(--hand); font-weight: 700; font-size: 40px;
+    color: var(--blue); letter-spacing: .01em; rotate: -2deg; }
+
+  /* the hero line */
+  .copy { position: absolute; left: 448px; top: 74px; width: 560px; }
+  .copy h1 { margin: 0; font-weight: 500; font-size: 40px; line-height: 1.2; letter-spacing: -.025em; }
+  .copy h1 .accent { color: var(--blue); }
+  .copy p { margin: 16px 0 0; font-size: 19px; font-weight: 300; line-height: 1.45; color: var(--ink-50); }
+  .url { display: inline-flex; align-items: center; gap: 8px; margin-top: 22px; padding: 7px 18px 7px 16px;
+    border: 1px solid var(--ink); border-radius: 999px; background: var(--white); font-size: 15px; font-weight: 450; }
+  .url svg { width: 14px; height: 14px; }
+
+  /* the pieces */
+  .it { position: absolute; }
+  .card { background: var(--white); border-radius: 18px; padding: 8px;
+    box-shadow: 0 1px 0 rgba(16,16,40,.05), 0 14px 28px -14px rgba(16,16,40,.32); outline: 1px solid rgba(16,16,40,.06); outline-offset: -1px; }
+  .card img { display: block; width: 100%; border-radius: 12px; }
+  .card b { display: block; padding: 8px 6px 2px; font-size: 15px; font-weight: 600; letter-spacing: -.01em; }
+  .card b span { font-weight: 400; color: var(--ink-50); }
+
+  .note { position: relative; padding: 16px 16px 16px; border-radius: 3px 3px 12px 3px; background: var(--orange-soft);
+    box-shadow: 0 1px 0 rgba(16,16,40,.05), 0 10px 20px -12px rgba(16,16,40,.3); }
+  .note .lab { display: block; margin-bottom: 4px; font-size: 10px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--orange); }
+  .note .t { font-family: var(--hand); font-size: 26px; font-weight: 600; line-height: 1.1; }
+  .tape { position: absolute; left: 50%; top: -11px; width: 74px; height: 21px; margin-left: -37px; rotate: -4deg;
+    background: linear-gradient(103deg, rgba(255,255,255,.5) 0 16%, rgba(255,255,255,.08) 34% 66%, rgba(255,255,255,.5) 84% 100%),
+                linear-gradient(180deg, rgba(179,73,26,.2), rgba(179,73,26,.07) 46%, rgba(179,73,26,.22)), rgba(249,206,175,.86);
+    border-top: 1px solid rgba(255,255,255,.6); border-bottom: 1px solid rgba(179,73,26,.13); box-shadow: 0 1px 3px rgba(16,16,40,.08); }
+
+  .doodle { position: absolute; display: block; height: auto; }
+</style>
+</head>
+<body>
+  <div class="bn">
+    <div class="logo">Anthony N.</div>
+
+    <div class="copy">
+      <h1>Product Designer,<br />that builds <span class="accent">user-centered</span><br />products with <span class="accent">intention</span></h1>
+      <p>4th year design undergrad @ UC Davis. I love music.</p>
+      <span class="url">atonyux.com
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+      </span>
+    </div>
+
+    <!-- music notes, from the hero -->
+    <img class="doodle" src="../../assets/graphics/eighth-note.webp" alt="" style="left:930px;top:66px;width:34px;rotate:-12deg" />
+    <img class="doodle" src="../../assets/graphics/beamed-notes.webp" alt="" style="left:1004px;top:178px;width:38px;rotate:14deg" />
+
+    <!-- the case studies -->
+    <div class="it card" style="left:1060px;top:58px;width:268px;rotate:-5deg">
+      <img src="vendrs.png" alt="" />
+      <b>Vendrs <span>· case study</span></b>
+    </div>
+    <div class="it card" style="left:1262px;top:150px;width:262px;rotate:4deg">
+      <img src="qac.png" alt="" />
+      <b>QAC Gallery <span>· case study</span></b>
+    </div>
+
+    <!-- currently -->
+    <div class="it note" style="left:1330px;top:30px;width:170px;rotate:5deg">
+      <span class="tape"></span>
+      <span class="lab">Currently</span>
+      <span class="t">open to internships!</span>
+    </div>
+
+    <!-- Sumi, sketching beside the cards -->
+    <img class="doodle" src="../../assets/graphics/sumi/sketching.webp" alt="" style="left:948px;top:226px;width:104px" />
+  </div>
+</body>
+</html>
