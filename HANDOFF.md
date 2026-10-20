@@ -1787,8 +1787,13 @@ Same system as the Vendrs rewrite (`.cs--col` plus the `.v-*` components, no new
   in the pile (0 on top). At rest only card 1's edge shows (4px, 1.8deg); hover fans 1 and 2 out as the cue. Pressing the pile (main.js "About:
   community photo piles") flicks the top card off to the side (`.is-out`), then re-numbers the pile so it slides back
   in underneath. Each card shows "n/3". The pile is `isolation: isolate` so the mood sticker stays on top.
-- **The community photos are still placeholders** (camera icon in each `.ab-pol__img`, 3 per community). Put an
-  `<img>` inside each `.ab-pol__img` in place of the svg; more or fewer cards per pile work too (update the n/3 text).
+- **Real community photos (2026-10-20)** in `assets/graphics/communities/`: `<slug>-<n>.webp` (960x720, cropped 4:3
+  and framed on the people) and `<slug>-logo.webp` (192px white square tiles; Prod. Davis's transparent wordmark was
+  set on a white square to match the others). Piles: #include 2, Prod. Davis 3, Design Interactive 1 (a plain
+  polaroid: `div.ab-pol__deck`, the flip script skips it), Codelab 4. The photo-to-community mapping was inferred from
+  the order the user sent them in (each logo after its photos, Prod. Davis's photos after its logo).
+- Scene two heading is "My communities" with "Where I like to spend a lot of my time." under it (`.ab-comms__sub`);
+  each list row and each polaroid caption starts with the community's logo tile (`.ab-comm__ic`, `.ab-pol__ic`).
 - `tools/shot.mjs` (Node 22+, no installs): drives headless Chrome over the DevTools protocol to screenshot a page
   after scrolling, which plain `--screenshot` cannot do:
   `node tools/shot.mjs "http://localhost:4323/about.html" /tmp/scene 1440 900 0,500,1000`.

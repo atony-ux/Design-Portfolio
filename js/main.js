@@ -1310,7 +1310,7 @@
   })();
 
   /* -------------------------------------------------- About: community photo piles
-     Each community polaroid is a pile of three (.ab-pol__deck). Pressing it sends
+     Each community polaroid is a pile, one card per photo (.ab-pol__deck). Pressing it sends
      the top photo off to the side and tucks it in at the bottom of the pile, so
      the next one comes up. data-i is each card's place in the pile (0 = on top);
      the CSS turns it into the fanned look. A drag that ends on the pile does not
@@ -1319,6 +1319,7 @@
     [].slice.call(document.querySelectorAll(".ab-pol__deck")).forEach(function (deck) {
       var cards = [].slice.call(deck.querySelectorAll(".ab-pol__card"));
       var n = cards.length, top = 0, busy = false;
+      if (n < 2) return;   /* one photo: a plain polaroid, nothing to flip */
       var name = deck.getAttribute("data-name") || "Photos";
       function place() {
         cards.forEach(function (c, k) { c.setAttribute("data-i", (k - top + n) % n); });

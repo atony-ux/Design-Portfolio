@@ -2409,11 +2409,15 @@ body.is-leaving { opacity: 0; transition: opacity .28s ease; }
 .ab-bio p { margin: 18px 0 0; font-size: 15px; line-height: 1.7; color: var(--ink-75); }
 .ab-bio p + p { margin-top: 12px; }
 /* scene two, left: Communities, after elaineyu.design/about. The name on the left, the role on the right */
-.ab-comms__title { margin: 0 0 24px; font-size: clamp(30px, 3.1vw, 40px); font-weight: 500; letter-spacing: -.025em; line-height: 1.15; }
+.ab-comms__title { margin: 0; font-size: clamp(30px, 3.1vw, 40px); font-weight: 500; letter-spacing: -.025em; line-height: 1.15; }
+.ab-comms__sub { margin: 10px 0 28px; font-size: 15px; line-height: 1.6; color: var(--ink-50); }
 .ab-comm { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
-.ab-comm li { display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+.ab-comm li { display: flex; justify-content: space-between; align-items: center; gap: 16px;
   padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
-.ab-comm b { font-weight: 500; color: var(--ink); }
+.ab-comm b { display: inline-flex; align-items: center; gap: 12px; font-weight: 500; color: var(--ink); }
+/* the community logos: square white tiles (Prod. Davis's transparent logo was set on one to match) */
+.ab-comm__ic, .ab-pol__ic { flex: none; display: block; outline: 1px solid var(--line); outline-offset: -1px; }
+.ab-comm__ic { width: 28px; height: 28px; }
 .ab-comm span { color: var(--ink-50); text-align: right; }
 
 /* right: the board. Each piece is a .pg-it (absolute, draggable, its tilt in an
@@ -2497,8 +2501,10 @@ body.is-leaving { opacity: 0; transition: opacity .28s ease; }
 .ab-pol__img { display: grid; place-items: center; aspect-ratio: 4 / 3; overflow: hidden; background: var(--frame); color: var(--ink-30); }
 .ab-pol__img svg { width: 34px; height: 34px; }
 .ab-pol__img img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.ab-pol__cap { position: relative; display: block; padding: 8px 0 12px; font-family: var(--hand); font-size: 25px; font-weight: 700;
+.ab-pol__cap { position: relative; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 0 12px; font-family: var(--hand); font-size: 25px; font-weight: 700;
   line-height: 1.1; color: var(--ink-75); }
+.ab-pol__ic { width: 22px; height: 22px; }
+div.ab-pol__deck { cursor: inherit; }   /* a single photo: nothing to flip */
 .ab-pol__cap small { position: absolute; right: 2px; bottom: 14px; font-family: var(--sans); font-size: 11px; font-weight: 500;
   letter-spacing: .04em; color: var(--ink-30); }
 .ab-pol__mood { position: absolute; z-index: 2; width: 60px; height: auto; pointer-events: none;
@@ -2551,7 +2557,8 @@ html.ab-gallery-open { overflow: hidden; }
   .ab-board--comm { gap: 24px 16px; }
   .ab-pol:nth-child(odd) { rotate: -2deg !important; }
   .ab-pol:nth-child(even) { rotate: 2deg !important; }
-  .ab-pol__cap { font-size: 20px; }
+  .ab-pol__cap { font-size: 20px; gap: 6px; }
+  .ab-pol__ic { width: 18px; height: 18px; }
   /* .pg-it goes static on phones, but the sticker needs an anchor: relative, with the
      desktop left/top switched off (relative + the inline offsets shoved them off screen) */
   .ab-board .ab-pol { position: relative; left: auto !important; top: auto !important; }
