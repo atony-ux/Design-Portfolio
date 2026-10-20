@@ -25,6 +25,7 @@
   --bg:         #fafafa;
   --band:       #f0eeee;
   --card-body:  #fcfcfc;
+  --frame:      #f1f1f1;   /* neutral grey behind images while they load (was --blue-mist) */
   --white:      #ffffff;
 
   --ink:    #101010;
@@ -778,7 +779,7 @@ body.is-leaving { opacity: 0; transition: opacity .28s ease; }
 .cs-lead { font-family: var(--serif); font-size: clamp(19px,1.9vw,24px); line-height: 1.5; color: var(--ink); max-width: 30ch; }
 
 /* figure / image with caption  -  the star of each block */
-.cs-fig { position: relative; border-radius: var(--r-card); overflow: hidden; box-shadow: var(--sh-card); background: var(--blue-mist); }
+.cs-fig { position: relative; border-radius: var(--r-card); overflow: hidden; box-shadow: var(--sh-card); background: var(--frame); }
 .cs-fig img, .cs-fig video { width: 100%; height: 100%; object-fit: cover; display: block; }
 .cs-fig__cap, .cs-figcap { margin-top: 14px; font-size: 14px; color: var(--ink-50); font-family: var(--serif); font-style: normal; }
 .cs-fig--tall { aspect-ratio: 4 / 5; }
@@ -862,7 +863,7 @@ body.is-leaving { opacity: 0; transition: opacity .28s ease; }
    CASE STUDY  -  real product media + themed process artifacts
    ===================================================================== */
 /* natural-aspect screenshot / screen recording (no crop, no letterbox) */
-.cs-shot { position: relative; border-radius: var(--r-card); overflow: hidden; box-shadow: var(--sh-card); background: var(--blue-mist); display: block; }
+.cs-shot { position: relative; border-radius: var(--r-card); overflow: hidden; box-shadow: var(--sh-card); background: var(--frame); display: block; }
 .cs-shot img, .cs-shot video { width: 100%; height: auto; display: block; }
 .cs-shot--frame { border: 1px solid var(--line); }
 .cs-shot__tag { position: absolute; top: 14px; left: 14px; z-index: 2; font-size: 12px; font-weight: 500; letter-spacing: .04em; padding: 5px 12px; border-radius: var(--r-pill); background: rgba(255,255,255,.9); color: var(--blue); box-shadow: var(--sh-card); }
@@ -1122,7 +1123,7 @@ body.is-leaving { opacity: 0; transition: opacity .28s ease; }
   gap: clamp(26px, 3vw, 44px) clamp(24px, 2.8vw, 38px); align-items: start; }
 .album { display: block; color: inherit; text-decoration: none; }
 .album__sleeve { position: relative; display: grid; place-items: center; overflow: hidden;
-  aspect-ratio: 1 / 1; border-radius: var(--r-lg); background: var(--blue-mist);
+  aspect-ratio: 1 / 1; border-radius: var(--r-lg); background: var(--frame);
   box-shadow: 0 1px 0 rgba(16,16,40,.04), 0 6px 14px -10px rgba(16, 16, 40, 0.14);
   transition: transform .5s var(--ease), box-shadow .5s var(--ease); }
 .album__art { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
@@ -1551,7 +1552,7 @@ body.is-leaving { opacity: 0; transition: opacity .28s ease; }
   position: relative; display: block; overflow: hidden;
   aspect-ratio: 3 / 2;
   border-radius: var(--r-md);
-  background: var(--blue-mist);
+  background: var(--frame);
 }
 .wcard__shot {
   width: 100%; height: 100%; display: block;
