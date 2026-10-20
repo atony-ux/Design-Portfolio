@@ -2483,13 +2483,15 @@ body.is-leaving { opacity: 0; transition: opacity .28s ease; }
 .ab-pol__deck:focus-visible { outline: 2px solid var(--blue); outline-offset: 10px; }
 .ab-pol__card { position: absolute; inset: 0; display: block; background: var(--white); padding: 10px 10px 0;
   box-shadow: 0 1px 0 rgba(16,16,40,.05), 0 10px 22px -12px rgba(16,16,40,.28);
-  transition: transform .45s var(--ease-back); }
+  transition: transform .45s var(--ease-back), box-shadow .3s var(--ease); }
 .ab-pol__card:first-child { position: relative; inset: auto; }
 .ab-pol__card[data-i="0"] { z-index: 3; }
-.ab-pol__card[data-i="1"] { z-index: 2; transform: translate(9px, 6px) rotate(5deg); }
-.ab-pol__card[data-i="2"] { z-index: 1; transform: translate(-8px, 9px) rotate(-4.5deg); }
-.ab-pol__deck:hover .ab-pol__card[data-i="1"] { transform: translate(16px, 8px) rotate(8deg); }
-.ab-pol__deck:hover .ab-pol__card[data-i="2"] { transform: translate(-15px, 12px) rotate(-7.5deg); }
+/* At rest it barely reads as a pile: one card's edge just shows (2026-10-20, the
+   user found the full fan too stacked). Hover fans the pile out as the cue. */
+.ab-pol__card[data-i="1"] { z-index: 2; transform: translate(4px, 4px) rotate(1.8deg); box-shadow: 0 1px 2px rgba(16,16,40,.08); }
+.ab-pol__card[data-i="2"] { z-index: 1; box-shadow: none; }
+.ab-pol__deck:hover .ab-pol__card[data-i="1"] { transform: translate(10px, 6px) rotate(4.5deg); }
+.ab-pol__deck:hover .ab-pol__card[data-i="2"] { transform: translate(-8px, 7px) rotate(-3.5deg); box-shadow: 0 1px 2px rgba(16,16,40,.08); }
 .ab-pol__card.is-out { z-index: 4; transform: translate(64%, -10%) rotate(14deg);
   transition-duration: .26s; transition-timing-function: var(--ease); }
 .ab-pol__img { display: grid; place-items: center; aspect-ratio: 4 / 3; overflow: hidden; background: var(--frame); color: var(--ink-30); }
