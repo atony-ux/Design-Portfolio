@@ -2473,15 +2473,32 @@ body.is-leaving { opacity: 0; transition: opacity .28s ease; }
   color: #fff; background: var(--app); box-shadow: 0 10px 22px -10px rgba(16, 16, 40, 0.35); }
 .ab-app__tile svg { width: 34px; height: 34px; }
 
-/* scene two, right: community polaroids. The photo box holds a camera placeholder until
-   the real photo (an <img> inside .ab-pol__img) goes in. A Sumi mood sticker sits on a corner. */
-.ab-pol { background: var(--white); padding: 10px 10px 0;
-  box-shadow: 0 1px 0 rgba(16,16,40,.05), 0 10px 22px -12px rgba(16,16,40,.28); }
+/* scene two, right: community polaroids, each a little pile of three. The first card
+   sits in flow and sizes the pile; the others lie under it, peeking out at an angle.
+   data-i is a card's place in the pile (0 = on top), set by js/main.js. Pressing the
+   pile sends the top card off to the side (.is-out) and tucks it in at the bottom.
+   Each .ab-pol__img holds a camera placeholder until the real photo (an <img>) goes in. */
+.ab-pol__deck { position: relative; isolation: isolate; display: block; width: 100%; padding: 0; border: 0; background: none;
+  font: inherit; color: inherit; text-align: center; cursor: pointer; }
+.ab-pol__deck:focus-visible { outline: 2px solid var(--blue); outline-offset: 10px; }
+.ab-pol__card { position: absolute; inset: 0; display: block; background: var(--white); padding: 10px 10px 0;
+  box-shadow: 0 1px 0 rgba(16,16,40,.05), 0 10px 22px -12px rgba(16,16,40,.28);
+  transition: transform .45s var(--ease-back); }
+.ab-pol__card:first-child { position: relative; inset: auto; }
+.ab-pol__card[data-i="0"] { z-index: 3; }
+.ab-pol__card[data-i="1"] { z-index: 2; transform: translate(9px, 6px) rotate(5deg); }
+.ab-pol__card[data-i="2"] { z-index: 1; transform: translate(-8px, 9px) rotate(-4.5deg); }
+.ab-pol__deck:hover .ab-pol__card[data-i="1"] { transform: translate(16px, 8px) rotate(8deg); }
+.ab-pol__deck:hover .ab-pol__card[data-i="2"] { transform: translate(-15px, 12px) rotate(-7.5deg); }
+.ab-pol__card.is-out { z-index: 4; transform: translate(64%, -10%) rotate(14deg);
+  transition-duration: .26s; transition-timing-function: var(--ease); }
 .ab-pol__img { display: grid; place-items: center; aspect-ratio: 4 / 3; overflow: hidden; background: var(--frame); color: var(--ink-30); }
 .ab-pol__img svg { width: 34px; height: 34px; }
 .ab-pol__img img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.ab-pol figcaption { padding: 8px 0 12px; text-align: center; font-family: var(--hand); font-size: 25px; font-weight: 700;
+.ab-pol__cap { position: relative; display: block; padding: 8px 0 12px; font-family: var(--hand); font-size: 25px; font-weight: 700;
   line-height: 1.1; color: var(--ink-75); }
+.ab-pol__cap small { position: absolute; right: 2px; bottom: 14px; font-family: var(--sans); font-size: 11px; font-weight: 500;
+  letter-spacing: .04em; color: var(--ink-30); }
 .ab-pol__mood { position: absolute; z-index: 2; width: 60px; height: auto; pointer-events: none;
   filter: drop-shadow(0 4px 6px rgba(16, 16, 40, .12)); }
 
@@ -2532,7 +2549,7 @@ html.ab-gallery-open { overflow: hidden; }
   .ab-board--comm { gap: 24px 16px; }
   .ab-pol:nth-child(odd) { rotate: -2deg !important; }
   .ab-pol:nth-child(even) { rotate: 2deg !important; }
-  .ab-pol figcaption { font-size: 20px; }
+  .ab-pol__cap { font-size: 20px; }
   /* .pg-it goes static on phones, but the sticker needs an anchor: relative, with the
      desktop left/top switched off (relative + the inline offsets shoved them off screen) */
   .ab-board .ab-pol { position: relative; left: auto !important; top: auto !important; }
@@ -2559,6 +2576,6 @@ html.ab-gallery-open { overflow: hidden; }
   .ab-it--stack, .pgd.ab-gallery { display: none; }   /* the gallery needs a big screen, as before */
 }
 @media (prefers-reduced-motion: reduce) {
-  .ab-it > * { transition: none; }
+  .ab-it > *, .ab-pol__card { transition: none; }
   .ab-it:hover > * { translate: none; }
 }

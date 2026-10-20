@@ -1783,8 +1783,12 @@ Same system as the Vendrs rewrite (`.cs--col` plus the `.v-*` components, no new
     Test clicks with `document.elementFromPoint`, not by dispatching events at the element (that skips hit testing,
     which is how this slipped through).
   - `html.ab-on-comms` + a `ab:scene` event tell the music module the sleeve is gone, so the mini bar takes over.
-- **Community photos are placeholders** (camera icon in `.ab-pol__img`). Put an `<img>` inside each `.ab-pol__img`
-  in place of the svg.
+- **Community photos are piles of three** (`button.ab-pol__deck` > three `.ab-pol__card`). `data-i` is a card's place
+  in the pile (0 on top; CSS fans 1 and 2 out underneath, more on hover). Pressing the pile (main.js "About:
+  community photo piles") flicks the top card off to the side (`.is-out`), then re-numbers the pile so it slides back
+  in underneath. Each card shows "n/3". The pile is `isolation: isolate` so the mood sticker stays on top.
+- **The community photos are still placeholders** (camera icon in each `.ab-pol__img`, 3 per community). Put an
+  `<img>` inside each `.ab-pol__img` in place of the svg; more or fewer cards per pile work too (update the n/3 text).
 - `tools/shot.mjs` (Node 22+, no installs): drives headless Chrome over the DevTools protocol to screenshot a page
   after scrolling, which plain `--screenshot` cannot do:
   `node tools/shot.mjs "http://localhost:4323/about.html" /tmp/scene 1440 900 0,500,1000`.

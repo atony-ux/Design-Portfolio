@@ -1309,6 +1309,38 @@
     }, true);
   })();
 
+  /* -------------------------------------------------- About: community photo piles
+     Each community polaroid is a pile of three (.ab-pol__deck). Pressing it sends
+     the top photo off to the side and tucks it in at the bottom of the pile, so
+     the next one comes up. data-i is each card's place in the pile (0 = on top);
+     the CSS turns it into the fanned look. A drag that ends on the pile does not
+     flip it: the drag engine swallows that click. */
+  (function () {
+    [].slice.call(document.querySelectorAll(".ab-pol__deck")).forEach(function (deck) {
+      var cards = [].slice.call(deck.querySelectorAll(".ab-pol__card"));
+      var n = cards.length, top = 0, busy = false;
+      var name = deck.getAttribute("data-name") || "Photos";
+      function place() {
+        cards.forEach(function (c, k) { c.setAttribute("data-i", (k - top + n) % n); });
+        deck.setAttribute("aria-label", name + ": photo " + (top + 1) + " of " + n + ". Show the next one");
+      }
+      deck.addEventListener("click", function () {
+        if (busy || n < 2) return;
+        var leaving = cards[top];
+        top = (top + 1) % n;
+        if (reduced) { place(); return; }
+        busy = true;
+        leaving.classList.add("is-out");                 /* off to the side, above the pile */
+        setTimeout(function () {
+          place();                                       /* now last in the pile, so it drops behind */
+          leaving.classList.remove("is-out");            /* and slides back in underneath */
+          setTimeout(function () { busy = false; }, 280);
+        }, 260);
+      });
+      place();
+    });
+  })();
+
   /* -------------------------------------------------- About: the scroll scene (GSAP + ScrollTrigger)
      Big screens (1280px+ wide, 600px+ tall). The stage pins for about a screen of scrolling while
      the widgets are swept up off the board and the community polaroids drop in,
