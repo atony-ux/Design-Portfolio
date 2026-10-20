@@ -390,7 +390,10 @@
         try { active.setPointerCapture(pid); } catch (err) {}
       }
       var s = stage.getBoundingClientRect();
-      var x = e.clientX - s.left - dx, y = e.clientY - s.top - dy;
+      /* a stage can be drawn scaled (the About boards shrink on short screens), so
+         screen pixels are converted back to the stage's own pixels */
+      var k = s.width / (stage.offsetWidth || s.width) || 1;
+      var x = (e.clientX - s.left - dx) / k, y = (e.clientY - s.top - dy) / k;
       x = Math.max(-40, Math.min(x, stage.clientWidth - 60));
       y = Math.max(-40, Math.min(y, stage.clientHeight - 60));
       active.style.left = x + "px"; active.style.top = y + "px";
@@ -1307,11 +1310,13 @@
   })();
 
   /* -------------------------------------------------- About: the scroll scene (GSAP + ScrollTrigger)
-     Big, tall screens only. The stage pins for about a screen of scrolling while
+     Big screens (1280px+ wide, 600px+ tall). The stage pins for about a screen of scrolling while
      the widgets are swept up off the board and the community polaroids drop in,
      and the bio hands over to the Communities list. It is scrubbed, so scrolling
-     back up plays it in reverse. Anywhere else (narrow or short screens, reduced
-     motion, or the CDN scripts missing) nothing runs and the two scenes stack.
+     back up plays it in reverse. On laptop-height screens the boards are scaled
+     down (--fit) so the 700px board still fits under the nav. Anywhere else
+     (narrow screens, reduced motion, or the CDN scripts missing) nothing runs and
+     the two scenes stack.
      gsap.matchMedia undoes every inline style it set when the query stops matching. */
   (function () {
     var scene = document.querySelector(".ab-scene");
@@ -1326,9 +1331,15 @@
       root.classList.toggle("ab-on-comms", on);
       window.dispatchEvent(new Event("ab:scene"));   /* the music bar listens */
     }
-    gsap.matchMedia().add("(min-width: 1280px) and (min-height: 820px) and (prefers-reduced-motion: no-preference)", function () {
-      stage.classList.add("is-scene");
+    var BOARD_H = 700;   /* the taller of the two boards (.ab-board in style.css) */
+    function fit() {
       stage.style.setProperty("--nav-h", navH() + "px");
+      stage.style.setProperty("--fit", Math.min(1, (window.innerHeight - navH() - 40) / BOARD_H).toFixed(3));
+    }
+    gsap.matchMedia().add("(min-width: 1280px) and (min-height: 600px) and (prefers-reduced-motion: no-preference)", function () {
+      stage.classList.add("is-scene");
+      fit();
+      ScrollTrigger.addEventListener("refreshInit", fit);
       var outs = gsap.utils.toArray(".ab-board--main > *");
       var ins = gsap.utils.toArray(".ab-board--comm > *");
       var bio = stage.querySelector(".ab-bio");
@@ -1361,7 +1372,11 @@
         /* dropped in: the polaroids land one after another and settle on their tilt */
         .to(ins, { autoAlpha: 1, y: 0, rotation: function (i) { return tilts[i]; }, duration: 0.5, ease: "back.out(1.5)", stagger: 0.09 }, 0.45)
         .to(comms, { autoAlpha: 1, y: 0, duration: 0.35 }, 0.5);
-      return function () { stage.classList.remove("is-scene"); setScene(false); };
+      return function () {
+        ScrollTrigger.removeEventListener("refreshInit", fit);
+        stage.classList.remove("is-scene"); setScene(false);
+        stage.style.removeProperty("--fit");
+      };
     });
   })();
 

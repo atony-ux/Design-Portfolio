@@ -1717,7 +1717,7 @@ Same system as the Vendrs rewrite (`.cs--col` plus the `.v-*` components, no new
   emilee369.github.io/portfolio/about.html: small pieces, each tilted a little, loose on a board, and draggable.
   - `section.ab.wrap#about` is a centred grid, `minmax(0, 460px) 640px`, `align-items: center` (so "Hi, I'm Anthony"
     sits mid-board, not at the top).
-  - Left `.ab-bio`: title, the two bio paragraphs, Sumi. The "Outside of design" list and the link tiles moved
+  - Left `.ab-bio`: title and the two bio paragraphs (Sumi removed from under it, 2026-10-20). The "Outside of design" list and the link tiles moved
     onto the board.
   - Right `.ab-board` (640 x 740): every piece is `.pg-it.ab-it.ab-it--*`, placed with inline `left/top/width` in px
     and its tilt as an inline **`rotate`** (not `transform`), so the drag engine (writes left/top only) and the
@@ -1767,7 +1767,10 @@ Same system as the Vendrs rewrite (`.cs--col` plus the `.v-*` components, no new
   freeform and draggable, each with a Sumi mood sticker from `assets/graphics/sumi/moods/`). The moods row under the
   section is gone.
 - **GSAP 3.13 + ScrollTrigger** (cdnjs, only on about.html, before main.js). main.js "About: the scroll scene":
-  `gsap.matchMedia` for `(min-width: 1280px) and (min-height: 820px) and (prefers-reduced-motion: no-preference)`
+  `gsap.matchMedia` for `(min-width: 1280px) and (min-height: 600px) and (prefers-reduced-motion: no-preference)`
+  (was 820px tall, which hid it on most laptops: a MacBook browser window is about 750 to 800px tall). On shorter
+  screens both boards are drawn scaled (`--fit`, set on ScrollTrigger refreshInit), and the drag engine converts
+  screen px back to stage px for a scaled stage
   adds `.ab.is-scene` (both scenes share one cell per side, stage = 100vh minus the nav), pins the stage for
   `+=110%` and scrubs a timeline: widgets float up and away (random order, spin, fade), bio fades, polaroids drop in
   and settle, the Communities list fades in. Otherwise (smaller/shorter screens, reduced motion, CDN missing) the
