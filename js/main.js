@@ -1715,7 +1715,7 @@
       a: "Hey! I'm Sumi, Anthony's mascot. Ask me about his <strong>experience</strong>, his <strong>projects</strong>, or <strong>how to reach him</strong>." },
 
     { k: ["experience","work","worked","job","jobs","intern","internship","role","roles","career","history","employment","where has he"],
-      a: "Anthony's design experience so far:<br>• <strong>#include</strong>: UX Design Lead (incoming)<br>• <strong>Prod. Davis</strong>: Graphic Designer, Sep 2026 to present<br>• <strong>Design Interactive</strong>: UX Cohort Designer, Apr to May 2026<br>• <strong>All Things Design</strong>: UI/UX Intern, Jan to Mar 2026<br>There's more detail on the <a href='" + up + "about.html'>about page</a>." },
+      a: "Anthony's design experience so far:<br>• <strong>#include</strong>: UX Design Lead (incoming)<br>• <strong>Prod. Davis</strong>: Graphic Designer, Sep 2026 to present<br>• <strong>Design Interactive</strong>: Product Designer, Apr to Jun 2026<br>• <strong>All Things Design</strong>: UI/UX Intern, Jan to Mar 2026<br>There's more detail on the <a href='" + up + "about.html'>about page</a>." },
 
     { k: ["school","education","study","studying","college","university","degree","major","davis","sierra","graduate","grad"],
       a: "He's a fourth-year <strong>B.A. Design</strong> student at <strong>UC Davis</strong> (expected 2026), focused on UI/UX and interactive media. Before that he did an <strong>A.A. in Applied Art &amp; Design</strong> at Sierra College. He also spent two years in computer science before switching to design." },

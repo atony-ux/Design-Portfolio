@@ -1734,7 +1734,7 @@ Same system as the Vendrs rewrite (`.cs--col` plus the `.v-*` components, no new
   the Strava card links to the real profile (strava.com/athletes/88987403).
 - **Communities** (after elaineyu.design/about's "Experience + communities"): under the bio, `.ab-lab` label +
   `ul.ab-comm` rows, name left and role right: #include / Design Lead, Prod. Davis / Graphic Designer, Design
-  Interactive / Cohort Designer, Codelab / UX Researcher. The bio now starts 24px below the board's top.
+  Interactive / Product Designer (was Cohort Designer; matches the resume), Codelab / UX Researcher. The bio now starts 24px below the board's top.
 - **Sumi's moods row** (`.ab-moods`, after the section, decorative/aria-hidden): nine stickers cut from the user's
   3 x 3 moods sheet by `tools/moods.py` into `assets/graphics/sumi/moods/*.webp` (blue lines, white-filled faces,
   transparent outside). Each tilts by `--r` and hops/flips on hover; 3 x 3 grid on phones.
