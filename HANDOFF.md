@@ -1778,6 +1778,10 @@ Same system as the Vendrs rewrite (`.cs--col` plus the `.v-*` components, no new
   - GSAP folds a piece's CSS `rotate`/`translate` into its own transform and writes `rotate:none; translate:none`
     inline. So the polaroid tilts are read before the first `gsap.set` and used as the end rotation, and the hover
     lift moved to the piece's children (`.ab-it:hover > *`).
+  - In scene mode both boards sit in one grid cell and the Communities board is on top, so its empty box swallowed
+    every click on the widgets. `.ab.is-scene .ab-board { pointer-events: none }` with `> * { auto }` fixes it.
+    Test clicks with `document.elementFromPoint`, not by dispatching events at the element (that skips hit testing,
+    which is how this slipped through).
   - `html.ab-on-comms` + a `ab:scene` event tell the music module the sleeve is gone, so the mini bar takes over.
 - **Community photos are placeholders** (camera icon in `.ab-pol__img`). Put an `<img>` inside each `.ab-pol__img`
   in place of the svg.

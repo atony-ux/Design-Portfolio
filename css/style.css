@@ -2398,6 +2398,12 @@ body.is-leaving { opacity: 0; transition: opacity .28s ease; }
   padding-block: 0; row-gap: 0; align-content: center; }
 .ab.is-scene .ab-bio, .ab.is-scene .ab-comms { grid-area: text; }
 .ab.is-scene .ab-board { grid-area: art; scale: var(--fit, 1); }   /* shrunk to fit shorter laptop screens */
+/* Both boards share one spot, and the Communities board sits on top: its empty box
+   swallowed every click meant for the widgets. So the board boxes let clicks through
+   and only their pieces catch them (hidden pieces are visibility:hidden, so they don't). */
+.ab.is-scene .ab-board { pointer-events: none; }
+.ab.is-scene .ab-board > * { pointer-events: auto; }
+.ab.is-scene .ab-board > .ab-deco { pointer-events: none; }
 
 .ab-bio__title { margin: 0; font-size: clamp(30px, 3.1vw, 40px); font-weight: 500; letter-spacing: -.025em; line-height: 1.15; }
 .ab-bio p { margin: 18px 0 0; font-size: 15px; line-height: 1.7; color: var(--ink-75); }
