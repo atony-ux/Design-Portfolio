@@ -2051,8 +2051,8 @@ body.is-leaving { opacity: 0; transition: opacity .28s ease; }
 .pg-ctrls { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 7px; }
 /* volume on the card: the same vertical pop-up as the mini bar, parked in the
    card's top-right corner so the card itself stays symmetrical. It reuses the
-   bar's .mp__vol / .mp__volwrap / .mp__volpct classes (and data hooks), and
-   opens UPWARD like the bar's. Hidden on touch devices with the bar's. */
+   bar's .mp__vol / .mp__volwrap / .mp__volpct classes (and data hooks), but
+   opens DOWNWARD (see below). Hidden on touch devices with the bar's. */
 .pg-sleeve { position: relative; }
 .pg-sleeve .pg-cvol { position: absolute; top: 8px; right: 8px; z-index: 3; }
 .pg-cvol .mp__volbtn:hover { background: #e2e7f6; }
@@ -2061,6 +2061,12 @@ body.is-leaving { opacity: 0; transition: opacity .28s ease; }
    windows (the stage can be as little as 620px tall) */
 .pg-cvol .mp__volwrap { padding: 10px 0 8px; }
 .pg-cvol .mp__volwrap input { height: 70px; }
+/* 2026-10-20: on the card it opens DOWNWARD, into the card. The card sits at the top
+   of the About page, so a pop-up opening upward slid under the sticky nav bar. */
+.pg-cvol .mp__volwrap { top: calc(100% + 8px); bottom: auto; transform: translate(-50%, -6px); }
+.pg-cvol .mp__volwrap::after { top: auto; bottom: 100%; }
+.pg-cvol.mp__vol:hover .mp__volwrap, .pg-cvol.mp__vol:has(:focus-visible) .mp__volwrap, .pg-cvol .mp__volwrap:active {
+  transform: translate(-50%, 0); }
 .pg-sleeve.is-muted .mp__volbtn .mp__vol-on { display: none; }
 .pg-sleeve.is-muted .mp__volbtn .mp__vol-off { display: block; }
 /* previous and next track */

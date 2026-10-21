@@ -1811,3 +1811,5 @@ Same system as the Vendrs rewrite (`.cs--col` plus the `.v-*` components, no new
   "n/m" counters on the community photo piles are gone. The hobby-gear idea (Eris 3.5 monitors, OP-1 as "dream gear",
   the signed leverless cut out and flattened) is parked for later: see `mockups/about-hobbies.html`
   (built by `tools/mk-about-hobbies-mockup.py`) and the images in `assets/graphics/hobbies/` (unused on the live page).
+- 2026-10-20: new About portrait, `assets/graphics/portrait-about-v3.webp` (800x1000, cropped to match the old framing); v2 moved to ../Portfolio2.0 removed files/old-portraits.
+- 2026-10-20: the music card's volume pop-up opens DOWNWARD into the card (`.pg-cvol .mp__volwrap`); upward it slid under the sticky nav. The mini bar's still opens upward.
