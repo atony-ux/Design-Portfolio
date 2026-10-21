@@ -1814,3 +1814,4 @@ Same system as the Vendrs rewrite (`.cs--col` plus the `.v-*` components, no new
 - 2026-10-20: new About portrait, `assets/graphics/portrait-about-v3.webp` (800x1000, cropped to match the old framing); v2 moved to ../Portfolio2.0 removed files/old-portraits.
 - 2026-10-20: the music card's volume button moved from the card's top-right corner to the bottom-right, level with prev/play/next, so its pop-up still opens UPWARD but over the card instead of under the sticky nav (the user did not want it opening downward).
 - 2026-10-20: corners softened from sharp to a light rounding: `--r-lg 16px`, `--r-md 8px`, `--r-sm 8px` (original was 24/16/8). Community polaroid cards got `--r-sm` to match the EVO polaroid.
+- 2026-10-20: the two music-note doodles (eighth-note, beamed-notes) were removed from the home hero. `.hero__star` CSS stays: music.html still uses it.
