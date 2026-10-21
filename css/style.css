@@ -367,7 +367,14 @@ body.cursor-active .pgd.is-photos .pg-photo.is-zoomed { cursor: zoom-out; }
   height: auto; pointer-events: none; z-index: 3; }
 @media (max-width: 1024px) { .hero__sumi { position: static; width: 72px; margin-top: 22px; } }
 
-.hero__sumi-wrap { position: absolute; right: 3%; bottom: 51px; width: clamp(72px, 7vw, 104px); z-index: 3; }
+/* 2026-10-20: Sumi's visible bottom sits on the BASELINE of "I love music." at every
+   width. bottom = the inner's bottom padding (same clamp as .hero__inner)
+   + the baseline's height above .hero__sub's box (0.41em at line-height 1.45)
+   - the transparent strip under the drawing in sketching.webp (28px of 900 tall,
+   which is 0.045 of the image's width). Change any of those and this follows. */
+.hero__sumi-wrap { position: absolute; right: 3%; width: clamp(72px, 7vw, 104px); z-index: 3;
+  bottom: calc(clamp(30px, 4vw, 56px) + 0.41 * clamp(17px, 1.7vw, 23px) - 0.045 * clamp(72px, 7vw, 104px)); }
+.hero__sumi-wrap .hero__sumi { display: block; }
 .hero__sumi-wrap .hero__sumi { position: static; right: auto; bottom: auto; width: 100%; pointer-events: auto; cursor: pointer; }
 .hero__sumi-bubble { position: absolute; bottom: calc(100% + 10px); right: 0; background: var(--blue); color: #fff;
   font-size: 13px; padding: 8px 13px; border-radius: var(--r-md) var(--r-md) 2px var(--r-md); white-space: nowrap;
