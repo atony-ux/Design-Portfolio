@@ -2049,24 +2049,19 @@ body.is-leaving { opacity: 0; transition: opacity .28s ease; }
 .pg-sleeve.is-playing .pg-play__p, .mp.is-playing .pg-play__p { display: block; }
 /* previous / play / next, centred under the progress bar */
 .pg-ctrls { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 7px; }
-/* volume on the card: the same vertical pop-up as the mini bar, parked in the
-   card's top-right corner so the card itself stays symmetrical. It reuses the
-   bar's .mp__vol / .mp__volwrap / .mp__volpct classes (and data hooks), but
-   opens DOWNWARD (see below). Hidden on touch devices with the bar's. */
+/* volume on the card: the same vertical pop-up as the mini bar, opening UPWARD.
+   It reuses the bar's .mp__vol / .mp__volwrap / .mp__volpct classes (and data
+   hooks). Hidden on touch devices with the bar's.
+   2026-10-20: moved from the card's top-right corner to the bottom-right, level
+   with prev / play / next. Up in the corner it had no room to open upward (the
+   card sits at the top of the About page) and slid under the sticky nav; from
+   down here it opens over the card itself. */
 .pg-sleeve { position: relative; }
-.pg-sleeve .pg-cvol { position: absolute; top: 8px; right: 8px; z-index: 3; }
+.pg-sleeve .pg-cvol { position: absolute; right: 12px; bottom: 17px; z-index: 3; }
 .pg-cvol .mp__volbtn:hover { background: #e2e7f6; }
-/* a little shorter than the bar's: the card sits near the top of the desk and
-   .pg-sec clips at its edge, so a full-height pill would be cut off on short
-   windows (the stage can be as little as 620px tall) */
+/* a little shorter than the bar's, so it stays within the card */
 .pg-cvol .mp__volwrap { padding: 10px 0 8px; }
 .pg-cvol .mp__volwrap input { height: 70px; }
-/* 2026-10-20: on the card it opens DOWNWARD, into the card. The card sits at the top
-   of the About page, so a pop-up opening upward slid under the sticky nav bar. */
-.pg-cvol .mp__volwrap { top: calc(100% + 8px); bottom: auto; transform: translate(-50%, -6px); }
-.pg-cvol .mp__volwrap::after { top: auto; bottom: 100%; }
-.pg-cvol.mp__vol:hover .mp__volwrap, .pg-cvol.mp__vol:has(:focus-visible) .mp__volwrap, .pg-cvol .mp__volwrap:active {
-  transform: translate(-50%, 0); }
 .pg-sleeve.is-muted .mp__volbtn .mp__vol-on { display: none; }
 .pg-sleeve.is-muted .mp__volbtn .mp__vol-off { display: block; }
 /* previous and next track */
