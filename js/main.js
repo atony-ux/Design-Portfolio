@@ -28,9 +28,89 @@
     return Promise.resolve(window.drawably || null);
   }
 
-  /* -------------------------------------------------- Hero title reveal */
+  /* -------------------------------------------------- Hero title reveal
+     With the opening intro on screen, the headline waits and rises in as the
+     intro's sheet wipes away (the "intro:reveal" event), with a timed fallback. */
   var hTitle = $(".hero__title");
-  if (hTitle) { hTitle.classList.add("reveal"); }
+  if (hTitle) {
+    if (document.documentElement.classList.contains("is-intro")) {
+      var showTitle = function () { hTitle.classList.add("reveal"); };
+      window.addEventListener("intro:reveal", showTitle, { once: true });
+      setTimeout(showTitle, 3500);
+    } else hTitle.classList.add("reveal");
+  }
+
+  /* -------------------------------------------------- Opening intro: the level meter
+     Only when the <head> script set html.is-intro (first page of a visit, no
+     reduced motion). LED bars climb with a counter running 0 to 100, drop, and
+     the sheet wipes up. Click or any key skips. Styles: "OPENING INTRO" in
+     style.css. ?intro=1 replays it; ?intro=hold freezes it for testing
+     (window.__introSeek(ms) then scrubs it). */
+  (function () {
+    var root = document.documentElement;
+    if (!root.classList.contains("is-intro")) return;
+    try { sessionStorage.setItem("atony:intro", "1"); } catch (e) {}
+    var revealed = false, timer = 0, anims = [];
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      root.classList.remove("is-intro");
+      window.dispatchEvent(new Event("intro:reveal"));
+      if (window.ScrollTrigger) window.ScrollTrigger.refresh();
+    }
+    if (!document.body.animate) { reveal(); return; }
+
+    var N = 26, bars = "";
+    for (var i = 0; i < N; i++) bars += "<i></i>";
+    var el = document.createElement("div");
+    el.className = "intro";
+    el.setAttribute("aria-hidden", "true");
+    el.innerHTML = '<div class="intro__meter"><div class="intro__bars">' + bars + '</div>' +
+      '<div class="intro__num">Loading <b></b></div></div>';
+    document.body.appendChild(el);
+
+    var T = 900, D = T + 260, W = T + 180, WIPE = 480;   /* climb, drop, wipe start, wipe length */
+    function A(node, kf, o) { var a = node.animate(kf, Object.assign({ fill: "both" }, o)); anims.push(a); return a; }
+    function rnd(a, b) { return a + Math.random() * (b - a); }
+    $$(".intro__bars i", el).forEach(function (bar, i) {
+      var kf = [], steps = 8, bias = .75 + .25 * Math.sin(i / N * Math.PI);   /* middle bars run hotter */
+      for (var k = 0; k <= steps; k++) {
+        var p = k / steps, lvl = k === steps ? 1 : Math.pow(p, 1.15) * bias * rnd(.6, 1.15) + rnd(-.08, .08);
+        lvl = Math.max(.03, Math.min(1, lvl));
+        kf.push({ clipPath: "inset(" + ((1 - lvl) * 100).toFixed(1) + "% 0 0 0)", offset: p * T / D, easing: "ease-out" });
+      }
+      kf.push({ clipPath: "inset(0% 0 0 0)", offset: (T + 90) / D, easing: "cubic-bezier(.55,0,1,.45)" });
+      kf.push({ clipPath: "inset(100% 0 0 0)", offset: 1 });
+      A(bar, kf, { duration: D });
+    });
+    A($(".intro__num b", el), [{ "--intro-n": 0 }, { "--intro-n": 100 }], { duration: T, easing: "cubic-bezier(.45,0,.75,1)" });
+    A($(".intro__num", el), [{ opacity: 1 }, { opacity: 0 }], { duration: 180, delay: T + 80 });
+    var wipe = A(el, [{ clipPath: "inset(0 0 0% 0)" }, { clipPath: "inset(0 0 100% 0)" }],
+      { duration: WIPE, delay: W, easing: "cubic-bezier(.65,0,.35,1)" });
+    wipe.finished.then(function () { reveal(); el.remove(); }).catch(function () {});
+
+    if (/[?&]intro=hold/.test(location.search)) {
+      anims.forEach(function (a) { a.pause(); a.currentTime = 0; });
+      window.__introSeek = function (ms) {
+        anims.forEach(function (a) { a.currentTime = ms; });
+        if (ms >= W) reveal();
+      };
+      return;
+    }
+    timer = setTimeout(reveal, W);                 /* the page underneath starts as the sheet lifts */
+    /* a plain timer takes the intro away even if animations never advance (some
+       embedded browsers and webviews freeze them), so it can never strand the page */
+    var guard = setTimeout(skip, W + WIPE + 800);
+    function skip() {
+      clearTimeout(timer); clearTimeout(guard);
+      anims.forEach(function (a) { try { a.finish(); } catch (e) {} });
+      reveal(); el.remove();
+      window.removeEventListener("keydown", skip, true);
+    }
+    el.addEventListener("click", skip);
+    window.addEventListener("keydown", skip, true);
+    wipe.finished.then(function () { clearTimeout(guard); window.removeEventListener("keydown", skip, true); }).catch(function () {});
+  })();
 
   /* -------------------------------------------------- Mobile nav toggle */
   var toggle = $(".nav__toggle"), nav = $(".nav");

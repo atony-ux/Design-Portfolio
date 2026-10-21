@@ -1815,3 +1815,14 @@ Same system as the Vendrs rewrite (`.cs--col` plus the `.v-*` components, no new
 - 2026-10-20: the music card's volume button moved from the card's top-right corner to the bottom-right, level with prev/play/next, so its pop-up still opens UPWARD but over the card instead of under the sticky nav (the user did not want it opening downward).
 - 2026-10-20: corners softened from sharp to a light rounding: `--r-lg 16px`, `--r-md 8px`, `--r-sm 8px` (original was 24/16/8). Community polaroid cards got `--r-sm` to match the EVO polaroid.
 - 2026-10-20: the two music-note doodles (eighth-note, beamed-notes) were removed from the home hero. `.hero__star` CSS stays: music.html still uses it.
+- **Opening intro: the level meter (2026-10-20).** Chosen from `mockups/intro-animations.html` (CD spin-up / level
+  meter / Sumi sketches / Levels + Sumi). On the FIRST page of a visit (sessionStorage `atony:intro`), LED bars climb
+  while a counter runs 0 to 100 (900ms), drop, and the sheet wipes up (480ms); ~1.6s in all.
+  - Every page's `<head>` has a one-line script that adds `html.is-intro` before first paint (so no flash of the page);
+    `html.is-intro::before` is the cover, with a CSS failsafe that fades it at 4s if JS never runs.
+  - main.js "Opening intro: the level meter" builds `.intro`, animates with WAAPI, removes `is-intro` as the wipe
+    starts (fires `intro:reveal`, which is when the hero headline rises in), and removes `.intro` when done. A plain
+    setTimeout guard removes it too, because some embedded browsers never advance animations (the in-app preview
+    pane doesn't). Click or any key skips. Reduced motion: never shown.
+  - `?intro=1` replays it; `?intro=hold` freezes it and `window.__introSeek(ms)` scrubs it (for screenshots).
+  - Styles: "OPENING INTRO" at the end of style.css.

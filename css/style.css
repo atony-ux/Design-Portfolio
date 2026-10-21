@@ -2588,3 +2588,34 @@ html.ab-gallery-open { overflow: hidden; }
   .ab-it > *, .ab-pol__card { transition: none; }
   .ab-it:hover > * { translate: none; }
 }
+
+/* =====================================================================
+   OPENING INTRO (2026-10-20): the level meter
+   On the first page of a visit, LED bars climb like a track getting louder while
+   a counter runs 0 to 100, then the bars drop and the sheet wipes up off the page.
+   A tiny script in each page's <head> adds html.is-intro before first paint, so
+   the ::before cover is there from the start; js/main.js ("Opening intro") builds
+   the meter, plays it and removes everything. Click or any key skips it.
+   The cover fades itself out after 4s regardless, in case the script never runs.
+   Mockup with the other options: mockups/intro-animations.html.
+   ===================================================================== */
+@property --intro-n { syntax: "<integer>"; inherits: false; initial-value: 0; }
+html.is-intro { overflow: hidden; }
+html.is-intro::before { content: ""; position: fixed; inset: 0; z-index: 9996; background: var(--bg);
+  animation: intro-failsafe .3s ease 4s forwards; }
+@keyframes intro-failsafe { to { opacity: 0; visibility: hidden; } }
+.intro { position: fixed; inset: 0; z-index: 9997; display: grid; place-items: center; background: var(--bg); cursor: pointer; }
+.intro__meter { display: grid; justify-items: center; gap: 22px; }
+.intro__bars { display: flex; align-items: flex-end; gap: clamp(4px, 1vw, 6px); height: clamp(96px, 16vw, 132px); }
+/* each bar: LED segments (the mask) lit from the bottom (the clip, animated) */
+.intro__bars i { display: block; width: clamp(7px, 1.6vw, 11px); height: 100%; border-radius: 2px;
+  background: linear-gradient(to top, var(--blue) 0 64%, var(--blue-hi) 64% 82%, var(--orange-hi) 82% 100%);
+  -webkit-mask: repeating-linear-gradient(to top, #000 0 7px, transparent 7px 9px);
+          mask: repeating-linear-gradient(to top, #000 0 7px, transparent 7px 9px);
+  clip-path: inset(100% 0 0 0); }
+.intro__num { display: flex; align-items: baseline; gap: 10px; font-size: 12px; font-weight: 600; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--ink-30); }
+/* --intro-n does not inherit, so the counter is set on <b> and printed by its ::after */
+.intro__num b { min-width: 3ch; text-align: right; font-size: 28px; font-weight: 500; letter-spacing: -.02em;
+  color: var(--ink); font-variant-numeric: tabular-nums; counter-reset: intro-n var(--intro-n); }
+.intro__num b::after { content: counter(intro-n); }
