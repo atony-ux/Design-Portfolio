@@ -1826,3 +1826,11 @@ Same system as the Vendrs rewrite (`.cs--col` plus the `.v-*` components, no new
     pane doesn't). Click or any key skips. Reduced motion: never shown.
   - `?intro=1` replays it; `?intro=hold` freezes it and `window.__introSeek(ms)` scrubs it (for screenshots).
   - Styles: "OPENING INTRO" at the end of style.css.
+- **Fonts are self-hosted (2026-10-21).** The nav "glitch" the user saw on clicks was FOUT: Google Fonts with
+  `display=swap` painted "Anthony N." in the cursive fallback (bigger, wider) and the links in a system font for a
+  few frames whenever the fonts were slow, then swapped. Fix: `assets/fonts/` holds Archivo (upright + italic,
+  variable) and Caveat (variable) woff2, latin + latin-ext only; `@font-face` at the top of style.css with
+  `font-display: fallback`; every page preloads `caveat-latin.woff2` and `archivo-latin.woff2`; vercel.json caches
+  `/assets/fonts/` for a year (immutable; rename a file if it ever changes). No page loads fonts.googleapis.com now.
+  Verified by recording every painted frame of a page change with the cache off and 150ms latency: before, ~250ms of
+  fallback font; after, the real fonts from the first frame. (Mockups still load Google Fonts; they don't deploy.)

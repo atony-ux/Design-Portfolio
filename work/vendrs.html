@@ -16,14 +16,14 @@
   <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png?v=2" />
   <link rel="icon" type="image/png" sizes="192x192" href="../assets/favicon-192.png?v=2" />
   <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300..700;1,300..700&family=Caveat:wght@600;700&display=swap" rel="stylesheet" />
+  <!-- fonts are self-hosted (see FONTS at the top of style.css); preload the two the nav paints first -->
+  <link rel="preload" href="../assets/fonts/caveat-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="../assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin />
   <!-- opening intro (the level meter): on the first page of a visit, lay the cover down
        before anything paints. js/main.js "Opening intro" plays it and takes it away.
        ?intro=1 forces it; skipped for reduced motion. -->
   <script>try{if((/[?&]intro=(1|hold)/.test(location.search)||!sessionStorage.getItem("atony:intro"))&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("is-intro")}catch(e){}</script>
-  <link rel="stylesheet" href="../css/style.css?v=x204" />
+  <link rel="stylesheet" href="../css/style.css?v=x205" />
 </head>
 <body>
   <div class="nav-outer">
@@ -396,6 +396,6 @@
     <img class="v-lightbox__img" src="" alt="" loading="lazy" decoding="async" />
   </div>
 
-  <script src="../js/main.js?v=x204"></script>
+  <script src="../js/main.js?v=x205"></script>
 </body>
 </html>
