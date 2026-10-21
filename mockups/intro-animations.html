@@ -61,7 +61,18 @@
   .sk__sumi { display: block; width: 150px; height: auto; overflow: visible; }
   .sk__name { display: block; width: 300px; height: auto; overflow: visible; }
   .sk__name text { font-family: var(--hand); font-weight: 700; font-size: 72px; fill: var(--blue); fill-opacity: 0;
-    stroke: var(--blue); stroke-width: 1.4; stroke-dasharray: 260; stroke-dashoffset: 260; }
+    stroke: var(--blue); stroke-width: 1.4; stroke-dasharray: 700; stroke-dashoffset: 700;   /* longer than any letter's outline, so nothing peeks out early */ }
+
+  /* 4. Levels + Sumi: a small meter fills under Sumi while he's drawn in */
+  .combo { display: grid; justify-items: center; gap: 10px; }
+  .combo__low { display: grid; place-items: center; min-height: 92px; }
+  .combo__low > * { grid-area: 1 / 1; }
+  .meter__bars--sm { height: 56px; gap: 5px; }
+  .meter__bars--sm i { width: 9px;
+    -webkit-mask: repeating-linear-gradient(to top, #000 0 5px, transparent 5px 7px);
+            mask: repeating-linear-gradient(to top, #000 0 5px, transparent 5px 7px); }
+  .combo .meter { gap: 12px; }
+  .combo .meter__num b { font-size: 20px; }
 
   /* controls */
   .bar { position: fixed; left: 50%; bottom: 18px; z-index: 20; translate: -50% 0; display: flex; align-items: center; gap: 6px;
@@ -83,6 +94,7 @@
     <button type="button" data-kind="cd">CD spin-up</button>
     <button type="button" data-kind="meter">Level meter</button>
     <button type="button" data-kind="sketch">Sumi sketches</button>
+    <button type="button" data-kind="combo">Levels + Sumi</button>
     <button type="button" class="replay">↻ Replay</button>
   </div>
 
@@ -187,13 +199,72 @@
 
       var F0 = 1750, F1 = 2350;
       A(scrib, [ { strokeDashoffset: len }, { strokeDashoffset: 0 } ], { duration: 1150, easing: "cubic-bezier(.45,.05,.4,1)" });
-      A(text, [ { strokeDashoffset: 260 }, { strokeDashoffset: 0 } ], { duration: 800, delay: 650, easing: E.inOut });
+      A(text, [ { strokeDashoffset: 700 }, { strokeDashoffset: 0 } ], { duration: 800, delay: 650, easing: E.inOut });
       A(text, [ { fillOpacity: 0 }, { fillOpacity: 1 } ], { duration: 400, delay: 1250, easing: E.out });
       A(sumi, [ { transform: "none" }, { transform: "translate(" + (tc.x - sc.x) + "px," + (tc.y - sc.y) + "px) scale(" + ss + ")" } ],
         { duration: F1 - F0, delay: F0, easing: E.inOut });
       A(name, [ { transform: "none" }, { transform: "translate(" + (bcen.x - ncen.x) + "px," + (bcen.y - ncen.y) + "px) scale(" + ns + ")" } ],
         { duration: F1 - F0, delay: F0, easing: E.inOut });
       A(bg, [ { opacity: 1 }, { opacity: 0 } ], { duration: 450, delay: 1950, easing: E.inOut });
+    },
+
+    /* ---- 4. Levels + Sumi: Sumi is sketched in while a small meter fills under him;
+       at 100 the bars drop, "Anthony N." writes itself where they were, and both
+       fly to their spots on the page ---- */
+    combo: function () {
+      var zig = "M-60 10", y = 10, left = false;
+      while (y < 960) { y += 78; zig += " L" + (left ? -60 : 682) + " " + y; left = !left; }
+      var N = 16, bars = "";
+      for (var i = 0; i < N; i++) bars += "<i></i>";
+      stage.innerHTML = '<div class="intro-bg"></div><div class="center"><div class="combo">' +
+        '<svg class="sk__sumi" viewBox="0 0 622 900"><defs><mask id="cbm" maskUnits="userSpaceOnUse" x="-100" y="-100" width="822" height="1100">' +
+        '<path class="sk__scribble" d="' + zig + '" fill="none" stroke="#fff" stroke-width="160" stroke-linecap="round" stroke-linejoin="round" /></mask></defs>' +
+        '<image href="../assets/graphics/sumi/sketching.webp" width="622" height="900" mask="url(#cbm)" /></svg>' +
+        '<div class="combo__low"><div class="meter"><div class="meter__bars meter__bars--sm">' + bars + '</div>' +
+        '<div class="meter__num">Loading <b></b></div></div>' +
+        '<svg class="sk__name" viewBox="0 0 300 92"><text x="150" y="68" text-anchor="middle">Anthony N.</text></svg></div>' +
+        '</div></div>';
+      var bg = stage.querySelector(".intro-bg"), sumi = stage.querySelector(".sk__sumi"),
+          name = stage.querySelector(".sk__name"), text = name.querySelector("text"),
+          scrib = stage.querySelector(".sk__scribble"), num = stage.querySelector(".meter__num b"),
+          label = stage.querySelector(".meter__num");
+      var len = scrib.getTotalLength();
+      scrib.style.strokeDasharray = len; scrib.style.strokeDashoffset = len;
+
+      var T = 1150, D = T + 260;                    /* meter climbs to 100 by T, then drops */
+      [].slice.call(stage.querySelectorAll(".meter__bars--sm i")).forEach(function (bar, i) {
+        var kf = [], steps = 8, bias = .75 + .25 * Math.sin(i / N * Math.PI);
+        for (var k = 0; k <= steps; k++) {
+          var p = k / steps, lvl = k === steps ? 1 : Math.pow(p, 1.1) * bias * rnd(.6, 1.15) + rnd(-.08, .08);
+          lvl = Math.max(.04, Math.min(1, lvl));
+          kf.push({ clipPath: "inset(" + ((1 - lvl) * 100).toFixed(1) + "% 0 0 0)", offset: p * T / D, easing: "ease-out" });
+        }
+        kf.push({ clipPath: "inset(0% 0 0 0)", offset: (T + 90) / D, easing: E.in });
+        kf.push({ clipPath: "inset(100% 0 0 0)", offset: 1 });
+        A(bar, kf, { duration: D });
+      });
+      A(num, [ { "--n": 0 }, { "--n": 100 } ], { duration: T, easing: "cubic-bezier(.45,0,.75,1)" });
+      A(label, [ { opacity: 1 }, { opacity: 0 } ], { duration: 180, delay: T + 60 });
+      A(scrib, [ { strokeDashoffset: len }, { strokeDashoffset: 0 } ], { duration: T, easing: "cubic-bezier(.45,.05,.4,1)" });
+      A(text, [ { strokeDashoffset: 700 }, { strokeDashoffset: 0 } ], { duration: 650, delay: T + 120, easing: E.inOut });
+      A(text, [ { fillOpacity: 0 }, { fillOpacity: 1 } ], { duration: 350, delay: T + 520, easing: E.out });
+
+      var d = site.contentDocument;
+      var realSumi = d.querySelector(".hero__sumi"), realBrand = d.querySelector(".nav__brand");
+      var sr = sumi.getBoundingClientRect(), tr = realSumi.getBoundingClientRect();
+      var sc = center(sr), tc = center(tr), ss = tr.width / sr.width;
+      var rng = d.createRange(); rng.selectNodeContents(realBrand);
+      var br = rng.getBoundingClientRect(), nr = text.getBoundingClientRect(), svr = name.getBoundingClientRect();
+      var ncen = center(nr), bcen = center(br), ns = br.width / nr.width;
+      name.style.transformOrigin = (ncen.x - svr.left) + "px " + (ncen.y - svr.top) + "px";
+      [realSumi, realBrand].forEach(function (el) { el.style.visibility = "hidden"; restore.push(el); });
+
+      var F0 = T + 950, F1 = F0 + 560;
+      A(sumi, [ { transform: "none" }, { transform: "translate(" + (tc.x - sc.x) + "px," + (tc.y - sc.y) + "px) scale(" + ss + ")" } ],
+        { duration: F1 - F0, delay: F0, easing: E.inOut });
+      A(name, [ { transform: "none" }, { transform: "translate(" + (bcen.x - ncen.x) + "px," + (bcen.y - ncen.y) + "px) scale(" + ns + ")" } ],
+        { duration: F1 - F0, delay: F0, easing: E.inOut });
+      A(bg, [ { opacity: 1 }, { opacity: 0 } ], { duration: 420, delay: F0 + 180, easing: E.inOut });
     }
   };
 
