@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Intro Animations Mockup</title>
+<!-- MOCKUP (2026-10-20): three opening animations played over the real home page
+     (loaded in an iframe underneath), so you can see how each hands off to the site.
+     Switch with the buttons at the bottom; click anywhere on an intro to skip it.
+     These run about 2s so they're easy to watch; a real one would be tightened to ~1s
+     and shown only on the first visit. ?at=<ms> freezes every intro at that moment
+     (used for screenshots); window.__seek(ms) does the same live. -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300..700&family=Caveat:wght@600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #fafafa; --blue: #213c97; --blue-hi: #3a58c9; --orange-hi: #ef7a34;
+    --ink: #101010; --ink-50: rgba(16,16,16,.62); --ink-30: rgba(16,16,16,.3);
+    --sans: "Archivo", -apple-system, sans-serif; --hand: "Caveat", cursive;
+  }
+  @property --n { syntax: "<integer>"; inherits: false; initial-value: 0; }
+  html, body { margin: 0; height: 100%; overflow: hidden; background: var(--bg); font-family: var(--sans); }
+  #site { position: fixed; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
+
+  /* the overlay: transparent itself; .intro-bg is the page-coloured sheet that leaves */
+  .intro { position: fixed; inset: 0; z-index: 10; cursor: pointer; }
+  .intro[hidden] { display: none; }
+  .intro-bg { position: absolute; inset: 0; background: var(--bg); }
+  .intro-bg::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .3; mix-blend-mode: multiply;
+    background-size: 240px; background-repeat: repeat;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .center { position: absolute; inset: 0; display: grid; place-items: center; }
+
+  /* 1. CD spin-up */
+  .cd { display: grid; justify-items: center; gap: 18px; }
+  .cd-fly { width: 168px; height: 168px; border-radius: 50%; background: #fff; border: 4px solid #fff;
+    box-shadow: 0 10px 26px -8px rgba(16,16,40,.28); }
+  .cd-disc { display: block; width: 100%; height: 100%; border-radius: 50%; }
+  .cd-cap { margin: 0; font-family: var(--hand); font-weight: 700; font-size: 30px; color: var(--blue); }
+
+  /* 2. level meter: LED segments (the mask) that light from the bottom (the clip) */
+  .meter { display: grid; justify-items: center; gap: 22px; }
+  .meter__bars { display: flex; align-items: flex-end; gap: 6px; height: 132px; }
+  .meter__bars i { display: block; width: 11px; height: 100%; border-radius: 2px;
+    background: linear-gradient(to top, var(--blue) 0 64%, var(--blue-hi) 64% 82%, var(--orange-hi) 82% 100%);
+    -webkit-mask: repeating-linear-gradient(to top, #000 0 7px, transparent 7px 9px);
+            mask: repeating-linear-gradient(to top, #000 0 7px, transparent 7px 9px);
+    clip-path: inset(100% 0 0 0); }
+  .meter__num { display: flex; align-items: baseline; gap: 10px; font-size: 12px; font-weight: 600; letter-spacing: .2em;
+    color: var(--ink-30); text-transform: uppercase; }
+  .meter__num b { min-width: 3ch; text-align: right; font-size: 28px; font-weight: 500; letter-spacing: -.02em; color: var(--ink);
+    font-variant-numeric: tabular-nums; }
+  /* --n doesn't inherit, so the counter is set on <b> itself and only printed by ::after */
+  .meter__num b { counter-reset: n var(--n); }
+  .meter__num b::after { content: counter(n); }
+
+  /* 3. Sumi sketches: a scribble mask "draws" him in, then the logo writes itself;
+     both then fly to where they live on the page */
+  .sk { display: grid; justify-items: center; gap: 4px; }
+  .sk__sumi { display: block; width: 150px; height: auto; overflow: visible; }
+  .sk__name { display: block; width: 300px; height: auto; overflow: visible; }
+  .sk__name text { font-family: var(--hand); font-weight: 700; font-size: 72px; fill: var(--blue); fill-opacity: 0;
+    stroke: var(--blue); stroke-width: 1.4; stroke-dasharray: 260; stroke-dashoffset: 260; }
+
+  /* controls */
+  .bar { position: fixed; left: 50%; bottom: 18px; z-index: 20; translate: -50% 0; display: flex; align-items: center; gap: 6px;
+    padding: 6px; border-radius: 999px; background: rgba(16,16,16,.88); color: #fff; font-size: 13px;
+    box-shadow: 0 10px 30px -10px rgba(16,16,40,.4); }
+  .bar span { padding: 0 8px 0 10px; color: rgba(255,255,255,.6); }
+  .bar button { border: 0; border-radius: 999px; padding: 8px 14px; font: inherit; color: #fff; background: transparent; cursor: pointer; }
+  .bar button:hover { background: rgba(255,255,255,.12); }
+  .bar button[aria-pressed="true"] { background: #fff; color: var(--ink); }
+  .bar .replay { border-left: 1px solid rgba(255,255,255,.18); border-radius: 0 999px 999px 0; padding-left: 14px; }
+</style>
+</head>
+<body>
+  <iframe id="site" title="Home page"></iframe>
+  <div class="intro" id="intro" hidden title="Click to skip"></div>
+
+  <div class="bar" role="toolbar" aria-label="Intro mockups">
+    <span>Intro mockup</span>
+    <button type="button" data-kind="cd">CD spin-up</button>
+    <button type="button" data-kind="meter">Level meter</button>
+    <button type="button" data-kind="sketch">Sumi sketches</button>
+    <button type="button" class="replay">↻ Replay</button>
+  </div>
+
+<script>
+(function () {
+  var site = document.getElementById("site");
+  var stage = document.getElementById("intro");
+  var params = new URLSearchParams(location.search);
+  var AT = params.has("at") ? +params.get("at") : null;
+  var E = { out: "cubic-bezier(.22,1,.36,1)", back: "cubic-bezier(.34,1.56,.64,1)",
+            inOut: "cubic-bezier(.65,0,.35,1)", in: "cubic-bezier(.55,0,1,.45)" };
+  var anims = [], kind = "cd", restore = [];
+
+  function A(el, kf, o) {
+    var a = el.animate(kf, Object.assign({ fill: "both" }, o));
+    anims.push(a); return a;
+  }
+  function rnd(a, b) { return a + Math.random() * (b - a); }
+  function center(r) { return { x: r.left + r.width / 2, y: r.top + r.height / 2 }; }
+
+  var INTROS = {
+    /* ---- 1. CD spin-up: the player's CD spins up, then shrinks into the corner
+       where the mini player lives, and the page shows through ---- */
+    cd: function () {
+      stage.innerHTML = '<div class="intro-bg"></div><div class="center"><div class="cd">' +
+        '<div class="cd-fly"><img class="cd-disc" src="../assets/graphics/cd-disc.webp" alt="" /></div>' +
+        '<p class="cd-cap">Anthony N.</p></div></div>';
+      var fly = stage.querySelector(".cd-fly"), disc = stage.querySelector(".cd-disc"),
+          cap = stage.querySelector(".cd-cap"), bg = stage.querySelector(".intro-bg");
+      var c = center(fly.getBoundingClientRect());
+      var dx = 37 - c.x, dy = (innerHeight - 37) - c.y, s = 30 / 168;
+      var D = 2100;
+      A(disc, [ { transform: "rotate(0deg)", easing: E.in },
+                { transform: "rotate(900deg)", offset: .71, easing: "linear" },
+                { transform: "rotate(1640deg)" } ], { duration: D });
+      A(fly, [ { transform: "scale(.3)", opacity: 0, easing: E.back },
+               { transform: "scale(1)", opacity: 1, offset: .21 },
+               { transform: "scale(1)", opacity: 1, offset: .64, easing: E.inOut },
+               { transform: "translate(" + dx + "px," + dy + "px) scale(" + s + ")", opacity: 1, offset: .9 },
+               { transform: "translate(" + dx + "px," + dy + "px) scale(" + s + ")", opacity: 0 } ], { duration: D });
+      A(cap, [ { opacity: 0, transform: "translateY(8px)" }, { opacity: 0, offset: .2, transform: "translateY(8px)", easing: E.out },
+               { opacity: 1, offset: .4, transform: "none" }, { opacity: 1, offset: .85 }, { opacity: 0 } ], { duration: 1500 });
+      A(bg, [ { opacity: 1 }, { opacity: 0 } ], { duration: 450, delay: 1450, easing: E.inOut });
+    },
+
+    /* ---- 2. Level meter: LED bars climb to 100 like a track getting louder, then
+       drop, and the sheet wipes up off the page ---- */
+    meter: function () {
+      var N = 26, bars = "";
+      for (var i = 0; i < N; i++) bars += "<i></i>";
+      stage.innerHTML = '<div class="intro-bg"><div class="center"><div class="meter">' +
+        '<div class="meter__bars">' + bars + '</div>' +
+        '<div class="meter__num">Loading <b></b></div></div></div></div>';
+      var bg = stage.querySelector(".intro-bg"), num = stage.querySelector(".meter__num b"),
+          label = stage.querySelector(".meter__num");
+      var T = 1400, D = T + 320;
+      [].slice.call(stage.querySelectorAll(".meter__bars i")).forEach(function (bar, i) {
+        var kf = [], steps = 9;
+        var bias = .75 + .25 * Math.sin(i / N * Math.PI);          /* middle bars run a bit hotter */
+        for (var k = 0; k <= steps; k++) {
+          var p = k / steps, lvl = k === steps ? 1 : Math.pow(p, 1.15) * bias * rnd(.6, 1.15) + rnd(-.08, .08);
+          lvl = Math.max(.03, Math.min(1, lvl));
+          kf.push({ clipPath: "inset(" + ((1 - lvl) * 100).toFixed(1) + "% 0 0 0)", offset: p * T / D, easing: "ease-out" });
+        }
+        kf.push({ clipPath: "inset(0% 0 0 0)", offset: (T + 110) / D, easing: E.in });
+        kf.push({ clipPath: "inset(100% 0 0 0)", offset: 1 });
+        A(bar, kf, { duration: D });
+      });
+      A(num, [ { "--n": 0 }, { "--n": 100 } ], { duration: T, easing: "cubic-bezier(.45,0,.75,1)" });   /* keeps pace with the bars */
+      A(label, [ { opacity: 1 }, { opacity: 0 } ], { duration: 200, delay: T + 120 });
+      A(bg, [ { clipPath: "inset(0 0 0% 0)" }, { clipPath: "inset(0 0 100% 0)" } ], { duration: 520, delay: T + 260, easing: E.inOut });
+    },
+
+    /* ---- 3. Sumi sketches: a pen scribble reveals Sumi, "Anthony N." writes itself,
+       then each flies to its real spot (the hero corner, the nav logo) ---- */
+    sketch: function () {
+      var zig = "M-60 10", y = 10, left = false;
+      while (y < 960) { y += 78; zig += " L" + (left ? -60 : 682) + " " + y; left = !left; }
+      stage.innerHTML = '<div class="intro-bg"></div><div class="center"><div class="sk">' +
+        '<svg class="sk__sumi" viewBox="0 0 622 900"><defs><mask id="skm" maskUnits="userSpaceOnUse" x="-100" y="-100" width="822" height="1100">' +
+        '<path class="sk__scribble" d="' + zig + '" fill="none" stroke="#fff" stroke-width="160" stroke-linecap="round" stroke-linejoin="round" /></mask></defs>' +
+        '<image href="../assets/graphics/sumi/sketching.webp" width="622" height="900" mask="url(#skm)" /></svg>' +
+        '<svg class="sk__name" viewBox="0 0 300 92"><text x="150" y="68" text-anchor="middle">Anthony N.</text></svg>' +
+        '</div></div>';
+      var bg = stage.querySelector(".intro-bg"), sumi = stage.querySelector(".sk__sumi"),
+          name = stage.querySelector(".sk__name"), text = name.querySelector("text"),
+          scrib = stage.querySelector(".sk__scribble");
+      var len = scrib.getTotalLength();
+      scrib.style.strokeDasharray = len; scrib.style.strokeDashoffset = len;
+
+      /* where they land: the real Sumi in the hero and the real logo in the nav */
+      var d = site.contentDocument;
+      var realSumi = d.querySelector(".hero__sumi"), realBrand = d.querySelector(".nav__brand");
+      var sr = sumi.getBoundingClientRect(), tr = realSumi.getBoundingClientRect();
+      var sc = center(sr), tc = center(tr), ss = tr.width / sr.width;
+      var rng = d.createRange(); rng.selectNodeContents(realBrand);
+      var br = rng.getBoundingClientRect(), nr = text.getBoundingClientRect(), svr = name.getBoundingClientRect();
+      var ncen = center(nr), bcen = center(br), ns = br.width / nr.width;
+      name.style.transformOrigin = (ncen.x - svr.left) + "px " + (ncen.y - svr.top) + "px";
+      /* hide the real ones while their stand-ins are in the air */
+      [realSumi, realBrand].forEach(function (el) { el.style.visibility = "hidden"; restore.push(el); });
+
+      var F0 = 1750, F1 = 2350;
+      A(scrib, [ { strokeDashoffset: len }, { strokeDashoffset: 0 } ], { duration: 1150, easing: "cubic-bezier(.45,.05,.4,1)" });
+      A(text, [ { strokeDashoffset: 260 }, { strokeDashoffset: 0 } ], { duration: 800, delay: 650, easing: E.inOut });
+      A(text, [ { fillOpacity: 0 }, { fillOpacity: 1 } ], { duration: 400, delay: 1250, easing: E.out });
+      A(sumi, [ { transform: "none" }, { transform: "translate(" + (tc.x - sc.x) + "px," + (tc.y - sc.y) + "px) scale(" + ss + ")" } ],
+        { duration: F1 - F0, delay: F0, easing: E.inOut });
+      A(name, [ { transform: "none" }, { transform: "translate(" + (bcen.x - ncen.x) + "px," + (bcen.y - ncen.y) + "px) scale(" + ns + ")" } ],
+        { duration: F1 - F0, delay: F0, easing: E.inOut });
+      A(bg, [ { opacity: 1 }, { opacity: 0 } ], { duration: 450, delay: 1950, easing: E.inOut });
+    }
+  };
+
+  function done() {
+    stage.hidden = true; stage.innerHTML = "";
+    restore.forEach(function (el) { el.style.visibility = ""; }); restore = [];
+  }
+  function play(k) {
+    kind = k;
+    anims.forEach(function (a) { a.cancel(); }); anims = [];
+    restore = [];
+    [].slice.call(document.querySelectorAll("[data-kind]")).forEach(function (b) {
+      b.setAttribute("aria-pressed", String(b.getAttribute("data-kind") === k));
+    });
+    history.replaceState(null, "", "#" + k);
+    stage.hidden = false;
+    stage.innerHTML = '<div class="intro-bg"></div>';          /* cover while the page loads */
+    site.addEventListener("load", function () {
+      requestAnimationFrame(function () {
+        INTROS[k]();
+        var mine = anims.slice();
+        if (AT != null) { window.__seek(AT); return; }
+        Promise.all(mine.map(function (a) { return a.finished; })).then(function () {
+          if (anims[0] === mine[0]) done();
+        }).catch(function () {});
+      });
+    }, { once: true });
+    site.src = "../index.html?intro=" + Date.now();
+  }
+  window.__seek = function (ms) { anims.forEach(function (a) { a.pause(); a.currentTime = ms; }); };
+
+  stage.addEventListener("click", function () { anims.forEach(function (a) { try { a.finish(); } catch (e) {} }); });
+  [].slice.call(document.querySelectorAll("[data-kind]")).forEach(function (b) {
+    b.addEventListener("click", function () { play(b.getAttribute("data-kind")); });
+  });
+  document.querySelector(".replay").addEventListener("click", function () { play(kind); });
+
+  var start = (location.hash || "#cd").slice(1);
+  play(INTROS[start] ? start : "cd");
+})();
+</script>
+</body>
+</html>
