@@ -19,11 +19,12 @@
   <!-- fonts are self-hosted (see FONTS at the top of style.css); preload the two the nav paints first -->
   <link rel="preload" href="../assets/fonts/caveat-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="../assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin />
-  <!-- opening intro (the level meter): on the first page of a visit, lay the cover down
+  <!-- html.js: JS is on (lets CSS hide things that JS will animate in, e.g. Sumi's drawing).
+       Opening intro (the level meter): on the first page of a visit, lay the cover down
        before anything paints. js/main.js "Opening intro" plays it and takes it away.
        ?intro=1 forces it; skipped for reduced motion. -->
-  <script>try{if((/[?&]intro=(1|hold)/.test(location.search)||!sessionStorage.getItem("atony:intro"))&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("is-intro")}catch(e){}</script>
-  <link rel="stylesheet" href="../css/style.css?v=x206" />
+  <script>document.documentElement.classList.add("js");try{if((/[?&]intro=(1|hold)/.test(location.search)||!sessionStorage.getItem("atony:intro"))&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("is-intro")}catch(e){}</script>
+  <link rel="stylesheet" href="../css/style.css?v=x208" />
 </head>
 <body>
   <div class="nav-outer">
@@ -98,7 +99,7 @@
       </div>
     </section>
 
-    <section class="cs-block cs-narrow" id="context">
+    <section class="cs-block cs-narrow" id="context" data-reveal>
       <span class="cs-eyebrow">OVERVIEW</span>
       <h2 class="cs-h2">Starting a business can be exciting but scary</h2>
       <p class="cs-text">Starting a small business is an exciting but overwhelming endeavor, aspiring entrepreneurs often don't know where to begin when it comes to finding reliable suppliers, managing inventory, and handling the operational side of running a business. Without guidance or the right tools, the early stages can feel <b>scattered and discouraging</b>, making it hard to gain momentum.</p>
@@ -111,7 +112,7 @@
       </ul>
     </section>
 
-    <section class="cs-block cs-narrow" id="problem">
+    <section class="cs-block cs-narrow" id="problem" data-reveal>
       <span class="cs-eyebrow">THE PROBLEM</span>
       <h2 class="cs-h2">Many emerging small businesses want to scale, but lack the resources, staff, and opportunity to do so</h2>
       <p class="cs-text">Running a small business means <b>juggling operations, finances, and growth all at once</b>. This can be difficult especially if you have no centralized support. Many owners struggle to scale because they lack the staff, customers, and internal knowledge needed to grow.</p>
@@ -126,7 +127,7 @@
       </div>
     </section>
 
-    <section class="cs-block cs-narrow" id="solution">
+    <section class="cs-block cs-narrow" id="solution" data-reveal>
       <span class="cs-eyebrow">SOLUTION</span>
       <h2 class="cs-h2">Vendrs brings discovery, resources, and operations into one platform</h2>
       <p class="cs-text">I helped build a platform for emerging small business owners that brings operations, discovery, and community into one place, instead of the group chats, spreadsheets, and missed opportunities from before.</p>
@@ -158,7 +159,7 @@
       </div>
     </section>
 
-    <section class="cs-block cs-narrow" id="research">
+    <section class="cs-block cs-narrow" id="research" data-reveal>
       <span class="cs-eyebrow">RESEARCH FINDINGS</span>
       <h2 class="cs-h2">They didn't lack ambition. They lacked infrastructure.</h2>
       <p class="cs-text"><b>20+ survey responses</b> showed how common each problem was, <b>10 interviews</b> with UC Davis market vendors showed why it mattered, and <b>secondary research</b> on street events confirmed discovery was worth solving.</p>
@@ -189,7 +190,7 @@
       </div>
     </section>
 
-    <section class="cs-block cs-narrow" id="prioritization">
+    <section class="cs-block cs-narrow" id="prioritization" data-reveal>
       <span class="cs-eyebrow">FEATURE PRIORITIZATION</span>
       <h2 class="cs-h2">We were too ambitious.</h2>
       <p class="cs-text">The team was ambitious, but an eight week timeline meant one main focus, not ten half-built ones. I made sure that our priorities were set on features that targeted our scope the best.</p>
@@ -201,7 +202,7 @@
       </div>
     </section>
 
-    <section class="cs-block" id="onboarding">
+    <section class="cs-block" id="onboarding" data-reveal>
       <div class="cs-narrow">
         <span class="cs-eyebrow">ONBOARDING</span>
         <h2 class="cs-h2">Quick and simple setup</h2>
@@ -227,7 +228,7 @@
       </div>
     </section>
 
-    <section class="cs-block" id="map">
+    <section class="cs-block" id="map" data-reveal>
       <div class="cs-narrow">
         <span class="cs-eyebrow">EVENTS MAP</span>
         <h2 class="cs-h2">Discovery you can see, sorted by what you can reach</h2>
@@ -318,7 +319,7 @@
       </div>
     </section>
 
-    <section class="cs-block cs-narrow" id="reflection">
+    <section class="cs-block cs-narrow" id="reflection" data-reveal>
       <span class="cs-eyebrow">REFLECTION</span>
       <h2 class="cs-h2">What I learned</h2>
 
@@ -342,7 +343,7 @@
       </ul>
     </section>
 
-    <section class="cs-block cs-narrow" id="results">
+    <section class="cs-block cs-narrow" id="results" data-reveal>
       <span class="cs-eyebrow">OUTCOME</span>
       <h2 class="cs-h2">Presenting Vendrs to a panel of industry judges</h2>
       <p class="cs-text">We closed the sprint by presenting the final product to a panel of industry judges: <b>Chris Ota</b> (Staff Product Designer, LinkedIn), <b>Ken Skistimas</b> (Director of UX, ServiceNow), and <b>Aditi Jain</b> (UI Designer, Computrition).</p>
@@ -396,6 +397,6 @@
     <img class="v-lightbox__img" src="" alt="" loading="lazy" decoding="async" />
   </div>
 
-  <script src="../js/main.js?v=x206"></script>
+  <script src="../js/main.js?v=x208"></script>
 </body>
 </html>

@@ -1840,3 +1840,13 @@ Same system as the Vendrs rewrite (`.cs--col` plus the `.v-*` components, no new
   last; home Sumi pops onto the baseline and wiggles (`sumi-pop`). CSS animations, fill BACKWARDS only, paused under
   `html.is-intro`, off for reduced motion. main.js replays Sumi's on `pageshow` from the back/forward cache.
   `tools/live.mjs` = timed screenshots + probe in headless Chrome (optionally a second page in the same session).
+- **2026-10-25, later:** Sumi on home is now DRAWN in, not popped: main.js "Sumi is drawn in" lays an SVG copy over
+  the image and reveals it with a zig-zag pen-stroke mask (dash animation, ~1.15s), then shows the image
+  (`.is-drawn`) and wiggles the pencil. The image is hidden only under `html.js` (added by the head script on every
+  page) with a 4s CSS failsafe, and a setTimeout guard finishes the drawing where animations don't advance.
+  **Case studies** open in steps instead of the whole-page fade (`cs-enter` removed): `.case-head` children rise,
+  the four `.v-meta` details stagger, `.case-nav__link`s slide in, the cover (`.case-head + .cs-block`) rises last.
+  Vendrs sections now use `data-reveal` like QAC's (QAC's header and cover lost theirs: the opening handles them).
+  **Section links land right:** main.js "Links to a section land on it" re-jumps to `location.hash` on load (+700ms
+  and after the intro) unless the visitor already scrolled, and marks that section revealed. Before, vendrs.html#map
+  landed ~800px short because images/videos above loaded after the jump.

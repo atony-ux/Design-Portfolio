@@ -19,11 +19,12 @@
   <!-- fonts are self-hosted (see FONTS at the top of style.css); preload the two the nav paints first -->
   <link rel="preload" href="../assets/fonts/caveat-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="../assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin />
-  <!-- opening intro (the level meter): on the first page of a visit, lay the cover down
+  <!-- html.js: JS is on (lets CSS hide things that JS will animate in, e.g. Sumi's drawing).
+       Opening intro (the level meter): on the first page of a visit, lay the cover down
        before anything paints. js/main.js "Opening intro" plays it and takes it away.
        ?intro=1 forces it; skipped for reduced motion. -->
-  <script>try{if((/[?&]intro=(1|hold)/.test(location.search)||!sessionStorage.getItem("atony:intro"))&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("is-intro")}catch(e){}</script>
-  <link rel="stylesheet" href="../css/style.css?v=x206" />
+  <script>document.documentElement.classList.add("js");try{if((/[?&]intro=(1|hold)/.test(location.search)||!sessionStorage.getItem("atony:intro"))&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("is-intro")}catch(e){}</script>
+  <link rel="stylesheet" href="../css/style.css?v=x208" />
 </head>
 <body>
   <div class="nav-outer nav-outer--case">
@@ -47,7 +48,7 @@
     </nav>
 
     <div class="cs__body">
-    <header class="case-head" data-reveal>
+    <header class="case-head">
       <p class="case-head__cat">PRODUCT DESIGN · CLIENT</p>
       <h1 class="case-head__title">Making a gallery's events easy to find and book</h1>
       <p class="case-head__desc">QA Gallery shows LGBTQ+ artists in Oakland. My first client project, where I designed the events and booking experience, from the navigation down to the pages people actually land on.</p>
@@ -59,7 +60,7 @@
       </dl>
     </header>
 
-    <section class="cs-block cs-block--tight" data-reveal>
+    <section class="cs-block cs-block--tight">
       <div class="cs-shot"><img src="../assets/graphics/qac/events-cards.webp" alt="Upcoming Events as scannable cards" /></div>
       <p class="cs-figcap">Upcoming Events after the redesign: one card carries the date, the tags and the next step.</p>
     </section>
@@ -225,6 +226,6 @@
     </div>
   </footer>
 
-  <script src="../js/main.js?v=x206"></script>
+  <script src="../js/main.js?v=x208"></script>
 </body>
 </html>

@@ -112,6 +112,31 @@
     wipe.finished.then(function () { clearTimeout(guard); window.removeEventListener("keydown", skip, true); }).catch(function () {});
   })();
 
+  /* -------------------------------------------------- Links to a section land on it
+     Opening a page at a section (work/vendrs.html#map, index.html#works) used to
+     land hundreds of px short: the browser jumps early, then images and videos
+     above finish loading and push the section down (and on a first visit the
+     opening intro holds the page still). So once things have loaded, jump again,
+     unless the visitor has already started scrolling, and show that section
+     right away rather than waiting for its scroll reveal. */
+  (function () {
+    var id = decodeURIComponent(location.hash.slice(1));
+    var target = id && document.getElementById(id);
+    if (!target) return;
+    var touched = false;
+    ["wheel", "touchstart", "keydown", "mousedown"].forEach(function (ev) {
+      window.addEventListener(ev, function () { touched = true; }, { passive: true, once: true });
+    });
+    function land() {
+      if (touched) return;
+      var r = target.closest("[data-reveal]");
+      if (r) r.classList.add("is-in");
+      target.scrollIntoView({ behavior: "instant", block: "start" });
+    }
+    window.addEventListener("load", function () { land(); setTimeout(land, 700); });
+    window.addEventListener("intro:reveal", function () { setTimeout(land, 60); });
+  })();
+
   /* -------------------------------------------------- Mobile nav toggle */
   var toggle = $(".nav__toggle"), nav = $(".nav");
   if (toggle && nav) {
@@ -1723,18 +1748,60 @@
     }, 3800);
   }
 
-  /* -------------------------------------------------- Sumi's pop-in, again on "back"
-     The pop-in itself is CSS (ENTRANCES in style.css) and plays on every load. A
-     page restored from the back/forward cache is not reloaded, so it is restarted
-     here: clear the animation, force a reflow, put it back. */
-  window.addEventListener("pageshow", function (e) {
-    if (!e.persisted || reduced) return;
-    var s = $(".hero__sumi-wrap .hero__sumi");
-    if (!s) return;
-    s.style.animation = "none";
-    void s.offsetWidth;
-    s.style.animation = "";
-  });
+  /* -------------------------------------------------- Sumi is drawn in (home)
+     An SVG copy of the drawing sits over the image and is revealed by a thick
+     zig-zag pen stroke used as a mask (its dash animates from hidden to drawn),
+     so he appears line by line like he is being sketched. Then the real image
+     takes over and he wiggles his pencil. Waits for the opening intro; runs again
+     when the page comes back from the back/forward cache. The image is hidden by
+     CSS until .is-drawn (ENTRANCES in style.css), with a 4s failsafe. */
+  (function () {
+    var wrap = $(".hero__sumi-wrap"), img = wrap && $(".hero__sumi", wrap);
+    if (!img) return;
+    var root = document.documentElement, NS = "http://www.w3.org/2000/svg", live = null, n = 0;
+    function show() { wrap.classList.add("is-drawn"); }
+    if (reduced || !img.animate) { show(); return; }
+    function wiggle() {
+      img.animate([{ transform: "none" }, { transform: "rotate(2.5deg)" }, { transform: "rotate(-2deg)" },
+        { transform: "rotate(1.5deg)" }, { transform: "none" }], { duration: 440, easing: "ease-in-out" });
+    }
+    function draw() {
+      if (live) live.remove();
+      wrap.classList.remove("is-drawn");
+      var w = img.naturalWidth || 622, h = img.naturalHeight || 900;
+      var zig = "M" + (-w * .1) + " " + (h * .01), y = h * .01, left = false, step = h * .087;
+      while (y < h * 1.07) { y += step; zig += " L" + (left ? -w * .1 : w * 1.1) + " " + y; left = !left; }
+      var id = "sumi-draw-" + (++n);
+      var svg = document.createElementNS(NS, "svg");
+      svg.setAttribute("class", "hero__sumi-draw");
+      svg.setAttribute("viewBox", "0 0 " + w + " " + h);
+      svg.setAttribute("aria-hidden", "true");
+      svg.innerHTML = '<defs><mask id="' + id + '" maskUnits="userSpaceOnUse" x="' + (-w * .2) + '" y="' + (-h * .1) + '" width="' + (w * 1.4) + '" height="' + (h * 1.2) + '">' +
+        '<path d="' + zig + '" fill="none" stroke="#fff" stroke-width="' + (h * .18) + '" stroke-linecap="round" stroke-linejoin="round" /></mask></defs>' +
+        '<image href="' + (img.currentSrc || img.src) + '" width="' + w + '" height="' + h + '" mask="url(#' + id + ')" />';
+      img.parentNode.insertBefore(svg, img.nextSibling);
+      live = svg;
+      var path = svg.querySelector("path"), len = path.getTotalLength();
+      path.style.strokeDasharray = len;
+      var a = path.animate([{ strokeDashoffset: len }, { strokeDashoffset: 0 }],
+        { duration: 1150, easing: "cubic-bezier(.45,.05,.4,1)", fill: "both" });
+      /* a plain timer finishes it even where animations never advance */
+      var guard = setTimeout(done, 2600);
+      a.finished.then(done).catch(function () {});
+      function done() {
+        clearTimeout(guard);
+        if (live !== svg) return;
+        show(); svg.remove(); live = null; wiggle();
+      }
+    }
+    function start() {
+      if (img.complete && img.naturalWidth) setTimeout(draw, 250);
+      else img.addEventListener("load", function () { setTimeout(draw, 250); }, { once: true });
+    }
+    if (root.classList.contains("is-intro")) window.addEventListener("intro:reveal", function () { setTimeout(start, 120); }, { once: true });
+    else start();
+    window.addEventListener("pageshow", function (e) { if (e.persisted) draw(); });
+  })();
 
   /* -------------------------------------------------- Mascot click easter eggs */
   var eggCount = 0;

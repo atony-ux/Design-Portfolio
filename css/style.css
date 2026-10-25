@@ -780,10 +780,10 @@ body.cursor-active .pgd.is-photos .pg-photo.is-zoomed { cursor: zoom-out; }
    runs forwards from `backwards`, so once it ends the element is back to its
    plain styles (no lingering transform to trap sticky or fixed children).
    The page being left fades out first (body.is-leaving, see main.js). */
-@keyframes cs-enter { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
-main.cs { animation: cs-enter .65s var(--ease) backwards; }
+/* 2026-10-25: the whole-page fade was replaced by the step-by-step opening in
+   ENTRANCES (end of this file): label, title, details, section list, cover. */
 body.is-leaving { opacity: 0; transition: opacity .28s ease; }
-@media (prefers-reduced-motion: reduce) { main.cs { animation: none; } body.is-leaving { opacity: 1; transition: none; } }
+@media (prefers-reduced-motion: reduce) { body.is-leaving { opacity: 1; transition: none; } }
 
 /* the section pill bar is for desktop only (there it becomes the side list below);
    on phones and tablets it is hidden */
@@ -2656,7 +2656,8 @@ html.is-intro::before { content: ""; position: fixed; inset: 0; z-index: 9996; b
    ENTRANCES (2026-10-21)
    About: the bio lines rise in one after another, then each widget pops in with a
    slight overshoot, in reading order (--i), then the halftone doodles fade up.
-   Home: Sumi pops up onto the baseline and gives his pencil a little wiggle.
+   Home: Sumi is drawn in by a scribbling pen, then wiggles his pencil.
+   Case studies: the opening builds in steps (see below).
    Both are CSS animations with fill BACKWARDS only: the start state holds through
    the delay, and once they end nothing is left behind, so the widgets' hover lift
    (translate on .ab-it > *) and the About scroll scene (GSAP on the pieces
@@ -2681,20 +2682,51 @@ html.is-intro::before { content: ""; position: fixed; inset: 0; z-index: 9996; b
 .ab-it--stack  { --i: 6; }
 .ab-board--main > .ab-deco { animation: ab-fade 1s var(--ease) 700ms backwards; }
 
-@keyframes sumi-pop {
-  0%   { opacity: 0; transform: translateY(26px) scale(.7) rotate(-10deg); }
-  40%  { opacity: 1; transform: translateY(-6px) scale(1.06) rotate(4deg); }
-  55%  { transform: translateY(0) scale(.98) rotate(-2deg); }
-  65%  { transform: none; }
-  73%  { transform: rotate(2.5deg); }
-  81%  { transform: rotate(-2deg); }
-  89%  { transform: rotate(1.5deg); }
-  100% { transform: none; }
+/* Home: Sumi is DRAWN in. js/main.js lays an SVG copy of him over the image and
+   reveals it with a scribbling pen stroke (a mask), then shows the real image and
+   gives the pencil a wiggle. The image waits hidden only while JS is on (html.js)
+   and motion is allowed; the failsafe shows it after 4s whatever happens. */
+.hero__sumi-wrap .hero__sumi { transform-origin: 50% 100%; }
+.hero__sumi-draw { position: absolute; left: 0; top: 0; width: 100%; height: auto; overflow: visible; pointer-events: none; }
+@keyframes sumi-failsafe { to { opacity: 1; } }
+@media (prefers-reduced-motion: no-preference) {
+  html.js .hero__sumi-wrap .hero__sumi { opacity: 0; animation: sumi-failsafe 0s 4s forwards; }
+  html.js .hero__sumi-wrap.is-drawn .hero__sumi { opacity: 1; animation: none; }
 }
-.hero__sumi-wrap .hero__sumi { transform-origin: 50% 100%; animation: sumi-pop 1.1s ease-out .35s backwards; }
+
+/* Case studies: the opening builds in steps. The label, title and description rise
+   one after another, then each detail (Role, Tools, Team, Timeline), while the
+   section list slides in link by link and the cover rises last. Sections further
+   down use the site's scroll reveal ([data-reveal]). */
+@keyframes cs-rise  { from { opacity: 0; translate: 0 20px; } }
+@keyframes cs-slide { from { opacity: 0; translate: -12px 0; } }
+@keyframes cs-cover { from { opacity: 0; translate: 0 34px; scale: .97; } }
+.case-head > * { animation: cs-rise .7s var(--ease) backwards; animation-delay: calc(var(--i, 0) * 90ms); }
+.case-head > :nth-child(2) { --i: 1; }
+.case-head > :nth-child(3) { --i: 2; }
+.case-head > .v-meta { animation: none; }
+.case-head .v-meta > * { animation: cs-rise .6s var(--ease) backwards; animation-delay: calc(240ms + var(--j, 0) * 60ms); }
+.case-head .v-meta > :nth-child(2) { --j: 1; }
+.case-head .v-meta > :nth-child(3) { --j: 2; }
+.case-head .v-meta > :nth-child(4) { --j: 3; }
+.case-head + .cs-block { animation: cs-cover .95s var(--ease) 380ms backwards; }
+.case-nav__link { animation: cs-slide .5s var(--ease) backwards; animation-delay: calc(200ms + var(--k, 0) * 45ms); }
+.case-nav__link:nth-child(2) { --k: 1; }
+.case-nav__link:nth-child(3) { --k: 2; }
+.case-nav__link:nth-child(4) { --k: 3; }
+.case-nav__link:nth-child(5) { --k: 4; }
+.case-nav__link:nth-child(6) { --k: 5; }
+.case-nav__link:nth-child(7) { --k: 6; }
+.case-nav__link:nth-child(8) { --k: 7; }
+.case-nav__link:nth-child(9) { --k: 8; }
+.case-nav__link:nth-child(10) { --k: 9; }
+.case-nav__link:nth-child(11) { --k: 10; }
+.case-nav__link:nth-child(12) { --k: 11; }
 
 html.is-intro .ab-bio > *, html.is-intro .ab-board--main > .ab-it > *, html.is-intro .ab-board--main > .ab-deco,
-html.is-intro .hero__sumi { animation-play-state: paused; }
+html.is-intro .case-head > *, html.is-intro .case-head .v-meta > *, html.is-intro .case-head + .cs-block,
+html.is-intro .case-nav__link { animation-play-state: paused; }
 @media (prefers-reduced-motion: reduce) {
-  .ab-bio > *, .ab-board--main > .ab-it > *, .ab-board--main > .ab-deco, .hero__sumi-wrap .hero__sumi { animation: none; }
+  .ab-bio > *, .ab-board--main > .ab-it > *, .ab-board--main > .ab-deco,
+  .case-head > *, .case-head .v-meta > *, .case-head + .cs-block, .case-nav__link { animation: none; }
 }

@@ -20,11 +20,12 @@
   <link rel="preload" href="assets/fonts/caveat-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="assets/vendor/drawably/style.css?v=0.4.2" />
-  <!-- opening intro (the level meter): on the first page of a visit, lay the cover down
+  <!-- html.js: JS is on (lets CSS hide things that JS will animate in, e.g. Sumi's drawing).
+       Opening intro (the level meter): on the first page of a visit, lay the cover down
        before anything paints. js/main.js "Opening intro" plays it and takes it away.
        ?intro=1 forces it; skipped for reduced motion. -->
-  <script>try{if((/[?&]intro=(1|hold)/.test(location.search)||!sessionStorage.getItem("atony:intro"))&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("is-intro")}catch(e){}</script>
-  <link rel="stylesheet" href="css/style.css?v=x206" />
+  <script>document.documentElement.classList.add("js");try{if((/[?&]intro=(1|hold)/.test(location.search)||!sessionStorage.getItem("atony:intro"))&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("is-intro")}catch(e){}</script>
+  <link rel="stylesheet" href="css/style.css?v=x208" />
 </head>
 <body>
   <!-- ============ NAV ============ -->
@@ -180,6 +181,6 @@
   </footer>
 
   <script src="assets/vendor/drawably/drawably.classic.js?v=0.4.2"></script>
-  <script src="js/main.js?v=x206"></script>
+  <script src="js/main.js?v=x208"></script>
 </body>
 </html>
