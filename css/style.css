@@ -488,7 +488,10 @@ body.cursor-active .pgd.is-photos .pg-photo.is-zoomed { cursor: zoom-out; }
 .section { padding-block: clamp(64px, 8vw, 120px); position: relative; }
 /* the home work section has no heading now and follows the header directly, so it
    keeps only a small top gap: the cards should peek right under the copy */
-#works { padding-top: clamp(10px, 1.6vw, 22px); }
+#works { padding-top: clamp(10px, 1.6vw, 22px);
+  /* the nav's "Works" link (index.html#works) lands BELOW the sticky nav (63px): without
+     this the section started at the very top and the nav covered the cards and tape */
+  scroll-margin-top: 80px; }
 
 /* =====================================================================
    SELECTED WORKS  -  bento cards w/ noren (shop-curtain) reveal
@@ -2648,3 +2651,50 @@ html.is-intro::before { content: ""; position: fixed; inset: 0; z-index: 9996; b
 .intro__num b { min-width: 3ch; text-align: right; font-size: 28px; font-weight: 500; letter-spacing: -.02em;
   color: var(--ink); font-variant-numeric: tabular-nums; counter-reset: intro-n var(--intro-n); }
 .intro__num b::after { content: counter(intro-n); }
+
+/* =====================================================================
+   ENTRANCES (2026-10-21)
+   About: the bio lines rise in one after another, then each widget pops in with a
+   slight overshoot, in reading order (--i), then the halftone doodles fade up.
+   Home: Sumi pops up onto the baseline and gives his pencil a little wiggle.
+   Both are CSS animations with fill BACKWARDS only: the start state holds through
+   the delay, and once they end nothing is left behind, so the widgets' hover lift
+   (translate on .ab-it > *) and the About scroll scene (GSAP on the pieces
+   themselves, not their children) are untouched. While the opening intro covers
+   the page (html.is-intro) they wait, and play as it lifts. js/main.js replays
+   Sumi's when the page comes back from the browser's back/forward cache.
+   ===================================================================== */
+@keyframes ab-rise { from { opacity: 0; translate: 0 18px; } }
+@keyframes ab-pop  { from { opacity: 0; translate: 0 22px; scale: .92; } }
+@keyframes ab-fade { from { opacity: 0; } }
+.ab-bio > * { animation: ab-rise .7s var(--ease) backwards; animation-delay: calc(var(--i, 0) * 90ms); }
+.ab-bio > :nth-child(2) { --i: 1; }
+.ab-bio > :nth-child(3) { --i: 2; }
+.ab-board--main > .ab-it > * { animation: ab-pop .75s cubic-bezier(.34, 1.4, .64, 1) backwards;
+  animation-delay: calc(180ms + var(--i, 0) * 75ms); }
+.ab-it--me     { --i: 0; }
+.ab-it--music  { --i: 1; }
+.ab-it--strava { --i: 2; }
+.ab-it--now    { --i: 3; }
+.ab-it--artist { --i: 4; }
+.ab-it--evo    { --i: 5; }
+.ab-it--stack  { --i: 6; }
+.ab-board--main > .ab-deco { animation: ab-fade 1s var(--ease) 700ms backwards; }
+
+@keyframes sumi-pop {
+  0%   { opacity: 0; transform: translateY(26px) scale(.7) rotate(-10deg); }
+  40%  { opacity: 1; transform: translateY(-6px) scale(1.06) rotate(4deg); }
+  55%  { transform: translateY(0) scale(.98) rotate(-2deg); }
+  65%  { transform: none; }
+  73%  { transform: rotate(2.5deg); }
+  81%  { transform: rotate(-2deg); }
+  89%  { transform: rotate(1.5deg); }
+  100% { transform: none; }
+}
+.hero__sumi-wrap .hero__sumi { transform-origin: 50% 100%; animation: sumi-pop 1.1s ease-out .35s backwards; }
+
+html.is-intro .ab-bio > *, html.is-intro .ab-board--main > .ab-it > *, html.is-intro .ab-board--main > .ab-deco,
+html.is-intro .hero__sumi { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .ab-bio > *, .ab-board--main > .ab-it > *, .ab-board--main > .ab-deco, .hero__sumi-wrap .hero__sumi { animation: none; }
+}

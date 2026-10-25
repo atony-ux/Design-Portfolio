@@ -1834,3 +1834,9 @@ Same system as the Vendrs rewrite (`.cs--col` plus the `.v-*` components, no new
   `/assets/fonts/` for a year (immutable; rename a file if it ever changes). No page loads fonts.googleapis.com now.
   Verified by recording every painted frame of a page change with the cache off and 150ms latency: before, ~250ms of
   fallback font; after, the real fonts from the first frame. (Mockups still load Google Fonts; they don't deploy.)
+- **2026-10-25:** the nav's Works link (index.html#works) landed with the cards under the sticky nav; `#works` has
+  `scroll-margin-top: 80px` now (tape ~17px below the nav). **Entrances** (ENTRANCES at the end of style.css): About's
+  bio lines rise in, then the widgets pop in by `--i` (photo, music, Strava, note, Atony, EVO, stack), halftones fade
+  last; home Sumi pops onto the baseline and wiggles (`sumi-pop`). CSS animations, fill BACKWARDS only, paused under
+  `html.is-intro`, off for reduced motion. main.js replays Sumi's on `pageshow` from the back/forward cache.
+  `tools/live.mjs` = timed screenshots + probe in headless Chrome (optionally a second page in the same session).

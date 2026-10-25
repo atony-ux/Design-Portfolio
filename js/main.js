@@ -1723,6 +1723,19 @@
     }, 3800);
   }
 
+  /* -------------------------------------------------- Sumi's pop-in, again on "back"
+     The pop-in itself is CSS (ENTRANCES in style.css) and plays on every load. A
+     page restored from the back/forward cache is not reloaded, so it is restarted
+     here: clear the animation, force a reflow, put it back. */
+  window.addEventListener("pageshow", function (e) {
+    if (!e.persisted || reduced) return;
+    var s = $(".hero__sumi-wrap .hero__sumi");
+    if (!s) return;
+    s.style.animation = "none";
+    void s.offsetWidth;
+    s.style.animation = "";
+  });
+
   /* -------------------------------------------------- Mascot click easter eggs */
   var eggCount = 0;
   var eggLines = ["beep boop, thanks for clicking ✦", "still designing… come back later", "certified Figma + Claude enjoyer ✦", "psst, check the Vendrs case study", "you found me ★"];
