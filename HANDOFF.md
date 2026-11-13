@@ -1894,3 +1894,7 @@ Same system as the Vendrs rewrite (`.cs--col` plus the `.v-*` components, no new
   Grid: up to 3 columns of 260px+ (2 on tablets, 1 on phones), `.pl-card--wide` spans two (Reverie in Blue, OP-1,
   Info session visualizer, Frog), `grid-auto-flow: dense`. Filters: Graphics / Art / Music / Other (counts filled in
   by the script). Video cards aren't clickable (the lightbox is images only).
+- Play grid replaced again (2026-11-12, "not so big, size them like Jean's"): JUSTIFIED ROWS. main.js packs visible
+  cards into rows that fill the width at a target height (31% of grid width, max 340px; 75% on phones), widths from
+  each piece's `--ar`, no cropping; `.pl-grid.is-justified` = flex wrap, 10px between pieces, 28px between rows.
+  `.pl-card--wide` and the masonry code are gone.

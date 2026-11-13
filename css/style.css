@@ -2773,17 +2773,14 @@ html.is-intro .case-nav__link { animation-play-state: paused; }
 
 .pl-grid { columns: 3 260px; column-gap: 24px; }
 .pl-card { break-inside: avoid; margin: 0 0 28px; }
-/* With JS on, the grid is a row-by-row masonry (js/main.js "Play: filters" sets
-   --pl-cols and each card's row span from its height), so cards read left to right
-   and new ones land along the bottom. The CSS columns above are the no-JS fallback,
-   which fills top to bottom one column at a time. */
-/* 2026-11-12: bigger, and not a strict grid (after jeanxcrj.com/play.html): 3 wide
-   columns, a few cards (.pl-card--wide) span two, and `dense` lets smaller cards
-   drop into the holes the wide ones leave */
-.pl-grid.is-masonry { columns: auto; display: grid; grid-template-columns: repeat(var(--pl-cols, 3), minmax(0, 1fr));
-  grid-auto-rows: 4px; grid-auto-flow: row dense; column-gap: 24px; align-items: start; }
-.pl-grid.is-masonry .pl-card { margin: 0; }
-.pl-grid.is-masonry:not([data-cols="1"]) .pl-card--wide { grid-column: span 2; }
+/* With JS on, the grid is JUSTIFIED ROWS (after jeanxcrj.com/play.html): js/main.js
+   "Play: filters" packs the pieces into rows that fill the width, sizing each card
+   from its shape (--ar) so nothing is cropped; each row gets its own height (about
+   300px on a laptop), the last row stays at that height. The CSS columns above are the
+   no-JS fallback. */
+.pl-grid.is-justified { columns: auto; display: flex; flex-wrap: wrap; align-items: flex-start; gap: 28px 10px; }
+.pl-grid.is-justified .pl-card { flex: none; margin: 0; }
+.pl-grid.is-justified .pl-card__title { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .pl-card[hidden] { display: none; }
 a.pl-card { display: block; color: inherit; text-decoration: none; }
 .pl-card__media { display: grid; place-items: center; aspect-ratio: var(--ar, 1); overflow: hidden; border-radius: var(--r-md);

@@ -181,28 +181,52 @@
       var want = q.toLowerCase().split(",");
       boxes.forEach(function (b) { b.checked = want.indexOf(b.value) > -1; });
     }
-    /* row-by-row masonry: each card spans as many 4px rows as it is tall (plus the
-       gap below it), in as many columns as fit: up to 3 of 260px+ (2 of 200px+ on
-       tablets, 1 on phones). Wide cards span two columns when there are two. */
-    var grid = $(".pl-grid", page), ROW = 4;
+    /* justified rows (like jeanxcrj.com/play.html): cards are added to a row until
+       it is wider than the grid at the target height, then the row is scaled to fit
+       the width exactly. Widths follow each piece's shape (--ar), so no cropping.
+       Target height: ~31% of the grid width (max 340px); 75% on phones. */
+    var grid = $(".pl-grid", page), GAP = 10;
+    function ar(c) {
+      var m = $(".pl-card__media", c), v = m && m.style.getPropertyValue("--ar");
+      var p = (v || "1/1").split("/");
+      return (parseFloat(p[0]) || 1) / (parseFloat(p[1]) || 1);
+    }
     function layout() {
       if (!grid) return;
-      var narrow = window.matchMedia("(max-width: 900px)").matches;
-      var max = narrow ? 2 : 3, min = narrow ? 200 : 260, colGap = narrow ? 16 : 24, rowGap = narrow ? 24 : 32;
-      var w = grid.clientWidth;
-      var n = Math.max(1, Math.min(max, Math.floor((w + colGap) / (min + colGap))));
-      grid.style.setProperty("--pl-cols", n);
-      grid.setAttribute("data-cols", n);
-      grid.style.columnGap = colGap + "px";
-      grid.classList.add("is-masonry");
-      cards.forEach(function (c) {
-        if (c.hidden) return;
-        c.style.gridRowEnd = "auto";
-        /* offsetHeight, not getBoundingClientRect: the entrance animation scales the
-           cards (.92 to 1), and measuring mid-pop made the wide ones' captions overlap */
-        var h = c.offsetHeight;
-        c.style.gridRowEnd = "span " + Math.ceil((h + rowGap) / ROW);
+      /* the real (fractional) width, less a pixel: a row that adds up to exactly
+         clientWidth (rounded) can be a hair too wide and wrap its last card */
+      var W = Math.floor(grid.getBoundingClientRect().width) - 1;
+      if (W < 50) return;
+      var target = W < 600 ? W * 0.75 : Math.min(340, W * 0.31);
+      grid.classList.add("is-justified");
+      var vis = cards.filter(function (c) { return !c.hidden; });
+      function place(row, h, fill) {
+        var used = 0;
+        row.forEach(function (c, i) {
+          var w = Math.floor(ar(c) * h);
+          if (fill && i === row.length - 1) w = W - used - GAP * (row.length - 1);   /* soak up rounding */
+          c.style.width = w + "px";
+          used += w;
+        });
+      }
+      /* a row closes once it reaches the width; if it came out much shorter than the
+         target, the last card moves down to start the next row instead */
+      function hOf(n, s) { return (W - GAP * (n - 1)) / s; }
+      var row = [], sum = 0;
+      vis.forEach(function (c) {
+        var a = ar(c);
+        if (row.length && sum * target + GAP * (row.length - 1) < W && (sum + a) * target + GAP * row.length >= W) {
+          var withIt = hOf(row.length + 1, sum + a), without = hOf(row.length, sum);
+          if (Math.abs(without - target) < Math.abs(withIt - target) && without < target * 1.45) {
+            place(row, without, true); row = [c]; sum = a; return;
+          }
+          row.push(c); sum += a;
+          place(row, withIt, true); row = []; sum = 0; return;
+        }
+        row.push(c); sum += a;
+        if (sum * target + GAP * (row.length - 1) >= W) { place(row, hOf(row.length, sum), true); row = []; sum = 0; }
       });
+      if (row.length) place(row, target, false);
     }
     var applyFilters = apply;
     apply = function (animate) { applyFilters(animate); layout(); };
