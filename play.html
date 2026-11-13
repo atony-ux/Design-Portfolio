@@ -25,7 +25,7 @@
        before anything paints. js/main.js "Opening intro" plays it and takes it away.
        ?intro=1 forces it; skipped for reduced motion. -->
   <script>document.documentElement.classList.add("js");try{if((/[?&]intro=(1|hold)/.test(location.search)||!sessionStorage.getItem("atony:intro"))&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("is-intro")}catch(e){}</script>
-  <link rel="stylesheet" href="css/style.css?v=x217" />
+  <link rel="stylesheet" href="css/style.css?v=x219" />
 </head>
 <body>
   <!-- ============ NAV ============ -->
@@ -56,7 +56,8 @@
          Real pieces (2026-11-12): each card's image is a button that opens the full-size
          file (data-full) in the lightbox at the bottom of this page. Images live in
          assets/graphics/play/ as <name>.webp (full, 1600px max) and <name>-thumb.webp
-         (720px wide). data-cat can hold more than one category ("music graphics").
+         (720px wide). Tags are just the category + year: Music, Art or Graphics.
+         data-cat can hold more than one category ("music graphics") if ever needed.
          Vibecoded projects were taken out for now (2026-11-12); to bring them back, add a
          filter <li> with value="code" and cards with data-cat="code".
          Make a card an <a class="pl-card"> instead if it should open a site or a track. -->
@@ -66,7 +67,7 @@
         <fieldset class="pl-filters">
           <legend class="pl-filters__label">Filter by</legend>
           <ul class="pl-filters__list">
-            <li><label class="pl-filter"><input type="checkbox" name="filter" value="graphics" /><span class="pl-filter__name">Graphic design</span><span class="pl-filter__n">3</span></label></li>
+            <li><label class="pl-filter"><input type="checkbox" name="filter" value="graphics" /><span class="pl-filter__name">Graphics</span><span class="pl-filter__n">3</span></label></li>
             <li><label class="pl-filter"><input type="checkbox" name="filter" value="art" /><span class="pl-filter__name">Art</span><span class="pl-filter__n">3</span></label></li>
             <li><label class="pl-filter"><input type="checkbox" name="filter" value="music" /><span class="pl-filter__name">Music</span><span class="pl-filter__n">3</span></label></li>
           </ul>
@@ -78,35 +79,35 @@
       <div class="pl-grid">
           <article class="pl-card" data-cat="music" style="--i:0">
             <button class="pl-card__media" type="button" data-lightbox data-full="assets/graphics/play/reverie-in-blue.webp" style="--ar:720/720" aria-label="View Reverie in Blue full size"><img src="assets/graphics/play/reverie-in-blue-thumb.webp" alt="Reverie in Blue album cover: a child in a puffy blue coat kicking through snow between two power poles" width="720" height="720" loading="lazy" decoding="async" /></button>
-            <p class="pl-card__cap"><span class="pl-card__title">Reverie in Blue</span><span class="pl-card__meta">Album · Coming soon</span></p>
+            <p class="pl-card__cap"><span class="pl-card__title">Reverie in Blue</span><span class="pl-card__meta">Music · Coming soon</span></p>
           </article>
           <article class="pl-card" data-cat="graphics" style="--i:1">
             <button class="pl-card__media" type="button" data-lightbox data-full="assets/graphics/play/sample-flip.webp" style="--ar:720/900" aria-label="View Sample flip full size"><img src="assets/graphics/play/sample-flip-thumb.webp" alt="Sample flip graphic: a hand holding a record with Sumi on the label, step 1 choose a sample, step 2 flip it" width="720" height="900" loading="lazy" decoding="async" /></button>
-            <p class="pl-card__cap"><span class="pl-card__title">Sample flip</span><span class="pl-card__meta">Graphic · 2026</span></p>
+            <p class="pl-card__cap"><span class="pl-card__title">Sample flip</span><span class="pl-card__meta">Graphics · 2026</span></p>
           </article>
           <article class="pl-card" data-cat="art" style="--i:2">
             <button class="pl-card__media" type="button" data-lightbox data-full="assets/graphics/play/op-1-drawing.webp" style="--ar:720/533" aria-label="View OP-1 full size"><img src="assets/graphics/play/op-1-drawing-thumb.webp" alt="Pencil drawing of a Teenage Engineering OP-1 synthesizer" width="720" height="533" loading="lazy" decoding="async" /></button>
-            <p class="pl-card__cap"><span class="pl-card__title">OP-1</span><span class="pl-card__meta">Pencil drawing · 2024</span></p>
+            <p class="pl-card__cap"><span class="pl-card__title">OP-1</span><span class="pl-card__meta">Art · 2024</span></p>
           </article>
           <article class="pl-card" data-cat="music" style="--i:3">
             <button class="pl-card__media" type="button" data-lightbox data-full="assets/graphics/play/aspire.webp" style="--ar:720/720" aria-label="View Aspire full size"><img src="assets/graphics/play/aspire-thumb.webp" alt="Aspire album cover: a girl with an umbrella in a crowd in the rain, under power lines" width="720" height="720" loading="lazy" decoding="async" /></button>
-            <p class="pl-card__cap"><span class="pl-card__title">Aspire</span><span class="pl-card__meta">Album · 2024</span></p>
+            <p class="pl-card__cap"><span class="pl-card__title">Aspire</span><span class="pl-card__meta">Music · 2024</span></p>
           </article>
           <article class="pl-card" data-cat="graphics" style="--i:4">
             <button class="pl-card__media" type="button" data-lightbox data-full="assets/graphics/play/save-your-projects.webp" style="--ar:720/900" aria-label="View Save your projects full size"><img src="assets/graphics/play/save-your-projects-thumb.webp" alt="Graphic of FL Studio "not responding" pop-ups over a collage, reading remember to save your projects, ctrl + s" width="720" height="900" loading="lazy" decoding="async" /></button>
-            <p class="pl-card__cap"><span class="pl-card__title">Save your projects</span><span class="pl-card__meta">Graphic · 2026</span></p>
+            <p class="pl-card__cap"><span class="pl-card__title">Save your projects</span><span class="pl-card__meta">Graphics · 2026</span></p>
           </article>
           <article class="pl-card" data-cat="art" style="--i:5">
             <button class="pl-card__media" type="button" data-lightbox data-full="assets/graphics/play/mpc-2000-drawing.webp" style="--ar:720/603" aria-label="View Akai MPC 2000 full size"><img src="assets/graphics/play/mpc-2000-drawing-thumb.webp" alt="Pencil drawing of an Akai MPC 2000 beside an SP-555 and an audio interface" width="720" height="603" loading="lazy" decoding="async" /></button>
-            <p class="pl-card__cap"><span class="pl-card__title">Akai MPC 2000</span><span class="pl-card__meta">Pencil drawing · 2024</span></p>
+            <p class="pl-card__cap"><span class="pl-card__title">Akai MPC 2000</span><span class="pl-card__meta">Art · 2024</span></p>
           </article>
-          <article class="pl-card" data-cat="music graphics" style="--i:6">
+          <article class="pl-card" data-cat="music" style="--i:6">
             <button class="pl-card__media" type="button" data-lightbox data-full="assets/graphics/play/atony-kit-vol-1.webp" style="--ar:720/720" aria-label="View Atony Kit Vol. 1 full size"><img src="assets/graphics/play/atony-kit-vol-1-thumb.webp" alt="Atony Kit Vol. 1 cover: a pastel collage of buildings and sky" width="720" height="720" loading="lazy" decoding="async" /></button>
-            <p class="pl-card__cap"><span class="pl-card__title">Atony Kit Vol. 1</span><span class="pl-card__meta">Sample kit · 2026</span></p>
+            <p class="pl-card__cap"><span class="pl-card__title">Atony Kit Vol. 1</span><span class="pl-card__meta">Music · 2026</span></p>
           </article>
           <article class="pl-card" data-cat="graphics" style="--i:7">
             <button class="pl-card__media" type="button" data-lightbox data-full="assets/graphics/play/chromatic-garden.webp" style="--ar:387/387" aria-label="View Chromatic garden full size"><img src="assets/graphics/play/chromatic-garden-thumb.webp" alt="Chromatic garden graphic: bluebells under glossy, rainbow-edged shapes" width="387" height="387" loading="lazy" decoding="async" /></button>
-            <p class="pl-card__cap"><span class="pl-card__title">Chromatic garden</span><span class="pl-card__meta">Graphic · 2026</span></p>
+            <p class="pl-card__cap"><span class="pl-card__title">Chromatic garden</span><span class="pl-card__meta">Graphics · 2026</span></p>
           </article>
       </div>
     </section>
@@ -152,6 +153,6 @@
   </footer>
 
   <script src="assets/vendor/drawably/drawably.classic.js?v=0.4.2"></script>
-  <script src="js/main.js?v=x217"></script>
+  <script src="js/main.js?v=x219"></script>
 </body>
 </html>

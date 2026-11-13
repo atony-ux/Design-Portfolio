@@ -1883,3 +1883,5 @@ Same system as the Vendrs rewrite (`.cs--col` plus the `.v-*` components, no new
   filter, resize (ResizeObserver) and fonts.ready. Without JS it falls back to the CSS columns (top-to-bottom order).
 - Vibecoded projects removed from Play (filter + 3 placeholder cards), 2026-11-12. Filters are now Graphic design /
   Art / Music. The `.pl-card__media--code` style and the "code" category still work if they come back.
+- Play tags are now just the category and year (Music / Art / Graphics · year; Reverie in Blue keeps "Coming soon"),
+  the filter "Graphic design" is "Graphics", and Atony Kit Vol. 1 is Music only (2026-11-12).
