@@ -1980,3 +1980,6 @@ From mockups/studio-filters.html, option A. Each checkbox sits visually hidden i
 
 ## 2026-11-13: Mascot Sumi in Studio (Art)
 From a transparent PNG of Sumi: the three stray blue marks above the head were removed (blue pieces not touching the figure), and white that spilled outside the outline was cleared (anything outside the outline's filled silhouette, gaps bridged by a 14px closing). Then set on pure white, 1200x1500: assets/graphics/play/mascot-sumi.webp + -thumb.webp (720x900), lossless WebP (flat line art, ~60-100KB). Card "Mascot Sumi", Art, first in row 1 (Mascot Sumi, Transition, OP-1). Art count 7.
+
+## 2026-11-13: Studio rows
+Row 1 is back to Transition (the visualizer) + OP-1. Mascot Sumi moved into the Genre Wheel row: Genre Wheel, Guest Speakers, Mascot Sumi, Random Doodle. Other rows unchanged.
