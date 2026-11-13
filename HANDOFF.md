@@ -1971,3 +1971,6 @@ Subtitle is "My creative playground". The Branding filter is gone; Prod. Davis i
 
 ## 2026-11-13: Prod. Davis folded into Graphics
 No Prod. Davis filter, cover card or intro panel any more. The five pieces (Speed Dating, Beat Breakdown, Info Session, Genre Wheel, Guest Speakers) are plain cards with data-cat="graphics", tag "Graphics", files still in assets/graphics/play/prod-davis/. The collection support stays in main.js and style.css (data-collection / data-in / data-open / data-for, .pl-brand, .pl-card__badge, .pl-filter--sub) unused, ready if a collection comes back. Rows with everything showing: Transition, OP-1 / Speed Dating, Beat Breakdown, Info Session / Sample flip, Save your projects, Sumi moods / Reverie, MP3 Player / Genre Wheel, Guest Speakers, Random Doodle / Akai MPC 2000, My Hit Box / Jam session, Home studio, Frog / Atony Kit, Aspire, Garden. Cache token x249.
+
+## 2026-11-13: Sumi moods to Art; About cue "Creative works"
+Sumi moods is data-cat="art", tag "Art" (Graphics 8, Art 6). The About stack cue reads "Creative works ->" and links to studio.html with no filter (was ?filter=graphics), aria-label "Creative works, in the Studio".
