@@ -2746,23 +2746,27 @@ html.is-intro .case-nav__link { animation-play-state: paused; }
 
 /* =====================================================================
    PLAY (2026-11-12): play.html, the creative side on one page
-   Left: the title, a line, and a filter list (after jeanxcrj.com/play.html).
-   Right: a masonry grid of cards (CSS columns, so any mix of shapes packs and
-   filtering simply reflows). js/main.js "Play: filters" shows/hides cards.
+   On top: the title, a line, and a row of filter pills (after jeanxcrj.com/play.html).
+   Below, full width: a masonry grid of cards (CSS columns, so any mix of shapes
+   packs and filtering simply reflows). js/main.js "Play: filters" shows/hides cards.
    Cards are placeholders for now: a tinted box with the category's icon, which an
    <img> or <video> inside .pl-card__media replaces.
    ===================================================================== */
-.pl { display: grid; grid-template-columns: 232px minmax(0, 1fr); gap: 0 clamp(40px, 5vw, 72px); align-items: start;
-  padding-top: clamp(40px, 5vw, 64px); padding-bottom: clamp(72px, 9vw, 128px); }
-.pl-side { position: sticky; top: 104px; }
+.pl { padding-top: clamp(40px, 5vw, 64px); padding-bottom: clamp(72px, 9vw, 128px); }
+/* the header: title, line, then the filter row, ruled off from the grid below */
+.pl-side { margin-bottom: clamp(28px, 3vw, 40px); padding-bottom: 20px; border-bottom: 1px solid var(--line); }
 .pl-side__title { margin: 0; font-size: clamp(30px, 3.1vw, 40px); font-weight: 500; letter-spacing: -.025em; line-height: 1.15; }
-.pl-side__sub { margin: 12px 0 0; font-size: 15px; line-height: 1.6; color: var(--ink-50); }
-.pl-filters { min-width: 0; margin: 36px 0 0; padding: 0; border: 0; }
-.pl-filters__label { padding: 0; margin-bottom: 10px; font-size: 11.5px; font-weight: 600; letter-spacing: .14em;
+.pl-side__sub { margin: 10px 0 0; font-size: 15px; line-height: 1.6; color: var(--ink-50); }
+.pl-filters { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin-top: 28px; }
+.pl-filters__label { margin-right: 4px; font-size: 11.5px; font-weight: 600; letter-spacing: .14em;
   text-transform: uppercase; color: var(--blue); }
-.pl-filters__list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
-.pl-filters__list li { border-bottom: 1px solid var(--line); }
-.pl-filter { display: flex; align-items: center; gap: 12px; padding: 11px 0; font-size: 15px; color: var(--ink); cursor: pointer; }
+.pl-filters__list { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0; }
+/* each filter is a pill with a checkbox in it; ticked ones fill in */
+.pl-filter { display: flex; align-items: center; gap: 8px; padding: 7px 14px 7px 11px; font-size: 14px; color: var(--ink);
+  background: #fff; border: 1px solid var(--line); border-radius: var(--r-pill); cursor: pointer;
+  transition: border-color .15s var(--ease), background-color .15s var(--ease); }
+.pl-filter:hover { border-color: rgba(33, 60, 151, .35); }
+.pl-filter:has(input:checked) { border-color: var(--blue); background: var(--blue-mist); }
 .pl-filter input { appearance: none; -webkit-appearance: none; flex: none; width: 16px; height: 16px; margin: 0; cursor: pointer;
   border: 1.5px solid var(--ink-30); border-radius: 4px; background: #fff center / 12px no-repeat;
   transition: background-color .15s var(--ease), border-color .15s var(--ease); }
@@ -2770,12 +2774,11 @@ html.is-intro .case-nav__link { animation-play-state: paused; }
 .pl-filter input:checked { border-color: var(--blue); background-color: var(--blue);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 6.2 5 8.6l4.6-5' fill='none' stroke='%23fff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); }
 .pl-filter input:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
-.pl-filter__name { flex: 1; }
 .pl-filter__n { font-size: 12.5px; color: var(--ink-50); font-variant-numeric: tabular-nums; }
-.pl-filters__clear { margin-top: 12px; padding: 0; border: 0; background: none; font: inherit; font-size: 13.5px; color: var(--blue);
+.pl-filters__clear { padding: 0; border: 0; background: none; font: inherit; font-size: 13.5px; color: var(--blue);
   text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 .pl-filters__clear[hidden] { display: none; }
-.pl-status { margin: 14px 0 0; font-size: 12.5px; color: var(--ink-50); }
+.pl-status { margin: 0 0 0 auto; font-size: 12.5px; color: var(--ink-50); }
 
 .pl-grid { columns: 4 190px; column-gap: 20px; }
 .pl-card { break-inside: avoid; margin: 0 0 28px; }
@@ -2794,7 +2797,7 @@ a.pl-card { display: block; color: inherit; text-decoration: none; }
 .pl-card__title { font-size: 14.5px; font-weight: 500; color: var(--ink); }
 .pl-card__meta { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-50); white-space: nowrap; }
 
-/* entrance: the side rises in, the cards pop in one after another (by --i, which the
+/* entrance: the header rises in, the cards pop in one after another (by --i, which the
    script renumbers among the cards that are showing). Off once a filter is used, so
    cards coming back from display:none don't replay it; the script animates those. */
 .pl-side > * { animation: ab-rise .7s var(--ease) backwards; animation-delay: calc(var(--i, 0) * 90ms); }
@@ -2809,16 +2812,12 @@ html.is-intro .pl-side > *, html.is-intro .pl-card { animation-play-state: pause
   .pl-card:hover .pl-card__media { translate: none; }
 }
 
-/* phones and small tablets: one column; the filters become a row of pills */
+/* phones and small tablets: two columns; the count drops onto its own line */
 @media (max-width: 900px) {
-  .pl { grid-template-columns: minmax(0, 1fr); gap: 32px; }
-  .pl-side { position: static; }
-  .pl-filters { margin-top: 24px; }
-  .pl-filters__list { display: flex; flex-wrap: wrap; gap: 8px; border: 0; }
-  .pl-filters__list li { border: 0; }
-  .pl-filter { gap: 8px; padding: 7px 14px 7px 11px; font-size: 14px; background: #fff;
-    border: 1px solid var(--line); border-radius: var(--r-pill); }
-  .pl-filter:has(input:checked) { border-color: var(--blue); background: var(--blue-mist); }
+  .pl-filters { margin-top: 22px; }
+  .pl-filters__label { width: 100%; }
+  .pl-status { width: 100%; margin: 4px 0 0; }
   .pl-grid { columns: 2 150px; column-gap: 14px; }
   .pl-card { margin-bottom: 20px; }
+}
 }

@@ -1852,11 +1852,11 @@ Same system as the Vendrs rewrite (`.cs--col` plus the `.v-*` components, no new
   landed ~800px short because images/videos above loaded after the jump.
 
 ## Play page (2026-11-12)
-- **`play.html`**: the creative side on one page (after jeanxcrj.com/play.html). Left (`.pl-side`, sticky): "Play",
-  one line, and a "Filter by" checkbox list (Vibecoded projects / Graphic design / Art / Music, `value` = code /
-  graphics / art / music). Right: `.pl-grid`, a CSS-columns masonry (4 across at 1440, 2 on phones) of `.pl-card`s
+- **`play.html`**: the creative side on one page (after jeanxcrj.com/play.html). On top (`header.pl-side`): "Play",
+  "My creations.", and a row of "Filter by" pills with checkboxes (moved from a left column, same day) (Vibecoded projects / Graphic design / Art / Music, `value` = code /
+  graphics / art / music). Below, full width: `.pl-grid`, a CSS-columns masonry (4 across at 1440, 2 on phones) of `.pl-card`s
   with `data-cat`. main.js "Play: filters": none ticked = all; counts come from the cards; `?filter=graphics,art`
-  pre-filters and the URL follows the filters. Styles: PLAY at the end of style.css. Phones: filters become pills.
+  pre-filters and the URL follows the filters. Styles: PLAY at the end of style.css.
 - **The 12 cards are PLACEHOLDERS** (tinted box + category icon in `.pl-card__media`, titles "Vibecoded project 1",
   "Graphic 1", "Artwork 1", "Track 1"...). To fill one: put an `<img>`/`<video>` in `.pl-card__media` (set `--ar` to
   its shape), change the title and meta; make the card an `<a class="pl-card">` to link out.
