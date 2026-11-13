@@ -1918,3 +1918,4 @@ Same system as the Vendrs rewrite (`.cs--col` plus the `.v-*` components, no new
 - Listen pill became just a round GREY play button (no text); on hover the cover blurs (4px) and the button pops up in the middle. Reverie's "Coming soon" is grey too.
 - Play buttons scrapped: Aspire and Garden covers are now plain links (a.pl-card__media) to their SoundCloud pages; no hover effect. Reverie in Blue opens full size like the rest.
 - Atony Kit Vol. 1 cover links to its Payhip page (payhip.com/b/c2VUH).
+- **Play renamed Studio (2026-11-12):** play.html -> studio.html, nav/footer label "Studio", About stack links to studio.html?filter=graphics; vercel.json redirects /play.html and /play to /studio.html. CSS/JS class names keep the pl- prefix.

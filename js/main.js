@@ -137,8 +137,8 @@
     window.addEventListener("intro:reveal", function () { setTimeout(land, 60); });
   })();
 
-  /* -------------------------------------------------- Play: filters
-     play.html: tick categories to show only those; none ticked shows everything.
+  /* -------------------------------------------------- Studio (was Play): filters
+     studio.html (the "Studio" page, first called Play): tick categories to show only those; none ticked shows everything.
      The counts beside each filter come from the cards, so adding a card is all it
      takes. ?filter=graphics (or graphics,art) opens it pre-filtered, and the URL
      follows the filters so a filtered view can be shared. Styles: PLAY. */
@@ -223,7 +223,7 @@
         return (t ? t.scrollWidth : 0) + (m ? m.offsetWidth : 0) + 14;
       }
       function fits(cs, h) { return cs.every(function (c) { return ar(c) * h >= need(c); }); }
-      /* everything showing, on a wide grid: the rows are set by hand in play.html (a
+      /* everything showing, on a wide grid: the rows are set by hand in studio.html (a
          card with data-row-end closes its row), as long as every caption still fits */
       if (vis.length === cards.length && W >= 900 && $("[data-row-end]", grid)) {
         var set = [], s0 = 0, rowsSet = [];

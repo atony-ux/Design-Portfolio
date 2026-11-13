@@ -27,5 +27,17 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/play.html",
+      "destination": "/studio.html",
+      "permanent": true
+    },
+    {
+      "source": "/play",
+      "destination": "/studio.html",
+      "permanent": true
+    }
   ]
 }
