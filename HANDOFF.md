@@ -1898,3 +1898,10 @@ Same system as the Vendrs rewrite (`.cs--col` plus the `.v-*` components, no new
   cards into rows that fill the width at a target height (31% of grid width, max 340px; 75% on phones), widths from
   each piece's `--ar`, no cropping; `.pl-grid.is-justified` = flex wrap, 10px between pieces, 28px between rows.
   `.pl-card--wide` and the masonry code are gone.
+- Play grid, again (2026-11-12): **rows of 7 slots** like jeanxcrj.com. Each card has `data-span` 2/3/4; main.js fills
+  rows in order (a row's last card stretches if the next won't fit), row height = average natural height of its pieces
+  at their widths, clamped to 26-37% of the grid width; media `object-fit: cover` in a `--h` tall box. Title and tag
+  on one line. Order/spans: Atony loop 3, Aspire 2, Sample flip 2 / OP-1 4, Reverie 3 / Save 2, Doodle 2, Sumi 3 /
+  MPC 4, Kit 3 / Frog 4, Chromatic 3. Info session visualizer removed (files moved to ../Portfolio2.0 removed files/
+  unused-assets-2026-11-12). Doodle and Frog were sideways (the .heic rotation was lost converting); now upright.
+  Smaller gap between the side column and the grid, so the grid is wider.

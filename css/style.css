@@ -2747,7 +2747,7 @@ html.is-intro .case-nav__link { animation-play-state: paused; }
    Cards are placeholders for now: a tinted box with the category's icon, which an
    <img> or <video> inside .pl-card__media replaces.
    ===================================================================== */
-.pl { display: grid; grid-template-columns: 232px minmax(0, 1fr); gap: 0 clamp(40px, 5vw, 72px); align-items: start;
+.pl { display: grid; grid-template-columns: 232px minmax(0, 1fr); gap: 0 clamp(32px, 3.4vw, 48px); align-items: start;
   padding-top: clamp(40px, 5vw, 64px); padding-bottom: clamp(72px, 9vw, 128px); }
 .pl-side { position: sticky; top: 104px; }
 .pl-side__title { margin: 0; font-size: clamp(30px, 3.1vw, 40px); font-weight: 500; letter-spacing: -.025em; line-height: 1.15; }
@@ -2773,14 +2773,19 @@ html.is-intro .case-nav__link { animation-play-state: paused; }
 
 .pl-grid { columns: 3 260px; column-gap: 24px; }
 .pl-card { break-inside: avoid; margin: 0 0 28px; }
-/* With JS on, the grid is JUSTIFIED ROWS (after jeanxcrj.com/play.html): js/main.js
-   "Play: filters" packs the pieces into rows that fill the width, sizing each card
-   from its shape (--ar) so nothing is cropped; each row gets its own height (about
-   300px on a laptop), the last row stays at that height. The CSS columns above are the
-   no-JS fallback. */
+/* With JS on, the grid is rows of 7 slots, like jeanxcrj.com/play.html: each card
+   takes data-span slots (2, 3 or 4) and every row fills the width; js/main.js "Play:
+   filters" sets each card's width and its row's height (--h, from the pieces' shapes,
+   kept between 26% and 37% of the grid width), and the picture fills its box (cover),
+   so a wide slot crops a tall piece a little (the lightbox shows the whole thing).
+   Phones: one per row at its own shape. The CSS columns above are the no-JS fallback. */
 .pl-grid.is-justified { columns: auto; display: flex; flex-wrap: wrap; align-items: flex-start; gap: 28px 10px; }
 .pl-grid.is-justified .pl-card { flex: none; margin: 0; }
-.pl-grid.is-justified .pl-card__title { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pl-grid.is-justified .pl-card__media { aspect-ratio: auto; height: var(--h, 300px); }
+/* title and tag on one line (title shortens with … if a slot is ever too narrow) */
+.pl-grid.is-justified .pl-card__cap { flex-direction: row; flex-wrap: nowrap; justify-content: space-between; align-items: baseline; gap: 10px; }
+.pl-grid.is-justified .pl-card__title { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pl-grid.is-justified .pl-card__meta { flex: none; letter-spacing: .05em; }
 .pl-card[hidden] { display: none; }
 a.pl-card { display: block; color: inherit; text-decoration: none; }
 .pl-card__media { display: grid; place-items: center; aspect-ratio: var(--ar, 1); overflow: hidden; border-radius: var(--r-md);
