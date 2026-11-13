@@ -1870,3 +1870,14 @@ Same system as the Vendrs rewrite (`.cs--col` plus the `.v-*` components, no new
 - Fixed: since the 2026-10-25 entrance animation, the About halftones were invisible on scroll-scene screens (GSAP
   read their opacity mid-fade, as 0). Their fade now only runs when the scene is off (`.ab:not(.is-scene)`).
 - Footer columns rebalanced (2026-11-12) so the Menu row (now with Play) stays on one line and the email fits: 1.45 / 1.15 / 1.3 / .7 fr; the 3-column layout starts at 1200px (was 1000).
+- **Play has real work (2026-11-12):** Music: Reverie in Blue (album, coming soon), Aspire (album), Atony Kit Vol. 1
+  (sample kit; `data-cat="music graphics"`, so it shows under both). Graphic design: Sample flip, Save your projects,
+  Chromatic garden. Art: OP-1 and Akai MPC 2000 pencil drawings. Sources: ~/Downloads (albums, the two .heic
+  drawings, trimmed of tablecloth/background), ~/Desktop/MY GRAPHICS (the graphics and the kit). Files in
+  assets/graphics/play/: `<name>.webp` (full), `<name>-thumb.webp` (grid), `<name>-square.webp` (About stack).
+  Years come from the file dates (2024 for Aspire and the drawings). Each card's image is a button that opens the
+  full file in the shared lightbox (`data-full`). The 3 vibecoded cards are still placeholders. The About graphics
+  stack shows Sample flip, Save your projects and Chromatic garden.
+- Play grid: with JS, a row-by-row masonry (`.pl-grid.is-masonry`: CSS grid, 4px rows, each card's
+  `grid-row-end: span N` from its height; --pl-cols = up to 4 columns of 190px+, 2 of 150px+ on phones), recomputed on
+  filter, resize (ResizeObserver) and fonts.ready. Without JS it falls back to the CSS columns (top-to-bottom order).

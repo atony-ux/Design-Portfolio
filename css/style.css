@@ -2552,15 +2552,7 @@ div.ab-pol__deck { cursor: inherit; }   /* a single photo: nothing to flip */
 .ab-stack__ph { position: absolute; width: 146px; background: #fff; padding: 7px 7px 22px; border-radius: 3px;
   box-shadow: 0 10px 24px -12px rgba(16, 16, 40, .28), 0 2px 6px rgba(16, 16, 40, .05);
   transition: transform .45s var(--ease-back); }
-.ab-stack__ph img { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 2px; }
-/* 2026-11-12: the About stack shows GRAPHICS now (it opens Play, filtered to graphic
-   design). Until the real ones arrive, each print is a little placeholder poster;
-   an <img> inside .ab-stack__art covers it. */
-.ab-stack__art { position: relative; display: block; width: 100%; aspect-ratio: 1 / 1; overflow: hidden; border-radius: 2px; }
-.ab-stack__art img { position: absolute; inset: 0; height: 100%; }
-.ab-stack__art--1 { background: radial-gradient(circle at 62% 42%, var(--orange-soft) 0 26%, transparent 27%), var(--blue); }
-.ab-stack__art--2 { background: repeating-linear-gradient(135deg, var(--blue) 0 7px, transparent 7px 20px), var(--orange-soft); }
-.ab-stack__art--3 { background: radial-gradient(var(--blue) 1.6px, transparent 2px) 0 0 / 13px 13px, var(--blue-mist); }
+.ab-stack__ph img { display: block; width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 2px; }
 .ab-stack__ph:nth-child(1) { left: 8px; top: 22px; transform: rotate(-11deg); }
 .ab-stack__ph:nth-child(2) { left: 56px; top: 6px; transform: rotate(4deg); }
 .ab-stack__ph:nth-child(3) { left: 96px; top: 30px; transform: rotate(13deg); }
@@ -2781,12 +2773,23 @@ html.is-intro .case-nav__link { animation-play-state: paused; }
 
 .pl-grid { columns: 4 190px; column-gap: 20px; }
 .pl-card { break-inside: avoid; margin: 0 0 28px; }
+/* With JS on, the grid is a row-by-row masonry (js/main.js "Play: filters" sets
+   --pl-cols and each card's row span from its height), so cards read left to right
+   and new ones land along the bottom. The CSS columns above are the no-JS fallback,
+   which fills top to bottom one column at a time. */
+.pl-grid.is-masonry { columns: auto; display: grid; grid-template-columns: repeat(var(--pl-cols, 4), minmax(0, 1fr));
+  grid-auto-rows: 4px; column-gap: 20px; align-items: start; }
+.pl-grid.is-masonry .pl-card { margin: 0; }
 .pl-card[hidden] { display: none; }
 a.pl-card { display: block; color: inherit; text-decoration: none; }
 .pl-card__media { display: grid; place-items: center; aspect-ratio: var(--ar, 1); overflow: hidden; border-radius: var(--r-md);
   color: var(--blue); transition: translate .35s var(--ease-back), box-shadow .3s var(--ease); }
 .pl-card__media > svg { width: 30px; height: 30px; opacity: .45; }
 .pl-card__media > img, .pl-card__media > video { display: block; width: 100%; height: 100%; object-fit: cover; }
+/* a real piece: the image is a button that opens it full size (the lightbox) */
+button.pl-card__media { width: 100%; padding: 0; border: 0; font: inherit; cursor: zoom-in; background: var(--frame);
+  outline: 1px solid var(--line); outline-offset: -1px; }   /* hairline, for the white-edged covers */
+button.pl-card__media:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
 .pl-card__media--code     { background: var(--blue-mist); }
 .pl-card__media--graphics { background: var(--orange-soft); color: var(--orange); }
 .pl-card__media--art      { background: var(--frame); color: var(--ink-50); }

@@ -25,7 +25,7 @@
        before anything paints. js/main.js "Opening intro" plays it and takes it away.
        ?intro=1 forces it; skipped for reduced motion. -->
   <script>document.documentElement.classList.add("js");try{if((/[?&]intro=(1|hold)/.test(location.search)||!sessionStorage.getItem("atony:intro"))&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("is-intro")}catch(e){}</script>
-  <link rel="stylesheet" href="css/style.css?v=x213" />
+  <link rel="stylesheet" href="css/style.css?v=x216" />
 </head>
 <body>
   <!-- ============ NAV ============ -->
@@ -139,13 +139,13 @@
           </div>
 
 
-          <!-- graphics: a stack of prints that opens the Play page, filtered to graphic design.
-               Placeholders (.ab-stack__art) until the real graphics go in: put an <img> inside each. -->
+          <!-- graphics: a stack of three of my graphics that opens the Play page, filtered to
+               graphic design (square crops: assets/graphics/play/*-square.webp) -->
           <div class="pg-it ab-it ab-it--stack" style="left:248px;top:438px">
             <a class="ab-stack ab-stack--open" href="play.html?filter=graphics" aria-label="More graphics, on the Play page">
-              <span class="ab-stack__ph" aria-hidden="true"><span class="ab-stack__art ab-stack__art--1"></span></span>
-              <span class="ab-stack__ph" aria-hidden="true"><span class="ab-stack__art ab-stack__art--2"></span></span>
-              <span class="ab-stack__ph" aria-hidden="true"><span class="ab-stack__art ab-stack__art--3"></span></span>
+              <span class="ab-stack__ph" aria-hidden="true"><img src="assets/graphics/play/sample-flip-square.webp" alt="" width="320" height="320" loading="lazy" decoding="async" /></span>
+              <span class="ab-stack__ph" aria-hidden="true"><img src="assets/graphics/play/save-your-projects-square.webp" alt="" width="320" height="320" loading="lazy" decoding="async" /></span>
+              <span class="ab-stack__ph" aria-hidden="true"><img src="assets/graphics/play/chromatic-garden-square.webp" alt="" width="320" height="320" loading="lazy" decoding="async" /></span>
               <span class="ab-stack__cue">More graphics →</span>
             </a>
           </div>
@@ -243,6 +243,6 @@
   <!-- GSAP + ScrollTrigger: only the About page uses them (the scroll scene) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
-  <script src="js/main.js?v=x213"></script>
+  <script src="js/main.js?v=x216"></script>
 </body>
 </html>

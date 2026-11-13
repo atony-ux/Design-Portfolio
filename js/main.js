@@ -148,15 +148,17 @@
     var boxes = $$(".pl-filter input", page), cards = $$(".pl-card", page);
     var clear = $(".pl-filters__clear", page), status = $(".pl-status", page);
     boxes.forEach(function (b) {
-      var n = cards.filter(function (c) { return c.getAttribute("data-cat") === b.value; }).length;
+      var n = cards.filter(function (c) { return cats(c).indexOf(b.value) > -1; }).length;
       var el = $(".pl-filter__n", b.closest(".pl-filter"));
       if (el) el.textContent = n;
     });
+    /* a card can sit in more than one category: data-cat="music graphics" */
+    function cats(c) { return (c.getAttribute("data-cat") || "").split(/\s+/); }
     function picked() { return boxes.filter(function (b) { return b.checked; }).map(function (b) { return b.value; }); }
     function apply(animate) {
       var on = picked(), shown = [];
       cards.forEach(function (c) {
-        c.hidden = !(!on.length || on.indexOf(c.getAttribute("data-cat")) > -1);
+        c.hidden = !(!on.length || cats(c).some(function (k) { return on.indexOf(k) > -1; }));
         if (!c.hidden) { c.style.setProperty("--i", shown.length); shown.push(c); }
       });
       if (clear) clear.hidden = !on.length;
@@ -179,6 +181,32 @@
       var want = q.toLowerCase().split(",");
       boxes.forEach(function (b) { b.checked = want.indexOf(b.value) > -1; });
     }
+    /* row-by-row masonry: each card spans as many 4px rows as it is tall (plus the
+       28px gap below it), in as many columns as fit (4 at most, at least 190px each;
+       2 and 150px on phones, matching the CSS columns fallback) */
+    var grid = $(".pl-grid", page), ROW = 4, GAP = 28;
+    function layout() {
+      if (!grid) return;
+      var phone = window.matchMedia("(max-width: 900px)").matches;
+      var max = phone ? 2 : 4, min = phone ? 150 : 190, colGap = phone ? 14 : 20, rowGap = phone ? 20 : GAP;
+      var w = grid.clientWidth;
+      var n = Math.max(1, Math.min(max, Math.floor((w + colGap) / (min + colGap))));
+      grid.style.setProperty("--pl-cols", n);
+      grid.style.columnGap = colGap + "px";
+      grid.classList.add("is-masonry");
+      cards.forEach(function (c) {
+        if (c.hidden) return;
+        c.style.gridRowEnd = "auto";
+        var h = c.getBoundingClientRect().height;
+        c.style.gridRowEnd = "span " + Math.ceil((h + rowGap) / ROW);
+      });
+    }
+    var applyFilters = apply;
+    apply = function (animate) { applyFilters(animate); layout(); };
+    if ("ResizeObserver" in window && grid) new ResizeObserver(function () { layout(); }).observe(grid);
+    else window.addEventListener("resize", layout);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(layout);
+
     boxes.forEach(function (b) { b.addEventListener("change", function () { apply(true); }); });
     if (clear) clear.addEventListener("click", function () {
       boxes.forEach(function (b) { b.checked = false; });
@@ -1670,7 +1698,7 @@
 
   /* -------------------------------------------------- Lightbox
      Click anything with [data-lightbox] (a <button> wrapping an <img>) to see
-     that image full size. Backdrop click, the close button, or Escape all
+     that image full size (or the file in its data-full, if it has one). Backdrop click, the close button, or Escape all
      dismiss it. No-op on pages that have neither the triggers nor the panel. */
   (function () {
     var triggers = $$("[data-lightbox]");
@@ -1696,7 +1724,8 @@
     triggers.forEach(function (t) {
       t.addEventListener("click", function () {
         var tImg = t.querySelector("img");
-        if (tImg) open(tImg.src, tImg.alt);
+        /* data-full: a bigger file than the thumbnail shown in the page (Play cards) */
+        if (tImg) open(t.getAttribute("data-full") || tImg.currentSrc || tImg.src, tImg.alt);
       });
     });
     closeBtn.addEventListener("click", close);
