@@ -203,8 +203,9 @@
       function size(c, w, h) { c.style.width = w + "px"; c.style.setProperty("--h", h + "px"); }
       if (W < 600) { vis.forEach(function (c) { size(c, W, Math.round(W / ar(c))); }); return; }
       /* ~35% of the width: with the page's order, 4 even rows of 3 at 1440. On a
-         narrower grid rows run taller (fewer per row) so every title fits */
-      var target = Math.min(420, W * (W < 900 ? 0.5 : 0.345));
+         narrower grid rows run taller (fewer per row) so every title fits.
+         (Filtered views; the full view uses the hand-set rows below.) */
+      var target = Math.min(480, W * (W < 900 ? 0.5 : 0.42));
       function hOf(n, s) { return (W - GAP * (n - 1)) / s; }
       function place(row, h, fill) {
         var used = 0;
@@ -222,6 +223,20 @@
         return (t ? t.scrollWidth : 0) + (m ? m.offsetWidth : 0) + 14;
       }
       function fits(cs, h) { return cs.every(function (c) { return ar(c) * h >= need(c); }); }
+      /* everything showing, on a wide grid: the rows are set by hand in play.html (a
+         card with data-row-end closes its row), as long as every caption still fits */
+      if (vis.length === cards.length && W >= 900 && $("[data-row-end]", grid)) {
+        var set = [], s0 = 0, rowsSet = [];
+        vis.forEach(function (c) {
+          set.push(c); s0 += ar(c);
+          if (c.hasAttribute("data-row-end")) { rowsSet.push({ cs: set, s: s0 }); set = []; s0 = 0; }
+        });
+        if (set.length) rowsSet.push({ cs: set, s: s0 });
+        if (rowsSet.every(function (r) { return fits(r.cs, hOf(r.cs.length, r.s)); })) {
+          rowsSet.forEach(function (r) { place(r.cs, hOf(r.cs.length, r.s), true); });
+          return;
+        }
+      }
       var row = [], sum = 0;
       vis.forEach(function (c) {
         var a = ar(c);

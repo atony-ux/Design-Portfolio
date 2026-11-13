@@ -1909,3 +1909,7 @@ Same system as the Vendrs rewrite (`.cs--col` plus the `.v-*` components, no new
   boxes) became justified rows again, but bigger: target row height = 34.5% of the grid width (50% under 900px), max 420px; the card order is chosen so the 12 split into 4 even rows of 3 (~340-355px at 1440); a row closes
   at whichever count lands nearer the target (and never over 1.3x it); widths from `--ar`; phones one per row.
   `data-span` on the cards is now unused. Title and tag stay on one line.
+- Play rows bigger (2026-11-12): with everything showing (grid >= 900px), rows are set by hand: a card with
+  `data-row-end` closes its row. Rows: Atony loop + OP-1 (~520px tall at 1440, the visualizer is big here) / Sample
+  flip, Save your projects, Sumi moods (~380) / Reverie + MPC (~455) / Doodle, Kit, Frog (~365) / Aspire + Chromatic
+  (~500). Still uncropped (heights from the shapes). Filtered views pack automatically at ~42% of the width (max 480).
