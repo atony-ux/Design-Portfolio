@@ -1881,3 +1881,5 @@ Same system as the Vendrs rewrite (`.cs--col` plus the `.v-*` components, no new
 - Play grid: with JS, a row-by-row masonry (`.pl-grid.is-masonry`: CSS grid, 4px rows, each card's
   `grid-row-end: span N` from its height; --pl-cols = up to 4 columns of 190px+, 2 of 150px+ on phones), recomputed on
   filter, resize (ResizeObserver) and fonts.ready. Without JS it falls back to the CSS columns (top-to-bottom order).
+- Vibecoded projects removed from Play (filter + 3 placeholder cards), 2026-11-12. Filters are now Graphic design /
+  Art / Music. The `.pl-card__media--code` style and the "code" category still work if they come back.

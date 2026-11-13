@@ -4,11 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Anthony Nguyen -- Portfolio</title>
-  <meta name="description" content="Anthony N.'s creative side: vibecoded projects, graphic design, art and music." />
+  <meta name="description" content="Anthony N.'s creative side: graphic design, art and music." />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Anthony N." />
   <meta property="og:title" content="Anthony Nguyen -- Portfolio" />
-  <meta property="og:description" content="Anthony N.'s creative side: vibecoded projects, graphic design, art and music." />
+  <meta property="og:description" content="Anthony N.'s creative side: graphic design, art and music." />
   <meta property="og:url" content="https://atonyux.com/play.html" />
   <meta property="og:image" content="https://atonyux.com/assets/apple-touch-icon.png" />
   <meta name="twitter:card" content="summary" />
@@ -25,7 +25,7 @@
        before anything paints. js/main.js "Opening intro" plays it and takes it away.
        ?intro=1 forces it; skipped for reduced motion. -->
   <script>document.documentElement.classList.add("js");try{if((/[?&]intro=(1|hold)/.test(location.search)||!sessionStorage.getItem("atony:intro"))&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("is-intro")}catch(e){}</script>
-  <link rel="stylesheet" href="css/style.css?v=x216" />
+  <link rel="stylesheet" href="css/style.css?v=x217" />
 </head>
 <body>
   <!-- ============ NAV ============ -->
@@ -48,7 +48,7 @@
 
   <main>
     <!-- ============ PLAY (2026-11-12) ============
-         My creative side on one page: vibecoded projects, graphic design, art and music,
+         My creative side on one page: graphic design, art and music,
          with a filter list (after jeanxcrj.com/play.html). Ticking categories shows only
          those; none ticked shows everything. ?filter=graphics (or graphics,art) opens it
          pre-filtered, which is how the About page's graphics stack links here.
@@ -57,7 +57,8 @@
          file (data-full) in the lightbox at the bottom of this page. Images live in
          assets/graphics/play/ as <name>.webp (full, 1600px max) and <name>-thumb.webp
          (720px wide). data-cat can hold more than one category ("music graphics").
-         The three "Vibecoded project" cards are still PLACEHOLDERS (icon in a tinted box).
+         Vibecoded projects were taken out for now (2026-11-12); to bring them back, add a
+         filter <li> with value="code" and cards with data-cat="code".
          Make a card an <a class="pl-card"> instead if it should open a site or a track. -->
     <section class="pl wrap" id="play">
       <aside class="pl-side">
@@ -65,7 +66,6 @@
         <fieldset class="pl-filters">
           <legend class="pl-filters__label">Filter by</legend>
           <ul class="pl-filters__list">
-            <li><label class="pl-filter"><input type="checkbox" name="filter" value="code" /><span class="pl-filter__name">Vibecoded projects</span><span class="pl-filter__n">3</span></label></li>
             <li><label class="pl-filter"><input type="checkbox" name="filter" value="graphics" /><span class="pl-filter__name">Graphic design</span><span class="pl-filter__n">3</span></label></li>
             <li><label class="pl-filter"><input type="checkbox" name="filter" value="art" /><span class="pl-filter__name">Art</span><span class="pl-filter__n">3</span></label></li>
             <li><label class="pl-filter"><input type="checkbox" name="filter" value="music" /><span class="pl-filter__name">Music</span><span class="pl-filter__n">3</span></label></li>
@@ -107,18 +107,6 @@
           <article class="pl-card" data-cat="graphics" style="--i:7">
             <button class="pl-card__media" type="button" data-lightbox data-full="assets/graphics/play/chromatic-garden.webp" style="--ar:387/387" aria-label="View Chromatic garden full size"><img src="assets/graphics/play/chromatic-garden-thumb.webp" alt="Chromatic garden graphic: bluebells under glossy, rainbow-edged shapes" width="387" height="387" loading="lazy" decoding="async" /></button>
             <p class="pl-card__cap"><span class="pl-card__title">Chromatic garden</span><span class="pl-card__meta">Graphic · 2026</span></p>
-          </article>
-          <article class="pl-card" data-cat="code" style="--i:8">
-            <div class="pl-card__media pl-card__media--code" style="--ar:16/10"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14"/></svg></div>
-            <p class="pl-card__cap"><span class="pl-card__title">Vibecoded project 1</span><span class="pl-card__meta">Vibecoded · 2026</span></p>
-          </article>
-          <article class="pl-card" data-cat="code" style="--i:9">
-            <div class="pl-card__media pl-card__media--code" style="--ar:4/3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14"/></svg></div>
-            <p class="pl-card__cap"><span class="pl-card__title">Vibecoded project 2</span><span class="pl-card__meta">Vibecoded · 2026</span></p>
-          </article>
-          <article class="pl-card" data-cat="code" style="--i:10">
-            <div class="pl-card__media pl-card__media--code" style="--ar:16/10"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14"/></svg></div>
-            <p class="pl-card__cap"><span class="pl-card__title">Vibecoded project 3</span><span class="pl-card__meta">Vibecoded · 2026</span></p>
           </article>
       </div>
     </section>
@@ -164,6 +152,6 @@
   </footer>
 
   <script src="assets/vendor/drawably/drawably.classic.js?v=0.4.2"></script>
-  <script src="js/main.js?v=x216"></script>
+  <script src="js/main.js?v=x217"></script>
 </body>
 </html>
