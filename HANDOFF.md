@@ -1925,3 +1925,6 @@ Radius tokens sharpened from 16 / 8 / 8 to 8 / 4 / 4 (--r-lg / --r-md / --r-sm),
 
 ## 2026-11-12: Studio tag color
 The tag and year under each Studio piece (.pl-card__meta) is a lighter grey: rgba(16,16,16,.42), was --ink-50 (.62). Cache token x238.
+
+## 2026-11-12: Studio side panel redesign
+Heading is now "Studio" with the line "My design playground". Filters are pill chips in the site tag style (white, ink outline; picked ones fill blue), with an "All" chip that clears them (aria-pressed when nothing is picked). The checkboxes stay, visually hidden, so multi-select and ?filter= still work. The per-category counts and the visible "Showing all 12" line are gone; .pl-status is now sr-only and only announces after a filter change. Cache token x239.

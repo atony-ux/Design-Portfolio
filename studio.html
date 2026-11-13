@@ -25,7 +25,7 @@
        before anything paints. js/main.js "Opening intro" plays it and takes it away.
        ?intro=1 forces it; skipped for reduced motion. -->
   <script>document.documentElement.classList.add("js");try{if((/[?&]intro=(1|hold)/.test(location.search)||!sessionStorage.getItem("atony:intro"))&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("is-intro")}catch(e){}</script>
-  <link rel="stylesheet" href="css/style.css?v=x238" />
+  <link rel="stylesheet" href="css/style.css?v=x239" />
 </head>
 <body>
   <!-- ============ NAV ============ -->
@@ -66,18 +66,19 @@
          that opens SoundCloud, or Payhip for the kit, in a new tab) instead of opening full size. -->
     <section class="pl wrap" id="play">
       <aside class="pl-side">
-        <h1 class="pl-side__title">My creations</h1>
+        <h1 class="pl-side__title">Studio</h1>
+        <p class="pl-side__sub">My design playground</p>
         <fieldset class="pl-filters">
           <legend class="pl-filters__label">Filter by</legend>
-          <ul class="pl-filters__list">
-            <li><label class="pl-filter"><input type="checkbox" name="filter" value="graphics" /><span class="pl-filter__name">Graphics</span><span class="pl-filter__n">0</span></label></li>
-            <li><label class="pl-filter"><input type="checkbox" name="filter" value="art" /><span class="pl-filter__name">Art</span><span class="pl-filter__n">0</span></label></li>
-            <li><label class="pl-filter"><input type="checkbox" name="filter" value="music" /><span class="pl-filter__name">Music</span><span class="pl-filter__n">0</span></label></li>
-            <li><label class="pl-filter"><input type="checkbox" name="filter" value="other" /><span class="pl-filter__name">Other</span><span class="pl-filter__n">0</span></label></li>
-          </ul>
-          <button class="pl-filters__clear" type="button" hidden>Show all</button>
+          <div class="pl-chips">
+            <button class="pl-chip pl-chip--all" type="button" aria-pressed="true">All</button>
+            <label class="pl-chip"><input class="sr-only" type="checkbox" name="filter" value="graphics" />Graphics</label>
+            <label class="pl-chip"><input class="sr-only" type="checkbox" name="filter" value="art" />Art</label>
+            <label class="pl-chip"><input class="sr-only" type="checkbox" name="filter" value="music" />Music</label>
+            <label class="pl-chip"><input class="sr-only" type="checkbox" name="filter" value="other" />Other</label>
+          </div>
         </fieldset>
-        <p class="pl-status" aria-live="polite">Showing all 12</p>
+        <p class="pl-status sr-only" aria-live="polite"></p>
       </aside>
 
       <div class="pl-grid">
@@ -173,6 +174,6 @@
   </footer>
 
   <script src="assets/vendor/drawably/drawably.classic.js?v=0.4.2"></script>
-  <script src="js/main.js?v=x238"></script>
+  <script src="js/main.js?v=x239"></script>
 </body>
 </html>
