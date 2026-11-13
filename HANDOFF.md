@@ -1917,3 +1917,4 @@ Same system as the Vendrs rewrite (`.cs--col` plus the `.v-*` components, no new
 - Listen / Coming soon pills now pop up in the CENTRE of the cover on hover (or focus), not in a corner; always shown on touch screens.
 - Listen pill became just a round GREY play button (no text); on hover the cover blurs (4px) and the button pops up in the middle. Reverie's "Coming soon" is grey too.
 - Play buttons scrapped: Aspire and Garden covers are now plain links (a.pl-card__media) to their SoundCloud pages; no hover effect. Reverie in Blue opens full size like the rest.
+- Atony Kit Vol. 1 cover links to its Payhip page (payhip.com/b/c2VUH).
