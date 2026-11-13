@@ -1937,3 +1937,6 @@ The pill chips were reverted to the original checkbox list, polished: no counts,
 
 ## 2026-11-13: Two robot illustrations in Studio (Art)
 Pages 1 and 3 of Project_1_Phase _3_1.pdf (Illustrator, March 2025) rendered with PDFKit at 1600px: robot-speakers (yellow, "Jam session") and robot-studio (white, "Home studio"), each with a 1000px -thumb.webp, in assets/graphics/play/. Added as their own row after Reverie / Akai MPC 2000, both "Art · 2025", opening in the lightbox. Titles are placeholders until Anthony names them.
+
+## 2026-11-13: My Hit Box in Studio (Other)
+The hit box photo was cut out with Apple Vision (tools/cutout.swift), straightened (four edges fitted, perspective-warped to a flat rectangle, rounded-rect mask with a 4px inset so no wood shows), then set on light grey #e8e8e8 with a soft two-layer drop shadow at 1800x1200: assets/graphics/play/hit-box.webp + -thumb.webp (1200x800). Card "My Hit Box", "Other · 2025" (year is a guess). Rows with everything showing are now: Transition, OP-1 / Sample flip, Save your projects, Sumi moods / Reverie, Akai / Jam session, Home studio, Random Doodle / My Hit Box, Frog / Atony Kit, Aspire, Garden.
