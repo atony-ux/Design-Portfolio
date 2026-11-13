@@ -2771,21 +2771,26 @@ html.is-intro .case-nav__link { animation-play-state: paused; }
 .pl-filters__clear[hidden] { display: none; }
 .pl-status { margin: 14px 0 0; font-size: 12.5px; color: var(--ink-50); }
 
-.pl-grid { columns: 4 190px; column-gap: 20px; }
+.pl-grid { columns: 3 260px; column-gap: 24px; }
 .pl-card { break-inside: avoid; margin: 0 0 28px; }
 /* With JS on, the grid is a row-by-row masonry (js/main.js "Play: filters" sets
    --pl-cols and each card's row span from its height), so cards read left to right
    and new ones land along the bottom. The CSS columns above are the no-JS fallback,
    which fills top to bottom one column at a time. */
-.pl-grid.is-masonry { columns: auto; display: grid; grid-template-columns: repeat(var(--pl-cols, 4), minmax(0, 1fr));
-  grid-auto-rows: 4px; column-gap: 20px; align-items: start; }
+/* 2026-11-12: bigger, and not a strict grid (after jeanxcrj.com/play.html): 3 wide
+   columns, a few cards (.pl-card--wide) span two, and `dense` lets smaller cards
+   drop into the holes the wide ones leave */
+.pl-grid.is-masonry { columns: auto; display: grid; grid-template-columns: repeat(var(--pl-cols, 3), minmax(0, 1fr));
+  grid-auto-rows: 4px; grid-auto-flow: row dense; column-gap: 24px; align-items: start; }
 .pl-grid.is-masonry .pl-card { margin: 0; }
+.pl-grid.is-masonry:not([data-cols="1"]) .pl-card--wide { grid-column: span 2; }
 .pl-card[hidden] { display: none; }
 a.pl-card { display: block; color: inherit; text-decoration: none; }
 .pl-card__media { display: grid; place-items: center; aspect-ratio: var(--ar, 1); overflow: hidden; border-radius: var(--r-md);
   color: var(--blue); transition: translate .35s var(--ease-back), box-shadow .3s var(--ease); }
 .pl-card__media > svg { width: 30px; height: 30px; opacity: .45; }
 .pl-card__media > img, .pl-card__media > video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.pl-card__media--video { background: var(--frame); outline: 1px solid var(--line); outline-offset: -1px; }
 /* a real piece: the image is a button that opens it full size (the lightbox) */
 button.pl-card__media { width: 100%; padding: 0; border: 0; font: inherit; cursor: zoom-in; background: var(--frame);
   outline: 1px solid var(--line); outline-offset: -1px; }   /* hairline, for the white-edged covers */
@@ -2826,6 +2831,6 @@ html.is-intro .pl-side > *, html.is-intro .pl-card { animation-play-state: pause
   .pl-filter { gap: 8px; padding: 7px 14px 7px 11px; font-size: 14px; background: #fff;
     border: 1px solid var(--line); border-radius: var(--r-pill); }
   .pl-filter:has(input:checked) { border-color: var(--blue); background: var(--blue-mist); }
-  .pl-grid { columns: 2 150px; column-gap: 14px; }
-  .pl-card { margin-bottom: 20px; }
+  .pl-grid { columns: 2 200px; column-gap: 16px; }
+  .pl-card { margin-bottom: 24px; }
 }

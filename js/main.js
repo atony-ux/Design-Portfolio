@@ -182,22 +182,25 @@
       boxes.forEach(function (b) { b.checked = want.indexOf(b.value) > -1; });
     }
     /* row-by-row masonry: each card spans as many 4px rows as it is tall (plus the
-       28px gap below it), in as many columns as fit (4 at most, at least 190px each;
-       2 and 150px on phones, matching the CSS columns fallback) */
-    var grid = $(".pl-grid", page), ROW = 4, GAP = 28;
+       gap below it), in as many columns as fit: up to 3 of 260px+ (2 of 200px+ on
+       tablets, 1 on phones). Wide cards span two columns when there are two. */
+    var grid = $(".pl-grid", page), ROW = 4;
     function layout() {
       if (!grid) return;
-      var phone = window.matchMedia("(max-width: 900px)").matches;
-      var max = phone ? 2 : 4, min = phone ? 150 : 190, colGap = phone ? 14 : 20, rowGap = phone ? 20 : GAP;
+      var narrow = window.matchMedia("(max-width: 900px)").matches;
+      var max = narrow ? 2 : 3, min = narrow ? 200 : 260, colGap = narrow ? 16 : 24, rowGap = narrow ? 24 : 32;
       var w = grid.clientWidth;
       var n = Math.max(1, Math.min(max, Math.floor((w + colGap) / (min + colGap))));
       grid.style.setProperty("--pl-cols", n);
+      grid.setAttribute("data-cols", n);
       grid.style.columnGap = colGap + "px";
       grid.classList.add("is-masonry");
       cards.forEach(function (c) {
         if (c.hidden) return;
         c.style.gridRowEnd = "auto";
-        var h = c.getBoundingClientRect().height;
+        /* offsetHeight, not getBoundingClientRect: the entrance animation scales the
+           cards (.92 to 1), and measuring mid-pop made the wide ones' captions overlap */
+        var h = c.offsetHeight;
         c.style.gridRowEnd = "span " + Math.ceil((h + rowGap) / ROW);
       });
     }

@@ -1885,3 +1885,12 @@ Same system as the Vendrs rewrite (`.cs--col` plus the `.v-*` components, no new
   Art / Music. The `.pl-card__media--code` style and the "code" category still work if they come back.
 - Play tags are now just the category and year (Music / Art / Graphics · year; Reverie in Blue keeps "Coming soon"),
   the filter "Graphic design" is "Graphics", and Atony Kit Vol. 1 is Music only (2026-11-12).
+- **Play, bigger and looser (2026-11-12):** 13 pieces. New: Sumi moods (Graphics, from MY GRAPHICS/Monochrome Blue
+  Chibi Emotion Sticker Sheet.png), Doodle (Art, ~/Downloads/Doodle - art.HEIC, trimmed), Frog (**Other**: ceramics,
+  ~/Downloads/Frog - ceramics.HEIC, cropped off the laptop), and two autoplaying videos (Graphics): Atony loop and Info
+  session visualizer (MY GRAPHICS/*.mp4, 14MB and 34MB re-encoded to 2MB and 5.3MB: H.264, no audio, 540x960 and
+  900x900, 1.4Mbps, by `tools/webvideo.swift`, a small AVFoundation encoder since there's no ffmpeg:
+  `swiftc -O tools/webvideo.swift -o /tmp/webvideo && /tmp/webvideo in.mp4 out.mp4 <max-side> <kbps>`).
+  Grid: up to 3 columns of 260px+ (2 on tablets, 1 on phones), `.pl-card--wide` spans two (Reverie in Blue, OP-1,
+  Info session visualizer, Frog), `grid-auto-flow: dense`. Filters: Graphics / Art / Music / Other (counts filled in
+  by the script). Video cards aren't clickable (the lightbox is images only).
