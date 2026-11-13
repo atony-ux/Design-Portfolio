@@ -58,7 +58,7 @@
          assets/graphics/play/ as <name>.webp (full, 1600px max) and <name>-thumb.webp
          (720px wide; 1300px for wide cards). Videos (.mp4 + -poster.webp) autoplay muted
          and loop, and pause off screen. The grid is rows that fill the width, nothing cropped; with everything showing, rows end at data-row-end (2 or 3 pieces each); filtered, rows are packed automatically. Tags are just the
-         category + year: Music, Art, Graphics or Other.
+         category, no year: Music, Art, Graphics, Interactive or Other.
          data-cat can hold more than one category ("music graphics") if ever needed.
          Vibecoded projects were taken out for now (2026-11-12); to bring them back, add a
          filter <li> with value="code" and cards with data-cat="code".
@@ -75,6 +75,7 @@
             <li><label class="pl-filter"><input type="checkbox" name="filter" value="graphics" /><span class="pl-filter__name">Graphics</span></label></li>
             <li><label class="pl-filter"><input type="checkbox" name="filter" value="art" /><span class="pl-filter__name">Art</span></label></li>
             <li><label class="pl-filter"><input type="checkbox" name="filter" value="music" /><span class="pl-filter__name">Music</span></label></li>
+            <li><label class="pl-filter"><input type="checkbox" name="filter" value="interactive" /><span class="pl-filter__name">Interactive</span></label></li>
             <li><label class="pl-filter"><input type="checkbox" name="filter" value="other" /><span class="pl-filter__name">Other</span></label></li>
           </ul>
         </fieldset>
@@ -84,23 +85,23 @@
       <div class="pl-grid">
           <article class="pl-card" data-cat="graphics" style="--i:0">
             <div class="pl-card__media pl-card__media--video" style="--ar:540/960"><video src="assets/graphics/play/atony-loop.mp4" poster="assets/graphics/play/atony-loop-poster.webp" width="540" height="960" autoplay muted loop playsinline preload="auto" aria-label="Looping visualizer: the Atony logo and a spinning CD on blue"></video></div>
-            <p class="pl-card__cap"><span class="pl-card__title">Transition</span><span class="pl-card__meta">Graphics · 2026</span></p>
+            <p class="pl-card__cap"><span class="pl-card__title">Transition</span><span class="pl-card__meta">Graphics</span></p>
           </article>
           <article class="pl-card" data-row-end data-cat="art" style="--i:1">
             <button class="pl-card__media" type="button" data-lightbox data-full="assets/graphics/play/op-1-drawing.webp" style="--ar:1300/962" aria-label="View OP-1 full size"><img src="assets/graphics/play/op-1-drawing-thumb.webp" alt="Pencil drawing of a Teenage Engineering OP-1 synthesizer" width="1300" height="962" loading="lazy" decoding="async" /></button>
-            <p class="pl-card__cap"><span class="pl-card__title">OP-1</span><span class="pl-card__meta">Art · 2024</span></p>
+            <p class="pl-card__cap"><span class="pl-card__title">OP-1</span><span class="pl-card__meta">Art</span></p>
           </article>
           <article class="pl-card" data-cat="graphics" style="--i:2">
             <button class="pl-card__media" type="button" data-lightbox data-full="assets/graphics/play/sample-flip.webp" style="--ar:720/900" aria-label="View Sample flip full size"><img src="assets/graphics/play/sample-flip-thumb.webp" alt="Sample flip graphic: a hand holding a record with Sumi on the label, step 1 choose a sample, step 2 flip it" width="720" height="900" loading="lazy" decoding="async" /></button>
-            <p class="pl-card__cap"><span class="pl-card__title">Sample flip</span><span class="pl-card__meta">Graphics · 2026</span></p>
+            <p class="pl-card__cap"><span class="pl-card__title">Sample flip</span><span class="pl-card__meta">Graphics</span></p>
           </article>
           <article class="pl-card" data-cat="graphics" style="--i:3">
             <button class="pl-card__media" type="button" data-lightbox data-full="assets/graphics/play/save-your-projects.webp" style="--ar:720/900" aria-label="View Save your projects full size"><img src="assets/graphics/play/save-your-projects-thumb.webp" alt="Graphic of FL Studio "not responding" pop-ups over a collage, reading remember to save your projects, ctrl + s" width="720" height="900" loading="lazy" decoding="async" /></button>
-            <p class="pl-card__cap"><span class="pl-card__title">Save your projects</span><span class="pl-card__meta">Graphics · 2026</span></p>
+            <p class="pl-card__cap"><span class="pl-card__title">Save your projects</span><span class="pl-card__meta">Graphics</span></p>
           </article>
           <article class="pl-card" data-row-end data-cat="graphics" style="--i:4">
             <button class="pl-card__media" type="button" data-lightbox data-full="assets/graphics/play/sumi-moods.webp" style="--ar:720/720" aria-label="View Sumi moods full size"><img src="assets/graphics/play/sumi-moods-thumb.webp" alt="A sheet of nine Sumi faces in blue, each with a different mood" width="720" height="720" loading="lazy" decoding="async" /></button>
-            <p class="pl-card__cap"><span class="pl-card__title">Sumi moods</span><span class="pl-card__meta">Graphics · 2026</span></p>
+            <p class="pl-card__cap"><span class="pl-card__title">Sumi moods</span><span class="pl-card__meta">Graphics</span></p>
           </article>
           <article class="pl-card" data-cat="music" style="--i:5">
             <button class="pl-card__media" type="button" data-lightbox data-full="assets/graphics/play/reverie-in-blue.webp" style="--ar:1254/1254" aria-label="View Reverie in Blue full size"><img src="assets/graphics/play/reverie-in-blue-thumb.webp" alt="Reverie in Blue album cover: a child in a puffy blue coat kicking through snow between two power poles" width="1254" height="1254" loading="lazy" decoding="async" /></button>
@@ -108,39 +109,43 @@
           </article>
           <article class="pl-card" data-row-end data-cat="art" style="--i:6">
             <button class="pl-card__media" type="button" data-lightbox data-full="assets/graphics/play/mpc-2000-drawing.webp" style="--ar:720/603" aria-label="View Akai MPC 2000 full size"><img src="assets/graphics/play/mpc-2000-drawing-thumb.webp" alt="Pencil drawing of an Akai MPC 2000 beside an SP-555 and an audio interface" width="720" height="603" loading="lazy" decoding="async" /></button>
-            <p class="pl-card__cap"><span class="pl-card__title">Akai MPC 2000</span><span class="pl-card__meta">Art · 2024</span></p>
+            <p class="pl-card__cap"><span class="pl-card__title">Akai MPC 2000</span><span class="pl-card__meta">Art</span></p>
           </article>
           <article class="pl-card" data-cat="art" style="--i:7">
             <button class="pl-card__media" type="button" data-lightbox data-full="assets/graphics/play/robot-speakers.webp" style="--ar:1/1" aria-label="View Jam session full size"><img src="assets/graphics/play/robot-speakers-thumb.webp" alt="Illustration of a little blue robot with a keyboard on its chest, between two big speakers, on yellow" width="1000" height="1000" loading="lazy" decoding="async" /></button>
-            <p class="pl-card__cap"><span class="pl-card__title">Jam session</span><span class="pl-card__meta">Art · 2025</span></p>
+            <p class="pl-card__cap"><span class="pl-card__title">Jam session</span><span class="pl-card__meta">Art</span></p>
           </article>
-          <article class="pl-card" data-cat="art" style="--i:8">
+          <article class="pl-card" data-row-end data-cat="art" style="--i:8">
             <button class="pl-card__media" type="button" data-lightbox data-full="assets/graphics/play/robot-studio.webp" style="--ar:1/1" aria-label="View Home studio full size"><img src="assets/graphics/play/robot-studio-thumb.webp" alt="Line illustration of a computer screen full of music software windows, with little blue robots climbing over them" width="1000" height="1000" loading="lazy" decoding="async" /></button>
-            <p class="pl-card__cap"><span class="pl-card__title">Home studio</span><span class="pl-card__meta">Art · 2025</span></p>
+            <p class="pl-card__cap"><span class="pl-card__title">Home studio</span><span class="pl-card__meta">Art</span></p>
           </article>
-          <article class="pl-card" data-row-end data-cat="art" style="--i:9">
+          <article class="pl-card" data-cat="art" style="--i:9">
             <button class="pl-card__media" type="button" data-lightbox data-full="assets/graphics/play/doodle.webp" style="--ar:900/1146" aria-label="View Random Doodle full size"><img src="assets/graphics/play/doodle-thumb.webp" alt="A pencil doodle in the margins of math notes on lined paper" width="900" height="1146" loading="lazy" decoding="async" /></button>
-            <p class="pl-card__cap"><span class="pl-card__title">Random Doodle</span><span class="pl-card__meta">Art · 2023</span></p>
+            <p class="pl-card__cap"><span class="pl-card__title">Random Doodle</span><span class="pl-card__meta">Art</span></p>
           </article>
-          <article class="pl-card" data-cat="other" style="--i:10">
+          <article class="pl-card" data-row-end data-cat="other" style="--i:10">
             <button class="pl-card__media" type="button" data-lightbox data-full="assets/graphics/play/hit-box.webp" style="--ar:1800/1200" aria-label="View My Hit Box full size"><img src="assets/graphics/play/hit-box-thumb.webp" alt="My leverless fight stick, a hit box with white buttons on a blue and white city print with a graffiti character, on light grey" width="1200" height="800" loading="lazy" decoding="async" /></button>
-            <p class="pl-card__cap"><span class="pl-card__title">My Hit Box</span><span class="pl-card__meta">Other · 2025</span></p>
+            <p class="pl-card__cap"><span class="pl-card__title">My Hit Box</span><span class="pl-card__meta">Other</span></p>
           </article>
-          <article class="pl-card" data-row-end data-cat="other" style="--i:11">
+          <article class="pl-card" data-cat="interactive" style="--i:11">
+            <a class="pl-card__media pl-card__media--video" href="https://mp3-player-tawny.vercel.app/" target="_blank" rel="noopener" style="--ar:1280/720" aria-label="Try the MP3 Player"><video src="assets/graphics/play/mp3-player.mp4" poster="assets/graphics/play/mp3-player-poster.webp" width="1280" height="720" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video></a>
+            <p class="pl-card__cap"><span class="pl-card__title">MP3 Player</span><span class="pl-card__meta">Interactive</span></p>
+          </article>
+          <article class="pl-card" data-row-end data-cat="other" style="--i:12">
             <button class="pl-card__media" type="button" data-lightbox data-full="assets/graphics/play/frog-ceramics.webp" style="--ar:900/984" aria-label="View Frog full size"><img src="assets/graphics/play/frog-ceramics-thumb.webp" alt="A clay frog sculpture on a work board in a ceramics studio" width="900" height="984" loading="lazy" decoding="async" /></button>
-            <p class="pl-card__cap"><span class="pl-card__title">Frog</span><span class="pl-card__meta">Other · 2022</span></p>
-          </article>
-          <article class="pl-card" data-cat="music" style="--i:12">
-            <a class="pl-card__media" href="https://payhip.com/b/c2VUH" target="_blank" rel="noopener" style="--ar:720/720" aria-label="Get Atony Kit Vol. 1 on Payhip"><img src="assets/graphics/play/atony-kit-vol-1-thumb.webp" alt="Atony Kit Vol. 1 cover: a pastel collage of buildings and sky" width="720" height="720" loading="lazy" decoding="async" /></a>
-            <p class="pl-card__cap"><span class="pl-card__title">Atony Kit Vol. 1</span><span class="pl-card__meta">Music · 2026</span></p>
+            <p class="pl-card__cap"><span class="pl-card__title">Frog</span><span class="pl-card__meta">Other</span></p>
           </article>
           <article class="pl-card" data-cat="music" style="--i:13">
-            <a class="pl-card__media" href="https://soundcloud.com/atonyn/sets/aspire-1" target="_blank" rel="noopener" style="--ar:720/720" aria-label="Listen to Aspire on SoundCloud"><img src="assets/graphics/play/aspire-thumb.webp" alt="Aspire album cover: a girl with an umbrella in a crowd in the rain, under power lines" width="720" height="720" loading="lazy" decoding="async" /></a>
-            <p class="pl-card__cap"><span class="pl-card__title">Aspire</span><span class="pl-card__meta">Music · 2024</span></p>
+            <a class="pl-card__media" href="https://payhip.com/b/c2VUH" target="_blank" rel="noopener" style="--ar:720/720" aria-label="Get Atony Kit Vol. 1 on Payhip"><img src="assets/graphics/play/atony-kit-vol-1-thumb.webp" alt="Atony Kit Vol. 1 cover: a pastel collage of buildings and sky" width="720" height="720" loading="lazy" decoding="async" /></a>
+            <p class="pl-card__cap"><span class="pl-card__title">Atony Kit Vol. 1</span><span class="pl-card__meta">Music</span></p>
           </article>
-          <article class="pl-card" data-row-end data-cat="music" style="--i:14">
+          <article class="pl-card" data-cat="music" style="--i:14">
+            <a class="pl-card__media" href="https://soundcloud.com/atonyn/sets/aspire-1" target="_blank" rel="noopener" style="--ar:720/720" aria-label="Listen to Aspire on SoundCloud"><img src="assets/graphics/play/aspire-thumb.webp" alt="Aspire album cover: a girl with an umbrella in a crowd in the rain, under power lines" width="720" height="720" loading="lazy" decoding="async" /></a>
+            <p class="pl-card__cap"><span class="pl-card__title">Aspire</span><span class="pl-card__meta">Music</span></p>
+          </article>
+          <article class="pl-card" data-row-end data-cat="music" style="--i:15">
             <a class="pl-card__media" href="https://soundcloud.com/atonyn/garden" target="_blank" rel="noopener" style="--ar:387/387" aria-label="Listen to Garden on SoundCloud"><img src="assets/graphics/play/chromatic-garden-thumb.webp" alt="Garden cover art: bluebells under glossy, rainbow-edged shapes" width="387" height="387" loading="lazy" decoding="async" /></a>
-            <p class="pl-card__cap"><span class="pl-card__title">Garden</span><span class="pl-card__meta">Music · 2026</span></p>
+            <p class="pl-card__cap"><span class="pl-card__title">Garden</span><span class="pl-card__meta">Music</span></p>
           </article>
       </div>
     </section>
