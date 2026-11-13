@@ -1852,8 +1852,8 @@ Same system as the Vendrs rewrite (`.cs--col` plus the `.v-*` components, no new
   landed ~800px short because images/videos above loaded after the jump.
 
 ## Play page (2026-11-12)
-- **`play.html`**: the creative side on one page (after jeanxcrj.com/play.html). Left (`.pl-side`, sticky): "Play",
-  "My creations.", and a "Filter by" checkbox list (sentence case, not caps). A filters-on-top version was tried
+- **`play.html`**: the creative side on one page (after jeanxcrj.com/play.html). Left (`.pl-side`, sticky):
+  the heading "My creations" (no separate "Play" title or description line) and a "Filter by" checkbox list (sentence case, not caps). A filters-on-top version was tried
   and reverted the same day (commit b39bb5a) (Vibecoded projects / Graphic design / Art / Music, `value` = code /
   graphics / art / music). Right: `.pl-grid`, a CSS-columns masonry (4 across at 1440, 2 on phones) of `.pl-card`s
   with `data-cat`. main.js "Play: filters": none ticked = all; counts come from the cards; `?filter=graphics,art`
