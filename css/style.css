@@ -2802,24 +2802,32 @@ button.pl-card__media:focus-visible { outline: 2px solid var(--blue); outline-of
 .pl-card__media--art      { background: var(--frame); color: var(--ink-50); }
 .pl-card__media--music    { background: var(--blue-soft); }
 .pl-card:hover .pl-card__media { translate: 0 -4px; box-shadow: var(--sh-lift); }
-/* music: a "Listen" pill that pops up in the middle of the picture on hover (or
-   keyboard focus) and opens the track on SoundCloud; Reverie in Blue pops up a plain
-   "Coming soon" instead. Touch screens have no hover, so there it always shows. */
+/* music: on hover (or keyboard focus) the cover blurs a little and a round grey play
+   button pops up in the middle; it opens the track on SoundCloud. Reverie in Blue pops
+   up a grey "Coming soon" instead. Touch screens have no hover, so there the button
+   always shows (without the blur). */
 .pl-card__frame { position: relative; }
-.pl-play { position: absolute; left: 50%; top: 50%; z-index: 2; display: inline-flex; align-items: center; gap: 9px;
-  padding: 10px 20px 10px 10px; border-radius: var(--r-pill); background: var(--blue); color: #fff;
-  font-size: 15px; font-weight: 500; text-decoration: none; white-space: nowrap; box-shadow: 0 10px 24px -8px rgba(16, 16, 40, .5);
-  opacity: 0; pointer-events: none; transform: translate(-50%, -50%) scale(.85);
+.pl-card__frame .pl-card__media img { transition: filter .3s var(--ease), scale .4s var(--ease); }
+.pl-card__frame:hover .pl-card__media img, .pl-card__frame:has(.pl-play:focus-visible) .pl-card__media img {
+  filter: blur(4px) brightness(.92); scale: 1.04; }   /* the scale hides the blur's soft edge */
+.pl-play { position: absolute; left: 50%; top: 50%; z-index: 2; display: grid; place-items: center;
+  width: 64px; height: 64px; border-radius: 50%; background: rgba(72, 72, 78, .78); color: #fff;
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  font-size: 14px; font-weight: 500; text-decoration: none; white-space: nowrap; box-shadow: 0 10px 24px -8px rgba(16, 16, 40, .45);
+  opacity: 0; pointer-events: none; transform: translate(-50%, -50%) scale(.8);
   transition: opacity .2s var(--ease), transform .3s var(--ease-back), translate .35s var(--ease-back), background .2s var(--ease); }
-.pl-play svg { width: 24px; height: 24px; padding: 4px; border-radius: 50%; background: #fff; color: var(--blue); }
+.pl-play svg { width: 26px; height: 26px; margin-left: 3px; }   /* nudged right: a triangle looks off-centre otherwise */
 .pl-card__frame:hover .pl-play, .pl-play:focus-visible {
   opacity: 1; pointer-events: auto; transform: translate(-50%, -50%) scale(1); }
-a.pl-play:hover { background: var(--blue-hi); }
-a.pl-play:focus-visible { outline: 2px solid #fff; outline-offset: 2px; box-shadow: 0 0 0 4px var(--blue); }
+a.pl-play:hover { background: rgba(50, 50, 56, .9); }
+a.pl-play:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
 .pl-card:hover .pl-play { translate: 0 -4px; }   /* rides along with the picture's hover lift */
-.pl-play--soon { padding: 9px 18px; background: rgba(255, 255, 255, .94); color: var(--ink-75); font-size: 14px; }
+.pl-play--soon { width: auto; height: auto; padding: 9px 18px; border-radius: var(--r-pill); }
 @media (hover: none) {
   .pl-play { opacity: 1; pointer-events: auto; transform: translate(-50%, -50%) scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pl-card__frame .pl-card__media img { transition: none; }
 }
 /* title, then the tag on its own line under it on every card (beside it, a long title
    pushed the tag down and short ones didn't, so the tags wandered) */

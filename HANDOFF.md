@@ -1915,3 +1915,4 @@ Same system as the Vendrs rewrite (`.cs--col` plus the `.v-*` components, no new
   (~500). Still uncropped (heights from the shapes). Filtered views pack automatically at ~42% of the width (max 480).
 - Play music cards (2026-11-12): "Listen" pill (a.pl-play) over the picture opens SoundCloud in a new tab: Aspire (soundcloud.com/atonyn/sets/aspire-1), Garden (soundcloud.com/atonyn/garden; was the graphic "Chromatic garden", now Music and titled Garden). Reverie in Blue gets a "Coming soon" pill. Atony Kit has no link yet.
 - Listen / Coming soon pills now pop up in the CENTRE of the cover on hover (or focus), not in a corner; always shown on touch screens.
+- Listen pill became just a round GREY play button (no text); on hover the cover blurs (4px) and the button pops up in the middle. Reverie's "Coming soon" is grey too.
