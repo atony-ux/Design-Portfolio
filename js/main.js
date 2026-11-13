@@ -151,7 +151,7 @@
        (data-collection) stands in for the whole set, and the set's own cards
        (data-in) stay hidden so they don't flood the page. Ticking a filter hides
        the cover and shows the cards. Clicking the cover ticks its filter.
-       Intro panels (data-for="branding prod-davis") show while one of those is ticked. */
+       Intro panels (data-for="prod-davis", space-separated keys) show while one of those is ticked. */
     var panels = $$("[data-for]", page);
     $$("[data-open]", page).forEach(function (btn) {
       btn.addEventListener("click", function () {

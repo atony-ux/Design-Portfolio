@@ -25,7 +25,7 @@
        before anything paints. js/main.js "Opening intro" plays it and takes it away.
        ?intro=1 forces it; skipped for reduced motion. -->
   <script>document.documentElement.classList.add("js");try{if((/[?&]intro=(1|hold)/.test(location.search)||!sessionStorage.getItem("atony:intro"))&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("is-intro")}catch(e){}</script>
-  <link rel="stylesheet" href="css/style.css?v=x247" />
+  <link rel="stylesheet" href="css/style.css?v=x248" />
 </head>
 <body>
   <!-- ============ NAV ============ -->
@@ -64,12 +64,12 @@
          filter <li> with value="code" and cards with data-cat="code".
          Music with a link: the picture itself is the link (an <a class="pl-card__media">
          that opens SoundCloud, or Payhip for the kit, in a new tab) instead of opening full size.
-         Branding / Prod. Davis (2026-11-13): a collection. See HANDOFF.md; with no filter on, one
-         cover card stands in for its 11 pieces, and an intro panel (.pl-brand) shows while filtered. -->
+         Prod. Davis (2026-11-13): a collection. See HANDOFF.md; with no filter on, one
+         cover card stands in for its pieces, and an intro panel (.pl-brand) shows while filtered. -->
     <section class="pl wrap" id="play">
       <aside class="pl-side">
         <h1 class="pl-side__title">Studio</h1>
-        <p class="pl-side__sub">My design playground</p>
+        <p class="pl-side__sub">My creative playground</p>
         <fieldset class="pl-filters">
           <legend class="pl-filters__label">Filter by</legend>
           <button class="pl-filters__clear" type="button" hidden>Clear</button>
@@ -78,8 +78,7 @@
             <li><label class="pl-filter"><input type="checkbox" name="filter" value="art" /><span class="pl-filter__name">Art</span><span class="pl-filter__n" aria-hidden="true"></span></label></li>
             <li><label class="pl-filter"><input type="checkbox" name="filter" value="music" /><span class="pl-filter__name">Music</span><span class="pl-filter__n" aria-hidden="true"></span></label></li>
             <li><label class="pl-filter"><input type="checkbox" name="filter" value="interactive" /><span class="pl-filter__name">Interactive</span><span class="pl-filter__n" aria-hidden="true"></span></label></li>
-            <li><label class="pl-filter"><input type="checkbox" name="filter" value="branding" /><span class="pl-filter__name">Branding</span><span class="pl-filter__n" aria-hidden="true"></span></label></li>
-            <li class="pl-filters__sub"><label class="pl-filter pl-filter--sub"><input type="checkbox" name="filter" value="prod-davis" /><span class="pl-filter__name">Prod. Davis</span><span class="pl-filter__n" aria-hidden="true"></span></label></li>
+            <li><label class="pl-filter"><input type="checkbox" name="filter" value="prod-davis" /><span class="pl-filter__name">Prod. Davis</span><span class="pl-filter__n" aria-hidden="true"></span></label></li>
             <li><label class="pl-filter"><input type="checkbox" name="filter" value="other" /><span class="pl-filter__name">Other</span><span class="pl-filter__n" aria-hidden="true"></span></label></li>
           </ul>
         </fieldset>
@@ -87,12 +86,11 @@
       </aside>
 
       <div class="pl-main">
-        <!-- Shown only while Branding or Prod. Davis is ticked (main.js, data-for).
+        <!-- Shown only while Prod. Davis is ticked (main.js, data-for).
              DRAFT copy: replace with Anthony's own words. -->
-        <section class="pl-brand" data-for="branding prod-davis" hidden aria-labelledby="pl-brand-title">
+        <section class="pl-brand" data-for="prod-davis" hidden aria-labelledby="pl-brand-title">
           <img class="pl-brand__logo" src="assets/graphics/communities/prod-davis-logo.webp" alt="" width="96" height="96" />
           <div class="pl-brand__body">
-            <p class="pl-brand__eyebrow">Branding</p>
             <h2 class="pl-brand__title" id="pl-brand-title">Prod. Davis</h2>
             <p class="pl-brand__role">Co-Brand Design Director &middot; UC Davis music production club</p>
             <p>Prod. Davis is UC Davis's music production club, open to everyone from first-time beatmakers to people already putting out music. Every Thursday there's an A-side meeting built around a challenge, and on Tuesdays a B-side session for workshops, office hours and hanging out.</p>
@@ -101,8 +99,8 @@
         </section>
       <div class="pl-grid">
           <article class="pl-card pl-card--collection" data-collection="prod-davis">
-            <button class="pl-card__media" type="button" data-open="prod-davis" style="--ar:1080/1350" aria-label="See all 11 Prod. Davis graphics"><img src="assets/graphics/play/prod-davis/club-flyer-thumb.webp" alt="Prod. Davis club flyer: PROD.DAVIS in big white type over a blue collage of producers at a keyboard" width="720" height="900" loading="lazy" decoding="async" /><span class="pl-card__badge">View all 11</span></button>
-            <p class="pl-card__cap"><span class="pl-card__title">Prod. Davis</span><span class="pl-card__meta">Branding</span></p>
+            <button class="pl-card__media" type="button" data-open="prod-davis" style="--ar:1080/1350" aria-label="See all 5 Prod. Davis graphics"><img src="assets/graphics/play/prod-davis/speed-dating-thumb.webp" alt="Prod. Davis Speed Dating event graphic: an overhead halftone photo of producers jamming around a keyboard" width="720" height="900" loading="lazy" decoding="async" /><span class="pl-card__badge">View all 5</span></button>
+            <p class="pl-card__cap"><span class="pl-card__title">Prod. Davis</span><span class="pl-card__meta">Collection</span></p>
           </article>
           <article class="pl-card" data-cat="graphics" style="--i:0">
             <div class="pl-card__media pl-card__media--video" style="--ar:540/960"><video src="assets/graphics/play/atony-loop.mp4" poster="assets/graphics/play/atony-loop-poster.webp" width="540" height="960" data-autoplay muted loop playsinline preload="auto" aria-label="Looping visualizer: the Atony logo and a spinning CD on blue"></video></div>
@@ -168,49 +166,25 @@
             <a class="pl-card__media" href="https://soundcloud.com/atonyn/garden" target="_blank" rel="noopener" style="--ar:387/387" aria-label="Listen to Garden on SoundCloud"><img src="assets/graphics/play/chromatic-garden-thumb.webp" alt="Garden cover art: bluebells under glossy, rainbow-edged shapes" width="387" height="387" loading="lazy" decoding="async" /></a>
             <p class="pl-card__cap"><span class="pl-card__title">Garden</span><span class="pl-card__meta">Music</span></p>
           </article>
-          <article class="pl-card" data-cat="branding prod-davis" data-in="prod-davis">
-            <button class="pl-card__media" type="button" data-lightbox data-full="assets/graphics/play/prod-davis/club-flyer.webp" style="--ar:1080/1350" aria-label="View Club Flyer full size"><img src="assets/graphics/play/prod-davis/club-flyer-thumb.webp" alt="Prod. Davis club flyer: PROD.DAVIS in big white type over a blue collage of producers at a keyboard, beginners welcome, Thursdays 8pm" width="720" height="900" loading="lazy" decoding="async" /></button>
-            <p class="pl-card__cap"><span class="pl-card__title">Club Flyer</span><span class="pl-card__meta">Branding</span></p>
-          </article>
-          <article class="pl-card" data-cat="branding prod-davis" data-in="prod-davis">
+          <article class="pl-card" data-cat="prod-davis" data-in="prod-davis">
             <button class="pl-card__media" type="button" data-lightbox data-full="assets/graphics/play/prod-davis/speed-dating.webp" style="--ar:1080/1350" aria-label="View Speed Dating full size"><img src="assets/graphics/play/prod-davis/speed-dating-thumb.webp" alt="Speed Dating event graphic: an overhead halftone photo of producers jamming around a keyboard, in blue on orange photo tiles" width="720" height="900" loading="lazy" decoding="async" /></button>
-            <p class="pl-card__cap"><span class="pl-card__title">Speed Dating</span><span class="pl-card__meta">Branding</span></p>
+            <p class="pl-card__cap"><span class="pl-card__title">Speed Dating</span><span class="pl-card__meta">Prod. Davis</span></p>
           </article>
-          <article class="pl-card" data-cat="branding prod-davis" data-in="prod-davis">
+          <article class="pl-card" data-cat="prod-davis" data-in="prod-davis">
             <div class="pl-card__media pl-card__media--video" style="--ar:720/900"><video src="assets/graphics/play/prod-davis/beat-breakdown.mp4" poster="assets/graphics/play/prod-davis/beat-breakdown-thumb.webp" width="720" height="900" data-autoplay muted loop playsinline preload="none" aria-label="Animated Beat Breakdowns event graphic: a silver CRT TV playing a Prod. Davis presents clip"></video></div>
-            <p class="pl-card__cap"><span class="pl-card__title">Beat Breakdown</span><span class="pl-card__meta">Branding</span></p>
+            <p class="pl-card__cap"><span class="pl-card__title">Beat Breakdown</span><span class="pl-card__meta">Prod. Davis</span></p>
           </article>
-          <article class="pl-card" data-cat="branding prod-davis" data-in="prod-davis">
-            <button class="pl-card__media" type="button" data-lightbox data-full="assets/graphics/play/prod-davis/hear-no-speak-no.webp" style="--ar:1080/1350" aria-label="View Hear No Speak No full size"><img src="assets/graphics/play/prod-davis/hear-no-speak-no-thumb.webp" alt="Hear No Speak No event graphic: a shouting mouth sends a ribbon of blah blah across a music app screen into an ear with headphones" width="720" height="900" loading="lazy" decoding="async" /></button>
-            <p class="pl-card__cap"><span class="pl-card__title">Hear No Speak No</span><span class="pl-card__meta">Branding</span></p>
-          </article>
-          <article class="pl-card" data-cat="branding prod-davis" data-in="prod-davis">
+          <article class="pl-card" data-cat="prod-davis" data-in="prod-davis">
             <div class="pl-card__media pl-card__media--video" style="--ar:720/720"><video src="assets/graphics/play/prod-davis/info-session.mp4" poster="assets/graphics/play/prod-davis/info-session-poster.webp" width="720" height="720" data-autoplay muted loop playsinline preload="none" aria-label="Animated info session graphic on a CRT screen: interested in making music? Find us at the involvement fair"></video></div>
-            <p class="pl-card__cap"><span class="pl-card__title">Info Session</span><span class="pl-card__meta">Branding</span></p>
+            <p class="pl-card__cap"><span class="pl-card__title">Info Session</span><span class="pl-card__meta">Prod. Davis</span></p>
           </article>
-          <article class="pl-card" data-cat="branding prod-davis" data-in="prod-davis">
+          <article class="pl-card" data-cat="prod-davis" data-in="prod-davis">
             <button class="pl-card__media" type="button" data-lightbox data-full="assets/graphics/play/prod-davis/genre-wheel.webp" style="--ar:1080/1350" aria-label="View Genre Wheel full size"><img src="assets/graphics/play/prod-davis/genre-wheel-thumb.webp" alt="Genre Wheel event graphic: an orange and white prize wheel over synth plugin screens, step 1 spin a genre, step 2 create it" width="720" height="900" loading="lazy" decoding="async" /></button>
-            <p class="pl-card__cap"><span class="pl-card__title">Genre Wheel</span><span class="pl-card__meta">Branding</span></p>
+            <p class="pl-card__cap"><span class="pl-card__title">Genre Wheel</span><span class="pl-card__meta">Prod. Davis</span></p>
           </article>
-          <article class="pl-card" data-cat="branding prod-davis" data-in="prod-davis">
-            <button class="pl-card__media" type="button" data-lightbox data-full="assets/graphics/play/prod-davis/mashup-challenge.webp" style="--ar:1080/1350" aria-label="View Mashup Challenge full size"><img src="assets/graphics/play/prod-davis/mashup-challenge-thumb.webp" alt="Mashup Challenge event graphic: a Prod. Davis cassette surrounded by a guitar, saxophone, drum kit and disco ball cutouts" width="720" height="900" loading="lazy" decoding="async" /></button>
-            <p class="pl-card__cap"><span class="pl-card__title">Mashup Challenge</span><span class="pl-card__meta">Branding</span></p>
-          </article>
-          <article class="pl-card" data-cat="branding prod-davis" data-in="prod-davis">
+          <article class="pl-card" data-cat="prod-davis" data-in="prod-davis">
             <button class="pl-card__media" type="button" data-lightbox data-full="assets/graphics/play/prod-davis/guest-speakers.webp" style="--ar:1080/1350" aria-label="View Guest Speakers full size"><img src="assets/graphics/play/prod-davis/guest-speakers-thumb.webp" alt="Industry Speakers event graphic: two speaker photos in blue panels, an industry producer and the CEO of Buzzit" width="720" height="900" loading="lazy" decoding="async" /></button>
-            <p class="pl-card__cap"><span class="pl-card__title">Guest Speakers</span><span class="pl-card__meta">Branding</span></p>
-          </article>
-          <article class="pl-card" data-cat="branding prod-davis" data-in="prod-davis">
-            <button class="pl-card__media" type="button" data-lightbox data-full="assets/graphics/play/prod-davis/spooky-beats.webp" style="--ar:1080/1350" aria-label="View Spooky Beats full size"><img src="assets/graphics/play/prod-davis/spooky-beats-thumb.webp" alt="Spooky Beats Halloween event graphic: a purple halftone skull on a record player, with dripping orange title type" width="720" height="900" loading="lazy" decoding="async" /></button>
-            <p class="pl-card__cap"><span class="pl-card__title">Spooky Beats</span><span class="pl-card__meta">Branding</span></p>
-          </article>
-          <article class="pl-card" data-cat="branding prod-davis" data-in="prod-davis">
-            <button class="pl-card__media" type="button" data-lightbox data-full="assets/graphics/play/prod-davis/beat-telephone.webp" style="--ar:1080/1350" aria-label="View Beat Telephone full size"><img src="assets/graphics/play/prod-davis/beat-telephone-thumb.webp" alt="Beat Telephone event graphic: an orange rotary phone with speakers for earpieces and a Prod. Davis sticker" width="720" height="900" loading="lazy" decoding="async" /></button>
-            <p class="pl-card__cap"><span class="pl-card__title">Beat Telephone</span><span class="pl-card__meta">Branding</span></p>
-          </article>
-          <article class="pl-card" data-cat="branding prod-davis" data-in="prod-davis">
-            <button class="pl-card__media" type="button" data-lightbox data-full="assets/graphics/play/prod-davis/acapella-flip.webp" style="--ar:1080/1350" aria-label="View Acapella Flip full size"><img src="assets/graphics/play/prod-davis/acapella-flip-thumb.webp" alt="Acapella Flip event graphic: a microphone, saxophone, vinyl and accordion cutouts flowing out of a singing mouth over a DAW arrangement" width="720" height="900" loading="lazy" decoding="async" /></button>
-            <p class="pl-card__cap"><span class="pl-card__title">Acapella Flip</span><span class="pl-card__meta">Branding</span></p>
+            <p class="pl-card__cap"><span class="pl-card__title">Guest Speakers</span><span class="pl-card__meta">Prod. Davis</span></p>
           </article>
       </div>
       </div>
@@ -257,6 +231,6 @@
   </footer>
 
   <script src="assets/vendor/drawably/drawably.classic.js?v=0.4.2"></script>
-  <script src="js/main.js?v=x247"></script>
+  <script src="js/main.js?v=x248"></script>
 </body>
 </html>
