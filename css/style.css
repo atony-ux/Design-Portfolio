@@ -2767,18 +2767,35 @@ html.is-intro .case-nav__link { animation-play-state: paused; }
 .pl-filters__clear[hidden] { display: none; }
 /* filters: a list of rows; hover tints the row, a ticked row turns blue */
 .pl-filters__list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
-.pl-filters__list li { border-bottom: 1px solid var(--line); }
+.pl-filters__list li { position: relative; border-bottom: 1px solid var(--line); }
 .pl-filter { position: relative; display: flex; align-items: center; gap: 12px; margin: 4px -10px; padding: 9px 10px;
   border-radius: var(--r-md); font-size: 15px; color: var(--ink); cursor: pointer; user-select: none;
   transition: background .2s var(--ease), color .2s var(--ease); }
 .pl-filter:hover { background: var(--blue-mist); }
-.pl-filter input { appearance: none; -webkit-appearance: none; flex: none; width: 16px; height: 16px; margin: 0; cursor: pointer;
-  border: 1.5px solid var(--ink-30); border-radius: var(--r-xs); background: #fff center / 12px no-repeat;
-  transition: background-color .15s var(--ease), border-color .15s var(--ease); }
-.pl-filter:hover input:not(:checked) { border-color: var(--blue); }
-.pl-filter input:checked { border-color: var(--blue); background-color: var(--blue);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 6.2 5 8.6l4.6-5' fill='none' stroke='%23fff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); }
-.pl-filter input:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+/* Hand-drawn filter list (option A, mockups/studio-filters.html, 2026-11-13).
+   main.js draws each box, its pen tick and the pencil rules between rows with
+   drawably's rough shapes, once and static (no boil loop). Until it has, or if
+   drawably never loads, the box is a plain bordered square and the rules are the
+   straight borders, so the list always works. The real checkbox is visually
+   hidden inside .pl-box. */
+.pl-box { flex: none; position: relative; width: 18px; height: 18px; border: 1.5px solid var(--ink-30); border-radius: 3px; }
+.pl-box svg { position: absolute; inset: -1.5px; width: 18px; height: 18px; overflow: visible; }
+.pl-box path { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.pl-box .b { stroke: var(--ink-50); stroke-width: 1.1; transition: stroke .2s var(--ease); }
+.pl-box .t { stroke: var(--blue); stroke-width: 2.3; stroke-dasharray: 1; stroke-dashoffset: 1;
+  transition: stroke-dashoffset .3s cubic-bezier(.3, .1, .2, 1); }
+.pl-filter:hover .pl-box, .pl-filter:has(input:checked) .pl-box { border-color: var(--blue); }
+.pl-filter:hover .pl-box .b, .pl-filter:has(input:checked) .pl-box .b { stroke: var(--blue); }
+.pl-filter:has(input:checked) .pl-box .t { stroke-dashoffset: 0; }
+.pl-filter:has(input:focus-visible) .pl-box { outline: 2px solid var(--blue); outline-offset: 3px; }
+.pl-filters.is-sketched .pl-box { border-color: transparent !important; }
+.pl-filters.is-sketched .pl-filters__list { border-top: 0; }
+.pl-filters.is-sketched .pl-filters__list li { border-bottom: 0; }
+.pl-rule { position: absolute; left: 0; right: 0; bottom: -5px; height: 10px; pointer-events: none; }
+.pl-rule--top { top: -5px; bottom: auto; }
+.pl-rule svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.pl-rule path { fill: none; stroke: rgba(16, 16, 16, .22); stroke-width: 1; stroke-linecap: round; }
+@media (prefers-reduced-motion: reduce) { .pl-box .t { transition: none; } }
 .pl-filter__name { flex: 1; transition: transform .25s var(--ease); }
 .pl-filter:has(input:checked) { color: var(--blue); font-weight: 500; }
 .pl-filter:has(input:checked) .pl-filter__name { transform: translateX(2px); }
@@ -2881,6 +2898,7 @@ html.is-intro .pl-side > *, html.is-intro .pl-card { animation-play-state: pause
   .pl-filters { margin-top: 24px; }
   .pl-filters__list { display: flex; flex-wrap: wrap; gap: 8px; border: 0; }
   .pl-filters__list li { border: 0; }
+  .pl-rule { display: none; }
   .pl-filter { gap: 8px; margin: 0; padding: 7px 14px 7px 11px; font-size: 14px; background: #fff;
     border: 1px solid var(--line); border-radius: var(--r-pill); }
   .pl-filter:has(input:checked) { border-color: var(--blue); background: var(--blue-mist); }

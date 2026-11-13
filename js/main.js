@@ -147,6 +147,43 @@
     if (!page) return;
     var boxes = $$(".pl-filter input", page), cards = $$(".pl-card", page);
     var clear = $(".pl-filters__clear", page), status = $(".pl-status", page);
+    /* Hand-drawn filter list (option A): each box, its pen tick (it overshoots the
+       box, the way a pen tick does) and a pencil rule under every row are drawn
+       with drawably's rough shapes. Fixed seeds, so they look the same on every
+       visit; drawn once, never animated except the tick drawing in. Without
+       drawably the CSS fallback (plain box, straight borders) stays. */
+    (function sketchFilters() {
+      var D = window.drawably, fs = $(".pl-filters", page), list = $(".pl-filters__list", page);
+      if (!D || !D.roughRoundedRect || !D.roughCheckmark || !D.roughLine || !fs || !list) return;
+      try {
+        $$(".pl-box svg", page).forEach(function (svg, i) {
+          var box = D.roughRoundedRect(1, 1, 16, 16, 2, { seed: 101 + i * 17, roughness: 0.7 });
+          var tick = D.roughCheckmark(3.5, 0, 17, 13, { seed: 400 + i * 7, roughness: 0.9 });
+          svg.innerHTML = '<path class="b" d="' + box + '"/><path class="t" pathLength="1" d="' + tick + '"/>';
+        });
+        var items = $$("li", list);
+        items.forEach(function (li) {
+          var r = document.createElement("span"); r.className = "pl-rule"; r.setAttribute("aria-hidden", "true"); li.appendChild(r);
+        });
+        if (items[0]) {
+          var top = document.createElement("span"); top.className = "pl-rule pl-rule--top"; top.setAttribute("aria-hidden", "true");
+          items[0].appendChild(top);
+        }
+        var drawn = 0;
+        function rules() {
+          var w = Math.round(list.getBoundingClientRect().width);
+          if (!w || w === drawn) return;
+          drawn = w;
+          $$(".pl-rule", list).forEach(function (r, i) {
+            var d = D.roughLine(1, 5, w - 1, 5, { seed: 7 + i * 13, roughness: 0.7 });
+            r.innerHTML = '<svg viewBox="0 0 ' + w + ' 10" aria-hidden="true"><path d="' + d + '"/></svg>';
+          });
+        }
+        rules();
+        if ("ResizeObserver" in window) new ResizeObserver(rules).observe(list);
+        fs.classList.add("is-sketched");
+      } catch (e) {}
+    })();
     /* Collections (Prod. Davis): with nothing ticked, one cover card
        (data-collection) stands in for the whole set, and the set's own cards
        (data-in) stay hidden so they don't flood the page. Ticking a filter hides

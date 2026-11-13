@@ -1974,3 +1974,6 @@ No Prod. Davis filter, cover card or intro panel any more. The five pieces (Spee
 
 ## 2026-11-13: Sumi moods to Art; About cue "Creative works"
 Sumi moods is data-cat="art", tag "Art" (Graphics 8, Art 6). The About stack cue reads "Creative works ->" and links to studio.html with no filter (was ?filter=graphics), aria-label "Creative works, in the Studio".
+
+## 2026-11-13: Studio filters are hand-drawn (option A)
+From mockups/studio-filters.html, option A. Each checkbox sits visually hidden inside `span.pl-box` with an empty svg; main.js (sketchFilters, top of the Studio filters module) draws the box (roughRoundedRect, radius 2) and a pen tick that overshoots it (roughCheckmark, pathLength=1, draws in via stroke-dashoffset when ticked), plus a pencil rule (roughLine, `span.pl-rule`) under every row and one on top, redrawn only if the list width changes. Fixed seeds, static (no drawably boil loop). It adds `.is-sketched` to the fieldset, which drops the straight borders and the fallback box border; without drawably the plain bordered box and straight lines remain. Phones: sketched boxes inside the pills, no rules. Cache token x250.
