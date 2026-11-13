@@ -1905,3 +1905,7 @@ Same system as the Vendrs rewrite (`.cs--col` plus the `.v-*` components, no new
   MPC 4, Kit 3 / Frog 4, Chromatic 3. Info session visualizer removed (files moved to ../Portfolio2.0 removed files/
   unused-assets-2026-11-12). Doodle and Frog were sideways (the .heic rotation was lost converting); now upright.
   Smaller gap between the side column and the grid, so the grid is wider.
+- Play grid, final (2026-11-12): the user asked that NOTHING be cropped, so the 7-slot version (cover-cropped
+  boxes) became justified rows again, but bigger: target row height = 34.5% of the grid width (50% under 900px), max 420px; the card order is chosen so the 12 split into 4 even rows of 3 (~340-355px at 1440); a row closes
+  at whichever count lands nearer the target (and never over 1.3x it); widths from `--ar`; phones one per row.
+  `data-span` on the cards is now unused. Title and tag stay on one line.

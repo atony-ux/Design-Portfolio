@@ -181,12 +181,13 @@
       var want = q.toLowerCase().split(",");
       boxes.forEach(function (b) { b.checked = want.indexOf(b.value) > -1; });
     }
-    /* rows of 7 slots (like jeanxcrj.com/play.html): each card takes data-span slots
-       (2-4); cards fill a row in order, and if the next one doesn't fit, the row's last
-       card stretches to fill it. A row's height is the average height its pieces would
-       have at their widths, kept between 26% and 37% of the grid width; pictures cover
-       their box. Phones (< 600px): one per row at the piece's own shape. */
-    var grid = $(".pl-grid", page), GAP = 10, SLOTS = 7;
+    /* rows that fill the width, sized like jeanxcrj.com/play.html but with NOTHING
+       cropped: every card's width comes from its piece's shape (--ar), and each row
+       gets the one height at which its pieces exactly span the grid. A row closes at
+       whichever count lands nearer the target height (about 35% of the grid width, at
+       most 420px; 50% on a narrow grid). A last row on its own stays at the target height. Phones (< 600px):
+       one per row at full width. */
+    var grid = $(".pl-grid", page), GAP = 10;
     function ar(c) {
       var m = $(".pl-card__media", c), v = m && m.style.getPropertyValue("--ar");
       var p = (v || "1/1").split("/");
@@ -199,48 +200,44 @@
       if (W < 50) return;
       grid.classList.add("is-justified");
       var vis = cards.filter(function (c) { return !c.hidden; });
-      if (W < 600) {
-        vis.forEach(function (c) { c.style.width = W + "px"; c.style.setProperty("--h", Math.round(W / ar(c)) + "px"); });
-        return;
-      }
-      var unit = (W - GAP * (SLOTS - 1)) / SLOTS;
-      function px(sp) { return sp * unit + (sp - 1) * GAP; }
-      /* leftover slots in a row are handed out one at a time, narrowest card first,
-         so no single card balloons; a last row with one card keeps its own width */
-      function flush(row, last) {
-        if (!row.length) return;
-        var used = row.reduce(function (t, r) { return t + r.sp; }, 0);
-        var fill = !(last && row.length === 1);
-        for (var extra = fill ? SLOTS - used : 0; extra > 0; extra--) {
-          var pick = row.reduce(function (best, r) { return r.sp < best.sp ? r : best; }, row[0]);
-          pick.sp++;
-        }
-        var hs = row.map(function (r) { return px(r.sp) / ar(r.c); });
-        var h = hs.reduce(function (t, x) { return t + x; }, 0) / hs.length;
-        h = Math.round(Math.max(W * 0.26, Math.min(W * 0.37, h)));
-        var acc = 0;
-        row.forEach(function (r, i) {
-          var w = fill && i === row.length - 1 ? W - acc - GAP * (row.length - 1) : Math.floor(px(r.sp));
-          acc += w;
-          r.c.style.width = w + "px";
-          r.c.style.setProperty("--h", h + "px");
+      function size(c, w, h) { c.style.width = w + "px"; c.style.setProperty("--h", h + "px"); }
+      if (W < 600) { vis.forEach(function (c) { size(c, W, Math.round(W / ar(c))); }); return; }
+      /* ~35% of the width: with the page's order, 4 even rows of 3 at 1440. On a
+         narrower grid rows run taller (fewer per row) so every title fits */
+      var target = Math.min(420, W * (W < 900 ? 0.5 : 0.345));
+      function hOf(n, s) { return (W - GAP * (n - 1)) / s; }
+      function place(row, h, fill) {
+        var used = 0;
+        h = Math.round(h * 100) / 100;
+        row.forEach(function (c, i) {
+          var w = Math.floor(ar(c) * h);
+          if (fill && i === row.length - 1) w = W - used - GAP * (row.length - 1);   /* soak up rounding */
+          used += w;
+          size(c, w, Math.round(w / ar(c)));
         });
       }
-      var row = [], used = 0;
-      vis.forEach(function (c) {
-        var sp = Math.min(SLOTS, parseInt(c.getAttribute("data-span"), 10) || 2);
-        /* title and tag must fit on one line: a card too narrow for them takes another slot */
+      /* every card must be wide enough for its title and tag on one line */
+      function need(c) {
         var t = $(".pl-card__title", c), m = $(".pl-card__meta", c);
-        var need = (t ? t.scrollWidth : 0) + (m ? m.offsetWidth : 0) + 14;
-        var min = 2;
-        while (min < 4 && px(min) < need) min++;
-        sp = Math.max(sp, min);
-        /* one slot short of fitting: give that slot up rather than leave the row half empty */
-        if (used + sp === SLOTS + 1 && sp - 1 >= min) sp--;
-        if (used + sp > SLOTS) { flush(row); row = []; used = 0; }
-        row.push({ c: c, sp: sp }); used += sp;
+        return (t ? t.scrollWidth : 0) + (m ? m.offsetWidth : 0) + 14;
+      }
+      function fits(cs, h) { return cs.every(function (c) { return ar(c) * h >= need(c); }); }
+      var row = [], sum = 0;
+      vis.forEach(function (c) {
+        var a = ar(c);
+        if (row.length && sum * target + GAP * (row.length - 1) < W && (sum + a) * target + GAP * row.length >= W) {
+          var withIt = hOf(row.length + 1, sum + a), without = hOf(row.length, sum);
+          var tooNarrow = !fits(row.concat([c]), withIt);
+          if (tooNarrow || (Math.abs(without - target) < Math.abs(withIt - target) && without < target * 1.3)) {
+            place(row, without, true); row = [c]; sum = a; return;
+          }
+          row.push(c); sum += a;
+          place(row, withIt, true); row = []; sum = 0; return;
+        }
+        row.push(c); sum += a;
+        if (sum * target + GAP * (row.length - 1) >= W) { place(row, hOf(row.length, sum), true); row = []; sum = 0; }
       });
-      flush(row, true);
+      if (row.length) place(row, target, false);
     }
     var applyFilters = apply;
     apply = function (animate) { applyFilters(animate); layout(); };

@@ -2773,12 +2773,12 @@ html.is-intro .case-nav__link { animation-play-state: paused; }
 
 .pl-grid { columns: 3 260px; column-gap: 24px; }
 .pl-card { break-inside: avoid; margin: 0 0 28px; }
-/* With JS on, the grid is rows of 7 slots, like jeanxcrj.com/play.html: each card
-   takes data-span slots (2, 3 or 4) and every row fills the width; js/main.js "Play:
-   filters" sets each card's width and its row's height (--h, from the pieces' shapes,
-   kept between 26% and 37% of the grid width), and the picture fills its box (cover),
-   so a wide slot crops a tall piece a little (the lightbox shows the whole thing).
-   Phones: one per row at its own shape. The CSS columns above are the no-JS fallback. */
+/* With JS on, the grid is rows that fill the width (js/main.js "Play: filters"):
+   each card's width comes from its piece's shape and each row gets the height at
+   which its pieces exactly span it, so NOTHING is cropped (the box's shape matches
+   the picture's; cover only hides sub-pixel rounding). Rows are about 35% of the
+   grid width tall (max 420px). Phones: one per row. The CSS columns above are the
+   no-JS fallback. */
 .pl-grid.is-justified { columns: auto; display: flex; flex-wrap: wrap; align-items: flex-start; gap: 28px 10px; }
 .pl-grid.is-justified .pl-card { flex: none; margin: 0; }
 .pl-grid.is-justified .pl-card__media { aspect-ratio: auto; height: var(--h, 300px); }
