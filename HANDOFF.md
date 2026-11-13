@@ -1943,3 +1943,12 @@ The hit box photo was cut out with Apple Vision (tools/cutout.swift), straighten
 
 ## 2026-11-13: No years in Studio; MP3 Player + Interactive filter
 Studio tags are the category only (no year) everywhere; Reverie keeps "Music · Coming soon". New filter "Interactive" (value="interactive"). New card "MP3 Player": autoplaying muted loop (assets/graphics/play/mp3-player.mp4, 1280x720 @ 1100kbps, 5.4MB, from the 39s 1080p screen recording; poster mp3-player-poster.webp) that links to https://mp3-player-tawny.vercel.app/ in a new tab. Rows with everything showing: Transition, OP-1 / Sample flip, Save your projects, Sumi moods / Reverie, Akai / Jam session, Home studio / Random Doodle, My Hit Box / MP3 Player, Frog / Atony Kit, Aspire, Garden.
+
+## 2026-11-13: Performance pass 2
+- **Videos load lazily.** Videos lower on a page use `data-autoplay preload="none"` (plus a poster) instead of `autoplay`; main.js starts them when they come within 300px of the screen and pauses them off screen. Used for the Studio MP3 Player and the Vendrs onboarding video (new poster onboarding-flow-poster.webp; mp4 source listed before webm, it is smaller). Top-of-page videos (Studio Transition) keep plain `autoplay`.
+- **Re-encoded:** mp3-player.mp4 1280x720 @ 800kbps (5.4MB -> 4.0MB), atony-loop.mp4 @ 900kbps from the original (2.0MB -> 1.3MB).
+- **Images resized to about 2.5x their largest on-screen size** (21 files, 2.3MB -> 1.2MB): the two hero Sumis (260px wide, were 622/790), About portrait 640, EVO photo 520, community polaroids 640x480, home cover thumbs, a few Studio thumbs, mascot-vendor re-encoded. Originals in `../Portfolio2.0 removed files/originals-before-optimizing-3/`. Lightbox images (Vendrs familiarity shots) were left full size on purpose.
+- **Caching:** /assets and /css,/js now cache 7 days (stale-while-revalidate 30 days); css/js are versioned by the ?v= token, so keep bumping it. Fonts stay 1 year.
+- `tools/weigh.mjs <url>` audits a page: requests and bytes at first load and after scrolling, the heaviest files, FCP/LCP.
+- Results (first load): Home 952KB -> 818KB, About 1.9MB -> 1.4MB, Studio 6.4MB -> 2.8MB, Vendrs 2.6MB -> 0.8MB.
+- Not done: minifying style.css/main.js (Vercel already compresses them to ~48KB/33KB; minifying would save ~40KB more but needs a build step). Cache token x242.

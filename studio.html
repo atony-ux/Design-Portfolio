@@ -25,7 +25,7 @@
        before anything paints. js/main.js "Opening intro" plays it and takes it away.
        ?intro=1 forces it; skipped for reduced motion. -->
   <script>document.documentElement.classList.add("js");try{if((/[?&]intro=(1|hold)/.test(location.search)||!sessionStorage.getItem("atony:intro"))&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("is-intro")}catch(e){}</script>
-  <link rel="stylesheet" href="css/style.css?v=x241" />
+  <link rel="stylesheet" href="css/style.css?v=x242" />
 </head>
 <body>
   <!-- ============ NAV ============ -->
@@ -128,7 +128,7 @@
             <p class="pl-card__cap"><span class="pl-card__title">My Hit Box</span><span class="pl-card__meta">Other</span></p>
           </article>
           <article class="pl-card" data-cat="interactive" style="--i:11">
-            <a class="pl-card__media pl-card__media--video" href="https://mp3-player-tawny.vercel.app/" target="_blank" rel="noopener" style="--ar:1280/720" aria-label="Try the MP3 Player"><video src="assets/graphics/play/mp3-player.mp4" poster="assets/graphics/play/mp3-player-poster.webp" width="1280" height="720" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video></a>
+            <a class="pl-card__media pl-card__media--video" href="https://mp3-player-tawny.vercel.app/" target="_blank" rel="noopener" style="--ar:1280/720" aria-label="Try the MP3 Player"><video src="assets/graphics/play/mp3-player.mp4" poster="assets/graphics/play/mp3-player-poster.webp" width="1280" height="720" data-autoplay muted loop playsinline preload="none" aria-hidden="true"></video></a>
             <p class="pl-card__cap"><span class="pl-card__title">MP3 Player</span><span class="pl-card__meta">Interactive</span></p>
           </article>
           <article class="pl-card" data-row-end data-cat="other" style="--i:12">
@@ -191,6 +191,6 @@
   </footer>
 
   <script src="assets/vendor/drawably/drawably.classic.js?v=0.4.2"></script>
-  <script src="js/main.js?v=x241"></script>
+  <script src="js/main.js?v=x242"></script>
 </body>
 </html>

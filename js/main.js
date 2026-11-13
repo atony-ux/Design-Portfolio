@@ -1740,17 +1740,22 @@
 
   /* -------------------------------------------------- Looping videos only run while on screen
      An autoplaying loop keeps decoding frames even when it is scrolled far out of
-     view. Pause each one when it leaves the viewport and resume when it returns. */
+     view. Pause each one when it leaves the viewport and resume when it returns.
+     Videos further down the page use data-autoplay + preload="none" instead of
+     autoplay: they download nothing (just show the poster) until they come within
+     300px of the screen, then start, so the page's first load stays light. */
   (function () {
-    var vids = $$("video[autoplay]");
-    if (!vids.length || !("IntersectionObserver" in window)) return;
+    var vids = $$("video[autoplay], video[data-autoplay]");
+    if (!vids.length) return;
+    function play(v) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+    if (!("IntersectionObserver" in window)) { vids.forEach(play); return; }
     var vio = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
         var v = e.target;
-        if (e.isIntersecting) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+        if (e.isIntersecting) play(v);
         else v.pause();
       });
-    }, { threshold: 0.05 });
+    }, { rootMargin: "300px 0px", threshold: 0 });
     vids.forEach(function (v) { vio.observe(v); });
   })();
 
