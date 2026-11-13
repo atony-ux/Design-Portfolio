@@ -1922,3 +1922,6 @@ Same system as the Vendrs rewrite (`.cs--col` plus the `.v-*` components, no new
 
 ## 2026-11-12: Sharper corners
 Radius tokens sharpened from 16 / 8 / 8 to 8 / 4 / 4 (--r-lg / --r-md / --r-sm), --r-xs 3px. Pills and circles unchanged; the paper objects (polaroids, notes, notepad) keep their own shapes. Cache token x237.
+
+## 2026-11-12: Studio tag color
+The tag and year under each Studio piece (.pl-card__meta) is a lighter grey: rgba(16,16,16,.42), was --ink-50 (.62). Cache token x238.

@@ -2810,7 +2810,7 @@ a.pl-card__media:focus-visible { outline: 2px solid var(--blue); outline-offset:
    pushed the tag down and short ones didn't, so the tags wandered) */
 .pl-card__cap { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; margin: 10px 2px 0; }
 .pl-card__title { font-size: 14.5px; font-weight: 500; color: var(--ink); }
-.pl-card__meta { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-50); white-space: nowrap; }
+.pl-card__meta { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: rgba(16, 16, 16, 0.42); white-space: nowrap; }
 
 /* entrance: the side rises in, the cards pop in one after another (by --i, which the
    script renumbers among the cards that are showing). Off once a filter is used, so
