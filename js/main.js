@@ -137,6 +137,57 @@
     window.addEventListener("intro:reveal", function () { setTimeout(land, 60); });
   })();
 
+  /* -------------------------------------------------- Play: filters
+     play.html: tick categories to show only those; none ticked shows everything.
+     The counts beside each filter come from the cards, so adding a card is all it
+     takes. ?filter=graphics (or graphics,art) opens it pre-filtered, and the URL
+     follows the filters so a filtered view can be shared. Styles: PLAY. */
+  (function () {
+    var page = $(".pl");
+    if (!page) return;
+    var boxes = $$(".pl-filter input", page), cards = $$(".pl-card", page);
+    var clear = $(".pl-filters__clear", page), status = $(".pl-status", page);
+    boxes.forEach(function (b) {
+      var n = cards.filter(function (c) { return c.getAttribute("data-cat") === b.value; }).length;
+      var el = $(".pl-filter__n", b.closest(".pl-filter"));
+      if (el) el.textContent = n;
+    });
+    function picked() { return boxes.filter(function (b) { return b.checked; }).map(function (b) { return b.value; }); }
+    function apply(animate) {
+      var on = picked(), shown = [];
+      cards.forEach(function (c) {
+        c.hidden = !(!on.length || on.indexOf(c.getAttribute("data-cat")) > -1);
+        if (!c.hidden) { c.style.setProperty("--i", shown.length); shown.push(c); }
+      });
+      if (clear) clear.hidden = !on.length;
+      if (status) status.textContent = on.length ? "Showing " + shown.length + " of " + cards.length : "Showing all " + cards.length;
+      if (animate) {
+        page.classList.add("is-filtered");
+        if (!reduced) shown.forEach(function (c, i) {
+          c.animate([{ opacity: 0, transform: "translateY(14px)" }, { opacity: 1, transform: "none" }],
+            { duration: 420, delay: i * 35, easing: "cubic-bezier(.22,1,.36,1)", fill: "backwards" });
+        });
+        try {
+          var u = new URL(location.href);
+          if (on.length) u.searchParams.set("filter", on.join(",")); else u.searchParams.delete("filter");
+          history.replaceState(null, "", u.pathname + u.search + u.hash);
+        } catch (e) {}
+      }
+    }
+    var q = new URLSearchParams(location.search).get("filter");
+    if (q) {
+      var want = q.toLowerCase().split(",");
+      boxes.forEach(function (b) { b.checked = want.indexOf(b.value) > -1; });
+    }
+    boxes.forEach(function (b) { b.addEventListener("change", function () { apply(true); }); });
+    if (clear) clear.addEventListener("click", function () {
+      boxes.forEach(function (b) { b.checked = false; });
+      apply(true);
+      if (boxes[0]) boxes[0].focus();
+    });
+    apply(false);
+  })();
+
   /* -------------------------------------------------- Mobile nav toggle */
   var toggle = $(".nav__toggle"), nav = $(".nav");
   if (toggle && nav) {

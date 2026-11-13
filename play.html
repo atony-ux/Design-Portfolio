@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anthony Nguyen -- Portfolio</title>
+  <meta name="description" content="Anthony N.'s creative side: vibecoded projects, graphic design, art and music." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Anthony N." />
+  <meta property="og:title" content="Anthony Nguyen -- Portfolio" />
+  <meta property="og:description" content="Anthony N.'s creative side: vibecoded projects, graphic design, art and music." />
+  <meta property="og:url" content="https://atonyux.com/play.html" />
+  <meta property="og:image" content="https://atonyux.com/assets/apple-touch-icon.png" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="icon" href="favicon.ico?v=2" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png?v=2" />
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png?v=2" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <!-- fonts are self-hosted (see FONTS at the top of style.css); preload the two the nav paints first -->
+  <link rel="preload" href="assets/fonts/caveat-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="assets/vendor/drawably/style.css?v=0.4.2" />
+  <!-- html.js: JS is on (lets CSS hide things that JS will animate in, e.g. Sumi's drawing).
+       Opening intro (the level meter): on the first page of a visit, lay the cover down
+       before anything paints. js/main.js "Opening intro" plays it and takes it away.
+       ?intro=1 forces it; skipped for reduced motion. -->
+  <script>document.documentElement.classList.add("js");try{if((/[?&]intro=(1|hold)/.test(location.search)||!sessionStorage.getItem("atony:intro"))&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("is-intro")}catch(e){}</script>
+  <link rel="stylesheet" href="css/style.css?v=x210" />
+</head>
+<body>
+  <!-- ============ NAV ============ -->
+  <div class="nav-outer">
+    <nav class="nav" aria-label="Primary">
+      <a class="nav__brand" href="index.html">
+        Anthony N.
+      </a>
+      <button class="nav__toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <div class="nav__group">
+        <div class="nav__links">
+          <a class="nav__link" href="index.html#works"><span class="num">01</span>Works</a>
+          <a class="nav__link" href="play.html" aria-current="page"><span class="num">02</span>Play</a>
+          <a class="nav__link" href="about.html"><span class="num">03</span>About</a>
+          <a class="nav__link" href="Anthony-Nguyen-Resume.pdf" target="_blank" rel="noopener">Resume</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <main>
+    <!-- ============ PLAY (2026-11-12) ============
+         My creative side on one page: vibecoded projects, graphic design, art and music,
+         with a filter list (after jeanxcrj.com/play.html). Ticking categories shows only
+         those; none ticked shows everything. ?filter=graphics (or graphics,art) opens it
+         pre-filtered, which is how the About page's graphics stack links here.
+         js/main.js "Play: filters". Styles: PLAY at the end of style.css.
+         The cards are PLACEHOLDERS: swap the icon inside .pl-card__media for an <img>
+         (or <video>), change the title and the meta, and make the card an <a> if it
+         should open something (a live vibecoded site, a SoundCloud track). Keep data-cat;
+         the counts in the filter list are updated by the script. -->
+    <section class="pl wrap" id="play">
+      <aside class="pl-side">
+        <h1 class="pl-side__title">Play</h1>
+        <p class="pl-side__sub">My creative side: vibecoded projects, graphic design, art and music.</p>
+        <fieldset class="pl-filters">
+          <legend class="pl-filters__label">Filter by</legend>
+          <ul class="pl-filters__list">
+            <li><label class="pl-filter"><input type="checkbox" name="filter" value="code" /><span class="pl-filter__name">Vibecoded projects</span><span class="pl-filter__n">3</span></label></li>
+            <li><label class="pl-filter"><input type="checkbox" name="filter" value="graphics" /><span class="pl-filter__name">Graphic design</span><span class="pl-filter__n">3</span></label></li>
+            <li><label class="pl-filter"><input type="checkbox" name="filter" value="art" /><span class="pl-filter__name">Art</span><span class="pl-filter__n">3</span></label></li>
+            <li><label class="pl-filter"><input type="checkbox" name="filter" value="music" /><span class="pl-filter__name">Music</span><span class="pl-filter__n">3</span></label></li>
+          </ul>
+          <button class="pl-filters__clear" type="button" hidden>Show all</button>
+        </fieldset>
+        <p class="pl-status" aria-live="polite">Showing all 12</p>
+      </aside>
+
+      <div class="pl-grid">
+          <article class="pl-card" data-cat="code" style="--i:0">
+            <div class="pl-card__media pl-card__media--code" style="--ar:16/10"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14"/></svg></div>
+            <p class="pl-card__cap"><span class="pl-card__title">Vibecoded project 1</span><span class="pl-card__meta">Vibecoded · 2026</span></p>
+          </article>
+          <article class="pl-card" data-cat="graphics" style="--i:1">
+            <div class="pl-card__media pl-card__media--graphics" style="--ar:4/5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19.5 19.5 12l2 2-7.5 7.5zM18 13l-1.5-7.5L3 2l3.5 13.5L14 17zM3 2l7.6 7.6"/><circle cx="11" cy="11" r="2"/></svg></div>
+            <p class="pl-card__cap"><span class="pl-card__title">Graphic 1</span><span class="pl-card__meta">Graphic · 2026</span></p>
+          </article>
+          <article class="pl-card" data-cat="art" style="--i:2">
+            <div class="pl-card__media pl-card__media--art" style="--ar:1/1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 14.5c-2 0-3.5 1.6-3.5 3.5 0 1.3-1 2-2 2 1 1.3 2.6 2 4 2 2.8 0 5-2.2 5-5 0-1.4-1.1-2.5-2.5-2.5zM21.5 2.5 11.6 12.4l2 2 9.9-9.9"/></svg></div>
+            <p class="pl-card__cap"><span class="pl-card__title">Artwork 1</span><span class="pl-card__meta">Art · 2026</span></p>
+          </article>
+          <article class="pl-card" data-cat="music" style="--i:3">
+            <div class="pl-card__media pl-card__media--music" style="--ar:1/1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg></div>
+            <p class="pl-card__cap"><span class="pl-card__title">Track 1</span><span class="pl-card__meta">Music · 2026</span></p>
+          </article>
+          <article class="pl-card" data-cat="code" style="--i:4">
+            <div class="pl-card__media pl-card__media--code" style="--ar:4/3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14"/></svg></div>
+            <p class="pl-card__cap"><span class="pl-card__title">Vibecoded project 2</span><span class="pl-card__meta">Vibecoded · 2026</span></p>
+          </article>
+          <article class="pl-card" data-cat="graphics" style="--i:5">
+            <div class="pl-card__media pl-card__media--graphics" style="--ar:3/4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19.5 19.5 12l2 2-7.5 7.5zM18 13l-1.5-7.5L3 2l3.5 13.5L14 17zM3 2l7.6 7.6"/><circle cx="11" cy="11" r="2"/></svg></div>
+            <p class="pl-card__cap"><span class="pl-card__title">Graphic 2</span><span class="pl-card__meta">Graphic · 2026</span></p>
+          </article>
+          <article class="pl-card" data-cat="art" style="--i:6">
+            <div class="pl-card__media pl-card__media--art" style="--ar:4/5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 14.5c-2 0-3.5 1.6-3.5 3.5 0 1.3-1 2-2 2 1 1.3 2.6 2 4 2 2.8 0 5-2.2 5-5 0-1.4-1.1-2.5-2.5-2.5zM21.5 2.5 11.6 12.4l2 2 9.9-9.9"/></svg></div>
+            <p class="pl-card__cap"><span class="pl-card__title">Artwork 2</span><span class="pl-card__meta">Art · 2026</span></p>
+          </article>
+          <article class="pl-card" data-cat="music" style="--i:7">
+            <div class="pl-card__media pl-card__media--music" style="--ar:1/1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg></div>
+            <p class="pl-card__cap"><span class="pl-card__title">Track 2</span><span class="pl-card__meta">Music · 2026</span></p>
+          </article>
+          <article class="pl-card" data-cat="code" style="--i:8">
+            <div class="pl-card__media pl-card__media--code" style="--ar:16/10"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14"/></svg></div>
+            <p class="pl-card__cap"><span class="pl-card__title">Vibecoded project 3</span><span class="pl-card__meta">Vibecoded · 2026</span></p>
+          </article>
+          <article class="pl-card" data-cat="graphics" style="--i:9">
+            <div class="pl-card__media pl-card__media--graphics" style="--ar:1/1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19.5 19.5 12l2 2-7.5 7.5zM18 13l-1.5-7.5L3 2l3.5 13.5L14 17zM3 2l7.6 7.6"/><circle cx="11" cy="11" r="2"/></svg></div>
+            <p class="pl-card__cap"><span class="pl-card__title">Graphic 3</span><span class="pl-card__meta">Graphic · 2026</span></p>
+          </article>
+          <article class="pl-card" data-cat="art" style="--i:10">
+            <div class="pl-card__media pl-card__media--art" style="--ar:4/3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 14.5c-2 0-3.5 1.6-3.5 3.5 0 1.3-1 2-2 2 1 1.3 2.6 2 4 2 2.8 0 5-2.2 5-5 0-1.4-1.1-2.5-2.5-2.5zM21.5 2.5 11.6 12.4l2 2 9.9-9.9"/></svg></div>
+            <p class="pl-card__cap"><span class="pl-card__title">Artwork 3</span><span class="pl-card__meta">Art · 2026</span></p>
+          </article>
+          <article class="pl-card" data-cat="music" style="--i:11">
+            <div class="pl-card__media pl-card__media--music" style="--ar:1/1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg></div>
+            <p class="pl-card__cap"><span class="pl-card__title">Track 3</span><span class="pl-card__meta">Music · 2026</span></p>
+          </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER / CONTACT ============ -->
+  <footer class="footer" id="contact">
+    <div class="footer__inner wrap">
+      <div class="footer__top" data-reveal>
+        <p class="footer__hello">Thanks for stopping by, <span class="serif">let's chat.</span></p>
+
+        <div class="footer__group">
+          <span class="footer__label">Contact</span>
+          <a href="mailto:anthonynguyen.ux@gmail.com">anthonynguyen.ux@gmail.com</a>
+        </div>
+
+        <div class="footer__group">
+          <span class="footer__label">Menu</span>
+          <p class="footer__links">
+            <a href="index.html#works">Works</a><i>|</i><a href="play.html">Play</a><i>|</i><a href="about.html">About</a><i>|</i><a href="Anthony-Nguyen-Resume.pdf" target="_blank" rel="noopener">Resume</a>
+          </p>
+        </div>
+
+        <div class="footer__group">
+          <span class="footer__label">Elsewhere</span>
+          <p class="footer__links">
+            <a href="https://www.linkedin.com/in/atonyn/" target="_blank" rel="noopener">LinkedIn</a>
+          </p>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <span>&copy; <span data-year>2026</span> Anthony N. &#183; Sacramento, CA</span>
+        <span class="made">Designed in Figma, built in Claude.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/vendor/drawably/drawably.classic.js?v=0.4.2"></script>
+  <script src="js/main.js?v=x210"></script>
+</body>
+</html>

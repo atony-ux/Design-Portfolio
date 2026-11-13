@@ -1850,3 +1850,21 @@ Same system as the Vendrs rewrite (`.cs--col` plus the `.v-*` components, no new
   **Section links land right:** main.js "Links to a section land on it" re-jumps to `location.hash` on load (+700ms
   and after the intro) unless the visitor already scrolled, and marks that section revealed. Before, vendrs.html#map
   landed ~800px short because images/videos above loaded after the jump.
+
+## Play page (2026-11-12)
+- **`play.html`**: the creative side on one page (after jeanxcrj.com/play.html). Left (`.pl-side`, sticky): "Play",
+  one line, and a "Filter by" checkbox list (Vibecoded projects / Graphic design / Art / Music, `value` = code /
+  graphics / art / music). Right: `.pl-grid`, a CSS-columns masonry (4 across at 1440, 2 on phones) of `.pl-card`s
+  with `data-cat`. main.js "Play: filters": none ticked = all; counts come from the cards; `?filter=graphics,art`
+  pre-filters and the URL follows the filters. Styles: PLAY at the end of style.css. Phones: filters become pills.
+- **The 12 cards are PLACEHOLDERS** (tinted box + category icon in `.pl-card__media`, titles "Vibecoded project 1",
+  "Graphic 1", "Artwork 1", "Track 1"...). To fill one: put an `<img>`/`<video>` in `.pl-card__media` (set `--ar` to
+  its shape), change the title and meta; make the card an `<a class="pl-card">` to link out.
+- Nav: Works / **Play** / About / Resume on home, About, Play and Vendrs; footers' Menu has Play too (QAC's nav is the
+  case-study back bar, so only its footer). `aria-current="page"` turns the current link blue (Play, About).
+- **About: "More photos" is now "More graphics →"**: the stack is a link to `play.html?filter=graphics`, with three
+  placeholder posters (`.ab-stack__art--1/2/3`, CSS patterns; an `<img>` inside covers one). It shows on phones too
+  now. **The photo gallery overlay was removed** from about.html (the 33 photos in assets/graphics/about-photos/ and
+  the gallery JS/CSS are still in the project, unused; the scripts bail out when #playground is missing).
+- Fixed: since the 2026-10-25 entrance animation, the About halftones were invisible on scroll-scene screens (GSAP
+  read their opacity mid-fade, as 0). Their fade now only runs when the scene is off (`.ab:not(.is-scene)`).

@@ -314,6 +314,7 @@ body.cursor-active .pgd.is-photos .pg-photo.is-zoomed { cursor: zoom-out; }
 }
 .nav__link .num { display: none; }
 .nav__link:hover { color: var(--ink); background: rgba(16,16,40,.05); }
+.nav__link[aria-current="page"] { color: var(--blue); }
 .nav__toggle { display: none; background: none; border: none; padding: 6px; }
 .nav__toggle span { display: block; width: 22px; height: 2px; background: var(--ink); margin: 5px 0; border-radius: 2px; transition: transform .3s var(--ease), opacity .2s; }
 
@@ -2549,6 +2550,14 @@ div.ab-pol__deck { cursor: inherit; }   /* a single photo: nothing to flip */
   box-shadow: 0 10px 24px -12px rgba(16, 16, 40, .28), 0 2px 6px rgba(16, 16, 40, .05);
   transition: transform .45s var(--ease-back); }
 .ab-stack__ph img { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 2px; }
+/* 2026-11-12: the About stack shows GRAPHICS now (it opens Play, filtered to graphic
+   design). Until the real ones arrive, each print is a little placeholder poster;
+   an <img> inside .ab-stack__art covers it. */
+.ab-stack__art { position: relative; display: block; width: 100%; aspect-ratio: 1 / 1; overflow: hidden; border-radius: 2px; }
+.ab-stack__art img { position: absolute; inset: 0; height: 100%; }
+.ab-stack__art--1 { background: radial-gradient(circle at 62% 42%, var(--orange-soft) 0 26%, transparent 27%), var(--blue); }
+.ab-stack__art--2 { background: repeating-linear-gradient(135deg, var(--blue) 0 7px, transparent 7px 20px), var(--orange-soft); }
+.ab-stack__art--3 { background: radial-gradient(var(--blue) 1.6px, transparent 2px) 0 0 / 13px 13px, var(--blue-mist); }
 .ab-stack__ph:nth-child(1) { left: 8px; top: 22px; transform: rotate(-11deg); }
 .ab-stack__ph:nth-child(2) { left: 56px; top: 6px; transform: rotate(4deg); }
 .ab-stack__ph:nth-child(3) { left: 96px; top: 30px; transform: rotate(13deg); }
@@ -2587,7 +2596,9 @@ html.ab-gallery-open { overflow: hidden; }
 @media (max-width: 900px) {
   .ab { grid-template-columns: minmax(0, 1fr); gap: 40px; }
   .ab-board { width: auto; height: auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; align-items: start; }
-  .ab-board--main { grid-template-areas: "music music" "me strava" "me now" "evo artist"; }
+  .ab-board--main { grid-template-areas: "music music" "me strava" "me now" "evo artist" "stack stack"; }
+  .ab-it--stack { grid-area: stack; rotate: none !important; margin-top: 8px; }
+  .ab-it--stack .ab-stack { margin-inline: auto; }   /* .pg-it is full width on phones */
   .ab-board--comm { gap: 24px 16px; }
   .ab-pol:nth-child(odd) { rotate: -2deg !important; }
   .ab-pol:nth-child(even) { rotate: 2deg !important; }
@@ -2614,7 +2625,7 @@ html.ab-gallery-open { overflow: hidden; }
   .ab-note { padding: 14px 14px 16px; }
   .ab-note__t { font-size: 20px; }
   .ab-deco { display: none; }
-  .ab-it--stack, .pgd.ab-gallery { display: none; }   /* the gallery needs a big screen, as before */
+  .pgd.ab-gallery { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   .ab-it > *, .ab-pol__card { transition: none; }
@@ -2680,7 +2691,9 @@ html.is-intro::before { content: ""; position: fixed; inset: 0; z-index: 9996; b
 .ab-it--artist { --i: 4; }
 .ab-it--evo    { --i: 5; }
 .ab-it--stack  { --i: 6; }
-.ab-board--main > .ab-deco { animation: ab-fade 1s var(--ease) 700ms backwards; }
+/* not in the scroll scene: GSAP reads each piece's opacity when it sets the scene up, and
+   reading it mid-fade (0) left the halftones hidden for good (fixed 2026-11-12) */
+.ab:not(.is-scene) .ab-board--main > .ab-deco { animation: ab-fade 1s var(--ease) 700ms backwards; }
 
 /* Home: Sumi is DRAWN in. js/main.js lays an SVG copy of him over the image and
    reveals it with a scribbling pen stroke (a mask), then shows the real image and
@@ -2729,4 +2742,83 @@ html.is-intro .case-nav__link { animation-play-state: paused; }
 @media (prefers-reduced-motion: reduce) {
   .ab-bio > *, .ab-board--main > .ab-it > *, .ab-board--main > .ab-deco,
   .case-head > *, .case-head .v-meta > *, .case-head + .cs-block, .case-nav__link { animation: none; }
+}
+
+/* =====================================================================
+   PLAY (2026-11-12): play.html, the creative side on one page
+   Left: the title, a line, and a filter list (after jeanxcrj.com/play.html).
+   Right: a masonry grid of cards (CSS columns, so any mix of shapes packs and
+   filtering simply reflows). js/main.js "Play: filters" shows/hides cards.
+   Cards are placeholders for now: a tinted box with the category's icon, which an
+   <img> or <video> inside .pl-card__media replaces.
+   ===================================================================== */
+.pl { display: grid; grid-template-columns: 232px minmax(0, 1fr); gap: 0 clamp(40px, 5vw, 72px); align-items: start;
+  padding-top: clamp(40px, 5vw, 64px); padding-bottom: clamp(72px, 9vw, 128px); }
+.pl-side { position: sticky; top: 104px; }
+.pl-side__title { margin: 0; font-size: clamp(30px, 3.1vw, 40px); font-weight: 500; letter-spacing: -.025em; line-height: 1.15; }
+.pl-side__sub { margin: 12px 0 0; font-size: 15px; line-height: 1.6; color: var(--ink-50); }
+.pl-filters { min-width: 0; margin: 36px 0 0; padding: 0; border: 0; }
+.pl-filters__label { padding: 0; margin-bottom: 10px; font-size: 11.5px; font-weight: 600; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--blue); }
+.pl-filters__list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.pl-filters__list li { border-bottom: 1px solid var(--line); }
+.pl-filter { display: flex; align-items: center; gap: 12px; padding: 11px 0; font-size: 15px; color: var(--ink); cursor: pointer; }
+.pl-filter input { appearance: none; -webkit-appearance: none; flex: none; width: 16px; height: 16px; margin: 0; cursor: pointer;
+  border: 1.5px solid var(--ink-30); border-radius: 4px; background: #fff center / 12px no-repeat;
+  transition: background-color .15s var(--ease), border-color .15s var(--ease); }
+.pl-filter:hover input:not(:checked) { border-color: var(--blue); }
+.pl-filter input:checked { border-color: var(--blue); background-color: var(--blue);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 6.2 5 8.6l4.6-5' fill='none' stroke='%23fff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); }
+.pl-filter input:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+.pl-filter__name { flex: 1; }
+.pl-filter__n { font-size: 12.5px; color: var(--ink-50); font-variant-numeric: tabular-nums; }
+.pl-filters__clear { margin-top: 12px; padding: 0; border: 0; background: none; font: inherit; font-size: 13.5px; color: var(--blue);
+  text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.pl-filters__clear[hidden] { display: none; }
+.pl-status { margin: 14px 0 0; font-size: 12.5px; color: var(--ink-50); }
+
+.pl-grid { columns: 4 190px; column-gap: 20px; }
+.pl-card { break-inside: avoid; margin: 0 0 28px; }
+.pl-card[hidden] { display: none; }
+a.pl-card { display: block; color: inherit; text-decoration: none; }
+.pl-card__media { display: grid; place-items: center; aspect-ratio: var(--ar, 1); overflow: hidden; border-radius: var(--r-md);
+  color: var(--blue); transition: translate .35s var(--ease-back), box-shadow .3s var(--ease); }
+.pl-card__media > svg { width: 30px; height: 30px; opacity: .45; }
+.pl-card__media > img, .pl-card__media > video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.pl-card__media--code     { background: var(--blue-mist); }
+.pl-card__media--graphics { background: var(--orange-soft); color: var(--orange); }
+.pl-card__media--art      { background: var(--frame); color: var(--ink-50); }
+.pl-card__media--music    { background: var(--blue-soft); }
+.pl-card:hover .pl-card__media { translate: 0 -4px; box-shadow: var(--sh-lift); }
+.pl-card__cap { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 2px 12px; margin: 10px 2px 0; }
+.pl-card__title { font-size: 14.5px; font-weight: 500; color: var(--ink); }
+.pl-card__meta { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-50); white-space: nowrap; }
+
+/* entrance: the side rises in, the cards pop in one after another (by --i, which the
+   script renumbers among the cards that are showing). Off once a filter is used, so
+   cards coming back from display:none don't replay it; the script animates those. */
+.pl-side > * { animation: ab-rise .7s var(--ease) backwards; animation-delay: calc(var(--i, 0) * 90ms); }
+.pl-side > :nth-child(2) { --i: 1; }
+.pl-side > :nth-child(3) { --i: 2; }
+.pl-side > :nth-child(4) { --i: 3; }
+.pl-card { animation: ab-pop .7s cubic-bezier(.34, 1.4, .64, 1) backwards; animation-delay: calc(200ms + var(--i, 0) * 55ms); }
+.pl.is-filtered .pl-card { animation: none; }
+html.is-intro .pl-side > *, html.is-intro .pl-card { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .pl-side > *, .pl-card { animation: none; }
+  .pl-card:hover .pl-card__media { translate: none; }
+}
+
+/* phones and small tablets: one column; the filters become a row of pills */
+@media (max-width: 900px) {
+  .pl { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .pl-side { position: static; }
+  .pl-filters { margin-top: 24px; }
+  .pl-filters__list { display: flex; flex-wrap: wrap; gap: 8px; border: 0; }
+  .pl-filters__list li { border: 0; }
+  .pl-filter { gap: 8px; padding: 7px 14px 7px 11px; font-size: 14px; background: #fff;
+    border: 1px solid var(--line); border-radius: var(--r-pill); }
+  .pl-filter:has(input:checked) { border-color: var(--blue); background: var(--blue-mist); }
+  .pl-grid { columns: 2 150px; column-gap: 14px; }
+  .pl-card { margin-bottom: 20px; }
 }
