@@ -1743,20 +1743,31 @@
      view. Pause each one when it leaves the viewport and resume when it returns.
      Videos further down the page use data-autoplay + preload="none" instead of
      autoplay: they download nothing (just show the poster) until they come within
-     300px of the screen, then start, so the page's first load stays light. */
+     300px of the screen, then start, so the page's first load stays light.
+     data-autoplay videos also wait until the page has loaded and its entrance
+     animation is done (~0.9s), so starting a video never competes with it.
+     (Give one preload="auto" to still download it right away, as Studio's top video does.) */
   (function () {
     var vids = $$("video[autoplay], video[data-autoplay]");
     if (!vids.length) return;
     function play(v) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
-    if (!("IntersectionObserver" in window)) { vids.forEach(play); return; }
-    var vio = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        var v = e.target;
-        if (e.isIntersecting) play(v);
-        else v.pause();
-      });
-    }, { rootMargin: "300px 0px", threshold: 0 });
-    vids.forEach(function (v) { vio.observe(v); });
+    var started = false;
+    function start() {
+      if (started) return; started = true;
+      if (!("IntersectionObserver" in window)) { vids.forEach(play); return; }
+      var vio = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          var v = e.target;
+          if (e.isIntersecting) play(v);
+          else v.pause();
+        });
+      }, { rootMargin: "300px 0px", threshold: 0 });
+      vids.forEach(function (v) { vio.observe(v); });
+    }
+    var t0 = Date.now();
+    function later() { setTimeout(start, Math.max(0, 900 - (Date.now() - t0))); }
+    if (document.readyState === "complete") later(); else window.addEventListener("load", later);
+    setTimeout(start, 3000);   /* a slow image never holds the videos back for long */
   })();
 
   /* -------------------------------------------------- Lightbox

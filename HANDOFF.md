@@ -1952,3 +1952,7 @@ Studio tags are the category only (no year) everywhere; Reverie keeps "Music · 
 - `tools/weigh.mjs <url>` audits a page: requests and bytes at first load and after scrolling, the heaviest files, FCP/LCP.
 - Results (first load): Home 952KB -> 818KB, About 1.9MB -> 1.4MB, Studio 6.4MB -> 2.8MB, Vendrs 2.6MB -> 0.8MB.
 - Not done: minifying style.css/main.js (Vercel already compresses them to ~48KB/33KB; minifying would save ~40KB more but needs a build step). Cache token x242.
+
+## 2026-11-13: Studio lag fixes
+- **Grain overlay no longer blends.** body::after used the raw SVG noise at 30% with mix-blend-mode: multiply, which makes the browser re-blend the whole screen on every frame of a playing video. The SVG now has an feColorMatrix that outputs black specks with the alpha the multiply gave (coefficients fitted to the old look: same brightness, same grain strength, 0.99 correlation), and the layer is a plain see-through layer. Same look on every page. Reduced-transparency opacity is .083 (was .025 of a 30% layer).
+- **Videos start after the entrance animation.** All looping videos are now `data-autoplay` (no `autoplay` attribute); main.js starts watching them once the page has loaded and ~0.9s have passed (3s at most), so a video starting never competes with the cards popping in. Studio Transition keeps `preload="auto"` so it is downloaded and ready; MP3 Player and Vendrs stay `preload="none"` until scrolled near. Cache token x244.
