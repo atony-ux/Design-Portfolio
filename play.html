@@ -25,7 +25,7 @@
        before anything paints. js/main.js "Opening intro" plays it and takes it away.
        ?intro=1 forces it; skipped for reduced motion. -->
   <script>document.documentElement.classList.add("js");try{if((/[?&]intro=(1|hold)/.test(location.search)||!sessionStorage.getItem("atony:intro"))&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("is-intro")}catch(e){}</script>
-  <link rel="stylesheet" href="css/style.css?v=x211" />
+  <link rel="stylesheet" href="css/style.css?v=x213" />
 </head>
 <body>
   <!-- ============ NAV ============ -->
@@ -48,9 +48,8 @@
 
   <main>
     <!-- ============ PLAY (2026-11-12) ============
-         My creative side on one page: vibecoded projects, graphic design, art and music.
-         The title and a row of filter pills sit on top, the grid runs full width below
-         (filters after jeanxcrj.com/play.html; layout moved to the top 2026-11-12). Ticking categories shows only
+         My creative side on one page: vibecoded projects, graphic design, art and music,
+         with a filter list (after jeanxcrj.com/play.html). Ticking categories shows only
          those; none ticked shows everything. ?filter=graphics (or graphics,art) opens it
          pre-filtered, which is how the About page's graphics stack links here.
          js/main.js "Play: filters". Styles: PLAY at the end of style.css.
@@ -59,11 +58,11 @@
          should open something (a live vibecoded site, a SoundCloud track). Keep data-cat;
          the counts in the filter list are updated by the script. -->
     <section class="pl wrap" id="play">
-      <header class="pl-side">
+      <aside class="pl-side">
         <h1 class="pl-side__title">Play</h1>
         <p class="pl-side__sub">My creations.</p>
-        <div class="pl-filters" role="group" aria-labelledby="pl-filter-label">
-          <span class="pl-filters__label" id="pl-filter-label">Filter by</span>
+        <fieldset class="pl-filters">
+          <legend class="pl-filters__label">Filter by</legend>
           <ul class="pl-filters__list">
             <li><label class="pl-filter"><input type="checkbox" name="filter" value="code" /><span class="pl-filter__name">Vibecoded projects</span><span class="pl-filter__n">3</span></label></li>
             <li><label class="pl-filter"><input type="checkbox" name="filter" value="graphics" /><span class="pl-filter__name">Graphic design</span><span class="pl-filter__n">3</span></label></li>
@@ -71,9 +70,9 @@
             <li><label class="pl-filter"><input type="checkbox" name="filter" value="music" /><span class="pl-filter__name">Music</span><span class="pl-filter__n">3</span></label></li>
           </ul>
           <button class="pl-filters__clear" type="button" hidden>Show all</button>
-          <p class="pl-status" aria-live="polite">Showing all 12</p>
-        </div>
-      </header>
+        </fieldset>
+        <p class="pl-status" aria-live="polite">Showing all 12</p>
+      </aside>
 
       <div class="pl-grid">
           <article class="pl-card" data-cat="code" style="--i:0">
@@ -162,6 +161,6 @@
   </footer>
 
   <script src="assets/vendor/drawably/drawably.classic.js?v=0.4.2"></script>
-  <script src="js/main.js?v=x211"></script>
+  <script src="js/main.js?v=x213"></script>
 </body>
 </html>
