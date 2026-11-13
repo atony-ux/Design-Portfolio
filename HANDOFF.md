@@ -1934,3 +1934,6 @@ The pill chips were reverted to the original checkbox list, polished: no counts,
 
 ## 2026-11-13: Studio filter label + scroll fix
 "Filter by" is ink (black), not blue. Filtering while scrolled down used to snap the page mid-way (the shorter grid clamped the scroll). Now apply() holds the page height, glides up to the top of the grid (104px under the nav), then releases it; .pl-grid has overflow-anchor: none. Cache token x241.
+
+## 2026-11-13: Two robot illustrations in Studio (Art)
+Pages 1 and 3 of Project_1_Phase _3_1.pdf (Illustrator, March 2025) rendered with PDFKit at 1600px: robot-speakers (yellow, "Jam session") and robot-studio (white, "Home studio"), each with a 1000px -thumb.webp, in assets/graphics/play/. Added as their own row after Reverie / Akai MPC 2000, both "Art · 2025", opening in the lightbox. Titles are placeholders until Anthony names them.
