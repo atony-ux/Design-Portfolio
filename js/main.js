@@ -139,17 +139,18 @@
 
   /* -------------------------------------------------- Studio (was Play): filters
      studio.html (the "Studio" page, first called Play): tick categories to show only those; none ticked shows everything.
-     The chips are hidden checkboxes styled as pills, plus an "All" button that
-     clears them. ?filter=graphics (or graphics,art) opens it pre-filtered, and the URL
+     A "Clear" link beside "Filter by" shows once something is ticked.
+     ?filter=graphics (or graphics,art) opens it pre-filtered, and the URL
      follows the filters so a filtered view can be shared. Styles: PLAY. */
   (function () {
     var page = $(".pl");
     if (!page) return;
-    var boxes = $$(".pl-chip input", page), cards = $$(".pl-card", page);
-    var all = $(".pl-chip--all", page), status = $(".pl-status", page);
-    if (all) all.addEventListener("click", function () {
+    var boxes = $$(".pl-filter input", page), cards = $$(".pl-card", page);
+    var clear = $(".pl-filters__clear", page), status = $(".pl-status", page);
+    if (clear) clear.addEventListener("click", function () {
       boxes.forEach(function (b) { b.checked = false; });
       apply(true);
+      if (boxes[0]) boxes[0].focus();
     });
     /* a card can sit in more than one category: data-cat="music graphics" */
     function cats(c) { return (c.getAttribute("data-cat") || "").split(/\s+/); }
@@ -160,7 +161,7 @@
         c.hidden = !(!on.length || cats(c).some(function (k) { return on.indexOf(k) > -1; }));
         if (!c.hidden) { c.style.setProperty("--i", shown.length); shown.push(c); }
       });
-      if (all) all.setAttribute("aria-pressed", on.length ? "false" : "true");
+      if (clear) clear.hidden = !on.length;
       if (status && animate) status.textContent = on.length ? "Showing " + shown.length + " of " + cards.length : "Showing all " + cards.length;
       if (animate) {
         page.classList.add("is-filtered");
