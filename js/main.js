@@ -147,6 +147,19 @@
     if (!page) return;
     var boxes = $$(".pl-filter input", page), cards = $$(".pl-card", page);
     var clear = $(".pl-filters__clear", page), status = $(".pl-status", page);
+    /* Collections (Prod. Davis): with nothing ticked, one cover card
+       (data-collection) stands in for the whole set, and the set's own cards
+       (data-in) stay hidden so they don't flood the page. Ticking a filter hides
+       the cover and shows the cards. Clicking the cover ticks its filter.
+       Intro panels (data-for="branding prod-davis") show while one of those is ticked. */
+    var panels = $$("[data-for]", page);
+    $$("[data-open]", page).forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var key = btn.getAttribute("data-open");
+        boxes.forEach(function (b) { b.checked = b.value === key; });
+        apply(true);
+      });
+    });
     if (clear) clear.addEventListener("click", function () {
       boxes.forEach(function (b) { b.checked = false; });
       apply(true);
@@ -166,7 +179,8 @@
       /* A filtered grid is much shorter. Scrolled down, the browser would snap to
          wherever the new bottom lands, mid-page. Instead: hold the page's height,
          glide back up to the top of the grid, then let the height go. */
-      var top = grid ? Math.max(0, grid.getBoundingClientRect().top + window.scrollY - 104) : 0;
+      var topEl = $(".pl-main", page) || grid;
+      var top = topEl ? Math.max(0, topEl.getBoundingClientRect().top + window.scrollY - 104) : 0;
       if (animate && window.scrollY > top + 1) {
         page.style.minHeight = page.offsetHeight + "px";
         window.scrollTo({ top: top, behavior: reduced ? "auto" : "smooth" });
@@ -174,11 +188,15 @@
         page._hold = setTimeout(function () { page.style.minHeight = ""; }, reduced ? 0 : 700);
       }
       cards.forEach(function (c) {
-        c.hidden = !(!on.length || cats(c).some(function (k) { return on.indexOf(k) > -1; }));
+        c.hidden = on.length ? (c.hasAttribute("data-collection") || !cats(c).some(function (k) { return on.indexOf(k) > -1; }))
+                             : c.hasAttribute("data-in");
         if (!c.hidden) { c.style.setProperty("--i", shown.length); shown.push(c); }
       });
       if (clear) clear.hidden = !on.length;
-      if (status && animate) status.textContent = on.length ? "Showing " + shown.length + " of " + cards.length : "Showing all " + cards.length;
+      panels.forEach(function (el) {
+        el.hidden = !el.getAttribute("data-for").split(/\s+/).some(function (k) { return on.indexOf(k) > -1; });
+      });
+      if (status && animate) status.textContent = on.length ? "Showing " + shown.length + " pieces" : "Showing everything";
       if (animate) {
         page.classList.add("is-filtered");
         if (!reduced) shown.forEach(function (c, i) {
@@ -241,7 +259,7 @@
       function fits(cs, h) { return cs.every(function (c) { return ar(c) * h >= need(c); }); }
       /* everything showing, on a wide grid: the rows are set by hand in studio.html (a
          card with data-row-end closes its row), as long as every caption still fits */
-      if (vis.length === cards.length && W >= 900 && $("[data-row-end]", grid)) {
+      if (!picked().length && W >= 900 && $("[data-row-end]", grid)) {
         var set = [], s0 = 0, rowsSet = [];
         vis.forEach(function (c) {
           set.push(c); s0 += ar(c);

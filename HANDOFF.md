@@ -1959,3 +1959,9 @@ Studio tags are the category only (no year) everywhere; Reverie keeps "Music · 
 
 ## 2026-11-13: Studio filter counts on hover
 Each filter row has a count again (span.pl-filter__n, filled by main.js from the cards), but it is hidden until the row is hovered, keyboard-focused or ticked; ticked counts are blue. On phones (pills) it only shows once ticked. Cache token x245.
+
+## 2026-11-13: Branding filter + Prod. Davis collection in Studio
+- Filters: new **Branding**, with **Prod. Davis** nested under it (li.pl-filters__sub, label.pl-filter--sub, elbow line; a plain pill on phones).
+- **Collections:** with nothing ticked, one cover card (`.pl-card--collection`, `data-collection="prod-davis"`, button `data-open="prod-davis"`, badge "View all 11") stands in for the set, first in row 1 (Prod. Davis, Transition, OP-1). Its 11 cards carry `data-in="prod-davis"` + `data-cat="branding prod-davis"` and stay hidden until a filter is ticked; clicking the cover ticks Prod. Davis. The hand-set rows now apply whenever nothing is ticked (was: whenever every card shows).
+- **Intro panel:** `section.pl-brand[data-for="branding prod-davis"]` sits above the grid in a new `.pl-main` wrapper and shows while either filter is ticked: logo, "Branding", "Prod. Davis", role line, two paragraphs. The paragraphs are DRAFT copy written from the flyers; replace with Anthony's words.
+- Assets in assets/graphics/play/prod-davis/: <slug>.webp (1080x1350, lightbox) and <slug>-thumb.webp (720x900) for club-flyer, speed-dating, hear-no-speak-no, genre-wheel, mashup-challenge, guest-speakers, spooky-beats, beat-telephone, acapella-flip; beat-breakdown.mp4 (720x900, poster = beat-breakdown-thumb.webp) and info-session.mp4 (720x720, info-session-poster.webp), both lazy. Sources: ~/Downloads/Design drop-off. Titles drop the "Week N - " prefix and "Graphic"; "Hear No" is "Hear No Speak No" as on the graphic. Cache token x247.

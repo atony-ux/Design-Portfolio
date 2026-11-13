@@ -2788,6 +2788,36 @@ html.is-intro .case-nav__link { animation-play-state: paused; }
 .pl-filter:hover .pl-filter__n, .pl-filter:has(input:checked) .pl-filter__n,
 .pl-filter:has(input:focus-visible) .pl-filter__n { opacity: 1; transform: none; }
 .pl-filter:has(input:checked) .pl-filter__n { color: var(--blue); }
+/* a project inside a category (Prod. Davis under Branding): indented, a step smaller,
+   hanging off its parent by a short elbow line */
+.pl-filters__list li.pl-filters__sub { border-bottom-style: dashed; }
+.pl-filter--sub { padding-left: 38px; font-size: 14px; }
+.pl-filter--sub::before { content: ""; position: absolute; left: 17px; top: 2px; width: 12px; height: calc(50% - 2px);
+  border-left: 1px solid var(--ink-30); border-bottom: 1px solid var(--ink-30); border-bottom-left-radius: 3px; }
+
+/* the column right of the filters: an intro panel (only while its filter is on) over the grid */
+.pl-main { min-width: 0; }
+.pl-brand { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 22px; align-items: start;
+  margin-bottom: 32px; padding: 26px 28px 24px; background: var(--white); border: 1px solid var(--line);
+  border-radius: var(--r-lg); box-shadow: var(--sh-card); animation: ab-rise .5s var(--ease) both; }
+.pl-brand[hidden] { display: none; }
+.pl-brand__logo { width: 72px; height: 72px; border-radius: var(--r-md); outline: 1px solid var(--line); outline-offset: -1px; }
+.pl-brand__eyebrow { margin: 0 0 4px; font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: rgba(16, 16, 16, 0.42); }
+.pl-brand__title { margin: 0; font-size: clamp(24px, 2.2vw, 30px); font-weight: 500; letter-spacing: -.02em; line-height: 1.15; }
+.pl-brand__role { margin: 6px 0 14px; font-size: 14px; color: var(--blue); font-weight: 500; }
+.pl-brand__body > p:not([class]) { margin: 0 0 10px; max-width: 64ch; font-size: 15px; line-height: 1.65; color: var(--ink-75); }
+.pl-brand__body > p:last-child { margin-bottom: 0; }
+@media (max-width: 600px) {
+  .pl-brand { grid-template-columns: minmax(0, 1fr); gap: 14px; padding: 20px; }
+  .pl-brand__logo { width: 56px; height: 56px; }
+}
+
+/* a collection's cover card (Prod. Davis): opens the set instead of the lightbox */
+.pl-card--collection .pl-card__media { position: relative; cursor: pointer; }
+.pl-card__badge { position: absolute; left: 10px; bottom: 10px; padding: 5px 11px; border-radius: var(--r-pill);
+  background: rgba(252, 252, 253, .92); color: var(--ink); font-size: 12.5px; font-weight: 500; line-height: 1.2;
+  box-shadow: 0 2px 8px rgba(16, 16, 40, .12); transition: background .2s var(--ease), color .2s var(--ease); }
+.pl-card--collection:hover .pl-card__badge { background: var(--blue); color: var(--white); }
 
 .pl-grid { columns: 3 260px; column-gap: 24px; overflow-anchor: none; }
 .pl-card { break-inside: avoid; margin: 0 0 28px; }
@@ -2855,6 +2885,8 @@ html.is-intro .pl-side > *, html.is-intro .pl-card { animation-play-state: pause
     border: 1px solid var(--line); border-radius: var(--r-pill); }
   .pl-filter:has(input:checked) { border-color: var(--blue); background: var(--blue-mist); }
   .pl-filter:has(input:checked) .pl-filter__name { transform: none; }
+  .pl-filter--sub { padding-left: 11px; font-size: 14px; }
+  .pl-filter--sub::before { display: none; }
   /* pills: no room to keep a hidden count, so it only appears once ticked */
   .pl-filter__n { display: none; }
   .pl-filter:has(input:checked) .pl-filter__n { display: inline; margin-left: -2px; }
