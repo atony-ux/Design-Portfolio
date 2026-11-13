@@ -2782,6 +2782,12 @@ html.is-intro .case-nav__link { animation-play-state: paused; }
 .pl-filter__name { flex: 1; transition: transform .25s var(--ease); }
 .pl-filter:has(input:checked) { color: var(--blue); font-weight: 500; }
 .pl-filter:has(input:checked) .pl-filter__name { transform: translateX(2px); }
+/* how many pieces are in the category: hidden until the row is hovered or ticked */
+.pl-filter__n { font-size: 13px; font-weight: 400; color: var(--ink-50); font-variant-numeric: tabular-nums;
+  opacity: 0; transform: translateX(-4px); transition: opacity .2s var(--ease), transform .25s var(--ease); }
+.pl-filter:hover .pl-filter__n, .pl-filter:has(input:checked) .pl-filter__n,
+.pl-filter:has(input:focus-visible) .pl-filter__n { opacity: 1; transform: none; }
+.pl-filter:has(input:checked) .pl-filter__n { color: var(--blue); }
 
 .pl-grid { columns: 3 260px; column-gap: 24px; overflow-anchor: none; }
 .pl-card { break-inside: avoid; margin: 0 0 28px; }
@@ -2849,6 +2855,9 @@ html.is-intro .pl-side > *, html.is-intro .pl-card { animation-play-state: pause
     border: 1px solid var(--line); border-radius: var(--r-pill); }
   .pl-filter:has(input:checked) { border-color: var(--blue); background: var(--blue-mist); }
   .pl-filter:has(input:checked) .pl-filter__name { transform: none; }
+  /* pills: no room to keep a hidden count, so it only appears once ticked */
+  .pl-filter__n { display: none; }
+  .pl-filter:has(input:checked) .pl-filter__n { display: inline; margin-left: -2px; }
   .pl-grid { columns: 2 200px; column-gap: 16px; }
   .pl-card { margin-bottom: 24px; }
 }

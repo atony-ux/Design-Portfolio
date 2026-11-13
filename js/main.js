@@ -152,6 +152,12 @@
       apply(true);
       if (boxes[0]) boxes[0].focus();
     });
+    /* each filter's count (shown on hover, or while it is ticked) comes from the
+       cards, so adding a card is all it takes */
+    boxes.forEach(function (b) {
+      var el = $(".pl-filter__n", b.closest(".pl-filter"));
+      if (el) el.textContent = cards.filter(function (c) { return cats(c).indexOf(b.value) > -1; }).length;
+    });
     /* a card can sit in more than one category: data-cat="music graphics" */
     function cats(c) { return (c.getAttribute("data-cat") || "").split(/\s+/); }
     function picked() { return boxes.filter(function (b) { return b.checked; }).map(function (b) { return b.value; }); }

@@ -25,7 +25,7 @@
        before anything paints. js/main.js "Opening intro" plays it and takes it away.
        ?intro=1 forces it; skipped for reduced motion. -->
   <script>document.documentElement.classList.add("js");try{if((/[?&]intro=(1|hold)/.test(location.search)||!sessionStorage.getItem("atony:intro"))&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("is-intro")}catch(e){}</script>
-  <link rel="stylesheet" href="css/style.css?v=x244" />
+  <link rel="stylesheet" href="css/style.css?v=x245" />
 </head>
 <body>
   <!-- ============ NAV ============ -->
@@ -72,11 +72,11 @@
           <legend class="pl-filters__label">Filter by</legend>
           <button class="pl-filters__clear" type="button" hidden>Clear</button>
           <ul class="pl-filters__list">
-            <li><label class="pl-filter"><input type="checkbox" name="filter" value="graphics" /><span class="pl-filter__name">Graphics</span></label></li>
-            <li><label class="pl-filter"><input type="checkbox" name="filter" value="art" /><span class="pl-filter__name">Art</span></label></li>
-            <li><label class="pl-filter"><input type="checkbox" name="filter" value="music" /><span class="pl-filter__name">Music</span></label></li>
-            <li><label class="pl-filter"><input type="checkbox" name="filter" value="interactive" /><span class="pl-filter__name">Interactive</span></label></li>
-            <li><label class="pl-filter"><input type="checkbox" name="filter" value="other" /><span class="pl-filter__name">Other</span></label></li>
+            <li><label class="pl-filter"><input type="checkbox" name="filter" value="graphics" /><span class="pl-filter__name">Graphics</span><span class="pl-filter__n" aria-hidden="true"></span></label></li>
+            <li><label class="pl-filter"><input type="checkbox" name="filter" value="art" /><span class="pl-filter__name">Art</span><span class="pl-filter__n" aria-hidden="true"></span></label></li>
+            <li><label class="pl-filter"><input type="checkbox" name="filter" value="music" /><span class="pl-filter__name">Music</span><span class="pl-filter__n" aria-hidden="true"></span></label></li>
+            <li><label class="pl-filter"><input type="checkbox" name="filter" value="interactive" /><span class="pl-filter__name">Interactive</span><span class="pl-filter__n" aria-hidden="true"></span></label></li>
+            <li><label class="pl-filter"><input type="checkbox" name="filter" value="other" /><span class="pl-filter__name">Other</span><span class="pl-filter__n" aria-hidden="true"></span></label></li>
           </ul>
         </fieldset>
         <p class="pl-status sr-only" aria-live="polite"></p>
@@ -191,6 +191,6 @@
   </footer>
 
   <script src="assets/vendor/drawably/drawably.classic.js?v=0.4.2"></script>
-  <script src="js/main.js?v=x244"></script>
+  <script src="js/main.js?v=x245"></script>
 </body>
 </html>
