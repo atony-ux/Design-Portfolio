@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Studio filter options</title>
+  <!-- Mockup: hand-drawn options for the Studio filter list, side by side with
+       today's version. Everything is clickable. All three use drawably
+       (assets/vendor/drawably, already on the site, MIT), drawn static (boil: 0)
+       so nothing animates in a loop. Loads the real site CSS, so "Today" is exact. -->
+  <link rel="stylesheet" href="../css/style.css?v=x249" />
+  <link rel="stylesheet" href="../assets/vendor/drawably/style.css?v=0.4.2" />
+  <style>
+    body { background: var(--bg, #f4f4f4); }
+    .mk { max-width: 1320px; margin: 0 auto; padding: 56px 32px 96px; }
+    .mk h1 { margin: 0; font-size: 34px; font-weight: 500; letter-spacing: -.02em; }
+    .mk > p { margin: 8px 0 40px; color: var(--ink-50); font-size: 15px; max-width: 70ch; }
+    .mk-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; }
+    .mk-col { background: #fff; border: 1px solid var(--line); border-radius: var(--r-lg); padding: 24px 24px 28px; }
+    .mk-col h2 { margin: 0 0 4px; font-size: 16px; font-weight: 600; }
+    .mk-col .mk-note { margin: 0 0 22px; font-size: 13px; line-height: 1.5; color: var(--ink-50); min-height: 58px; }
+    .mk-col .pl-filters { margin: 0; }
+    /* every column shows its counts the way the live page does: on hover or when ticked */
+    [data-drawably-host] { font-family: inherit; }
+    .drawably-host { font-family: inherit; }
+
+    /* ---------- A: sketch checkboxes + hand-drawn dividers ---------- */
+    .fa .pl-filters__list { border-top: 0; }
+    .fa .pl-filters__list li { position: relative; border-bottom: 0; }
+    .fa .fa-rule { position: absolute; left: 0; right: 0; bottom: -5px; height: 10px; pointer-events: none; --drawably-ink: rgba(16,16,16,.22);
+      --drawably-stroke: var(--ink-30); --drawably-width: 1; }
+    .fa .fa-rule--top { top: -5px; bottom: auto; }
+    .fa .fa-box { flex: none; position: relative; width: 18px; height: 18px; }
+    .fa .fa-box svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+    .fa .fa-box path { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .fa .fa-box .b { stroke: var(--ink-50); stroke-width: 1.1; transition: stroke .2s ease; }
+    .fa .fa-box .t { stroke: var(--blue); stroke-width: 2.3; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset .3s cubic-bezier(.3,.1,.2,1); }
+    .fa .pl-filter:hover .fa-box .b, .fa .pl-filter:has(input:checked) .fa-box .b { stroke: var(--blue); }
+    .fa .pl-filter:has(input:checked) .fa-box .t { stroke-dashoffset: 0; }
+    .fa .pl-filter:has(input:focus-visible) .fa-box { outline: 2px solid var(--blue); outline-offset: 3px; border-radius: 3px; }
+
+    /* ---------- B: circled in ink ---------- */
+    .fb .pl-filter { padding-left: 14px; }
+    .fb .pl-filter__name { flex: none; position: relative; }
+    .fb .pl-filter__n { margin-left: auto; font-family: var(--hand); font-size: 19px; font-weight: 700; line-height: 1; }
+    .fb .pl-filter:hover { background: none; color: var(--blue); }
+    .fb .pl-filter__name .drawably-svg path { stroke: var(--blue); }
+    .fb .ink-in path { stroke-dasharray: 1; stroke-dashoffset: 1; animation: ink-in .45s cubic-bezier(.3,.1,.2,1) forwards; }
+    @keyframes ink-in { to { stroke-dashoffset: 0; } }
+    .fb .pl-filter:has(input:checked) .pl-filter__name { transform: none; }
+
+    /* ---------- C: marker swipe + sketched tick ---------- */
+    .fc .pl-filter { padding-left: 14px; }
+    .fc .pl-filter__name { flex: none; position: relative; padding: 1px 9px; margin-left: -9px; }
+    .fc .pl-filter:has(input:checked) .pl-filter__name { transform: none; color: var(--ink); }
+    .fc .pl-filter:hover { background: none; }
+    .fc .pl-filter__name .drawably-svg .drawably-wash { stroke: var(--blue); stroke-opacity: .2; stroke-width: 8; mix-blend-mode: normal; }
+    .fc .fc-tick { flex: none; width: 16px; height: 14px; margin-left: 2px; overflow: visible; }
+    .fc .fc-tick path { fill: none; stroke: var(--blue); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+      stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset .3s ease; }
+    .fc .pl-filter:has(input:checked) .fc-tick path { stroke-dashoffset: 0; }
+    .fc .pl-filter__n { margin-left: auto; }
+
+    .mk-libs { margin-top: 48px; background: #fff; border: 1px solid var(--line); border-radius: var(--r-lg); padding: 24px 28px; font-size: 14.5px; line-height: 1.65; color: var(--ink-75); }
+    .mk-libs h2 { margin: 0 0 8px; font-size: 16px; color: var(--ink); font-weight: 600; }
+    .mk-libs ul { margin: 0; padding-left: 18px; }
+    @media (max-width: 1100px) { .mk-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  </style>
+</head>
+<body>
+  <main class="mk">
+    <h1>Studio filter options</h1>
+    <p>Click around: every column works. All three hand-drawn versions use drawably, the sketch library already on the site (it draws the "More about me" button and the tags), so nothing new gets added. Strokes are drawn once and stay still, so they cost nothing while videos play.</p>
+
+    <div class="mk-grid">
+      <section class="mk-col" data-v="today">
+        <h2>Today</h2>
+        <p class="mk-note">Straight lines and square checkboxes.</p>
+      </section>
+      <section class="mk-col fa" data-v="a">
+        <h2>A. Sketch checkboxes</h2>
+        <p class="mk-note">Hand-drawn boxes, a pen tick that draws in (and overshoots the box), and pencil lines between rows.</p>
+      </section>
+      <section class="mk-col fb" data-v="b">
+        <h2>B. Circled in ink</h2>
+        <p class="mk-note">No boxes. Picking a filter circles the word in blue pen, like marking a list on paper. Counts are handwritten.</p>
+      </section>
+      <section class="mk-col fc" data-v="c">
+        <h2>C. Marker swipe</h2>
+        <p class="mk-note">No boxes. A picked filter gets a light blue highlighter swipe and a sketched tick.</p>
+      </section>
+    </div>
+
+    <div class="mk-libs">
+      <h2>Other libraries I looked at</h2>
+      <ul>
+        <li><b>RoughNotation</b>: animated circles, underlines, highlights and brackets drawn over text. Close to options B and C, but it would be a second sketch library on the site.</li>
+        <li><b>Rough.js</b>: the drawing engine this style comes from. Lower level: every shape would be built by hand.</li>
+        <li><b>Wired Elements</b>: ready-made hand-drawn web components (checkbox, radio, toggle). Heavier, and the boxes have a thicker cartoon look than the rest of the site.</li>
+        <li><b>PaperCSS / Doodle CSS</b>: whole hand-drawn CSS themes. They would fight the site's own styles rather than fit into one section.</li>
+      </ul>
+    </div>
+  </main>
+
+  <template id="panel">
+    <fieldset class="pl-filters">
+      <legend class="pl-filters__label">Filter by</legend>
+      <button class="pl-filters__clear" type="button" hidden>Clear</button>
+      <ul class="pl-filters__list"></ul>
+    </fieldset>
+  </template>
+
+  <script src="../assets/vendor/drawably/drawably.classic.js?v=0.4.2"></script>
+  <script>
+    (function () {
+      var D = window.drawably;
+      var CATS = [["Graphics", 9], ["Art", 5], ["Music", 4], ["Interactive", 1], ["Other", 2]];
+      var tpl = document.getElementById("panel");
+      function pathsIn(el) { return el.querySelectorAll(".drawably-svg path"); }
+
+      document.querySelectorAll(".mk-col").forEach(function (col, ci) {
+        var v = col.getAttribute("data-v");
+        col.appendChild(tpl.content.cloneNode(true));
+        var list = col.querySelector(".pl-filters__list"), clear = col.querySelector(".pl-filters__clear");
+        CATS.forEach(function (c, i) {
+          var li = document.createElement("li");
+          var box = v === "a" ? '<span class="fa-box"><input class="sr-only" type="checkbox" /><svg viewBox="0 0 18 18" aria-hidden="true"></svg></span>'
+                  : v === "today" ? '<input type="checkbox" />'
+                  : '<input class="sr-only" type="checkbox" />';
+          var tick = v === "c" ? '<svg class="fc-tick" viewBox="0 0 16 14" aria-hidden="true"></svg>' : "";
+          li.innerHTML = '<label class="pl-filter">' + box + '<span class="pl-filter__name">' + c[0] + '</span>' + tick +
+            '<span class="pl-filter__n" aria-hidden="true">' + c[1] + '</span></label>' + (v === "a" ? '<span class="fa-rule"></span>' : "");
+          list.appendChild(li);
+          var input = li.querySelector("input"), name = li.querySelector(".pl-filter__name"), mark = null;
+
+          if (v === "a" && D) {
+            /* a squarer box than drawablyCheckbox's (its corner radius is a fixed 5px),
+               and a tick that overshoots the box the way a pen tick does */
+            var bx = D.roughRoundedRect(1, 1, 16, 16, 2, { seed: 101 + i * 17, roughness: .7 });
+            var tk = D.roughCheckmark(3.5, 0, 17, 13, { seed: 400 + i * 7, roughness: .9 });
+            li.querySelector(".fa-box svg").innerHTML = '<path class="b" d="' + bx + '"/><path class="t" pathLength="1" d="' + tk + '"/>';
+            D.drawablyDivider(li.querySelector(".fa-rule"), { boil: 0, seed: 7 + i * 13, roughness: .7 });
+          }
+          if (v === "c" && D) {
+            var d = D.roughCheckmark(1.5, 2, 13, 10, { seed: 300 + i * 11, roughness: 1 });
+            li.querySelector(".fc-tick").innerHTML = '<path pathLength="1" d="' + d + '"/>';
+          }
+          input.addEventListener("change", function () {
+            if (v === "b" && D) {
+              if (input.checked) {
+                mark = D.drawablyCircle(name, { boil: 0, seed: D.randomSeed(), width: 1.6, roughness: .8 });
+                pathsIn(name).forEach(function (p) { p.setAttribute("pathLength", "1"); });
+                var svg = name.querySelector(".drawably-svg"); if (svg) svg.classList.add("ink-in");
+              } else if (mark) { mark.destroy(); mark = null; }
+            }
+            if (v === "c" && D) {
+              if (input.checked) mark = D.drawablyHighlight(name, { boil: 0, seed: D.randomSeed() });
+              else if (mark) { mark.destroy(); mark = null; }
+            }
+            clear.hidden = !list.querySelector("input:checked");
+          });
+        });
+        if (v === "a" && D) {
+          var top = document.createElement("span"); top.className = "fa-rule fa-rule--top";
+          list.firstElementChild.appendChild(top);
+          D.drawablyDivider(top, { boil: 0, seed: 3, roughness: .7 });
+        }
+        clear.addEventListener("click", function () {
+          list.querySelectorAll("input:checked").forEach(function (inp) { inp.checked = false; inp.dispatchEvent(new Event("change")); });
+        });
+        /* start with one picked so each style shows its selected state */
+        var first = list.querySelectorAll("input")[1];
+        first.checked = true; first.dispatchEvent(new Event("change"));
+      });
+    })();
+  </script>
+</body>
+</html>
