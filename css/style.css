@@ -2754,7 +2754,7 @@ html.is-intro .case-nav__link { animation-play-state: paused; }
 .pl-side__title { margin: 0; font-size: clamp(30px, 3.1vw, 40px); font-weight: 500; letter-spacing: -.025em; line-height: 1.15; }
 .pl-side__sub { margin: 8px 0 0; font-size: 16px; line-height: 1.5; color: var(--ink-50); }
 .pl-filters { position: relative; min-width: 0; margin: 40px 0 0; padding: 0; border: 0; }
-.pl-filters__label { padding: 0; margin-bottom: 10px; font-size: 13.5px; font-weight: 600; color: var(--blue); }
+.pl-filters__label { padding: 0; margin-bottom: 10px; font-size: 13.5px; font-weight: 600; color: var(--ink); }
 /* "Clear" sits on the label's line, at the right, once something is ticked */
 .pl-filters__clear { position: absolute; bottom: 100%; right: 0; margin-bottom: 10px; padding: 0; border: 0; background: none; font: inherit;
   font-size: 13px; line-height: 1.5; color: var(--ink-50); cursor: pointer; transition: color .2s var(--ease); }
@@ -2778,7 +2778,7 @@ html.is-intro .case-nav__link { animation-play-state: paused; }
 .pl-filter:has(input:checked) { color: var(--blue); font-weight: 500; }
 .pl-filter:has(input:checked) .pl-filter__name { transform: translateX(2px); }
 
-.pl-grid { columns: 3 260px; column-gap: 24px; }
+.pl-grid { columns: 3 260px; column-gap: 24px; overflow-anchor: none; }
 .pl-card { break-inside: avoid; margin: 0 0 28px; }
 /* With JS on, the grid is rows that fill the width (js/main.js "Play: filters"):
    each card's width comes from its piece's shape and each row gets the height at

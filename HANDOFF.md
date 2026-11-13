@@ -1931,3 +1931,6 @@ Heading is now "Studio" with the line "My design playground". Filters are pill c
 
 ## 2026-11-12: Studio filters back to the list
 The pill chips were reverted to the original checkbox list, polished: no counts, no visible status line, a "Clear" link on the "Filter by" line (only while something is ticked), rows that tint blue-mist on hover, and a ticked row turns blue. Title stays "Studio" / "My design playground". Phones keep the row of pills. Cache token x240.
+
+## 2026-11-13: Studio filter label + scroll fix
+"Filter by" is ink (black), not blue. Filtering while scrolled down used to snap the page mid-way (the shorter grid clamped the scroll). Now apply() holds the page height, glides up to the top of the grid (104px under the nav), then releases it; .pl-grid has overflow-anchor: none. Cache token x241.

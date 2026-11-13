@@ -157,6 +157,16 @@
     function picked() { return boxes.filter(function (b) { return b.checked; }).map(function (b) { return b.value; }); }
     function apply(animate) {
       var on = picked(), shown = [];
+      /* A filtered grid is much shorter. Scrolled down, the browser would snap to
+         wherever the new bottom lands, mid-page. Instead: hold the page's height,
+         glide back up to the top of the grid, then let the height go. */
+      var top = grid ? Math.max(0, grid.getBoundingClientRect().top + window.scrollY - 104) : 0;
+      if (animate && window.scrollY > top + 1) {
+        page.style.minHeight = page.offsetHeight + "px";
+        window.scrollTo({ top: top, behavior: reduced ? "auto" : "smooth" });
+        clearTimeout(page._hold);
+        page._hold = setTimeout(function () { page.style.minHeight = ""; }, reduced ? 0 : 700);
+      }
       cards.forEach(function (c) {
         c.hidden = !(!on.length || cats(c).some(function (k) { return on.indexOf(k) > -1; }));
         if (!c.hidden) { c.style.setProperty("--i", shown.length); shown.push(c); }
