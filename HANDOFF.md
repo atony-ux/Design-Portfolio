@@ -1919,3 +1919,6 @@ Same system as the Vendrs rewrite (`.cs--col` plus the `.v-*` components, no new
 - Play buttons scrapped: Aspire and Garden covers are now plain links (a.pl-card__media) to their SoundCloud pages; no hover effect. Reverie in Blue opens full size like the rest.
 - Atony Kit Vol. 1 cover links to its Payhip page (payhip.com/b/c2VUH).
 - **Play renamed Studio (2026-11-12):** play.html -> studio.html, nav/footer label "Studio", About stack links to studio.html?filter=graphics; vercel.json redirects /play.html and /play to /studio.html. CSS/JS class names keep the pl- prefix.
+
+## 2026-11-12: Sharper corners
+Radius tokens sharpened from 16 / 8 / 8 to 8 / 4 / 4 (--r-lg / --r-md / --r-sm), --r-xs 3px. Pills and circles unchanged; the paper objects (polaroids, notes, notepad) keep their own shapes. Cache token x237.

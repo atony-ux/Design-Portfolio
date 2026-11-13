@@ -82,11 +82,12 @@
      border-radius, which snaps if it runs to 999px. */
   --r-pill: 96px;   /* fully rounded: buttons, tags, chips, inputs, bars */
   /* 2026-10-20: sharp corners were tried, then softened to a light rounding: 16 / 8 / 8
-     (the original scale was 24 / 16 / 8). Pills and circles stay round. */
-  --r-lg:   16px;   /* cards, panels, large surfaces */
-  --r-md:   8px;    /* photos and surfaces inside cards */
-  --r-sm:   8px;    /* small components: thumbnails, tooltips, drink tokens */
-  --r-xs:   4px;    /* focus rings and tiny bits -- a half-step below the 8px grid */
+     (the original scale was 24 / 16 / 8). 2026-11-12: sharpened again to 8 / 4 / 4.
+     Pills and circles stay round. */
+  --r-lg:   8px;    /* cards, panels, large surfaces */
+  --r-md:   4px;    /* photos and surfaces inside cards */
+  --r-sm:   4px;    /* small components: thumbnails, tooltips, drink tokens */
+  --r-xs:   3px;    /* focus rings and tiny bits */
   /* older names, kept as aliases so existing rules follow the scale */
   --r-btn:  var(--r-pill);
   --r-tag:  var(--r-pill);
