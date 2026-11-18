@@ -311,6 +311,16 @@
       var row = [], sum = 0;
       vis.forEach(function (c) {
         var a = ar(c);
+        /* a banner-shaped piece (3x wider than tall or more) always gets a row to
+           itself, full width; sharing one would shrink its neighbours to slivers.
+           Whatever was waiting before it closes as a row of its own first. */
+        if (a >= 3) {
+          if (row.length) {
+            var hw = hOf(row.length, sum);
+            place(row, Math.min(hw, target * 1.3), hw <= target * 1.3);
+          }
+          place([c], hOf(1, a), true); row = []; sum = 0; return;
+        }
         if (row.length && sum * target + GAP * (row.length - 1) < W && (sum + a) * target + GAP * row.length >= W) {
           var withIt = hOf(row.length + 1, sum + a), without = hOf(row.length, sum);
           var tooNarrow = !fits(row.concat([c]), withIt);

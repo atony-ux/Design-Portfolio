@@ -1986,3 +1986,4 @@ Row 1 is back to Transition (the visualizer) + OP-1. Mascot Sumi moved into the 
 
 ## 2026-11-17: Soundcloud Banner; three Prod. Davis pieces out
 Removed Speed Dating, Beat Breakdown, Genre Wheel (files moved to ../Portfolio2.0 removed files/unused-assets-2026-11-17/prod-davis/). Added "Soundcloud Banner" (Graphics): assets/graphics/play/soundcloud-banner.webp (2000x419) + -thumb.webp (1600 wide), its own full-width row under the Sample flip row. Rows: Transition, OP-1 / Sample flip, Save your projects, Sumi moods / Soundcloud Banner / Reverie, MP3 Player / Info Session, Guest Speakers, Mascot Sumi, Random Doodle / Akai MPC 2000, My Hit Box / Jam session, Home studio, Frog / Atony Kit, Aspire, Garden. Graphics 6.
+- Filtered views: any piece 3x wider than tall (the banner) now gets its own full-width row in the automatic packing (main.js layout), instead of shrinking whatever shares its row. Cache token x251.
