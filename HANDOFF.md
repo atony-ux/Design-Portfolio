@@ -1983,3 +1983,6 @@ From a transparent PNG of Sumi: the three stray blue marks above the head were r
 
 ## 2026-11-13: Studio rows
 Row 1 is back to Transition (the visualizer) + OP-1. Mascot Sumi moved into the Genre Wheel row: Genre Wheel, Guest Speakers, Mascot Sumi, Random Doodle. Other rows unchanged.
+
+## 2026-11-17: Soundcloud Banner; three Prod. Davis pieces out
+Removed Speed Dating, Beat Breakdown, Genre Wheel (files moved to ../Portfolio2.0 removed files/unused-assets-2026-11-17/prod-davis/). Added "Soundcloud Banner" (Graphics): assets/graphics/play/soundcloud-banner.webp (2000x419) + -thumb.webp (1600 wide), its own full-width row under the Sample flip row. Rows: Transition, OP-1 / Sample flip, Save your projects, Sumi moods / Soundcloud Banner / Reverie, MP3 Player / Info Session, Guest Speakers, Mascot Sumi, Random Doodle / Akai MPC 2000, My Hit Box / Jam session, Home studio, Frog / Atony Kit, Aspire, Garden. Graphics 6.
