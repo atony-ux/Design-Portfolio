@@ -2024,3 +2024,6 @@ The IBM card is now first in the Works grid (Vendrs second, QAC third on row 2; 
 
 ## 2026-11-23: IBM thumbnail grey
 The IBM cover is a light grey #f0f0f1 with no hairline border (rounded --r-md corners kept). The Lottie is transparent; the still fallback (white ground) uses mix-blend-mode: multiply so it shows the grey. Cache token x263.
+
+## 2026-11-23: Back to Archivo
+Manrope was taken out again at Anthony's request: --sans/--serif are Archivo, pages preload archivo-latin.woff2, the Manrope @font-face is gone and its files moved to ../Portfolio2.0 removed files/unused-assets-2026-11-23/fonts/. The lighter weights stay (hero title 400, card titles 500). Cache token x264.
