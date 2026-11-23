@@ -25,7 +25,7 @@
        before anything paints. js/main.js "Opening intro" plays it and takes it away.
        ?intro=1 forces it; skipped for reduced motion. -->
   <script>document.documentElement.classList.add("js");try{if((/[?&]intro=(1|hold)/.test(location.search)||!sessionStorage.getItem("atony:intro"))&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("is-intro")}catch(e){}</script>
-  <link rel="stylesheet" href="css/style.css?v=x264" />
+  <link rel="stylesheet" href="css/style.css?v=x265" />
 </head>
 <body>
   <!-- ============ NAV ============ -->
@@ -116,10 +116,11 @@
                   <img class="ibm-logo__still" src="assets/graphics/thumbs/ibm/ibm-logo-still.webp" alt="" width="506" height="214" loading="lazy" decoding="async" />
                 </span>
               </span>
+              <span class="wcard__wip">Work in progress</span>
             </span>
             <span class="wcard__foot">
               <span class="wcard__text">
-                <h3 class="wcard__title">IBM AI Security Command Center <span class="wcard__wip">Work in progress</span></h3>
+                <h3 class="wcard__title">IBM AI Security Command Center</h3>
                 <span class="wcard__desc">A concept security dashboard for IBM that helps analysts catch and respond to threats faster.</span>
               </span>
               <span class="wcard__pills">
@@ -204,6 +205,6 @@
   </footer>
 
   <script src="assets/vendor/drawably/drawably.classic.js?v=0.4.2"></script>
-  <script src="js/main.js?v=x264"></script>
+  <script src="js/main.js?v=x265"></script>
 </body>
 </html>

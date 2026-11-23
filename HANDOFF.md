@@ -2027,3 +2027,6 @@ The IBM cover is a light grey #f0f0f1 with no hairline border (rounded --r-md co
 
 ## 2026-11-23: Back to Archivo
 Manrope was taken out again at Anthony's request: --sans/--serif are Archivo, pages preload archivo-latin.woff2, the Manrope @font-face is gone and its files moved to ../Portfolio2.0 removed files/unused-assets-2026-11-23/fonts/. The lighter weights stay (hero title 400, card titles 500). Cache token x264.
+
+## 2026-11-23: IBM label top right
+"Work in progress" (.wcard__wip) moved off the title line into the cover's top-right corner (white pill, grey text). The IBM card's foot is back to the normal layout (pills beside the name); the grid-foot rules for .wcard--wip are gone. Cache token x265.
