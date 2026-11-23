@@ -1789,14 +1789,14 @@ body.is-leaving { opacity: 0; transition: opacity .28s ease; }
    leaving it finishes the loop and settles back. Until it loads, or if it can't,
    ibm-logo-still.webp (frame 0) shows. The logo fills 47% of the Lottie canvas, so
    the canvas is sized at 68% of the frame's width for a logo ~32% wide. */
-/* white on the white card: a hairline edge with the same rounded corners (--r-md) as the
-   other case-study thumbnails, so it reads as the same rounded picture */
-.wthumb--ibm { display: grid; place-items: center; background: #fff; border-radius: var(--r-md);
-  box-shadow: inset 0 0 0 1px rgba(16, 16, 40, .1); }
+/* a light grey ground (2026-11-23, was white with a hairline edge), with the same
+   rounded corners (--r-md) as the other case-study thumbnails */
+.wthumb--ibm { display: grid; place-items: center; background: #f0f0f1; border-radius: var(--r-md); }
 .ibm-logo { position: absolute; left: 50%; top: 50%; z-index: 1; width: 68%; aspect-ratio: 1;
   transform: translate(-50%, -50%); transition: transform .6s var(--ease-back); }
 .ibm-logo svg { position: absolute; inset: 0; display: block; }
-.ibm-logo__still { position: absolute; left: 50%; top: 50%; width: 47.3%; height: auto; transform: translate(-50%, -50%); }
+.ibm-logo__still { position: absolute; left: 50%; top: 50%; width: 47.3%; height: auto; transform: translate(-50%, -50%);
+  mix-blend-mode: multiply; }   /* the still has a white ground; multiply lets the grey through */
 .ibm-logo.is-live .ibm-logo__still { display: none; }
 .wcard:hover .ibm-logo, .wcard:focus-visible .ibm-logo { transform: translate(-50%, -50%) scale(1.04); }
 

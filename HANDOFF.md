@@ -2021,3 +2021,6 @@ The IBM card is now first in the Works grid (Vendrs second, QAC third on row 2; 
 - **Lighter weights:** hero title 500 -> 400, case-study card titles 600 -> 500.
 - **Works order:** Vendrs, IBM, then QAC on row 2. The tape (.wcard__tape) is gone from the cards (markup removed; CSS left unused).
 - **IBM card:** logo smaller (Lottie canvas 68% of the frame, logo ~32% wide); "Work in progress" is a grey pill in sentence case. The Lottie data is now a script, assets/graphics/thumbs/ibm/ibm-logo.js (sets window.LOTTIE_DATA.ibm; markup data-lottie + data-lottie-key), because fetching a .json is blocked when the page is opened from file://, which stopped the hover animation there. Cache token x262.
+
+## 2026-11-23: IBM thumbnail grey
+The IBM cover is a light grey #f0f0f1 with no hairline border (rounded --r-md corners kept). The Lottie is transparent; the still fallback (white ground) uses mix-blend-mode: multiply so it shows the grey. Cache token x263.
