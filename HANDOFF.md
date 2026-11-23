@@ -1997,3 +1997,8 @@ The site-wide noise overlay (body::after SVG feTurbulence tile) is gone, at Anth
 
 ## 2026-11-23: New header mascot (home)
 The home hero Sumi is now assets/graphics/sumi/sumi-duo.webp (black ink Sumi with a faded double behind, transparent, 238x345 lossless, cropped to the drawing with a 4px pad), replacing sketching.webp (left in place, unused). Same size and draw-in/wiggle/bubble/easter eggs. The baseline offset in .hero__sumi-wrap uses 0.017 for the new 4px strip. Cache token x255.
+
+## 2026-11-23: IBM card (work in progress), no "Case study" labels, blue header mascot
+- New third card on the home Works grid: "IBM AI Security Command Center", desc "A concept security dashboard for IBM that helps analysts catch and respond to threats faster.", pills B2B / Desktop / Client. It is a `.wcard--soon` (no link, no page yet) with "Work in progress" on hover (dark veil for this card). Thumbnail `.wthumb--ibm`: IBM's animated logo on a dark #161616 Carbon-style 32px grid. The logo came from ~/Downloads/IBM Logo.webm (150x150, transparent VP9); Safari can't play transparent WebM, so its frames were captured in Chrome and saved as an animated WebP on the same #161616 (assets/graphics/thumbs/ibm/ibm-logo.webp, 252x94, 66 frames, 3s loop, ~50KB), blended with mix-blend-mode: lighten so the grid shows through. It sits alone on row 2 of the 2-column grid; the pile-and-separate reveal still only involves cards 1 and 2.
+- The "Case study" pill (`.wthumb__tag`) is removed from every card (home and the Vendrs page). The CSS is left unused.
+- Header mascot sumi-duo.webp recoloured to the site's Sumi blue rgb(15,48,158) (same alpha). Cache token x256.

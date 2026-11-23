@@ -1752,6 +1752,21 @@ body.is-leaving { opacity: 0; transition: opacity .28s ease; }
 .wcard__soon b { padding: 10px 20px; border-radius: var(--r-pill); background: var(--ink); color: #fff; font-size: 14px; font-weight: 500; letter-spacing: .02em; }
 .wcard--soon:hover .wcard__soon, .wcard--soon:focus-visible .wcard__soon { opacity: 1; }
 
+/* ---- IBM AI Security Command Center (work in progress, 2026-11-23) ----
+   IBM's animated logo (from Anthony's IBM Logo.webm, turned into an animated WebP
+   on the same #161616 so it works in Safari too) centred on a dark Carbon-style
+   2x grid. */
+.wthumb--ibm { display: grid; place-items: center; background-color: #161616;
+  background-image: linear-gradient(rgba(255,255,255,.055) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255,255,255,.055) 1px, transparent 1px);
+  background-size: 32px 32px; background-position: center; }
+.ibm-logo { position: relative; z-index: 1; width: 34%; height: auto; mix-blend-mode: lighten;
+  transition: transform .6s var(--ease-back); }
+.wcard:hover .ibm-logo, .wcard:focus-visible .ibm-logo { transform: scale(1.06); }
+/* the light "Work in progress" veil turns the dark grid a muddy grey; a dark one keeps it IBM */
+.wthumb--ibm ~ .wcard__soon { background: rgba(22, 22, 22, .45); }
+.wthumb--ibm ~ .wcard__soon b { background: #fff; color: #161616; }
+
 /* ---- QAC Gallery ----
    White ground with the gallery's paint splatters bleeding in from the edges,
    matching their membership sign-in page. The splatters are not drawn: they are

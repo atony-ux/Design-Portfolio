@@ -25,7 +25,7 @@
        before anything paints. js/main.js "Opening intro" plays it and takes it away.
        ?intro=1 forces it; skipped for reduced motion. -->
   <script>document.documentElement.classList.add("js");try{if((/[?&]intro=(1|hold)/.test(location.search)||!sessionStorage.getItem("atony:intro"))&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("is-intro")}catch(e){}</script>
-  <link rel="stylesheet" href="css/style.css?v=x255" />
+  <link rel="stylesheet" href="css/style.css?v=x256" />
 </head>
 <body>
   <!-- ============ NAV ============ -->
@@ -56,7 +56,7 @@
         </div>
 
         <div class="hero__sumi-wrap">
-          <img class="hero__sumi" data-mascot src="assets/graphics/sumi/sumi-duo.webp" alt="Sumi, Anthony's mascot, standing in black ink with a faded double of himself behind" width="238" height="345" />
+          <img class="hero__sumi" data-mascot src="assets/graphics/sumi/sumi-duo.webp" alt="Sumi, Anthony's mascot, standing in blue ink with a faded double of himself behind" width="238" height="345" />
           <span class="hero__sumi-bubble">psst, try typing "music" ✦</span>
         </div>
 
@@ -92,7 +92,6 @@
                 <span class="wthumb__pop wp--3" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2.5l2.3 6.1 6.2 2.4-6.2 2.4L12 21.5l-2.3-8.1L3.5 11l6.2-2.4z" fill="#ffd166"/></svg></span>
                 <img class="wthumb__base wthumb__base--map" src="assets/graphics/thumbs/vendrs/events-map.webp" alt="Vendrs case study cover: the Events Map, a list of nearby events beside a map with pins" width="1200" height="922" loading="lazy" decoding="async" />
               </span>
-              <span class="wthumb__tag">Case study</span>
               <span class="wcard__go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
             </span>
             <span class="wcard__foot">
@@ -127,7 +126,6 @@
                 <span class="wthumb__pop wp--3" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2.5l2.3 6.1 6.2 2.4-6.2 2.4L12 21.5l-2.3-8.1L3.5 11l6.2-2.4z" fill="#e879b8"/></svg></span>
                 <img class="wthumb__base" src="assets/graphics/thumbs/qac/events.webp" alt="QAC Gallery case study cover: the events and bookings page" width="1200" height="675" loading="lazy" decoding="async" />
               </span>
-              <span class="wthumb__tag">Case study</span>
               <span class="wcard__soon" aria-hidden="true"><b>Coming soon</b></span>
               <span class="wcard__go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
             </span>
@@ -138,6 +136,31 @@
               </span>
               <span class="wcard__pills">
               <span class="wcard__pill" data-drawably="pill">B2C</span>
+              <span class="wcard__pill" data-drawably="pill">Desktop</span>
+              <span class="wcard__pill" data-drawably="pill">Client</span>
+              </span>
+            </span>
+          </span>
+        </div>
+
+        <div class="wcard wcard--soon" data-cursor="Work in progress" tabindex="0" role="group" aria-disabled="true" aria-label="IBM AI Security Command Center, work in progress">
+          <span class="wcard__paper">
+            <span class="wcard__tape" aria-hidden="true"></span>
+            <!-- work in progress: IBM's animated logo on a dark Carbon-style grid
+                 (".wthumb--ibm" in css/style.css). No page yet. -->
+            <span class="wcard__frame">
+              <span class="wthumb wthumb--ibm">
+                <img class="ibm-logo" src="assets/graphics/thumbs/ibm/ibm-logo.webp" alt="IBM logo" width="252" height="94" loading="lazy" decoding="async" />
+              </span>
+              <span class="wcard__soon" aria-hidden="true"><b>Work in progress</b></span>
+            </span>
+            <span class="wcard__foot">
+              <span class="wcard__text">
+                <h3 class="wcard__title">IBM AI Security Command Center</h3>
+                <span class="wcard__desc">A concept security dashboard for IBM that helps analysts catch and respond to threats faster.</span>
+              </span>
+              <span class="wcard__pills">
+              <span class="wcard__pill" data-drawably="pill">B2B</span>
               <span class="wcard__pill" data-drawably="pill">Desktop</span>
               <span class="wcard__pill" data-drawably="pill">Client</span>
               </span>
@@ -182,6 +205,6 @@
   </footer>
 
   <script src="assets/vendor/drawably/drawably.classic.js?v=0.4.2"></script>
-  <script src="js/main.js?v=x255"></script>
+  <script src="js/main.js?v=x256"></script>
 </body>
 </html>
