@@ -2006,3 +2006,6 @@ The home hero Sumi is now assets/graphics/sumi/sumi-duo.webp (black ink Sumi wit
 ## 2026-11-23: Header Sumi, hi-res and full height
 sumi-duo.webp replaced with Anthony's upscaled version (290x426, cropped tight, recoloured rgb(15,48,158), lossless). On wide screens js/main.js ("Header Sumi spans the text") sets the wrap's top and width so Sumi runs from the cap top of "Product Designer," to the baseline of "I love music." (canvas font metrics + offsetTop, since the headline is mid fade-in when measured). Re-fits on font load and resize. The CSS bottom rule stays as the fallback and for <1024px. Image URL has ?v=2 to dodge the cache. Cache token x257.
 - **Same day, revised:** the IBM card is on white now (no dark grid or dark veil), with a hairline inset edge so it reads against the white card. The logo was rebuilt from the captured frames: 6x upscale with re-sharpened edges, flattened on white, 768x294 (~100KB), shown at 44% of the frame. Cache token x258.
+
+## 2026-11-23: Nav hover
+The grey pill behind a nav link on hover is gone; hover only darkens the text. Cache token x259.

@@ -309,7 +309,7 @@ body.cursor-active .pgd.is-photos .pg-photo.is-zoomed { cursor: zoom-out; }
   transition: color .2s var(--ease), background .2s var(--ease);
 }
 .nav__link .num { display: none; }
-.nav__link:hover { color: var(--ink); background: rgba(16,16,40,.05); }
+.nav__link:hover { color: var(--ink); }   /* no grey pill behind it on hover (removed 2026-11-23) */
 .nav__link[aria-current="page"] { color: var(--blue); }
 .nav__toggle { display: none; background: none; border: none; padding: 6px; }
 .nav__toggle span { display: block; width: 22px; height: 2px; background: var(--ink); margin: 5px 0; border-radius: 2px; transition: transform .3s var(--ease), opacity .2s; }
