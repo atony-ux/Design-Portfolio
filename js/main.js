@@ -2155,6 +2155,42 @@
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
     if ("ResizeObserver" in window) new ResizeObserver(fit).observe(inner);
     else window.addEventListener("resize", fit);
+
+    /* Sumi switches moods every few seconds (2026-11-23), starting once he has
+       been drawn in. The next mood is decoded before the swap so it never
+       flickers, the swap gets a quick squash-and-pop, and it re-fits to the
+       text (the moods differ slightly in shape). Pauses while the tab is hidden
+       or the header is off screen; with reduced motion it swaps without the pop. */
+    var MOODS = ["sleepy", "happy", "chill", "excited", "in-love", "surprised", "focused"];
+    var EVERY = 4500, base = img.getAttribute("src").replace(/[^/]*$/, ""), cur = 0, timer = 0, visible = true;
+    if (!/\/moods\/$/.test(base)) return;
+    var next = function () { return MOODS[(cur + 1) % MOODS.length]; };
+    function preload(name) { var i = new Image(); i.src = base + name + ".webp"; return i; }
+    var queued = preload(next());
+    function swap() {
+      var name = next(), pre = queued;
+      (pre.decode ? pre.decode() : Promise.resolve()).then(function () {
+        cur = (cur + 1) % MOODS.length;
+        img.src = pre.src;
+        fit();
+        if (!reduced && img.animate) img.animate([
+          { transform: "scale(1, 1)" }, { transform: "scale(1.08, .9)", offset: .3 },
+          { transform: "scale(.96, 1.06)", offset: .65 }, { transform: "scale(1, 1)" }],
+          { duration: 360, easing: "ease-out" });
+        img.alt = "Sumi, Anthony's mascot, looking " + name.replace("-", " ");
+        queued = preload(next());
+        schedule();
+      }).catch(schedule);
+    }
+    function schedule() { clearTimeout(timer); if (visible && !document.hidden) timer = setTimeout(swap, EVERY); }
+    function begin() { schedule(); }
+    if (wrap.classList.contains("is-drawn")) begin();
+    else new MutationObserver(function (m, o) { if (wrap.classList.contains("is-drawn")) { o.disconnect(); setTimeout(begin, 1200); } })
+      .observe(wrap, { attributes: true, attributeFilter: ["class"] });
+    document.addEventListener("visibilitychange", schedule);
+    if ("IntersectionObserver" in window) new IntersectionObserver(function (e) {
+      visible = e[0].isIntersecting; schedule();
+    }).observe(wrap);
   })();
 
   /* -------------------------------------------------- Mascot click easter eggs */
