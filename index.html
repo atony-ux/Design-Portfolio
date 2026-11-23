@@ -25,7 +25,7 @@
        before anything paints. js/main.js "Opening intro" plays it and takes it away.
        ?intro=1 forces it; skipped for reduced motion. -->
   <script>document.documentElement.classList.add("js");try{if((/[?&]intro=(1|hold)/.test(location.search)||!sessionStorage.getItem("atony:intro"))&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("is-intro")}catch(e){}</script>
-  <link rel="stylesheet" href="css/style.css?v=x260" />
+  <link rel="stylesheet" href="css/style.css?v=x261" />
 </head>
 <body>
   <!-- ============ NAV ============ -->
@@ -67,6 +67,32 @@
     <section class="section wrap" id="works" style="isolation:isolate">
 
       <div class="worktiles" data-reveal-stagger>
+        <div class="wcard wcard--soon wcard--wip" data-cursor="Work in progress" tabindex="0" role="group" aria-disabled="true" aria-label="IBM AI Security Command Center, work in progress">
+          <span class="wcard__paper">
+            <span class="wcard__tape" aria-hidden="true"></span>
+            <!-- work in progress: IBM's logo on white; it animates (Lottie) only on hover
+                 (".wthumb--ibm" in css/style.css). No page yet. -->
+            <span class="wcard__frame">
+              <span class="wthumb wthumb--ibm">
+                <span class="ibm-logo" data-lottie="assets/graphics/thumbs/ibm/ibm-logo.json" aria-hidden="true">
+                  <img class="ibm-logo__still" src="assets/graphics/thumbs/ibm/ibm-logo-still.webp" alt="" width="506" height="214" loading="lazy" decoding="async" />
+                </span>
+              </span>
+            </span>
+            <span class="wcard__foot">
+              <span class="wcard__text">
+                <h3 class="wcard__title">IBM AI Security Command Center <span class="wcard__wip">Work in progress</span></h3>
+                <span class="wcard__desc">A concept security dashboard for IBM that helps analysts catch and respond to threats faster.</span>
+              </span>
+              <span class="wcard__pills">
+              <span class="wcard__pill" data-drawably="pill">B2B</span>
+              <span class="wcard__pill" data-drawably="pill">Desktop</span>
+              <span class="wcard__pill" data-drawably="pill">Client</span>
+              </span>
+            </span>
+          </span>
+        </div>
+
         <a class="wcard" data-cursor="view" href="work/vendrs.html">
           <span class="wcard__paper">
             <span class="wcard__tape" aria-hidden="true"></span>
@@ -143,32 +169,6 @@
           </span>
         </div>
 
-        <div class="wcard wcard--soon" data-cursor="Work in progress" tabindex="0" role="group" aria-disabled="true" aria-label="IBM AI Security Command Center, work in progress">
-          <span class="wcard__paper">
-            <span class="wcard__tape" aria-hidden="true"></span>
-            <!-- work in progress: IBM's logo on white; it animates (Lottie) only on hover
-                 (".wthumb--ibm" in css/style.css). No page yet. -->
-            <span class="wcard__frame">
-              <span class="wthumb wthumb--ibm">
-                <span class="ibm-logo" data-lottie="assets/graphics/thumbs/ibm/ibm-logo.json" aria-hidden="true">
-                  <img class="ibm-logo__still" src="assets/graphics/thumbs/ibm/ibm-logo-still.webp" alt="" width="506" height="214" loading="lazy" decoding="async" />
-                </span>
-              </span>
-              <span class="wcard__soon" aria-hidden="true"><b>Work in progress</b></span>
-            </span>
-            <span class="wcard__foot">
-              <span class="wcard__text">
-                <h3 class="wcard__title">IBM AI Security Command Center</h3>
-                <span class="wcard__desc">A concept security dashboard for IBM that helps analysts catch and respond to threats faster.</span>
-              </span>
-              <span class="wcard__pills">
-              <span class="wcard__pill" data-drawably="pill">B2B</span>
-              <span class="wcard__pill" data-drawably="pill">Desktop</span>
-              <span class="wcard__pill" data-drawably="pill">Client</span>
-              </span>
-            </span>
-          </span>
-        </div>
       </div>
     </section>
   </main>
@@ -207,6 +207,6 @@
   </footer>
 
   <script src="assets/vendor/drawably/drawably.classic.js?v=0.4.2"></script>
-  <script src="js/main.js?v=x260"></script>
+  <script src="js/main.js?v=x261"></script>
 </body>
 </html>

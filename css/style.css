@@ -1636,6 +1636,25 @@ body.is-leaving { opacity: 0; transition: opacity .28s ease; }
 /* title with a one-line description underneath; the pills stay on the right */
 .wcard__text { display: flex; flex-direction: column; gap: 6px; min-width: 0; flex: 1 1 260px; }
 .wcard__desc { font-size: 14px; line-height: 1.4; color: var(--ink-50); }
+/* "Work in progress" beside a card's name (IBM): a small quiet pill on the title's
+   line that wraps under it if the name runs long */
+.wcard__wip { display: inline-block; margin-left: 8px; padding: 5px 10px 4px; border-radius: var(--r-pill);
+  vertical-align: .22em; background: var(--blue-soft); color: var(--blue);
+  font-size: 10.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; line-height: 1;
+  white-space: nowrap; }
+.wcard--wip { cursor: default; }
+/* the name and its label get the whole top line; the pills move down beside the
+   description (the long name + label + pills don't fit on one line) */
+.wcard--wip .wcard__foot { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px 14px; }
+.wcard--wip .wcard__text { display: contents; }
+.wcard--wip .wcard__title { grid-column: 1 / -1; }
+.wcard--wip .wcard__desc { grid-column: 1; grid-row: 2; }
+.wcard--wip .wcard__pills { grid-column: 2; grid-row: 2; margin-top: 0; align-self: start; }
+@media (max-width: 600px) {
+  .wcard--wip .wcard__foot { grid-template-columns: minmax(0, 1fr); }
+  .wcard--wip .wcard__pills { grid-column: 1; grid-row: 3; margin-top: 4px; }
+  .wcard--wip .wcard__wip { display: table; margin: 8px 0 0; }
+}
 /* the pills line up with the title row: the margin centers the 22px pills on the title's line box */
 .wcard__pills { display: flex; flex-wrap: wrap; gap: 6px;
   margin-top: max(0px, calc((clamp(18px, 1.6vw, 23px) * 1.1 - 22px) / 2)); }
