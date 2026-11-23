@@ -40,17 +40,23 @@
     } else hTitle.classList.add("reveal");
   }
 
-  /* -------------------------------------------------- Opening intro: the level meter
-     Only when the <head> script set html.is-intro (first page of a visit, no
-     reduced motion). LED bars climb with a counter running 0 to 100, drop, and
-     the sheet wipes up. Click or any key skips. Styles: "OPENING INTRO" in
-     style.css. ?intro=1 replays it; ?intro=hold freezes it for testing
-     (window.__introSeek(ms) then scrubs it). */
+  /* -------------------------------------------------- Opening intro: the spinning CD (2026-11-23)
+     After the ATONY loop (Anthony's After Effects visualizer, ~/Desktop/atony_after_effects_v2):
+     the CD spins on a blue sheet in the loop's stop-motion style, 24 degrees a step at
+     7.5 steps a second (every 4 frames at 30fps), and it and the pen ring nudge ~2px
+     each step. The white tracker box from the loop cuts in around it, with a live
+     readout of where the disc sits on this screen. Then the disc shrinks home in
+     jumps (15fps) and the sheet lifts in steps. No ATONY word. Assets in
+     assets/graphics/intro/ (cd.webp, ring.webp, from the AE package).
+     Only when the <head> script set html.is-intro (first page of a visit, no reduced
+     motion). Click or any key skips. Styles: "OPENING INTRO" in style.css.
+     ?intro=1 replays it; ?intro=hold freezes it for testing (window.__introSeek(ms)
+     then scrubs it). */
   (function () {
     var root = document.documentElement;
     if (!root.classList.contains("is-intro")) return;
     try { sessionStorage.setItem("atony:intro", "1"); } catch (e) {}
-    var revealed = false, timer = 0, anims = [];
+    var revealed = false, timer = 0, guard = 0, anims = [], done = false;
     function reveal() {
       if (revealed) return;
       revealed = true;
@@ -60,56 +66,81 @@
     }
     if (!document.body.animate) { reveal(); return; }
 
-    var N = 26, bars = "";
-    for (var i = 0; i < N; i++) bars += "<i></i>";
+    var script = document.currentScript || document.querySelector('script[src*="main.js"]');
+    var base = script ? new URL("../assets/graphics/intro/", script.src).href : "assets/graphics/intro/";
     var el = document.createElement("div");
     el.className = "intro";
     el.setAttribute("aria-hidden", "true");
-    el.innerHTML = '<div class="intro__meter"><div class="intro__bars">' + bars + '</div>' +
-      '<div class="intro__num">Loading <b></b></div></div>';
+    el.innerHTML =
+      '<div class="intro__stage">' +
+        '<img class="intro__ring" src="' + base + 'ring.webp" alt="" />' +
+        '<span class="intro__box"><span class="intro__xy"></span><i></i></span>' +
+        '<img class="intro__cd" src="' + base + 'cd.webp" alt="" />' +
+      '</div>' +
+      '<span class="intro__label intro__label--l">side a</span><span class="intro__label intro__label--r">001</span>';
     document.body.appendChild(el);
 
-    var T = 900, D = T + 260, W = T + 180, WIPE = 480;   /* climb, drop, wipe start, wipe length */
-    function A(node, kf, o) { var a = node.animate(kf, Object.assign({ fill: "both" }, o)); anims.push(a); return a; }
-    function rnd(a, b) { return a + Math.random() * (b - a); }
-    $$(".intro__bars i", el).forEach(function (bar, i) {
-      var kf = [], steps = 8, bias = .75 + .25 * Math.sin(i / N * Math.PI);   /* middle bars run hotter */
-      for (var k = 0; k <= steps; k++) {
-        var p = k / steps, lvl = k === steps ? 1 : Math.pow(p, 1.15) * bias * rnd(.6, 1.15) + rnd(-.08, .08);
-        lvl = Math.max(.03, Math.min(1, lvl));
-        kf.push({ clipPath: "inset(" + ((1 - lvl) * 100).toFixed(1) + "% 0 0 0)", offset: p * T / D, easing: "ease-out" });
+    var STEP = 1000 / 7.5;                       /* one animation step: 133ms */
+    var SPIN = 15 * STEP;                        /* 15 steps of 24 degrees = one turn, 2s */
+    var BOX_IN = 2 * STEP, BOX_OUT = 8 * STEP;   /* the tracker box cuts in and out */
+    var SHRINK = 9 * STEP, SHRINK_LEN = 260;     /* the disc shrinks home at 15fps */
+    var W = SHRINK + 180, WIPE = 400;            /* the sheet lifts in 6 jumps */
+    function A(node, kf, o) { var x = node.animate(kf, Object.assign({ fill: "both" }, o)); anims.push(x); return x; }
+    /* a nudge of up to 2.4px every step, held (no tweening), like the loop's wobble */
+    function wobble(node, extra) {
+      var kf = [];
+      for (var k = 0; k <= 15; k++) {
+        var t = k === 15 ? "0px 0px" : ((Math.random() * 4.8 - 2.4).toFixed(1) + "px " + (Math.random() * 4.8 - 2.4).toFixed(1) + "px");
+        kf.push({ translate: t, offset: k / 15, easing: "step-end" });
       }
-      kf.push({ clipPath: "inset(0% 0 0 0)", offset: (T + 90) / D, easing: "cubic-bezier(.55,0,1,.45)" });
-      kf.push({ clipPath: "inset(100% 0 0 0)", offset: 1 });
-      A(bar, kf, { duration: D });
-    });
-    A($(".intro__num b", el), [{ "--intro-n": 0 }, { "--intro-n": 100 }], { duration: T, easing: "cubic-bezier(.45,0,.75,1)" });
-    A($(".intro__num", el), [{ opacity: 1 }, { opacity: 0 }], { duration: 180, delay: T + 80 });
-    var wipe = A(el, [{ clipPath: "inset(0 0 0% 0)" }, { clipPath: "inset(0 0 100% 0)" }],
-      { duration: WIPE, delay: W, easing: "cubic-bezier(.65,0,.35,1)" });
-    wipe.finished.then(function () { reveal(); el.remove(); }).catch(function () {});
-
-    if (/[?&]intro=hold/.test(location.search)) {
-      anims.forEach(function (a) { a.pause(); a.currentTime = 0; });
-      window.__introSeek = function (ms) {
-        anims.forEach(function (a) { a.currentTime = ms; });
-        if (ms >= W) reveal();
-      };
-      return;
+      A(node, kf, Object.assign({ duration: SPIN, iterations: Infinity, composite: "add" }, extra || {}));
     }
-    timer = setTimeout(reveal, W);                 /* the page underneath starts as the sheet lifts */
-    /* a plain timer takes the intro away even if animations never advance (some
-       embedded browsers and webviews freeze them), so it can never strand the page */
-    var guard = setTimeout(skip, W + WIPE + 800);
-    function skip() {
+
+    var cd = $(".intro__cd", el), ring = $(".intro__ring", el), box = $(".intro__box", el), stage = $(".intro__stage", el);
+    function start() {
+      if (done) return; done = true;
+      var r = cd.getBoundingClientRect();
+      $(".intro__xy", el).textContent = "x: " + Math.round(r.left + r.width / 2) + " y: " + Math.round(r.top + r.height / 2);
+      el.classList.add("is-ready");
+      A(cd, [{ rotate: "0deg" }, { rotate: "360deg" }], { duration: SPIN, iterations: Infinity, easing: "steps(15, start)" });
+      wobble(cd); wobble(ring);
+      A(box, [{ opacity: 0, offset: 0, easing: "step-end" }, { opacity: 1, offset: BOX_IN / W, easing: "step-end" },
+               { opacity: 0, offset: BOX_OUT / W }, { opacity: 0, offset: 1 }], { duration: W });
+      A(stage, [{ scale: 1 }, { scale: 0.08 }], { duration: SHRINK_LEN, delay: SHRINK, easing: "steps(4, end)" });
+      A(ring, [{ opacity: 1 }, { opacity: 0 }], { duration: 1, delay: SHRINK + SHRINK_LEN / 2 });
+      var wipe = A(el, [{ clipPath: "inset(0 0 0% 0)" }, { clipPath: "inset(0 0 100% 0)" }],
+        { duration: WIPE, delay: W, easing: "steps(6, end)" });
+      wipe.finished.then(function () { finish(); }).catch(function () {});
+
+      if (/[?&]intro=hold/.test(location.search)) {
+        anims.forEach(function (x) { x.pause(); x.currentTime = 0; });
+        window.__introSeek = function (ms) {
+          anims.forEach(function (x) { x.currentTime = ms; });
+          if (ms >= W) reveal();
+        };
+        clearTimeout(guard);
+        return;
+      }
+      timer = setTimeout(reveal, W);             /* the page underneath starts as the sheet lifts */
+      /* a plain timer takes the intro away even if animations never advance (some
+         embedded browsers and webviews freeze them), so it can never strand the page */
+      clearTimeout(guard);
+      guard = setTimeout(skip, W + WIPE + 800);
+    }
+    function finish() {
       clearTimeout(timer); clearTimeout(guard);
-      anims.forEach(function (a) { try { a.finish(); } catch (e) {} });
+      anims.forEach(function (x) { try { x.cancel(); } catch (e) {} });
       reveal(); el.remove();
       window.removeEventListener("keydown", skip, true);
     }
+    function skip() { finish(); }
     el.addEventListener("click", skip);
     window.addEventListener("keydown", skip, true);
-    wipe.finished.then(function () { clearTimeout(guard); window.removeEventListener("keydown", skip, true); }).catch(function () {});
+    /* wait for the disc to be ready (it's small), but never more than 700ms */
+    guard = setTimeout(skip, 4000);
+    var go = setTimeout(start, 700);
+    if (cd.decode) cd.decode().then(function () { clearTimeout(go); start(); }).catch(function () {});
+    else cd.addEventListener("load", function () { clearTimeout(go); start(); });
   })();
 
   /* -------------------------------------------------- Links to a section land on it

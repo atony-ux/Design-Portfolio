@@ -2634,35 +2634,38 @@ html.ab-gallery-open { overflow: hidden; }
 }
 
 /* =====================================================================
-   OPENING INTRO (2026-10-20): the level meter
-   On the first page of a visit, LED bars climb like a track getting louder while
-   a counter runs 0 to 100, then the bars drop and the sheet wipes up off the page.
+   OPENING INTRO (2026-11-23): the spinning CD, after the ATONY loop
+   On the first page of a visit a blue sheet covers the page, the CD spins in the
+   loop's choppy steps inside the pen ring, the white tracker box cuts in around
+   it, then the disc shrinks home in jumps and the sheet lifts in steps.
    A tiny script in each page's <head> adds html.is-intro before first paint, so
-   the ::before cover is there from the start; js/main.js ("Opening intro") builds
-   the meter, plays it and removes everything. Click or any key skips it.
+   the blue ::before cover is there from the start; js/main.js ("Opening intro")
+   builds the rest, plays it and removes everything. Click or any key skips it.
    The cover fades itself out after 4s regardless, in case the script never runs.
-   Mockup with the other options: mockups/intro-animations.html.
+   (Replaced the level meter. The paper grain, body::after, sits on top of it.)
    ===================================================================== */
-@property --intro-n { syntax: "<integer>"; inherits: false; initial-value: 0; }
 html.is-intro { overflow: hidden; }
-html.is-intro::before { content: ""; position: fixed; inset: 0; z-index: 9996; background: var(--bg);
+html.is-intro::before { content: ""; position: fixed; inset: 0; z-index: 9996; background: #1d44d2;
   animation: intro-failsafe .3s ease 4s forwards; }
 @keyframes intro-failsafe { to { opacity: 0; visibility: hidden; } }
-.intro { position: fixed; inset: 0; z-index: 9997; display: grid; place-items: center; background: var(--bg); cursor: pointer; }
-.intro__meter { display: grid; justify-items: center; gap: 22px; }
-.intro__bars { display: flex; align-items: flex-end; gap: clamp(4px, 1vw, 6px); height: clamp(96px, 16vw, 132px); }
-/* each bar: LED segments (the mask) lit from the bottom (the clip, animated) */
-.intro__bars i { display: block; width: clamp(7px, 1.6vw, 11px); height: 100%; border-radius: 2px;
-  background: linear-gradient(to top, var(--blue) 0 64%, var(--blue-hi) 64% 82%, var(--orange-hi) 82% 100%);
-  -webkit-mask: repeating-linear-gradient(to top, #000 0 7px, transparent 7px 9px);
-          mask: repeating-linear-gradient(to top, #000 0 7px, transparent 7px 9px);
-  clip-path: inset(100% 0 0 0); }
-.intro__num { display: flex; align-items: baseline; gap: 10px; font-size: 12px; font-weight: 600; letter-spacing: .2em;
-  text-transform: uppercase; color: var(--ink-30); }
-/* --intro-n does not inherit, so the counter is set on <b> and printed by its ::after */
-.intro__num b { min-width: 3ch; text-align: right; font-size: 28px; font-weight: 500; letter-spacing: -.02em;
-  color: var(--ink); font-variant-numeric: tabular-nums; counter-reset: intro-n var(--intro-n); }
-.intro__num b::after { content: counter(intro-n); }
+.intro { --cd: clamp(150px, 26vmin, 240px); position: fixed; inset: 0; z-index: 9997; display: grid; place-items: center;
+  background: #1d44d2; cursor: pointer; overflow: hidden; }
+.intro__stage { position: relative; width: var(--cd); height: var(--cd); opacity: 0; }
+.intro.is-ready .intro__stage { opacity: 1; }
+/* each piece centred on the disc: --s is its size, left/top pull it back by half */
+.intro__stage > * { position: absolute; left: calc(50% - var(--s) / 2); top: calc(50% - var(--sh, var(--s)) / 2);
+  width: var(--s); max-width: none; }
+.intro__cd { --s: var(--cd); height: var(--cd); }
+/* sizes relative to the disc, as in the AE comp (disc 304px, ring 476x458, box ~355) */
+.intro__ring { --s: calc(var(--cd) * 1.566); --sh: calc(var(--cd) * 1.507); height: var(--sh); }
+.intro__box { --s: calc(var(--cd) * 1.17); height: var(--s); box-sizing: border-box;
+  border: 1.5px solid rgba(255, 255, 255, .92); opacity: 0; }
+.intro__box i { position: absolute; left: 50%; top: 50%; width: 5px; height: 5px; margin: -2.5px 0 0 -2.5px; background: #b9efb4; }
+.intro__xy, .intro__label { font-family: "DM Mono", ui-monospace, "SF Mono", Menlo, monospace; color: #fff; letter-spacing: .02em; }
+.intro__xy { position: absolute; left: -1px; bottom: 100%; margin-bottom: 6px; font-size: 13px; white-space: nowrap; }
+.intro__label { position: absolute; bottom: 22px; font-size: 12px; opacity: .9; }
+.intro__label--l { left: 24px; }
+.intro__label--r { right: 24px; }
 
 /* =====================================================================
    ENTRANCES (2026-10-21)
