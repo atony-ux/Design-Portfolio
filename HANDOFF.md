@@ -2039,3 +2039,6 @@ In the "Header Sumi spans the text" module: once Sumi has been drawn in (+1.2s),
 
 ## 2026-11-23: Header text entrance (GSAP + SplitText)
 The home headline now comes in word by word: GSAP 3.13 + SplitText (free since 3.13) from cdnjs, loaded on index.html only (the same gsap.min.js URL as About, so it is cached). Each word fades up 55% of its height, tilted up to 7deg and blurred 6px, settling with back.out(1.8), 0.06s apart; then the sub's two lines fade up 14px, overlapping the end. Waits for the opening intro ("intro:reveal", 3.5s fallback). Falls back to the old CSS fade (.reveal) with reduced motion or if GSAP/SplitText fail to load. .hero__sub is hidden by CSS until then (html.js), 4s failsafe. Whole entrance ~1s. Cache token x268.
+
+## 2026-11-23: Rounder corners
+Radius scale up to 18 / 12 / 10 (--r-lg / --r-md / --r-sm), --r-xs 4px; was 8 / 4 / 4. Pills and circles unchanged; paper objects keep their own shapes. Cache token x269.
