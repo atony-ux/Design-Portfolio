@@ -2042,3 +2042,6 @@ The home headline now comes in word by word: GSAP 3.13 + SplitText (free since 3
 
 ## 2026-11-23: Rounder corners
 Radius scale up to 18 / 12 / 10 (--r-lg / --r-md / --r-sm), --r-xs 4px; was 8 / 4 / 4. Pills and circles unchanged; paper objects keep their own shapes. Cache token x269.
+
+## 2026-11-23: More halftone decoration
+New halftones made with tools/halftone.py from the site's own doodles: assets/graphics/halftone-notes, -treble, -bass, -wave, -note, -star, -cd (.webp). Placed (CSS "HALFTONE DECORATION", class .deco, fade in, never clickable, hidden on narrow screens): a treble clef, beamed notes and a star filling the empty grid cell beside QAC in the home Works grid (div.works-deco, the 4th grid child); a bass clef and a note under the Studio filters (div.pl-deco in the sticky sidebar); a sound wave beside the Vendrs title and a treble clef beside the QAC title (img.deco--case, hidden under 1100px). A CD and star behind the home header Sumi were tried and removed at Anthony's request (halftone-cd.webp unused for now). Cache token x271.
