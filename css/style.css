@@ -2636,8 +2636,9 @@ html.ab-gallery-open { overflow: hidden; }
 /* =====================================================================
    OPENING INTRO (2026-11-23): the spinning CD, after the ATONY loop
    On the first page of a visit a blue sheet covers the page, the CD spins in the
-   loop's choppy steps inside the pen ring, the white tracker box cuts in around
-   it, then the disc shrinks home in jumps and the sheet lifts in steps.
+   loop's choppy steps inside the pen ring, the tracker box cuts in around it, then
+   the page shows through a hole where the disc was, opening in jumps. White sheet,
+   blue ring/box/labels (2026-11-23; it was blue with white marks for a day).
    A tiny script in each page's <head> adds html.is-intro before first paint, so
    the blue ::before cover is there from the start; js/main.js ("Opening intro")
    builds the rest, plays it and removes everything. Click or any key skips it.
@@ -2645,11 +2646,15 @@ html.ab-gallery-open { overflow: hidden; }
    (Replaced the level meter. The paper grain, body::after, sits on top of it.)
    ===================================================================== */
 html.is-intro { overflow: hidden; }
-html.is-intro::before { content: ""; position: fixed; inset: 0; z-index: 9996; background: #1d44d2;
+html.is-intro::before { content: ""; position: fixed; inset: 0; z-index: 9996; background: #fff;
   animation: intro-failsafe .3s ease 4s forwards; }
 @keyframes intro-failsafe { to { opacity: 0; visibility: hidden; } }
-.intro { --cd: clamp(150px, 26vmin, 240px); position: fixed; inset: 0; z-index: 9997; display: grid; place-items: center;
-  background: #1d44d2; cursor: pointer; overflow: hidden; }
+@property --hole { syntax: "<length>"; inherits: false; initial-value: 0px; }
+.intro { --cd: clamp(150px, 26vmin, 240px); --ink-i: #1d44d2; position: fixed; inset: 0; z-index: 9997; display: grid; place-items: center;
+  background: #fff; cursor: pointer; overflow: hidden;
+  /* the exit: a hole at the disc that grows (main.js animates --hole in steps) */
+  -webkit-mask: radial-gradient(circle at 50% 50%, transparent var(--hole), #000 calc(var(--hole) + .5px));
+          mask: radial-gradient(circle at 50% 50%, transparent var(--hole), #000 calc(var(--hole) + .5px)); }
 .intro__stage { position: relative; width: var(--cd); height: var(--cd); opacity: 0; }
 .intro.is-ready .intro__stage { opacity: 1; }
 /* each piece centred on the disc: --s is its size, left/top pull it back by half */
@@ -2659,9 +2664,9 @@ html.is-intro::before { content: ""; position: fixed; inset: 0; z-index: 9996; b
 /* sizes relative to the disc, as in the AE comp (disc 304px, ring 476x458, box ~355) */
 .intro__ring { --s: calc(var(--cd) * 1.566); --sh: calc(var(--cd) * 1.507); height: var(--sh); }
 .intro__box { --s: calc(var(--cd) * 1.17); height: var(--s); box-sizing: border-box;
-  border: 1.5px solid rgba(255, 255, 255, .92); opacity: 0; }
-.intro__box i { position: absolute; left: 50%; top: 50%; width: 5px; height: 5px; margin: -2.5px 0 0 -2.5px; background: #b9efb4; }
-.intro__xy, .intro__label { font-family: "DM Mono", ui-monospace, "SF Mono", Menlo, monospace; color: #fff; letter-spacing: .02em; }
+  border: 1.5px solid var(--ink-i); opacity: 0; }
+.intro__box i { position: absolute; left: 50%; top: 50%; width: 5px; height: 5px; margin: -2.5px 0 0 -2.5px; background: #3fae5c; }
+.intro__xy, .intro__label { font-family: "DM Mono", ui-monospace, "SF Mono", Menlo, monospace; color: var(--ink-i); letter-spacing: .02em; }
 .intro__xy { position: absolute; left: -1px; bottom: 100%; margin-bottom: 6px; font-size: 13px; white-space: nowrap; }
 .intro__label { position: absolute; bottom: 22px; font-size: 12px; opacity: .9; }
 .intro__label--l { left: 24px; }

@@ -45,8 +45,9 @@
      the CD spins on a blue sheet in the loop's stop-motion style, 24 degrees a step at
      7.5 steps a second (every 4 frames at 30fps), and it and the pen ring nudge ~2px
      each step. The white tracker box from the loop cuts in around it, with a live
-     readout of where the disc sits on this screen. Then the disc shrinks home in
-     jumps (15fps) and the sheet lifts in steps. No ATONY word. Assets in
+     readout of where the disc sits on this screen. Then the disc drops out and the
+     page shows through a hole where it was, growing in 6 jumps (15fps). White sheet
+     (2026-11-23, was blue), blue ring and box. No ATONY word. Assets in
      assets/graphics/intro/ (cd.webp, ring.webp, from the AE package).
      Only when the <head> script set html.is-intro (first page of a visit, no reduced
      motion). Click or any key skips. Styles: "OPENING INTRO" in style.css.
@@ -83,8 +84,7 @@
     var STEP = 1000 / 7.5;                       /* one animation step: 133ms */
     var SPIN = 15 * STEP;                        /* 15 steps of 24 degrees = one turn, 2s */
     var BOX_IN = 2 * STEP, BOX_OUT = 8 * STEP;   /* the tracker box cuts in and out */
-    var SHRINK = 9 * STEP, SHRINK_LEN = 260;     /* the disc shrinks home at 15fps */
-    var W = SHRINK + 180, WIPE = 400;            /* the sheet lifts in 6 jumps */
+    var W = 9 * STEP, WIPE = 6 * STEP / 2;      /* the hole opens on step 9, in 6 jumps at 15fps */
     function A(node, kf, o) { var x = node.animate(kf, Object.assign({ fill: "both" }, o)); anims.push(x); return x; }
     /* a nudge of up to 2.4px every step, held (no tweening), like the loop's wobble */
     function wobble(node, extra) {
@@ -106,10 +106,12 @@
       wobble(cd); wobble(ring);
       A(box, [{ opacity: 0, offset: 0, easing: "step-end" }, { opacity: 1, offset: BOX_IN / W, easing: "step-end" },
                { opacity: 0, offset: BOX_OUT / W }, { opacity: 0, offset: 1 }], { duration: W });
-      A(stage, [{ scale: 1 }, { scale: 0.08 }], { duration: SHRINK_LEN, delay: SHRINK, easing: "steps(4, end)" });
-      A(ring, [{ opacity: 1 }, { opacity: 0 }], { duration: 1, delay: SHRINK + SHRINK_LEN / 2 });
-      var wipe = A(el, [{ clipPath: "inset(0 0 0% 0)" }, { clipPath: "inset(0 0 100% 0)" }],
-        { duration: WIPE, delay: W, easing: "steps(6, end)" });
+      /* the disc drops out and the page shows through a hole where it was, the hole
+         growing in jumps until it clears the screen (a stepped iris, no slide) */
+      A(stage, [{ opacity: 1 }, { opacity: 0 }], { duration: 1, delay: W });
+      var r0 = cd.getBoundingClientRect().width / 2, r1 = Math.hypot(innerWidth, innerHeight) / 2 + 40;
+      var wipe = A(el, [{ "--hole": r0 + "px" }, { "--hole": r1 + "px" }],
+        { duration: WIPE, delay: W, easing: "steps(6, jump-none)", fill: "forwards" });
       wipe.finished.then(function () { finish(); }).catch(function () {});
 
       if (/[?&]intro=hold/.test(location.search)) {
