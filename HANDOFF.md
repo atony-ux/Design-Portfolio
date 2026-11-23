@@ -2036,3 +2036,6 @@ The home header mascot is now the sleepy mood (assets/graphics/sumi/moods/sleepy
 
 ## 2026-11-23: Header Sumi switches moods
 In the "Header Sumi spans the text" module: once Sumi has been drawn in (+1.2s), every 4.5s he switches to the next mood: sleepy, happy, chill, excited, in-love, surprised, focused, then round again (angry and sad left out). The next one is preloaded and decoded first (no flicker), the swap re-fits him to the text and gets a quick squash-and-pop (none with reduced motion), and the alt text follows the mood. Pauses while the tab is hidden or the header is off screen. Only runs if the image comes from sumi/moods/. Cache token x267.
+
+## 2026-11-23: Header text entrance (GSAP + SplitText)
+The home headline now comes in word by word: GSAP 3.13 + SplitText (free since 3.13) from cdnjs, loaded on index.html only (the same gsap.min.js URL as About, so it is cached). Each word fades up 55% of its height, tilted up to 7deg and blurred 6px, settling with back.out(1.8), 0.06s apart; then the sub's two lines fade up 14px, overlapping the end. Waits for the opening intro ("intro:reveal", 3.5s fallback). Falls back to the old CSS fade (.reveal) with reduced motion or if GSAP/SplitText fail to load. .hero__sub is hidden by CSS until then (html.js), 4s failsafe. Whole entrance ~1s. Cache token x268.

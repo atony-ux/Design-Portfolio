@@ -28,16 +28,41 @@
     return Promise.resolve(window.drawably || null);
   }
 
-  /* -------------------------------------------------- Hero title reveal
-     With the opening intro on screen, the headline waits and rises in as the
-     intro's sheet wipes away (the "intro:reveal" event), with a timed fallback. */
-  var hTitle = $(".hero__title");
+  /* -------------------------------------------------- Hero text (home)
+     The headline comes in word by word like cut-out paper words dropped onto the
+     page: each one fades up from a little below, slightly tilted and blurred, and
+     settles with a small overshoot; then the two sub lines fade up. GSAP +
+     SplitText (free since GSAP 3.13), loaded from cdnjs on the home page only.
+     With the opening intro on screen it waits for the "intro:reveal" event (timed
+     fallback). Without GSAP, or with reduced motion, it falls back to the plain
+     CSS fade (.reveal). The sub is hidden by CSS until then, with a 4s failsafe. */
+  var hTitle = $(".hero__title"), hSub = $(".hero__sub");
   if (hTitle) {
+    var heroDone = false;
+    var heroIn = function () {
+      if (heroDone) return; heroDone = true;
+      var G = window.gsap, ST = window.SplitText;
+      if (!G || !ST || reduced) { hTitle.classList.add("reveal"); if (hSub) hSub.classList.add("reveal"); return; }
+      try {
+        G.registerPlugin(ST);
+        var words = new ST(hTitle, { type: "words", wordsClass: "hero-word" }).words;
+        hTitle.style.transition = "none";
+        G.set(hTitle, { opacity: 1, y: 0 });
+        hTitle.classList.add("reveal");
+        var tl = G.timeline();
+        tl.from(words, { opacity: 0, yPercent: 55, rotation: function () { return G.utils.random(-7, 7); },
+          filter: "blur(6px)", duration: .8, ease: "back.out(1.8)", stagger: .06, clearProps: "filter" });
+        if (hSub) {
+          var lines = new ST(hSub, { type: "lines", linesClass: "hero-line" }).lines;
+          hSub.classList.add("reveal");
+          tl.from(lines, { opacity: 0, y: 14, duration: .6, ease: "power3.out", stagger: .12 }, "-=.45");
+        }
+      } catch (e) { hTitle.classList.add("reveal"); if (hSub) hSub.classList.add("reveal"); }
+    };
     if (document.documentElement.classList.contains("is-intro")) {
-      var showTitle = function () { hTitle.classList.add("reveal"); };
-      window.addEventListener("intro:reveal", showTitle, { once: true });
-      setTimeout(showTitle, 3500);
-    } else hTitle.classList.add("reveal");
+      window.addEventListener("intro:reveal", heroIn, { once: true });
+      setTimeout(heroIn, 3500);
+    } else heroIn();
   }
 
   /* -------------------------------------------------- Opening intro: the spinning CD (2026-11-23)
