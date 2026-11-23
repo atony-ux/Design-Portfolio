@@ -2030,3 +2030,6 @@ Manrope was taken out again at Anthony's request: --sans/--serif are Archivo, pa
 
 ## 2026-11-23: IBM label top right
 "Work in progress" (.wcard__wip) moved off the title line into the cover's top-right corner (white pill, grey text). The IBM card's foot is back to the normal layout (pills beside the name); the grid-foot rules for .wcard--wip are gone. Cache token x265.
+
+## 2026-11-23: Sleepy Sumi in the header, smaller intro CD
+The home header mascot is now the sleepy mood (assets/graphics/sumi/moods/sleepy.webp, 399x372), still sized by the "Header Sumi spans the text" script from the cap top of "Product Designer," to the baseline of "I love music." (~176x164 at 1440). sumi-duo.webp stays in assets, unused. Intro disc --cd is clamp(104px, 17vmin, 160px) (was 150/26vmin/240); ring and box scale with it. Cache token x266.

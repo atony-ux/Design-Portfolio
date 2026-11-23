@@ -25,7 +25,7 @@
        before anything paints. js/main.js "Opening intro" plays it and takes it away.
        ?intro=1 forces it; skipped for reduced motion. -->
   <script>document.documentElement.classList.add("js");try{if((/[?&]intro=(1|hold)/.test(location.search)||!sessionStorage.getItem("atony:intro"))&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("is-intro")}catch(e){}</script>
-  <link rel="stylesheet" href="css/style.css?v=x265" />
+  <link rel="stylesheet" href="css/style.css?v=x266" />
 </head>
 <body>
   <!-- ============ NAV ============ -->
@@ -56,7 +56,7 @@
         </div>
 
         <div class="hero__sumi-wrap">
-          <img class="hero__sumi" data-mascot src="assets/graphics/sumi/sumi-duo.webp?v=2" alt="Sumi, Anthony's mascot, standing in blue ink with a faded double of himself behind" width="290" height="426" />
+          <img class="hero__sumi" data-mascot src="assets/graphics/sumi/moods/sleepy.webp" alt="Sumi, Anthony's mascot, fast asleep with a little zzz" width="399" height="372" />
           <span class="hero__sumi-bubble">psst, try typing "music" ✦</span>
         </div>
 
@@ -205,6 +205,6 @@
   </footer>
 
   <script src="assets/vendor/drawably/drawably.classic.js?v=0.4.2"></script>
-  <script src="js/main.js?v=x265"></script>
+  <script src="js/main.js?v=x266"></script>
 </body>
 </html>
