@@ -1,0 +1,20 @@
+{
+  "name": "design-portfolio",
+  "version": "1.0.0",
+  "description": "Anthony Nguyen's Product Design Portfolio",
+  "type": "module",
+  "scripts": {
+    "dev": "echo 'This is a static site. Open index.html in your browser or use a local server.'",
+    "build": "echo 'This is a static site. No build step required.'"
+  },
+  "keywords": [
+    "portfolio",
+    "design",
+    "product-design"
+  ],
+  "author": "Anthony Nguyen",
+  "license": "MIT",
+  "dependencies": {
+    "@vercel/analytics": "^1.4.1"
+  }
+}
