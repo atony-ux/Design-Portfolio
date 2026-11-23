@@ -2062,7 +2062,7 @@
   })();
 
   /* -------------------------------------------------- Lottie on hover (home, IBM card)
-     [data-lottie] holds a Lottie JSON path. lottie-web's light build loads from cdnjs
+     [data-lottie] holds the path of a Lottie data script (see mount). lottie-web's light build loads from cdnjs
      only once such an element nears the screen. The animation rests on frame 0 (the
      whole logo) and plays only while its card is hovered or keyboard-focused; on
      leaving it plays to the end of the loop and settles back on frame 0. A still
@@ -2084,10 +2084,22 @@
       });
       return lib;
     }
+    function script(src) {
+      return new Promise(function (res, rej) {
+        var sc = document.createElement("script"); sc.src = src; sc.async = true;
+        sc.onload = res; sc.onerror = rej; document.head.appendChild(sc);
+      });
+    }
+    /* the animation itself is a small script (data-lottie) that sets
+       window.LOTTIE_DATA[data-lottie-key]: a plain <script> loads from file://
+       too, where fetching a .json is blocked */
     function mount(el) {
-      loadLib().then(function (L) {
+      var key = el.getAttribute("data-lottie-key");
+      Promise.all([loadLib(), script(el.getAttribute("data-lottie"))]).then(function (r) {
+        var L = r[0], data = window.LOTTIE_DATA && window.LOTTIE_DATA[key];
+        if (!data) return;
         var anim = L.loadAnimation({ container: el, renderer: "svg", loop: false, autoplay: false,
-          path: el.getAttribute("data-lottie"), rendererSettings: { preserveAspectRatio: "xMidYMid meet" } });
+          animationData: data, rendererSettings: { preserveAspectRatio: "xMidYMid meet" } });
         var hovering = false;
         anim.addEventListener("DOMLoaded", function () { anim.goToAndStop(0, true); el.classList.add("is-live"); });
         anim.addEventListener("complete", function () { if (hovering) anim.goToAndPlay(0, true); else anim.goToAndStop(0, true); });

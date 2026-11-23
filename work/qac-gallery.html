@@ -18,13 +18,13 @@
   <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png" />
   <!-- fonts are self-hosted (see FONTS at the top of style.css); preload the two the nav paints first -->
   <link rel="preload" href="../assets/fonts/caveat-latin.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="../assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="../assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin />
   <!-- html.js: JS is on (lets CSS hide things that JS will animate in, e.g. Sumi's drawing).
        Opening intro (the level meter): on the first page of a visit, lay the cover down
        before anything paints. js/main.js "Opening intro" plays it and takes it away.
        ?intro=1 forces it; skipped for reduced motion. -->
   <script>document.documentElement.classList.add("js");try{if((/[?&]intro=(1|hold)/.test(location.search)||!sessionStorage.getItem("atony:intro"))&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("is-intro")}catch(e){}</script>
-  <link rel="stylesheet" href="../css/style.css?v=x261" />
+  <link rel="stylesheet" href="../css/style.css?v=x262" />
 </head>
 <body>
   <div class="nav-outer nav-outer--case">
@@ -226,6 +226,6 @@
     </div>
   </footer>
 
-  <script src="../js/main.js?v=x261"></script>
+  <script src="../js/main.js?v=x262"></script>
 </body>
 </html>

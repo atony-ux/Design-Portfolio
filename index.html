@@ -18,14 +18,14 @@
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
   <!-- fonts are self-hosted (see FONTS at the top of style.css); preload the two the nav paints first -->
   <link rel="preload" href="assets/fonts/caveat-latin.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="assets/vendor/drawably/style.css?v=0.4.2" />
   <!-- html.js: JS is on (lets CSS hide things that JS will animate in, e.g. Sumi's drawing).
        Opening intro (the level meter): on the first page of a visit, lay the cover down
        before anything paints. js/main.js "Opening intro" plays it and takes it away.
        ?intro=1 forces it; skipped for reduced motion. -->
   <script>document.documentElement.classList.add("js");try{if((/[?&]intro=(1|hold)/.test(location.search)||!sessionStorage.getItem("atony:intro"))&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("is-intro")}catch(e){}</script>
-  <link rel="stylesheet" href="css/style.css?v=x261" />
+  <link rel="stylesheet" href="css/style.css?v=x262" />
 </head>
 <body>
   <!-- ============ NAV ============ -->
@@ -67,35 +67,8 @@
     <section class="section wrap" id="works" style="isolation:isolate">
 
       <div class="worktiles" data-reveal-stagger>
-        <div class="wcard wcard--soon wcard--wip" data-cursor="Work in progress" tabindex="0" role="group" aria-disabled="true" aria-label="IBM AI Security Command Center, work in progress">
-          <span class="wcard__paper">
-            <span class="wcard__tape" aria-hidden="true"></span>
-            <!-- work in progress: IBM's logo on white; it animates (Lottie) only on hover
-                 (".wthumb--ibm" in css/style.css). No page yet. -->
-            <span class="wcard__frame">
-              <span class="wthumb wthumb--ibm">
-                <span class="ibm-logo" data-lottie="assets/graphics/thumbs/ibm/ibm-logo.json" aria-hidden="true">
-                  <img class="ibm-logo__still" src="assets/graphics/thumbs/ibm/ibm-logo-still.webp" alt="" width="506" height="214" loading="lazy" decoding="async" />
-                </span>
-              </span>
-            </span>
-            <span class="wcard__foot">
-              <span class="wcard__text">
-                <h3 class="wcard__title">IBM AI Security Command Center <span class="wcard__wip">Work in progress</span></h3>
-                <span class="wcard__desc">A concept security dashboard for IBM that helps analysts catch and respond to threats faster.</span>
-              </span>
-              <span class="wcard__pills">
-              <span class="wcard__pill" data-drawably="pill">B2B</span>
-              <span class="wcard__pill" data-drawably="pill">Desktop</span>
-              <span class="wcard__pill" data-drawably="pill">Client</span>
-              </span>
-            </span>
-          </span>
-        </div>
-
         <a class="wcard" data-cursor="view" href="work/vendrs.html">
           <span class="wcard__paper">
-            <span class="wcard__tape" aria-hidden="true"></span>
             <!-- animated thumbnail: the event page rests here, the rest of the
                  product flies in on hover (".wthumb" in css/style.css) -->
             <span class="wcard__frame">
@@ -133,9 +106,33 @@
           </span>
         </a>
 
+        <div class="wcard wcard--soon wcard--wip" data-cursor="Work in progress" tabindex="0" role="group" aria-disabled="true" aria-label="IBM AI Security Command Center, work in progress">
+          <span class="wcard__paper">
+            <!-- work in progress: IBM's logo on white; it animates (Lottie) only on hover
+                 (".wthumb--ibm" in css/style.css). No page yet. -->
+            <span class="wcard__frame">
+              <span class="wthumb wthumb--ibm">
+                <span class="ibm-logo" data-lottie="assets/graphics/thumbs/ibm/ibm-logo.js" data-lottie-key="ibm" aria-hidden="true">
+                  <img class="ibm-logo__still" src="assets/graphics/thumbs/ibm/ibm-logo-still.webp" alt="" width="506" height="214" loading="lazy" decoding="async" />
+                </span>
+              </span>
+            </span>
+            <span class="wcard__foot">
+              <span class="wcard__text">
+                <h3 class="wcard__title">IBM AI Security Command Center <span class="wcard__wip">Work in progress</span></h3>
+                <span class="wcard__desc">A concept security dashboard for IBM that helps analysts catch and respond to threats faster.</span>
+              </span>
+              <span class="wcard__pills">
+              <span class="wcard__pill" data-drawably="pill">B2B</span>
+              <span class="wcard__pill" data-drawably="pill">Desktop</span>
+              <span class="wcard__pill" data-drawably="pill">Client</span>
+              </span>
+            </span>
+          </span>
+        </div>
+
         <div class="wcard wcard--soon" data-cursor="Coming soon" tabindex="0" role="group" aria-disabled="true" aria-label="QAC Gallery Redesign, coming soon">
           <span class="wcard__paper">
-            <span class="wcard__tape" aria-hidden="true"></span>
             <!-- animated thumbnail: the events page rests here, the rest of the
                  site flies in on hover (".wthumb" in css/style.css) -->
             <span class="wcard__frame">
@@ -207,6 +204,6 @@
   </footer>
 
   <script src="assets/vendor/drawably/drawably.classic.js?v=0.4.2"></script>
-  <script src="js/main.js?v=x261"></script>
+  <script src="js/main.js?v=x262"></script>
 </body>
 </html>

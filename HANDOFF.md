@@ -2015,3 +2015,9 @@ The IBM card now uses Anthony's Lottie (assets/graphics/thumbs/ibm/ibm-logo.json
 
 ## 2026-11-23: IBM card first, label beside the name
 The IBM card is now first in the Works grid (Vendrs second, QAC third on row 2; the pile reveal follows nth-child so it now stacks IBM and Vendrs). "Work in progress" is a small blue-soft pill (.wcard__wip) after the name, not a hover veil (`.wcard--wip`: no .wcard__soon). For that card the foot is a grid: name + label across the top, description left and pills right below; under 600px the pills drop below the description and the label sits on its own line. Cache token x261.
+
+## 2026-11-23: Manrope, lighter titles, card order, no tape
+- **Font is Manrope** (the face on leifcaratiquit.com, Anthony's reference): self-hosted variable 200-800, assets/fonts/manrope-latin(-ext).woff2 (Google Fonts, OFL), first in --sans/--serif; every page preloads manrope-latin.woff2 instead of archivo-latin. Archivo faces stay declared (only fetched for italic text). Caveat unchanged.
+- **Lighter weights:** hero title 500 -> 400, case-study card titles 600 -> 500.
+- **Works order:** Vendrs, IBM, then QAC on row 2. The tape (.wcard__tape) is gone from the cards (markup removed; CSS left unused).
+- **IBM card:** logo smaller (Lottie canvas 68% of the frame, logo ~32% wide); "Work in progress" is a grey pill in sentence case. The Lottie data is now a script, assets/graphics/thumbs/ibm/ibm-logo.js (sets window.LOTTIE_DATA.ibm; markup data-lottie + data-lottie-key), because fetching a .json is blocked when the page is opened from file://, which stopped the hover animation there. Cache token x262.
