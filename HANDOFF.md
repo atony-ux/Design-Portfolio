@@ -1994,3 +1994,6 @@ After the ATONY loop (Anthony's After Effects package, ~/Desktop/atony_after_eff
 
 ## 2026-11-23: Paper grain removed
 The site-wide noise overlay (body::after SVG feTurbulence tile) is gone, at Anthony's request. Backgrounds are flat now. Cache token x254.
+
+## 2026-11-23: New header mascot (home)
+The home hero Sumi is now assets/graphics/sumi/sumi-duo.webp (black ink Sumi with a faded double behind, transparent, 238x345 lossless, cropped to the drawing with a 4px pad), replacing sketching.webp (left in place, unused). Same size and draw-in/wiggle/bubble/easter eggs. The baseline offset in .hero__sumi-wrap uses 0.017 for the new 4px strip. Cache token x255.
