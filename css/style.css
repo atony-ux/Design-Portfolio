@@ -121,17 +121,7 @@ body {
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
 }
-/* paper grain over the whole site (after rachelchen.tech): a tiny SVG noise
-   tile over everything. pointer-events:none, so it never blocks a click.
-   2026-11-13: it used to be the raw noise at 30% with mix-blend-mode: multiply.
-   A blended full-screen layer makes the browser re-blend the whole screen on every
-   frame of a playing video (laggy on Studio). Now the SVG's feColorMatrix turns the
-   noise into black specks with the alpha the multiply used to give (fitted to the
-   old look, 0.99 correlation), so it is a plain see-through layer: no blending. */
-body::after { content: ""; position: fixed; inset: 0; z-index: 9998; pointer-events: none;
-  background-size: 240px; background-repeat: repeat;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -.0464 -.0465 -.0462 .1121 .0540'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
-@media (prefers-reduced-transparency: reduce) { body::after { opacity: .083; } }
+/* (The paper grain overlay, body::after, was removed 2026-11-23 at Anthony's request.) */
 img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
 button { font-family: inherit; cursor: pointer; }
@@ -2643,7 +2633,7 @@ html.ab-gallery-open { overflow: hidden; }
    the blue ::before cover is there from the start; js/main.js ("Opening intro")
    builds the rest, plays it and removes everything. Click or any key skips it.
    The cover fades itself out after 4s regardless, in case the script never runs.
-   (Replaced the level meter. The paper grain, body::after, sits on top of it.)
+   (Replaced the level meter.)
    ===================================================================== */
 html.is-intro { overflow: hidden; }
 html.is-intro::before { content: ""; position: fixed; inset: 0; z-index: 9996; background: #fff;
