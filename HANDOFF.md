@@ -2009,3 +2009,6 @@ sumi-duo.webp replaced with Anthony's upscaled version (290x426, cropped tight, 
 
 ## 2026-11-23: Nav hover
 The grey pill behind a nav link on hover is gone; hover only darkens the text. Cache token x259.
+
+## 2026-11-23: IBM logo is the Lottie, hover-only
+The IBM card now uses Anthony's Lottie (assets/graphics/thumbs/ibm/ibm-logo.json, vector, 512x512, 90 frames @30fps, no expressions so the light build works). js/main.js ("Lottie on hover") loads lottie-web 5.12.2 lottie_light from cdnjs only when a [data-lottie] element nears the screen, rests it on frame 0 (the whole logo), plays it only while the card is hovered or focused, and on leaving lets the loop finish and settle on frame 0. Never plays with reduced motion; on touch it stays still. ibm-logo-still.webp (frame 0, 506x214) shows until it loads and if the CDN fails. The animated WebP version moved to ../Portfolio2.0 removed files/unused-assets-2026-11-23/ibm/. The IBM thumbnail has the same --r-md rounded corners as the other covers, drawn with a hairline since it is white on white. Cache token x260.

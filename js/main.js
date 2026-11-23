@@ -2061,6 +2061,49 @@
     window.addEventListener("pageshow", function (e) { if (e.persisted) draw(); });
   })();
 
+  /* -------------------------------------------------- Lottie on hover (home, IBM card)
+     [data-lottie] holds a Lottie JSON path. lottie-web's light build loads from cdnjs
+     only once such an element nears the screen. The animation rests on frame 0 (the
+     whole logo) and plays only while its card is hovered or keyboard-focused; on
+     leaving it plays to the end of the loop and settles back on frame 0. A still
+     image inside shows until then, and stays if the library can't load. Never plays
+     with reduced motion. */
+  (function () {
+    var els = $$("[data-lottie]");
+    if (!els.length || !("IntersectionObserver" in window)) return;
+    var SRC = "https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie_light.min.js", lib = null;
+    function loadLib() {
+      if (window.lottie) return Promise.resolve(window.lottie);
+      if (lib) return lib;
+      lib = new Promise(function (res, rej) {
+        var sc = document.createElement("script");
+        sc.src = SRC; sc.async = true; sc.crossOrigin = "anonymous";
+        sc.onload = function () { window.lottie ? res(window.lottie) : rej(); };
+        sc.onerror = rej;
+        document.head.appendChild(sc);
+      });
+      return lib;
+    }
+    function mount(el) {
+      loadLib().then(function (L) {
+        var anim = L.loadAnimation({ container: el, renderer: "svg", loop: false, autoplay: false,
+          path: el.getAttribute("data-lottie"), rendererSettings: { preserveAspectRatio: "xMidYMid meet" } });
+        var hovering = false;
+        anim.addEventListener("DOMLoaded", function () { anim.goToAndStop(0, true); el.classList.add("is-live"); });
+        anim.addEventListener("complete", function () { if (hovering) anim.goToAndPlay(0, true); else anim.goToAndStop(0, true); });
+        var card = el.closest(".wcard") || el;
+        function on() { if (reduced) return; hovering = true; if (anim.isPaused) anim.play(); }
+        function off() { hovering = false; }   /* the current loop finishes, then it rests */
+        card.addEventListener("mouseenter", on); card.addEventListener("mouseleave", off);
+        card.addEventListener("focus", on); card.addEventListener("blur", off);
+      }).catch(function () {});
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { io.unobserve(e.target); mount(e.target); } });
+    }, { rootMargin: "400px 0px" });
+    els.forEach(function (el) { io.observe(el); });
+  })();
+
   /* -------------------------------------------------- Header Sumi spans the text (home)
      On wide screens (where the wrap is absolutely placed) Sumi runs from the cap top of
      the first headline line ("Product Designer,") to the baseline of the last line of

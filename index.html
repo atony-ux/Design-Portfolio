@@ -25,7 +25,7 @@
        before anything paints. js/main.js "Opening intro" plays it and takes it away.
        ?intro=1 forces it; skipped for reduced motion. -->
   <script>document.documentElement.classList.add("js");try{if((/[?&]intro=(1|hold)/.test(location.search)||!sessionStorage.getItem("atony:intro"))&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("is-intro")}catch(e){}</script>
-  <link rel="stylesheet" href="css/style.css?v=x259" />
+  <link rel="stylesheet" href="css/style.css?v=x260" />
 </head>
 <body>
   <!-- ============ NAV ============ -->
@@ -146,11 +146,13 @@
         <div class="wcard wcard--soon" data-cursor="Work in progress" tabindex="0" role="group" aria-disabled="true" aria-label="IBM AI Security Command Center, work in progress">
           <span class="wcard__paper">
             <span class="wcard__tape" aria-hidden="true"></span>
-            <!-- work in progress: IBM's animated logo on white
+            <!-- work in progress: IBM's logo on white; it animates (Lottie) only on hover
                  (".wthumb--ibm" in css/style.css). No page yet. -->
             <span class="wcard__frame">
               <span class="wthumb wthumb--ibm">
-                <img class="ibm-logo" src="assets/graphics/thumbs/ibm/ibm-logo.webp?v=2" alt="IBM logo" width="768" height="294" loading="lazy" decoding="async" />
+                <span class="ibm-logo" data-lottie="assets/graphics/thumbs/ibm/ibm-logo.json" aria-hidden="true">
+                  <img class="ibm-logo__still" src="assets/graphics/thumbs/ibm/ibm-logo-still.webp" alt="" width="506" height="214" loading="lazy" decoding="async" />
+                </span>
               </span>
               <span class="wcard__soon" aria-hidden="true"><b>Work in progress</b></span>
             </span>
@@ -205,6 +207,6 @@
   </footer>
 
   <script src="assets/vendor/drawably/drawably.classic.js?v=0.4.2"></script>
-  <script src="js/main.js?v=x259"></script>
+  <script src="js/main.js?v=x260"></script>
 </body>
 </html>

@@ -1755,14 +1755,23 @@ body.is-leaving { opacity: 0; transition: opacity .28s ease; }
 .wcard--soon:hover .wcard__soon, .wcard--soon:focus-visible .wcard__soon { opacity: 1; }
 
 /* ---- IBM AI Security Command Center (work in progress, 2026-11-23) ----
-   IBM's animated logo on white. From Anthony's IBM Logo.webm (150x150, transparent
-   VP9, which Safari can't play): frames captured in Chrome, each upscaled 6x with
-   its edges re-sharpened, flattened onto white and saved as an animated WebP
-   (assets/graphics/thumbs/ibm/ibm-logo.webp, 768x294, 3s loop, ~100KB). */
-.wthumb--ibm { display: grid; place-items: center; background: #fff; box-shadow: inset 0 0 0 1px rgba(16, 16, 40, .08); border-radius: inherit; }
-.ibm-logo { position: relative; z-index: 1; width: 44%; height: auto;
-  transition: transform .6s var(--ease-back); }
-.wcard:hover .ibm-logo, .wcard:focus-visible .ibm-logo { transform: scale(1.06); }
+   IBM's logo on white. It is Anthony's Lottie (assets/graphics/thumbs/ibm/ibm-logo.json,
+   vector, 512x512 canvas, 90 frames at 30fps), drawn by lottie-web's light build
+   (loaded from cdnjs by js/main.js only when the card nears the screen). It rests on
+   frame 0, the whole logo, and plays only while the card is hovered or focused; on
+   leaving it finishes the loop and settles back. Until it loads, or if it can't,
+   ibm-logo-still.webp (frame 0) shows. The logo fills 47% of the Lottie canvas, so
+   the canvas is sized at 93% of the frame's width for a logo 44% wide. */
+/* white on the white card: a hairline edge with the same rounded corners (--r-md) as the
+   other case-study thumbnails, so it reads as the same rounded picture */
+.wthumb--ibm { display: grid; place-items: center; background: #fff; border-radius: var(--r-md);
+  box-shadow: inset 0 0 0 1px rgba(16, 16, 40, .1); }
+.ibm-logo { position: absolute; left: 50%; top: 50%; z-index: 1; width: 93%; aspect-ratio: 1;
+  transform: translate(-50%, -50%); transition: transform .6s var(--ease-back); }
+.ibm-logo svg { position: absolute; inset: 0; display: block; }
+.ibm-logo__still { position: absolute; left: 50%; top: 50%; width: 47.3%; height: auto; transform: translate(-50%, -50%); }
+.ibm-logo.is-live .ibm-logo__still { display: none; }
+.wcard:hover .ibm-logo, .wcard:focus-visible .ibm-logo { transform: translate(-50%, -50%) scale(1.04); }
 
 /* ---- QAC Gallery ----
    White ground with the gallery's paint splatters bleeding in from the edges,
