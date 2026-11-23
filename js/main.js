@@ -2061,6 +2061,47 @@
     window.addEventListener("pageshow", function (e) { if (e.persisted) draw(); });
   })();
 
+  /* -------------------------------------------------- Header Sumi spans the text (home)
+     On wide screens (where the wrap is absolutely placed) Sumi runs from the cap top of
+     the first headline line ("Product Designer,") to the baseline of the last line of
+     the sub ("I love music."). Both are measured from the real font metrics (canvas
+     measureText), so it holds at every width and after the fonts load. */
+  (function () {
+    var wrap = $(".hero__sumi-wrap"), img = wrap && $(".hero__sumi", wrap);
+    var inner = $(".hero__inner"), title = $(".hero__title"), sub = $(".hero__sub");
+    if (!wrap || !img || !inner || !title || !sub) return;
+    var ctx = document.createElement("canvas").getContext("2d");
+    function metrics(el, sample) {
+      var cs = getComputedStyle(el);
+      ctx.font = cs.fontWeight + " " + cs.fontSize + " " + cs.fontFamily;
+      var m = ctx.measureText(sample), fs = parseFloat(cs.fontSize);
+      var lh = parseFloat(cs.lineHeight) || fs * 1.2;
+      var fa = m.fontBoundingBoxAscent || fs * .9, fd = m.fontBoundingBoxDescent || fs * .25;
+      return { lh: lh, base: (lh - (fa + fd)) / 2 + fa, cap: m.actualBoundingBoxAscent || fs * .7 };
+    }
+    function fit() {
+      wrap.style.top = wrap.style.bottom = wrap.style.width = "";
+      if (getComputedStyle(wrap).position !== "absolute") return;
+      /* layout offsets, not getBoundingClientRect: the headline is mid fade-in
+         (translated) when this first runs, and offsets ignore transforms */
+      function topIn(el) { var y = 0; while (el && el !== inner) { y += el.offsetTop; el = el.offsetParent; } return y; }
+      var tm = metrics(title, "P"), sm = metrics(sub, "I");
+      var capTop = topIn(title) + tm.base - tm.cap;
+      var baseline = topIn(sub) + sub.offsetHeight - sm.lh + sm.base;
+      var h = baseline - capTop;
+      if (!(h > 40)) return;
+      var ar = (img.naturalWidth || 290) / (img.naturalHeight || 426);
+      wrap.style.top = capTop + "px";
+      wrap.style.bottom = "auto";
+      wrap.style.width = (h * ar).toFixed(1) + "px";
+    }
+    fit();
+    if (!img.complete) img.addEventListener("load", fit, { once: true });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+    if ("ResizeObserver" in window) new ResizeObserver(fit).observe(inner);
+    else window.addEventListener("resize", fit);
+  })();
+
   /* -------------------------------------------------- Mascot click easter eggs */
   var eggCount = 0;
   var eggLines = ["beep boop, thanks for clicking ✦", "still designing… come back later", "certified Figma + Claude enjoyer ✦", "psst, check the Vendrs case study", "you found me ★"];
