@@ -2709,13 +2709,13 @@ html.is-intro::before { content: ""; position: fixed; inset: 0; z-index: 9996; b
 html.is-intro .deco { animation-play-state: paused; }
 /* works: the empty cell beside QAC */
 .works-deco { position: relative; align-self: stretch; min-height: 320px; }
-.deco--w1 { left: 20%; top: 8%; width: 17%; rotate: -10deg; }
-.deco--w2 { left: 46%; top: 24%; width: 30%; rotate: 8deg; }
-.deco--w3 { left: 28%; top: 64%; width: 11%; rotate: -16deg; }
+.deco--w1 { left: 26%; top: 14%; width: 12%; rotate: -10deg; }
+.deco--w2 { left: 46%; top: 28%; width: 21%; rotate: 8deg; }
+.deco--w3 { left: 32%; top: 60%; width: 8%; rotate: -16deg; }
 /* studio: under the filter list */
-.pl-deco { position: relative; height: 210px; margin-top: 28px; }
-.deco--s1 { left: -6px; top: 0; width: 118px; rotate: -8deg; }
-.deco--s2 { left: 122px; top: 60px; width: 92px; rotate: 12deg; }
+.pl-deco { position: relative; height: 150px; margin-top: 24px; }
+.deco--s1 { left: -4px; top: 0; width: 82px; rotate: -8deg; }
+.deco--s2 { left: 86px; top: 44px; width: 64px; rotate: 12deg; }
 /* case studies: beside the title */
 .deco--case { right: -48px; top: clamp(30px, 5vw, 70px); width: clamp(120px, 11vw, 160px); rotate: 10deg; z-index: 0; }
 .deco--case-tall { width: clamp(100px, 9vw, 130px); rotate: -8deg; }
