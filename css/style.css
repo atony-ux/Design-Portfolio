@@ -2716,6 +2716,14 @@ html.is-intro .deco { animation-play-state: paused; }
 .pl-deco { position: relative; height: 150px; margin-top: 24px; }
 .deco--s1 { left: -4px; top: 0; width: 82px; rotate: -8deg; }
 .deco--s2 { left: 86px; top: 44px; width: 64px; rotate: 12deg; }
+/* studio: Sumi sketching loop (3D figure render, mascot-figure/tools/record.mjs) in place of the halftones.
+   The video's background is baked to --bg (#fafafa); the edges fade out so any slight colour shift from
+   the H.264 encode never shows as a box. */
+.pl-deco--sumi { height: auto; margin-top: 18px; }
+.pl-sumi { display: block; width: 100%; max-width: 232px; height: auto; aspect-ratio: 1;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent), linear-gradient(transparent, #000 7%, #000 93%, transparent);
+  -webkit-mask-composite: source-in; mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent), linear-gradient(transparent, #000 7%, #000 93%, transparent);
+  mask-composite: intersect; }
 /* case studies: beside the title */
 .deco--case { right: -48px; top: clamp(30px, 5vw, 70px); width: clamp(120px, 11vw, 160px); rotate: 10deg; z-index: 0; }
 .deco--case-tall { width: clamp(100px, 9vw, 130px); rotate: -8deg; }

@@ -2052,3 +2052,18 @@ New halftones made with tools/halftone.py from the site's own doodles: assets/gr
 - Studio: new "HenningTee" card (Interactive · Work in progress), not linked. Its video (assets/graphics/play/henningtee.mp4, 1280x720, 800 kbps, 59s loop, poster henningtee-poster.webp) walks through henningtee.vercel.app on desktop (guessing a shirt, scrolling the closet, opening shirts) and then on a phone, with camera zooms. The crate feature is never shown. Rows: MP3 Player + HenningTee share a row; Reverie in Blue moved into the Akai MPC 2000 / My Hit Box row.
 - How the video was made (tools/walkthrough/): seed-henningtee.ts fills a PRIVATE copy of the HenningTee data with 7 weeks of sample wears, friends and guesses (the live site needs a passcode and must not get test guesses); henningtee.mjs drives headless Chrome over CDP and records a 2x screencast plus a cursor/camera log (cdp.mjs); compose.py builds the frames (browser window, phone frame, eased zooms, drawn cursor and touch dots, crossfade loop); encode.swift writes the MP4 with AVFoundation. A 1920x1080 master is at "New portfolio files/HenningTee walkthrough.mp4" (outside the repo).
 - Cache token x272.
+
+## 2026-11-23: Sumi sketching loop under the Studio filters
+The two halftones under the Studio filter list (bass clef + note, `.deco--s1/2`) were replaced by a looping
+video of the 3D Sumi figure sketching and, every 11s, reaching for his energy drink:
+`assets/graphics/play/sumi-sketching.mp4` (464x464, 30fps, 11s seamless loop, ~0.95MB) + `-poster.webp`, in
+`div.pl-deco.pl-deco--sumi` as a `data-autoplay muted loop playsinline preload="auto"` video, shown 232px wide.
+- The video's background is baked to `--bg` (#fafafa); `.pl-sumi` fades its edges with a mask so any slight
+  colour shift from the H.264 encode never shows as a box. Hidden under 900px with the rest of `.pl-deco`.
+- **Source**: the three.js figure at `/Users/atony/mascot-figure/` (index.html). To re-record after changing the
+  figure: serve that folder (`python3 -m http.server 5178` in it), then
+  `node tools/record.mjs http://localhost:5178/ sketch <frames-dir> 696 30 11 fafafa` (in mascot-figure; headless
+  Chrome, deterministic frames via `?record=sketch` and `window.__recSeek`), then encode with
+  `tools/walkthrough/encode.swift` here: `<frames-dir> assets/graphics/play/sumi-sketching.mp4 30 464 464 700`.
+- The halftone files are untouched, just no longer used here. Cache token x273.
+- Preview: port 4323 was still held by an earlier chat's server, so `portfolio2` now runs on **4324**.

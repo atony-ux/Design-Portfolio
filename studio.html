@@ -25,7 +25,7 @@
        before anything paints. js/main.js "Opening intro" plays it and takes it away.
        ?intro=1 forces it; skipped for reduced motion. -->
   <script>document.documentElement.classList.add("js");try{if((/[?&]intro=(1|hold)/.test(location.search)||!sessionStorage.getItem("atony:intro"))&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("is-intro")}catch(e){}</script>
-  <link rel="stylesheet" href="css/style.css?v=x272" />
+  <link rel="stylesheet" href="css/style.css?v=x273" />
 </head>
 <body>
   <!-- ============ NAV ============ -->
@@ -81,9 +81,8 @@
           </ul>
         </fieldset>
         <p class="pl-status sr-only" aria-live="polite"></p>
-        <div class="pl-deco" aria-hidden="true">
-          <img class="deco deco--s1" src="assets/graphics/halftone-bass.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
-          <img class="deco deco--s2" src="assets/graphics/halftone-note.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+        <div class="pl-deco pl-deco--sumi" aria-hidden="true">
+          <video class="pl-sumi" src="assets/graphics/play/sumi-sketching.mp4" poster="assets/graphics/play/sumi-sketching-poster.webp" width="464" height="464" data-autoplay muted loop playsinline preload="auto"></video>
         </div>
       </aside>
 
@@ -220,6 +219,6 @@
   </footer>
 
   <script src="assets/vendor/drawably/drawably.classic.js?v=0.4.2"></script>
-  <script src="js/main.js?v=x272"></script>
+  <script src="js/main.js?v=x273"></script>
 </body>
 </html>
